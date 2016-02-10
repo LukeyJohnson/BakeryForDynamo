@@ -1,0 +1,51 @@
+<Workspace Version="0.8.2.2392" X="151.1575" Y="215.45" zoom="0.8425" Name="Convert Category Name to Built In Category Name" Description="You must use List.Map to convert list of Category Names to list of Built In Names" ID="4bde5c1f-505e-441f-bec6-37d7363003cf" Category="Bakery.Categories">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSCoreNodesUI.CreateList guid="879836a2-00fc-49e0-857a-a45977a0993f" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="210.5" y="242" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1" />
+    <Dynamo.Nodes.Function guid="3caf3734-9153-47aa-a88b-c6b9022607a0" type="Dynamo.Nodes.Function" nickname="Get Categories with Builtins" x="271.5" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">
+      <ID value="ac028a71-49f5-4343-a0e0-a1cedfa80c39" />
+      <Name value="Get Categories with Builtins" />
+      <Description value="Lists: Category Names, internal api definition, Built In Category Names, Ids" />
+      <Inputs />
+      <Outputs>
+        <Output value="Names" />
+        <Output value="Categories" />
+        <Output value="Builtin Name" />
+        <Output value="Ids" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.DSFunction guid="ca48278c-19bf-4da7-bb84-6eaf5fd27c4b" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="813.5" y="250" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.Symbol guid="5cd3beec-7038-4bac-8687-8daed9f1e377" type="Dynamo.Nodes.Symbol" nickname="Input" x="3.5" y="212" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="categoryName" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="71cc20b1-b0b0-4f73-b902-cf34f8399c93" type="Dynamo.Nodes.Output" nickname="Output" x="1120.5" y="272" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="builtInName" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Function guid="0e3c2457-8a05-421a-b7bf-4f60d2954943" type="Dynamo.Nodes.Function" nickname="bv If Equal Return Index" x="501.415430267062" y="445.044510385757" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="f98fdd44-ac07-4192-a93a-81c12ca16bcf" />
+      <Name value="bv If Equal Return Index" />
+      <Description value="forked" />
+      <Inputs>
+        <Input value="listA" />
+        <Input value="listB" />
+      </Inputs>
+      <Outputs>
+        <Output value="Index" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="879836a2-00fc-49e0-857a-a45977a0993f" start_index="0" end="0e3c2457-8a05-421a-b7bf-4f60d2954943" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3caf3734-9153-47aa-a88b-c6b9022607a0" start_index="0" end="0e3c2457-8a05-421a-b7bf-4f60d2954943" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3caf3734-9153-47aa-a88b-c6b9022607a0" start_index="2" end="ca48278c-19bf-4da7-bb84-6eaf5fd27c4b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ca48278c-19bf-4da7-bb84-6eaf5fd27c4b" start_index="0" end="71cc20b1-b0b0-4f73-b902-cf34f8399c93" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5cd3beec-7038-4bac-8687-8daed9f1e377" start_index="0" end="879836a2-00fc-49e0-857a-a45977a0993f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="0e3c2457-8a05-421a-b7bf-4f60d2954943" start_index="0" end="ca48278c-19bf-4da7-bb84-6eaf5fd27c4b" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

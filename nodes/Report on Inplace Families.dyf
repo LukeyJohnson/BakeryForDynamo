@@ -1,0 +1,100 @@
+<Workspace Version="0.8.1.1942" X="-1079.60238437193" Y="440.402366860666" zoom="0.738947470664795" Name="Report on Inplace Families" ID="b8796d40-f999-41fd-b051-1303388bb189" Description="" Category="Bakery.Families">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Function guid="4028edb6-db63-4fc7-8f94-3b061372d762" type="Dynamo.Nodes.Function" nickname="List.ReplaceNull" x="3601.66275385566" y="198.476643636401" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <ID value="2dd1e892-6338-4fba-8345-f7a9f418bb57" />
+      <Name value="List.ReplaceNull" />
+      <Description value="Replaces all null values within a given list with a substitute" />
+      <Inputs>
+        <Input value="list" />
+        <Input value="replacement" />
+      </Inputs>
+      <Outputs>
+        <Output value="list" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.DSFunction guid="f0f089ca-ca7c-4513-8707-95f98422468a" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="3297.87778047542" y="203.19237963513" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="" function="Flatten@var[]..[]" />
+    <Dynamo.Nodes.StringInput guid="5d7935c0-be76-441d-a3ce-ec3376b39516" type="Dynamo.Nodes.StringInput" nickname="String" x="3395.63239343751" y="127.55807602686" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>NULL VALUE</System.String>
+      <System.String value="NULL VALUE" />
+    </Dynamo.Nodes.StringInput>
+    <DSCoreNodesUI.CreateList guid="2b953914-2329-4775-9d03-007c5efd3aaa" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="3020.54212755802" y="185.969679198651" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="7" />
+    <Dynamo.Nodes.StringInput guid="93ccce71-4cef-46da-8808-57e802ee0163" type="Dynamo.Nodes.StringInput" nickname="String" x="2798.2940978155" y="148.023436617633" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>InplaceFams</System.String>
+      <System.String value="InplaceFams" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.StringInput guid="8159f953-97bb-4019-b3b4-afa4248eaedc" type="Dynamo.Nodes.StringInput" nickname="String" x="2694.53269864977" y="64.5260143511685" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>---Any Inplace Families?---</System.String>
+      <System.String value="---Any Inplace Families?---" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.StringInput guid="ba4823b6-ea13-49a2-86f8-ca8dc13b8b89" type="Dynamo.Nodes.StringInput" nickname="String" x="2493.36640144347" y="208.75322058325" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>---Number of Inplace Families?---</System.String>
+      <System.String value="---Number of Inplace Families?---" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.StringInput guid="baff816b-9f04-46d3-84ee-cc749fadfea2" type="Dynamo.Nodes.StringInput" nickname="String" x="2602.98442186282" y="294.456182623601" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>---Show List---</System.String>
+      <System.String value="---Show List---" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.Output guid="7256ffff-490d-4c94-9df4-57c5c55ae2f8" type="Dynamo.Nodes.Output" nickname="Output" x="3913.25327010956" y="211.028170483325" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="flatList" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Function guid="033c3c91-7145-4580-a35a-0d2612fd0646" type="Dynamo.Nodes.Function" nickname="Collect all FamilyInstance using Element Types" x="989.101368371776" y="-161.272585700888" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="504197ab-9a5e-40c6-aad7-583fb2705ee1" />
+      <Name value="Collect all FamilyInstance using Element Types" />
+      <Description value="should get model family instances" />
+      <Inputs />
+      <Outputs>
+        <Output value="elements" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Watch guid="3c8b82fe-17ec-4425-831d-b3413dbfd945" type="Dynamo.Nodes.Watch" nickname="Watch" x="2445.06735514932" y="57.926892728946" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.Function guid="3ae72efa-7f30-4b99-bfed-5b0842988a30" type="Dynamo.Nodes.Function" nickname="Element List check for Inplace Families" x="1381.23423712597" y="-143.278744013192" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="0a64a93a-3787-4094-9254-1e87980188f0" />
+      <Name value="Element List check for Inplace Families" />
+      <Description value="pythonic" />
+      <Inputs>
+        <Input value="Elements" />
+      </Inputs>
+      <Outputs>
+        <Output value="FamilyInPlace" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="bcd9635e-fd5e-4252-bad0-d3723cd0f1ea" type="Dynamo.Nodes.Function" nickname="List.AnyTrue" x="2052.66078183455" y="-129.939143787194" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="605e21d1-67ee-4465-8543-67f7781dd84d" />
+      <Name value="List.AnyTrue" />
+      <Description value="Returns true if any item in a list of booleans is true." />
+      <Inputs>
+        <Input value="seq" />
+      </Inputs>
+      <Outputs>
+        <Output value="any?" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.DSFunction guid="ac5ff2ec-9216-43bf-89f9-989d48a77af8" type="Dynamo.Nodes.DSFunction" nickname="CountTrue" x="2037.09791490422" y="3.45685847278685" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="" function="CountTrue@var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="31e90f88-8435-4c9e-899d-a53669e54c17" type="Dynamo.Nodes.DSFunction" nickname="List.FilterByBoolMask" x="1975.95808053506" y="401.421598548397" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="50eaad3d-6d24-4fd6-9838-9aef256656f7" type="Dynamo.Nodes.DSFunction" nickname="Element.Id" x="1410.1367042823" y="91.2758932939412" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Element.Id" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="4028edb6-db63-4fc7-8f94-3b061372d762" start_index="0" end="7256ffff-490d-4c94-9df4-57c5c55ae2f8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f0f089ca-ca7c-4513-8707-95f98422468a" start_index="0" end="4028edb6-db63-4fc7-8f94-3b061372d762" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5d7935c0-be76-441d-a3ce-ec3376b39516" start_index="0" end="4028edb6-db63-4fc7-8f94-3b061372d762" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2b953914-2329-4775-9d03-007c5efd3aaa" start_index="0" end="f0f089ca-ca7c-4513-8707-95f98422468a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="93ccce71-4cef-46da-8808-57e802ee0163" start_index="0" end="2b953914-2329-4775-9d03-007c5efd3aaa" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8159f953-97bb-4019-b3b4-afa4248eaedc" start_index="0" end="2b953914-2329-4775-9d03-007c5efd3aaa" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ba4823b6-ea13-49a2-86f8-ca8dc13b8b89" start_index="0" end="2b953914-2329-4775-9d03-007c5efd3aaa" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="baff816b-9f04-46d3-84ee-cc749fadfea2" start_index="0" end="2b953914-2329-4775-9d03-007c5efd3aaa" end_index="5" portType="0" />
+    <Dynamo.Models.ConnectorModel start="033c3c91-7145-4580-a35a-0d2612fd0646" start_index="0" end="3ae72efa-7f30-4b99-bfed-5b0842988a30" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="033c3c91-7145-4580-a35a-0d2612fd0646" start_index="0" end="50eaad3d-6d24-4fd6-9838-9aef256656f7" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3ae72efa-7f30-4b99-bfed-5b0842988a30" start_index="0" end="bcd9635e-fd5e-4252-bad0-d3723cd0f1ea" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3ae72efa-7f30-4b99-bfed-5b0842988a30" start_index="0" end="ac5ff2ec-9216-43bf-89f9-989d48a77af8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3ae72efa-7f30-4b99-bfed-5b0842988a30" start_index="0" end="31e90f88-8435-4c9e-899d-a53669e54c17" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="bcd9635e-fd5e-4252-bad0-d3723cd0f1ea" start_index="0" end="2b953914-2329-4775-9d03-007c5efd3aaa" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ac5ff2ec-9216-43bf-89f9-989d48a77af8" start_index="0" end="2b953914-2329-4775-9d03-007c5efd3aaa" end_index="4" portType="0" />
+    <Dynamo.Models.ConnectorModel start="31e90f88-8435-4c9e-899d-a53669e54c17" start_index="0" end="2b953914-2329-4775-9d03-007c5efd3aaa" end_index="6" portType="0" />
+    <Dynamo.Models.ConnectorModel start="50eaad3d-6d24-4fd6-9838-9aef256656f7" start_index="0" end="31e90f88-8435-4c9e-899d-a53669e54c17" end_index="0" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Models.NoteModel guid="2a556c4f-574b-4170-955f-3eb8658636b1" text="could be cleaned up" x="1474.49832978144" y="-200.812130941875" />
+  </Notes>
+  <Annotations />
+</Workspace>

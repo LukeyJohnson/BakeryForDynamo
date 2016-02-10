@@ -1,0 +1,81 @@
+<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv IDs to Elements" Description="forked from CAAD_RWTH" ID="b2a2941e-7151-4158-81ce-522d451de0ff" Category="Bakery.Forks">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Function guid="704f1182-816f-4d5f-93a2-3174f42ded08" type="Dynamo.Nodes.Function" nickname="Turn Into List" x="138.678571428572" y="11.9480519480519" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="Turn Into List" />
+      <Description value="Turns an element into a list" />
+      <Inputs>
+        <Input value="item" />
+      </Inputs>
+      <Outputs>
+        <Output value="var[]" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Symbol guid="c937e2c8-b4c0-4387-8c03-c45cb120b59c" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="13.1980519480519" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="ID(s)" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="d280e77f-e6a3-450d-a713-4021b4e5afbb" type="Dynamo.Nodes.Output" nickname="Output" x="982.899350649356" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Element(s)" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="e431c8b4-c1bb-4871-8aca-2c3629ab7fc1" type="Dynamo.Nodes.DSFunction" nickname="List.FirstItem" x="615.847402597403" y="92.0205194805196" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="a65a2ffb-9885-43af-a391-e8f47848e45c" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="606.83304195804" y="185.229425574426" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <DSCoreNodesUI.Formula guid="5da53d02-0a68-4779-89c8-fb8a37a9b113" type="DSCoreNodesUI.Formula" nickname="Formula" x="377.721320346319" y="187.866788211789" isVisible="true" isUpstreamVisible="true" lacing="Longest" isSelectedInput="True">
+      <FormulaText>1</FormulaText>
+    </DSCoreNodesUI.Formula>
+    <Dynamo.Nodes.Output guid="ecb8b376-d34f-4033-aa7a-b4684c15e350" type="Dynamo.Nodes.Output" nickname="Output" x="817.80831668332" y="183.672649017649" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="unmatched" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Function guid="d08f2ddc-dfb7-40a9-bc1b-0b53789f577c" type="Dynamo.Nodes.Function" nickname="ReturnListOrSingleValue" x="764.738095238096" y="10.3004329004335" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <ID value="44ac4888-4aa4-49a9-9344-23b729c11df9" />
+      <Name value="Return List Or Single Value" />
+      <Description value="If the list in input #1 has only one item, only the first item of the list in input #2 will be returned." />
+      <Inputs>
+        <Input value="item #1 (unknown)" />
+        <Input value="item #2 (list)" />
+      </Inputs>
+      <Outputs>
+        <Output value="" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.DSFunction guid="2b2f3013-ab86-4e33-b795-a02a80f2febd" type="Dynamo.Nodes.DSFunction" nickname="Document.Current" x="146.319727891157" y="93.7688002473716" isVisible="true" isUpstreamVisible="true" lacing="Longest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Application.Document.Current" />
+    <DSIronPythonNode.PythonNode guid="04b5eb02-f3cb-4de8-a959-99ffc7987fb4" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="300.605442176871" y="92.3402288188006" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script># Default imports
+import clr
+clr.AddReference('RevitAPI')
+clr.AddReference('RevitAPIUI')
+from Autodesk.Revit.DB import *
+import Autodesk
+
+doc = IN[0]
+items = IN[1]
+
+elementlist = list()
+unmatched = list()
+for item in items:
+	try: 
+		elementlist.append(doc.GetElement(item))
+	except:
+		unmatched.append(item)
+OUT = (elementlist, unmatched)</Script>
+    </DSIronPythonNode.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="704f1182-816f-4d5f-93a2-3174f42ded08" start_index="0" end="d08f2ddc-dfb7-40a9-bc1b-0b53789f577c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="704f1182-816f-4d5f-93a2-3174f42ded08" start_index="0" end="04b5eb02-f3cb-4de8-a959-99ffc7987fb4" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c937e2c8-b4c0-4387-8c03-c45cb120b59c" start_index="0" end="704f1182-816f-4d5f-93a2-3174f42ded08" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e431c8b4-c1bb-4871-8aca-2c3629ab7fc1" start_index="0" end="d08f2ddc-dfb7-40a9-bc1b-0b53789f577c" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a65a2ffb-9885-43af-a391-e8f47848e45c" start_index="0" end="ecb8b376-d34f-4033-aa7a-b4684c15e350" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5da53d02-0a68-4779-89c8-fb8a37a9b113" start_index="0" end="a65a2ffb-9885-43af-a391-e8f47848e45c" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d08f2ddc-dfb7-40a9-bc1b-0b53789f577c" start_index="0" end="d280e77f-e6a3-450d-a713-4021b4e5afbb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2b2f3013-ab86-4e33-b795-a02a80f2febd" start_index="0" end="04b5eb02-f3cb-4de8-a959-99ffc7987fb4" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="04b5eb02-f3cb-4de8-a959-99ffc7987fb4" start_index="0" end="e431c8b4-c1bb-4871-8aca-2c3629ab7fc1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="04b5eb02-f3cb-4de8-a959-99ffc7987fb4" start_index="0" end="a65a2ffb-9885-43af-a391-e8f47848e45c" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

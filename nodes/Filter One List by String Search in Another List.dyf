@@ -1,0 +1,38 @@
+<Workspace Version="0.8.2.2371" X="89.8428483380725" Y="214.482590730334" zoom="1.10476425630303" Name="Filter One List by String Search in Another List" Description="" ID="d7f34c30-3d50-4c23-a6fa-075dc33b6bb1" Category="Bakery.Lists">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="ee8256e2-d959-4365-91d1-4408a21fcd51" type="Dynamo.Nodes.DSFunction" nickname="String.Contains" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.String.Contains@string,string,bool">
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.DSFunction guid="1cb7071b-90d8-4857-9fdb-e71f738c6987" type="Dynamo.Nodes.DSFunction" nickname="List.FilterByBoolMask" x="396.559560957317" y="155.583278220749" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
+    <Dynamo.Nodes.Symbol guid="ae1e2b41-c64f-4943-926f-b882c7e43b50" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="SearchThisList" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="c1555164-ad4b-4367-9a96-580d2fdcfd46" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="searchFor : string" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="4f445482-1b8c-4406-9785-05db39f79271" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="300" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="FilterThisList" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="eaf6acb4-203b-459a-afec-74154ece651f" type="Dynamo.Nodes.Output" nickname="Output" x="616.559560957317" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Matching" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="42650d7b-1b4f-4fc1-b73e-f79943d5ecc7" type="Dynamo.Nodes.Output" nickname="Output" x="627.468521243339" y="237.666135860823" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="unMatched" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="ee8256e2-d959-4365-91d1-4408a21fcd51" start_index="0" end="1cb7071b-90d8-4857-9fdb-e71f738c6987" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1cb7071b-90d8-4857-9fdb-e71f738c6987" start_index="0" end="eaf6acb4-203b-459a-afec-74154ece651f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1cb7071b-90d8-4857-9fdb-e71f738c6987" start_index="1" end="42650d7b-1b4f-4fc1-b73e-f79943d5ecc7" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ae1e2b41-c64f-4943-926f-b882c7e43b50" start_index="0" end="ee8256e2-d959-4365-91d1-4408a21fcd51" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c1555164-ad4b-4367-9a96-580d2fdcfd46" start_index="0" end="ee8256e2-d959-4365-91d1-4408a21fcd51" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4f445482-1b8c-4406-9785-05db39f79271" start_index="0" end="1cb7071b-90d8-4857-9fdb-e71f738c6987" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,40 @@
+<Workspace Version="0.8.0.950" X="-46.0974256115367" Y="258.073242862822" zoom="0.650884138486568" Name="Copy Workset Name to Target Parameter" ID="a32c3aa1-cea1-4688-898e-438c649c7d4b" Description="uses archi-lab" Category="Bakery.Parameters">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="ab0654fb-1e66-46b1-8536-77b4327e87b7" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="elementList" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Watch guid="ee1b6796-c168-479a-9688-4de6a4fa6d21" type="Dynamo.Nodes.Watch" nickname="Watch" x="475.920066049121" y="63.8803840380618" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.StringInput guid="bd68b141-a17a-4f59-a184-0aee4cc108b0" type="Dynamo.Nodes.StringInput" nickname="String" x="337.824652597238" y="501.371982820706" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>Workset</System.String>
+      <System.String value="Workset" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.Symbol guid="346b2483-93f6-423d-9249-389a293562dc" type="Dynamo.Nodes.Symbol" nickname="Input" x="921.493212686278" y="888.214109353848" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="targetParameter" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="f6167576-6143-45b6-9432-32a6651cccd7" type="Dynamo.Nodes.Output" nickname="Output" x="1973.76702930145" y="578.212396333551" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="feedback" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Function guid="86d8bbfa-173a-4e14-a78a-4ee60574bd76" type="Dynamo.Nodes.Function" nickname="Copy Property to Parameter for List of Elements" x="882.545420180562" y="430.496711510267" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="66b6f4b6-5c48-4225-bb5a-59e9f8212417" />
+      <Name value="Copy Property to Parameter for List of Elements" />
+      <Description value="Uses bruteforce get parameter which works for Worksets etc" />
+      <Inputs>
+        <Input value="sourcePropertyAsString" />
+        <Input value="targetParameterAsString" />
+        <Input value="listOfElements" />
+      </Inputs>
+      <Outputs>
+        <Output value="Element" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="ab0654fb-1e66-46b1-8536-77b4327e87b7" start_index="0" end="ee1b6796-c168-479a-9688-4de6a4fa6d21" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ee1b6796-c168-479a-9688-4de6a4fa6d21" start_index="0" end="86d8bbfa-173a-4e14-a78a-4ee60574bd76" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="bd68b141-a17a-4f59-a184-0aee4cc108b0" start_index="0" end="86d8bbfa-173a-4e14-a78a-4ee60574bd76" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="346b2483-93f6-423d-9249-389a293562dc" start_index="0" end="86d8bbfa-173a-4e14-a78a-4ee60574bd76" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="86d8bbfa-173a-4e14-a78a-4ee60574bd76" start_index="0" end="f6167576-6143-45b6-9432-32a6651cccd7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

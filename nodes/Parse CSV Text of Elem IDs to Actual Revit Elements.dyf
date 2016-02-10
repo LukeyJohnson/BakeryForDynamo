@@ -1,0 +1,51 @@
+<Workspace Version="0.8.0.950" X="328.972907660643" Y="231.210950272027" zoom="0.691347793867188" Name="Parse CSV Text of Elem IDs to Actual Revit Elements" ID="e3d4b2fd-d79d-41a7-82b8-596fc20da127" Description="input file path" Category="Bakery.Standalone">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSCore.File.FileObject guid="c49ffe81-0be7-4755-ac1b-f1978dca4faf" type="DSCore.File.FileObject" nickname="File.FromPath" x="188.147613463764" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.StringInput guid="929b1763-6214-461f-bbb8-c162809148fc" type="Dynamo.Nodes.StringInput" nickname="String" x="10" y="305.124058449007" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>,</System.String>
+      <System.String value="," />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.DSFunction guid="e9de005c-c600-48d2-8c13-708f1071da64" type="Dynamo.Nodes.DSFunction" nickname="File.ReadText" x="187.074435069404" y="116.244661041643" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.IO.File.ReadText@var" />
+    <Dynamo.Nodes.DSVarArgFunction guid="b7ea3520-e53b-4edb-b0cb-c5d1dd8943cc" type="Dynamo.Nodes.DSVarArgFunction" nickname="String.Split" x="287.953204139246" y="224.635678872005" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Split@string,string[]" inputcount="2" />
+    <Dynamo.Nodes.Watch guid="b1ec8f9e-5bd3-4832-ba21-6500b7009a9c" type="Dynamo.Nodes.Watch" nickname="Watch" x="523.515076279365" y="225.708071844462" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.Function guid="30a54013-4d93-4bde-9f26-c4693213f630" type="Dynamo.Nodes.Function" nickname="Current Document" x="735.468594587377" y="408.14918430757" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="5b9b1cd5-c248-4799-b689-6b31fe525bd2" />
+      <Name value="Current Document" />
+      <Description value="Retrieves Current Document" />
+      <Inputs />
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="72b6e401-533d-41bf-a386-ac06cc1740df" type="Dynamo.Nodes.Function" nickname="Id to Element" x="732.249059404297" y="225.708857266365" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="c604b806-7b57-4b06-9740-802e7feee971" />
+      <Name value="Id to Element" />
+      <Description value="Selects elements in a model from id input (ElementId, string, integer or GUID)" />
+      <Inputs>
+        <Input value="Id(s)" />
+        <Input value="Doc" />
+      </Inputs>
+      <Outputs>
+        <Output value="Element(s)" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Output guid="b1148824-acd2-43a3-bcdb-ed493cbd877b" type="Dynamo.Nodes.Output" nickname="Output" x="943.652845557452" y="222.976440669554" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="elements" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="d154e38b-49a2-4093-ba51-6d42aedaa27b" type="Dynamo.Nodes.Symbol" nickname="Input" x="-76.0943876787262" y="-30.1523051692135" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="FilePathNode" />
+    </Dynamo.Nodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="c49ffe81-0be7-4755-ac1b-f1978dca4faf" start_index="0" end="e9de005c-c600-48d2-8c13-708f1071da64" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="929b1763-6214-461f-bbb8-c162809148fc" start_index="0" end="b7ea3520-e53b-4edb-b0cb-c5d1dd8943cc" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e9de005c-c600-48d2-8c13-708f1071da64" start_index="0" end="b7ea3520-e53b-4edb-b0cb-c5d1dd8943cc" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b7ea3520-e53b-4edb-b0cb-c5d1dd8943cc" start_index="0" end="b1ec8f9e-5bd3-4832-ba21-6500b7009a9c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b1ec8f9e-5bd3-4832-ba21-6500b7009a9c" start_index="0" end="72b6e401-533d-41bf-a386-ac06cc1740df" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="30a54013-4d93-4bde-9f26-c4693213f630" start_index="0" end="72b6e401-533d-41bf-a386-ac06cc1740df" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="72b6e401-533d-41bf-a386-ac06cc1740df" start_index="0" end="b1148824-acd2-43a3-bcdb-ed493cbd877b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d154e38b-49a2-4093-ba51-6d42aedaa27b" start_index="0" end="c49ffe81-0be7-4755-ac1b-f1978dca4faf" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

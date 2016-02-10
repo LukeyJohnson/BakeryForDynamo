@@ -1,0 +1,65 @@
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="List Groups" Description="" ID="97652781-e8fa-4a06-b886-0f57ce83bdc8" Category="Bakery.Elements">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="8989083d-32f4-466a-917e-fb8bfc16aadb" type="DSIronPythonNode.PythonNode" nickname="List Groups" x="10" y="12" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#Copyright(c) 2014, Nathan Miller
+# The Proving Ground, http://theprovingground.org
+
+import clr
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The input to this node will be stored in the IN[0] variable.
+
+doc =  DocumentManager.Instance.CurrentDBDocument
+app =  DocumentManager.Instance.CurrentUIApplication.Application
+
+
+collector = FilteredElementCollector(doc)
+#collector.OfCategory(Group)
+collector.OfClass(Group)
+ 
+famtypeitr = collector.GetElementIdIterator()
+famtypeitr.Reset()
+
+outlist = []
+groups = []
+locations = []
+
+for item in famtypeitr:
+	groups.append((item))
+
+
+    
+   
+#Assign your output to the OUT variable
+OUT = groups</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Output guid="0ca5f3dc-8449-45fd-a20e-f9468de955ba" type="Dynamo.Nodes.Output" nickname="Output" x="212" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Groups" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="8989083d-32f4-466a-917e-fb8bfc16aadb" start_index="0" end="0ca5f3dc-8449-45fd-a20e-f9468de955ba" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

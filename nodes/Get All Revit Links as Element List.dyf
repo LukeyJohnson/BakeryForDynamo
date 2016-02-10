@@ -1,0 +1,67 @@
+<Workspace Version="0.8.2.2371" X="338.63" Y="196.53" zoom="0.8425" Name="Get All Revit Links as Element List" Description="" ID="777b258c-27af-4ade-8009-154344663f5c" Category="LSJ">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Function guid="d216035a-c498-4516-b924-093279914642" type="Dynamo.Nodes.Function" nickname="Element Ids" x="219.924323182944" y="146.190270214931" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="7e1e91a7-1b83-41a1-9ba7-27fb81ab3f0b" />
+      <Name value="Element Ids" />
+      <Description value="This node will query an element id that can be used with Revit nodes. Dynamo Element Id node returns integer value. " />
+      <Inputs>
+        <Input value="Element(s)" />
+      </Inputs>
+      <Outputs>
+        <Output value="Rvt ElementId(s)" />
+        <Output value="Id String(s)" />
+        <Output value="GUID(s)" />
+        <Output value="Integer(s)" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="f1450c3d-eed0-495a-8872-5839059d8b06" type="Dynamo.Nodes.Function" nickname="Current Document" x="422.630174501819" y="398.386892775978" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">
+      <ID value="5b9b1cd5-c248-4799-b689-6b31fe525bd2" />
+      <Name value="Current Document" />
+      <Description value="Retrieves Current Document" />
+      <Inputs />
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="42b51480-28d5-434e-addc-ceac63b2b3e8" type="Dynamo.Nodes.Function" nickname="Id to Element" x="584.536195099179" y="216.948312518183" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="c604b806-7b57-4b06-9740-802e7feee971" />
+      <Name value="Id to Element" />
+      <Description value="Selects elements in a model from id input (ElementId, string, integer or GUID)" />
+      <Inputs>
+        <Input value="Id(s)" />
+        <Input value="Doc" />
+      </Inputs>
+      <Outputs>
+        <Output value="Element(s)" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Output guid="90b5a787-f4ee-44aa-bb7b-37fb77630d99" type="Dynamo.Nodes.Output" nickname="Output" x="844.652818991098" y="311.833827893175" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="RevitLinkElements" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Function guid="6a271a42-8cae-42e3-9487-0d98be60271e" type="Dynamo.Nodes.Function" nickname="Get Linked RVT Documents" x="-151.192878338279" y="4.41543026706228" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">
+      <ID value="98458ceb-6e1f-49f2-ab12-e054d5034efc" />
+      <Name value="Get Linked RVT Documents" />
+      <Description value="" />
+      <Inputs />
+      <Outputs>
+        <Output value="Link Doc" />
+        <Output value="Link Name" />
+        <Output value="Link Instance" />
+        <Output value="Link Instance Id" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="d216035a-c498-4516-b924-093279914642" start_index="0" end="42b51480-28d5-434e-addc-ceac63b2b3e8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f1450c3d-eed0-495a-8872-5839059d8b06" start_index="0" end="42b51480-28d5-434e-addc-ceac63b2b3e8" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="42b51480-28d5-434e-addc-ceac63b2b3e8" start_index="0" end="90b5a787-f4ee-44aa-bb7b-37fb77630d99" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="6a271a42-8cae-42e3-9487-0d98be60271e" start_index="2" end="d216035a-c498-4516-b924-093279914642" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

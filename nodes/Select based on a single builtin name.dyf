@@ -1,0 +1,52 @@
+<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="Select based on a single builtin name" ID="fcc55045-acf7-4e9f-8222-c02f16b19e58" Description="use with List.Map for input of Built In Name list" Category="Bakery.Collect">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="1ab3b109-8708-467c-8472-442e94daea0d" type="Dynamo.Nodes.Symbol" nickname="Input" x="438" y="324" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="builtinName" />
+    </Dynamo.Nodes.Symbol>
+    <DSIronPythonNode.PythonNode guid="96558339-f215-44f4-84c8-32d03549cdff" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="755" y="302" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>#LSJ
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+from Autodesk.Revit.DB import *
+clr.ImportExtensions(Revit.Elements)
+
+import System
+
+builtInName = IN
+
+#The inputs to this node will be stored as a list in the IN variable.
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+listed = []
+listed.append(FilteredElementCollector(doc).WhereElementIsNotElementType().OfCategory(builtInName[0]).ToElements())
+OUT = listed</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Output guid="a8816e3a-68d7-44ca-96c9-2e10a349298d" type="Dynamo.Nodes.Output" nickname="Output" x="1012" y="394" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="elements" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="1ab3b109-8708-467c-8472-442e94daea0d" start_index="0" end="96558339-f215-44f4-84c8-32d03549cdff" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="96558339-f215-44f4-84c8-32d03549cdff" start_index="0" end="a8816e3a-68d7-44ca-96c9-2e10a349298d" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

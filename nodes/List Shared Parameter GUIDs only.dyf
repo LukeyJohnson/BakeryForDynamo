@@ -1,0 +1,75 @@
+<Workspace Version="0.8.1.1942" X="52.6155932509402" Y="60.8397910484833" zoom="0.662759780568406" Name="List Shared Parameter GUIDs only" ID="b4ed91fb-1d63-4805-9890-f1018a2e6a6f" Description="faster" Category="Bakery.Parameters">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="d402e24b-2f87-4ce3-9cc6-ab0fcd4f4cdc" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="712.658527083117" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="ElementOrTypeList" />
+    </Dynamo.Nodes.Symbol>
+    <DSIronPythonNode.PythonNode guid="8389dbef-e734-4a07-bb1c-f86145310ea8" type="DSIronPythonNode.PythonNode" nickname="getParams" x="242.736116047869" y="574.155965165501" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>import clr
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+from System import Guid
+clr.ImportExtensions(Revit.Elements)
+doc =  DocumentManager.Instance.CurrentDBDocument
+app =  DocumentManager.Instance.CurrentUIApplication.Application
+
+#The input to this node will be stored in the IN[0] variable.
+elementz = IN[0]
+        
+elements = []
+for e in elementz:
+    elements.append(UnwrapElement(e))
+    
+paramShared = []
+paramNames = []
+paramGu = []
+for item in elements:
+    for x in item.Parameters:
+   			paramShared.append(x.IsShared)
+   			paramNames.append(x.Definition.Name)
+   			if x.IsShared:
+   				paramGu.append(x.GUID)
+
+#Assign your output to the OUT variable
+OUT = paramShared, paramNames, paramGu</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="4cfa7968-7d4e-4559-9799-59dcee9c0373" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="619.9108982694" y="456.957863812808" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="2;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="ab26b8c9-5001-47b6-9329-cb8b9fbce2a1" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="720.894755939787" y="179.671697709641" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.Output guid="215c05df-d0c0-4e5f-b7c0-8cf90f601d5f" type="Dynamo.Nodes.Output" nickname="Output" x="1256.12350995456" y="9.99999999999955" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="SPGuids" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="4532e2c5-35cb-449f-98e7-cb7a13fe8bc3" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="321.757428840956" y="780.034968218451" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="9e678389-72bb-453b-961b-0b9eeaacf595" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="92.8936434624468" y="906.037118492239" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="78167e16-275b-4757-b813-5a541df6ff0e" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="124.128232548385" y="1199.63990813495" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="0;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="02f5d972-84cc-4ecc-a9b9-62bf6dacc1e4" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="241.13264745863" y="1095.82076329399" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.DSFunction guid="fcf00f19-0714-4b0e-9efb-7549a3ce9b77" type="Dynamo.Nodes.DSFunction" nickname="List.FilterByBoolMask" x="610.375531265054" y="897.385601322791" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
+    <Dynamo.Nodes.Output guid="b99c402d-3d98-4dab-8cc7-55e7cdb8683b" type="Dynamo.Nodes.Output" nickname="Output" x="1084.2334894135" y="835.963524964358" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="SPNames" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="d402e24b-2f87-4ce3-9cc6-ab0fcd4f4cdc" start_index="0" end="8389dbef-e734-4a07-bb1c-f86145310ea8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8389dbef-e734-4a07-bb1c-f86145310ea8" start_index="0" end="ab26b8c9-5001-47b6-9329-cb8b9fbce2a1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8389dbef-e734-4a07-bb1c-f86145310ea8" start_index="0" end="4532e2c5-35cb-449f-98e7-cb7a13fe8bc3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8389dbef-e734-4a07-bb1c-f86145310ea8" start_index="0" end="02f5d972-84cc-4ecc-a9b9-62bf6dacc1e4" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4cfa7968-7d4e-4559-9799-59dcee9c0373" start_index="0" end="ab26b8c9-5001-47b6-9329-cb8b9fbce2a1" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ab26b8c9-5001-47b6-9329-cb8b9fbce2a1" start_index="0" end="215c05df-d0c0-4e5f-b7c0-8cf90f601d5f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4532e2c5-35cb-449f-98e7-cb7a13fe8bc3" start_index="0" end="fcf00f19-0714-4b0e-9efb-7549a3ce9b77" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9e678389-72bb-453b-961b-0b9eeaacf595" start_index="0" end="4532e2c5-35cb-449f-98e7-cb7a13fe8bc3" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="78167e16-275b-4757-b813-5a541df6ff0e" start_index="0" end="02f5d972-84cc-4ecc-a9b9-62bf6dacc1e4" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="02f5d972-84cc-4ecc-a9b9-62bf6dacc1e4" start_index="0" end="fcf00f19-0714-4b0e-9efb-7549a3ce9b77" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fcf00f19-0714-4b0e-9efb-7549a3ce9b77" start_index="0" end="b99c402d-3d98-4dab-8cc7-55e7cdb8683b" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

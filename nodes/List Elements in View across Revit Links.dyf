@@ -1,0 +1,61 @@
+<Workspace Version="0.8.2.2371" X="315.530439056852" Y="427.161411870506" zoom="0.931811528498331" Name="List Elements in View across Revit Links" Description="" ID="7a0e541b-4a48-4f69-8e54-c3b6b0c881f0" Category="Bakery.Views">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="8b897dec-b856-40ff-ac2a-08bac0d91c3a" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="9.9999999999996" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>#LSJ
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+from Autodesk.Revit.DB import *
+clr.ImportExtensions(Revit.Elements)
+
+import System
+
+views = UnwrapElement(IN[0])
+
+elementlist = []
+doc = UnwrapElement(IN[1])
+
+for view in views:
+	collector = FilteredElementCollector(doc, view.Id)
+	elementlist.append(collector.ToElements())
+
+#Assign your output to the OUT variable
+OUT = elementlist</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="116b1667-edb3-41a8-9174-cab8f9a1dd63" type="Dynamo.Nodes.Symbol" nickname="Input" x="-180.89437180456" y="-55.4891120106637" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="view" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="c07ccee0-a2b5-439b-ace3-e785c85b7e7e" type="Dynamo.Nodes.Symbol" nickname="Input" x="-158.953403583093" y="55.0894049911514" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="doc" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="f21f1abd-27b6-40da-99f9-a616ba56081a" type="Dynamo.Nodes.Output" nickname="Output" x="209.163090093466" y="50.5441306566755" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="output" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="8b897dec-b856-40ff-ac2a-08bac0d91c3a" start_index="0" end="f21f1abd-27b6-40da-99f9-a616ba56081a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="116b1667-edb3-41a8-9174-cab8f9a1dd63" start_index="0" end="8b897dec-b856-40ff-ac2a-08bac0d91c3a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c07ccee0-a2b5-439b-ace3-e785c85b7e7e" start_index="0" end="8b897dec-b856-40ff-ac2a-08bac0d91c3a" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

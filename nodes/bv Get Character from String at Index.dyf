@@ -1,0 +1,27 @@
+<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv Get Character from String at Index" Description="forked from Rhythm" ID="6b73939e-4316-4963-87ad-8477c7f222dc" Category="Bakery.Forks">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="8fe89965-fcb1-4104-a807-eb800797d6b9" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="260" y="163.502204707254" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="CharacterAtIndex(x,y);" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="48e89692-e972-4b8a-9a7f-4227777729b2" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="263.53718689488" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="def CharacterAtIndex (x,y)&#xA;{&#xA;return=x[y];&#xA;};" ShouldFocus="false" />
+    <Dynamo.Nodes.Symbol guid="7c7b4986-d100-4657-bc27-96ac9687db34" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="List" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="b414f7fa-4566-49d5-9d74-513bb784359b" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="160" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Index" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="27ea6c85-a28e-46ac-a48b-6cea4b7c5d0d" type="Dynamo.Nodes.Output" nickname="Output" x="579" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Character" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="8fe89965-fcb1-4104-a807-eb800797d6b9" start_index="0" end="27ea6c85-a28e-46ac-a48b-6cea4b7c5d0d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7c7b4986-d100-4657-bc27-96ac9687db34" start_index="0" end="8fe89965-fcb1-4104-a807-eb800797d6b9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b414f7fa-4566-49d5-9d74-513bb784359b" start_index="0" end="8fe89965-fcb1-4104-a807-eb800797d6b9" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,102 @@
+<Workspace Version="0.8.2.2371" X="-556.067820179793" Y="165.785287015845" zoom="0.646865613092414" Name="Compare Two Columns From Excel and Report Differences" Description="" ID="57330a38-dd3f-414d-97c0-d51fe016f478" Category="Bakery.Excel">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="caa28c14-bbb3-41a4-91e8-765a33fa18d7" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="414.923023837812" y="269.17100139285" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="true;" ShouldFocus="false" />
+    <DSCore.File.FileObject guid="86bcc16d-d179-485b-91be-a1023272f6b5" type="DSCore.File.FileObject" nickname="File.FromPath" x="315.697749975719" y="-20" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.DSFunction guid="5f3099fb-71c9-4d37-a2fe-e9a964f7a240" type="Dynamo.Nodes.DSFunction" nickname="Excel.ReadFromFile" x="572.654760785485" y="134.117321448734" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSOffice.dll" function="DSOffice.Excel.ReadFromFile@var,string,bool">
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.DSFunction guid="8bccbdda-ee13-40ee-8574-d34c3fbda93f" type="Dynamo.Nodes.DSFunction" nickname="Excel.ReadFromFile" x="450.833927067715" y="633.717227102168" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSOffice.dll" function="DSOffice.Excel.ReadFromFile@var,string,bool">
+      <PortInfo index="2" default="True" />
+    </Dynamo.Nodes.DSFunction>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="aef154eb-34c9-47e5-b32f-733b9ccdcfff" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="721.050625127665" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="true;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="18144deb-73ad-48a7-a904-93737e146262" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="953.020340146524" y="209.628329163189" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.DSFunction guid="e7858013-a0c4-484a-a94e-7dc9c0fc25c6" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="844.233138756342" y="862.306905568098" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <DSCore.Map guid="856e0619-4b34-4fbd-864a-4c87998dcff6" type="DSCore.Map" nickname="List.Map" x="988.933348445056" y="794.574892522317" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <DSCore.Map guid="74a94802-2435-4e73-ac81-23c18efa5ffe" type="DSCore.Map" nickname="List.Map" x="1097.72054983524" y="141.896316117408" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.Function guid="a8ae756f-440d-4f54-a7c6-fccd6afcd28f" type="Dynamo.Nodes.Function" nickname="Flat List to List of Strings" x="1044.59489746087" y="655.256591035027" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="82b8a446-c4a1-4d64-8736-01c0b01ae798" />
+      <Name value="Flat List to List of Strings" />
+      <Description value="using python methods" />
+      <Inputs>
+        <Input value="Original List" />
+      </Inputs>
+      <Outputs>
+        <Output value="List of Strings" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="22d9cc30-4980-4fcf-97be-2e24d451dfed" type="Dynamo.Nodes.Function" nickname="Flat List to List of Strings" x="1149.5694753347" y="298.850256241774" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="82b8a446-c4a1-4d64-8736-01c0b01ae798" />
+      <Name value="Flat List to List of Strings" />
+      <Description value="using python methods" />
+      <Inputs>
+        <Input value="Original List" />
+      </Inputs>
+      <Outputs>
+        <Output value="List of Strings" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="c0bacbaf-db2a-44de-88c5-b516573f9b62" type="Dynamo.Nodes.Function" nickname="Compare Two Lists by Item and Return Item Differences" x="1276.79717280973" y="455.495940982646" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="93ec3e03-cf0d-474f-8090-014a4d811114" />
+      <Name value="Compare Two Lists by Item and Return Item Differences" />
+      <Description value="" />
+      <Inputs>
+        <Input value="listONE" />
+        <Input value="listTWO" />
+      </Inputs>
+      <Outputs>
+        <Output value="inListTWObutNotInListOne" />
+        <Output value="inListONEbutNotInListTwo" />
+        <Output value="same?" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Symbol guid="9934f0c2-9997-479d-a5ac-7ef47fb9e34d" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="excelFileToRead" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="227c7d9a-b082-4c5d-b915-b59c40dcb581" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="sheetOneName" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="e58e1bf7-31e6-4ca3-979f-7be79710b24f" type="Dynamo.Nodes.Symbol" nickname="Input" x="-64.0949554896142" y="688.13056379822" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="sheetTwoName" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="f3cf9d7b-4ccc-4db9-bf94-fc4db921493e" type="Dynamo.Nodes.Symbol" nickname="Input" x="-6.68703542919826" y="220.701080863443" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="sheetOneColIndex" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="b51c9d81-e2be-4b04-b08b-fab590f1005c" type="Dynamo.Nodes.Symbol" nickname="Input" x="1.18694362017811" y="773.293768545994" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="sheetTwoColIndex" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="44506725-414a-4929-9926-5d785679eaf1" type="Dynamo.Nodes.Output" nickname="Output" x="1845.15985988434" y="304.233629888946" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="inSheetTwoButNotInOne" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="5c4c94c4-89ce-4f48-885d-ccd3f515afde" type="Dynamo.Nodes.Output" nickname="Output" x="1800.20645830457" y="489.603922059545" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="inSheetOneButNotInTwo" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="caa28c14-bbb3-41a4-91e8-765a33fa18d7" start_index="0" end="5f3099fb-71c9-4d37-a2fe-e9a964f7a240" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="86bcc16d-d179-485b-91be-a1023272f6b5" start_index="0" end="5f3099fb-71c9-4d37-a2fe-e9a964f7a240" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="86bcc16d-d179-485b-91be-a1023272f6b5" start_index="0" end="8bccbdda-ee13-40ee-8574-d34c3fbda93f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5f3099fb-71c9-4d37-a2fe-e9a964f7a240" start_index="0" end="74a94802-2435-4e73-ac81-23c18efa5ffe" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8bccbdda-ee13-40ee-8574-d34c3fbda93f" start_index="0" end="856e0619-4b34-4fbd-864a-4c87998dcff6" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="aef154eb-34c9-47e5-b32f-733b9ccdcfff" start_index="0" end="8bccbdda-ee13-40ee-8574-d34c3fbda93f" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="18144deb-73ad-48a7-a904-93737e146262" start_index="0" end="74a94802-2435-4e73-ac81-23c18efa5ffe" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e7858013-a0c4-484a-a94e-7dc9c0fc25c6" start_index="0" end="856e0619-4b34-4fbd-864a-4c87998dcff6" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="856e0619-4b34-4fbd-864a-4c87998dcff6" start_index="0" end="a8ae756f-440d-4f54-a7c6-fccd6afcd28f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="74a94802-2435-4e73-ac81-23c18efa5ffe" start_index="0" end="22d9cc30-4980-4fcf-97be-2e24d451dfed" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a8ae756f-440d-4f54-a7c6-fccd6afcd28f" start_index="0" end="c0bacbaf-db2a-44de-88c5-b516573f9b62" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="22d9cc30-4980-4fcf-97be-2e24d451dfed" start_index="0" end="c0bacbaf-db2a-44de-88c5-b516573f9b62" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c0bacbaf-db2a-44de-88c5-b516573f9b62" start_index="0" end="44506725-414a-4929-9926-5d785679eaf1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c0bacbaf-db2a-44de-88c5-b516573f9b62" start_index="1" end="5c4c94c4-89ce-4f48-885d-ccd3f515afde" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9934f0c2-9997-479d-a5ac-7ef47fb9e34d" start_index="0" end="86bcc16d-d179-485b-91be-a1023272f6b5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="227c7d9a-b082-4c5d-b915-b59c40dcb581" start_index="0" end="5f3099fb-71c9-4d37-a2fe-e9a964f7a240" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e58e1bf7-31e6-4ca3-979f-7be79710b24f" start_index="0" end="8bccbdda-ee13-40ee-8574-d34c3fbda93f" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f3cf9d7b-4ccc-4db9-bf94-fc4db921493e" start_index="0" end="18144deb-73ad-48a7-a904-93737e146262" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b51c9d81-e2be-4b04-b08b-fab590f1005c" start_index="0" end="e7858013-a0c4-484a-a94e-7dc9c0fc25c6" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

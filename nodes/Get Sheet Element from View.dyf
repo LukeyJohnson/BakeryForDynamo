@@ -1,0 +1,41 @@
+<Workspace Version="0.8.2.2392" X="-661.192724298412" Y="345.267796961834" zoom="1.130842140625" Name="Get Sheet Element from View" Description="" ID="5be26a65-9b35-49ea-b0c0-91d7efb309d4" Category="Bakery.Views">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="0dbd3f60-b4d4-43e9-b817-fb3deea9aac8" type="Dynamo.Nodes.DSFunction" nickname="Element.GetParameterValueByName" x="513.564354165822" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.GetParameterValueByName@string" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="7fd3d9d4-d20d-4698-9585-2ca3a683be08" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="52.2486886741788" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;Sheet Number&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="dfbb32d8-0de7-4f7e-9803-33401c7b9960" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="769.753826319164" y="115.834998033529" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="false;" ShouldFocus="false" />
+    <Dynamo.Nodes.Symbol guid="93c12a68-1773-4c68-8f60-d9eaa063f213" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="views" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="395f505a-c75c-4fa2-b0d2-ff44b24fa4d0" type="Dynamo.Nodes.Output" nickname="Output" x="1260.00740410762" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="sheets" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Function guid="ff0c5534-d557-4225-bf08-1f4d1d2b3d26" type="Dynamo.Nodes.Function" nickname="bv Collector for Sheets" x="900.915068247581" y="-123.507775262639" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <PortInfo index="1" default="True" />
+      <ID value="02693d10-43a0-4a61-8bde-32409f0b6232" />
+      <Name value="bv Collector for Sheets" />
+      <Description value="forked from spring nodes" />
+      <Inputs>
+        <Input value="name(s)/number(s)" />
+        <Input value="NameOrNumber" />
+      </Inputs>
+      <Outputs>
+        <Output value="exact match" />
+        <Output value="partial match" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="0dbd3f60-b4d4-43e9-b817-fb3deea9aac8" start_index="0" end="ff0c5534-d557-4225-bf08-1f4d1d2b3d26" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7fd3d9d4-d20d-4698-9585-2ca3a683be08" start_index="0" end="0dbd3f60-b4d4-43e9-b817-fb3deea9aac8" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="dfbb32d8-0de7-4f7e-9803-33401c7b9960" start_index="0" end="ff0c5534-d557-4225-bf08-1f4d1d2b3d26" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="93c12a68-1773-4c68-8f60-d9eaa063f213" start_index="0" end="0dbd3f60-b4d4-43e9-b817-fb3deea9aac8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ff0c5534-d557-4225-bf08-1f4d1d2b3d26" start_index="0" end="395f505a-c75c-4fa2-b0d2-ff44b24fa4d0" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

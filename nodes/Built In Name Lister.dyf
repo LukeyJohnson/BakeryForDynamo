@@ -1,0 +1,85 @@
+<Workspace Version="0.8.2.2371" X="136" Y="122" zoom="1" Name="Built In Name Lister" Description="lists BuiltInNames (Built In Category Names)" ID="de6f2c56-8759-4865-a0dd-403b908d7b43" Category="Bakery.Categories">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="456cb221-c628-4400-89e7-06d318c2b755" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="95.690311716606" y="84.5890565729443" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" inputcount="0">
+      <Script>#LSJ
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+from Autodesk.Revit.DB import *
+clr.ImportExtensions(Revit.Elements)
+
+import System
+
+#The inputs to this node will be stored as a list in the IN variable.
+#doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+doc = DocumentManager.Instance.CurrentDBDocument
+
+#create workset collector
+userCategories = doc.Settings.Categories
+#extract workset's name and ids
+ids = []
+for i in userCategories:
+	ids.append(i.Id.IntegerValue)
+#Assign your output to the OUT variable
+builtInNames = []
+for x in ids:
+	builtInNames.append(System.Enum.ToObject(BuiltInCategory, x))
+
+OUT = builtInNames</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Output guid="d9d8b665-4442-4021-881d-a246b2709358" type="Dynamo.Nodes.Output" nickname="Output" x="302" y="48" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="builtins" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.StringInput guid="eeeb2198-39a8-4845-9658-e5177f359909" type="Dynamo.Nodes.StringInput" nickname="String" x="15" y="259.083017422172" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.String>OST_Views
+OST_Sheets
+OST_Sections
+OST_Elev</System.String>
+      <System.String value="OST_Views&#xD;&#xA;OST_Sheets&#xD;&#xA;OST_Sections&#xD;&#xA;OST_Elev" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.Function guid="e13e8b97-47c3-4aaa-bab5-3895beb017e3" type="Dynamo.Nodes.Function" nickname="Remove StringList from List with String Conversion" x="170.53633086918" y="194" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="ace937a2-af2e-4b66-bc0d-7024f22052e1" />
+      <Name value="Remove StringList from List with String Conversion" />
+      <Description value="" />
+      <Inputs>
+        <Input value="Original List" />
+        <Input value="single string with line breaks" />
+      </Inputs>
+      <Outputs>
+        <Output value="reduced list" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Output guid="8f6b67b3-941b-4403-a470-51dd8e078104" type="Dynamo.Nodes.Output" nickname="Output" x="584" y="257" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="views removed" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="456cb221-c628-4400-89e7-06d318c2b755" start_index="0" end="d9d8b665-4442-4021-881d-a246b2709358" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="456cb221-c628-4400-89e7-06d318c2b755" start_index="0" end="e13e8b97-47c3-4aaa-bab5-3895beb017e3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="eeeb2198-39a8-4845-9658-e5177f359909" start_index="0" end="e13e8b97-47c3-4aaa-bab5-3895beb017e3" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e13e8b97-47c3-4aaa-bab5-3895beb017e3" start_index="0" end="8f6b67b3-941b-4403-a470-51dd8e078104" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

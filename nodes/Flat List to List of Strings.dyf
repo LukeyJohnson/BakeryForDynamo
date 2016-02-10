@@ -1,0 +1,30 @@
+<Workspace Version="0.8.0.950" X="0" Y="0" zoom="1" Name="Flat List to List of Strings" ID="82b8a446-c4a1-4d64-8736-01c0b01ae798" Description="using python methods" Category="Bakery.Lists">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Symbol guid="ac91d8c7-c565-48ff-9a5c-c7307d07c25f" type="Dynamo.Nodes.Symbol" nickname="Input" x="562" y="427.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Original List" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="e1b164ff-d2f3-4075-88ef-34f40795eca6" type="Dynamo.Nodes.Output" nickname="Output" x="1011" y="394.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="List of Strings" />
+    </Dynamo.Nodes.Output>
+    <DSIronPythonNode.PythonNode guid="597954f1-62f9-48cf-b313-ccdfeca220a4" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="766" y="349.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+stringList = []
+for x in dataEnteringNode[0]:
+	tempString = str(x)
+	stringList.append(tempString)
+#Assign your output to the OUT variable
+OUT = stringList</Script>
+    </DSIronPythonNode.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="ac91d8c7-c565-48ff-9a5c-c7307d07c25f" start_index="0" end="597954f1-62f9-48cf-b313-ccdfeca220a4" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="597954f1-62f9-48cf-b313-ccdfeca220a4" start_index="0" end="e1b164ff-d2f3-4075-88ef-34f40795eca6" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

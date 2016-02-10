@@ -1,0 +1,73 @@
+<Workspace Version="0.8.0.950" X="123.557884284243" Y="283.54693636879" zoom="1.02988563947099" Name="Export Family and Type Name with One Type Parameter to Excel" ID="32fcacc0-ce3b-492a-ad2f-470f286e398b" Description="Uses Bumblebee" Category="Bakery.Families">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Function guid="2586aeb7-ebcc-426a-8067-ab86da1a3b8f" type="Dynamo.Nodes.Function" nickname="Write Excel" x="1460.92470108811" y="454.140246028674" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="72e88648-ec17-4934-8376-d6c1f6183d67" />
+      <Name value="Write Excel" />
+      <Description value="This node will write data to Excel file and based on how your BBData nodes are structured it will either override the exsting file, create a new one and write a single worksheet or write multiple worksheets. " />
+      <Inputs>
+        <Input value="FilePath" />
+        <Input value="RunIt" />
+        <Input value="ByColumn" />
+        <Input value="BBData" />
+      </Inputs>
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Watch guid="91c5a63e-2ee2-4b08-8dbe-121dff3ef271" type="Dynamo.Nodes.Watch" nickname="Watch" x="1062.26980111166" y="106.624545431008" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="953d4f77-59d9-4012-ad1b-d11980f508d9" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1258.92195544631" y="532.251587048304" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="true;" ShouldFocus="false" />
+    <Dynamo.Nodes.Function guid="ec53153e-76bd-4144-8a50-3134e92c8c58" type="Dynamo.Nodes.Function" nickname="BB Data" x="1050.29940403786" y="627.483473471731" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="ee2bfd6a-235b-4c14-a309-f5cb3e3e3227" />
+      <Name value="BB Data" />
+      <Description value="This node is a building block for different modes of writing to Excel files. You can combines this node into a list to write to multiple sheets or use just one to write to a single sheet. " />
+      <Inputs>
+        <Input value="SheetName" />
+        <Input value="Origin" />
+        <Input value="Data" />
+      </Inputs>
+      <Outputs>
+        <Output value="BB Data" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <DSCoreNodesUI.CreateList guid="b99199a7-47c4-4d11-a1a3-a823b1f0a736" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="883.11591062641" y="107.259458802301" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="3" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="d179ba60-935f-4ea1-b5b3-2699740d8cbd" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="765.46735024829" y="585.141009946072" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="&quot;FamilySummary&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="d3bf9e1a-7699-440e-b020-fb96eebce418" type="Dynamo.Nodes.DSFunction" nickname="Family.Name" x="713.94327193586" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Family.Name" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="92bd3469-993b-4521-be19-8348a3e4be7c" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="808.03869562336" y="673.130604877465" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="&quot;A1&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="ef2bc932-2c33-4655-b3e8-eceefdf67831" type="Dynamo.Nodes.DSFunction" nickname="FamilySymbol.Family" x="504.73837845447" y="22.4544664380532" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.FamilySymbol.Family" />
+    <Dynamo.Nodes.DSFunction guid="8936883e-5838-4448-b937-e77aa082ada5" type="Dynamo.Nodes.DSFunction" nickname="Element.GetParameterValueByName" x="483" y="318.570141207542" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Element.GetParameterValueByName@string" />
+    <Dynamo.Nodes.DSFunction guid="b57c21fc-62e6-45a5-997b-8bd15921fa96" type="Dynamo.Nodes.DSFunction" nickname="FamilySymbol.Name" x="557.304354075315" y="147.187026100088" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.FamilySymbol.Name" />
+    <Dynamo.Nodes.DSFunction guid="f4392c42-4678-469d-be48-d76439a7e100" type="Dynamo.Nodes.DSFunction" nickname="List.UniqueItems" x="309" y="153.570141207542" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="cdc94d19-f616-4f62-b78d-5bdb14eb8edd" type="Dynamo.Nodes.DSFunction" nickname="FamilyInstance.Symbol" x="10" y="152.570141207542" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.Symbol" />
+    <Dynamo.Nodes.Symbol guid="e100fe6d-154d-4285-8618-85bd11ada933" type="Dynamo.Nodes.Symbol" nickname="Input" x="-217.801115454874" y="170.358348703196" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="elementList" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="dea8ddfa-beae-4c46-945c-a0fe3bc41797" type="Dynamo.Nodes.Symbol" nickname="Input" x="-109.096861018205" y="385.666201893803" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="typeParameterName" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="cfaea92a-40dc-447f-aac9-b7707d87e8d3" type="Dynamo.Nodes.Symbol" nickname="Input" x="186.120714455907" y="624.405049551259" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="filePath" />
+    </Dynamo.Nodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="91c5a63e-2ee2-4b08-8dbe-121dff3ef271" start_index="0" end="ec53153e-76bd-4144-8a50-3134e92c8c58" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="953d4f77-59d9-4012-ad1b-d11980f508d9" start_index="0" end="2586aeb7-ebcc-426a-8067-ab86da1a3b8f" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="953d4f77-59d9-4012-ad1b-d11980f508d9" start_index="0" end="2586aeb7-ebcc-426a-8067-ab86da1a3b8f" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ec53153e-76bd-4144-8a50-3134e92c8c58" start_index="0" end="2586aeb7-ebcc-426a-8067-ab86da1a3b8f" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b99199a7-47c4-4d11-a1a3-a823b1f0a736" start_index="0" end="91c5a63e-2ee2-4b08-8dbe-121dff3ef271" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d179ba60-935f-4ea1-b5b3-2699740d8cbd" start_index="0" end="ec53153e-76bd-4144-8a50-3134e92c8c58" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d3bf9e1a-7699-440e-b020-fb96eebce418" start_index="0" end="b99199a7-47c4-4d11-a1a3-a823b1f0a736" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="92bd3469-993b-4521-be19-8348a3e4be7c" start_index="0" end="ec53153e-76bd-4144-8a50-3134e92c8c58" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ef2bc932-2c33-4655-b3e8-eceefdf67831" start_index="0" end="d3bf9e1a-7699-440e-b020-fb96eebce418" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8936883e-5838-4448-b937-e77aa082ada5" start_index="0" end="b99199a7-47c4-4d11-a1a3-a823b1f0a736" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b57c21fc-62e6-45a5-997b-8bd15921fa96" start_index="0" end="b99199a7-47c4-4d11-a1a3-a823b1f0a736" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f4392c42-4678-469d-be48-d76439a7e100" start_index="0" end="ef2bc932-2c33-4655-b3e8-eceefdf67831" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f4392c42-4678-469d-be48-d76439a7e100" start_index="0" end="8936883e-5838-4448-b937-e77aa082ada5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f4392c42-4678-469d-be48-d76439a7e100" start_index="0" end="b57c21fc-62e6-45a5-997b-8bd15921fa96" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="cdc94d19-f616-4f62-b78d-5bdb14eb8edd" start_index="0" end="f4392c42-4678-469d-be48-d76439a7e100" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e100fe6d-154d-4285-8618-85bd11ada933" start_index="0" end="cdc94d19-f616-4f62-b78d-5bdb14eb8edd" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="dea8ddfa-beae-4c46-945c-a0fe3bc41797" start_index="0" end="8936883e-5838-4448-b937-e77aa082ada5" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="cfaea92a-40dc-447f-aac9-b7707d87e8d3" start_index="0" end="2586aeb7-ebcc-426a-8067-ab86da1a3b8f" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

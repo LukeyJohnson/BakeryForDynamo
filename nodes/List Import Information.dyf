@@ -1,0 +1,47 @@
+<Workspace Version="0.8.1.1942" X="90.6225208219785" Y="250.087372193421" zoom="0.847618571998227" Name="List Import Information" ID="223d3c4d-06fc-472f-ba6f-0fe7ca7c126a" Description="shows Element ID, import name and Workset" Category="Bakery.DocInfo">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Function guid="b0f7df68-902a-4ca9-b227-c7d2da21b9b7" type="Dynamo.Nodes.Function" nickname="Document.LinksAndImports" x="152.195512761036" y="-221.026308129987" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="6951ad79-d085-4850-bd0b-acc7153a71b1" />
+      <Name value="Document.LinksAndImports" />
+      <Description value="Gets all linked and imported files in the document" />
+      <Inputs />
+      <Outputs>
+        <Output value="links" />
+        <Output value="imports" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Output guid="f7616ea3-dc35-433c-a7b4-79dbaa7143bb" type="Dynamo.Nodes.Output" nickname="Output" x="1097.75161511897" y="574.78982728399" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="importInformation" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Function guid="518ab2ab-7cdf-429b-8e62-34bcc5b0c033" type="Dynamo.Nodes.Function" nickname="Bruteforce Get Elem ID and Two Parameters and Make List of Strings" x="478.535552874893" y="131.722893168261" isVisible="true" isUpstreamVisible="true" lacing="Shortest">
+      <ID value="12bb751b-743a-4653-9000-a7dabbcc09ce" />
+      <Name value="Bruteforce Get Elem ID and Two Parameters and Make List of Strings" />
+      <Description value="takes list of elements" />
+      <Inputs>
+        <Input value="parameterOne" />
+        <Input value="parameterTwo" />
+        <Input value="elementList" />
+      </Inputs>
+      <Outputs>
+        <Output value="listOfStrings" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.StringInput guid="100f62a3-4068-4040-8549-3e45090fc78f" type="Dynamo.Nodes.StringInput" nickname="String" x="201.288206293049" y="104.588046481527" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>Category</System.String>
+      <System.String value="Category" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.StringInput guid="21d7518e-9140-4770-9b0d-15d6a7d1df27" type="Dynamo.Nodes.StringInput" nickname="String" x="193.872404459691" y="180.346448622722" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <System.String>Workset</System.String>
+      <System.String value="Workset" />
+    </Dynamo.Nodes.StringInput>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="b0f7df68-902a-4ca9-b227-c7d2da21b9b7" start_index="1" end="518ab2ab-7cdf-429b-8e62-34bcc5b0c033" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="518ab2ab-7cdf-429b-8e62-34bcc5b0c033" start_index="0" end="f7616ea3-dc35-433c-a7b4-79dbaa7143bb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="100f62a3-4068-4040-8549-3e45090fc78f" start_index="0" end="518ab2ab-7cdf-429b-8e62-34bcc5b0c033" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="21d7518e-9140-4770-9b0d-15d6a7d1df27" start_index="0" end="518ab2ab-7cdf-429b-8e62-34bcc5b0c033" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

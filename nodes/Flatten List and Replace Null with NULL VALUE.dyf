@@ -1,0 +1,40 @@
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Flatten List and Replace Null with NULL VALUE" Description="" ID="904eddbd-0acf-43fc-be8f-7491edd0de86" Category="Bakery.Lists">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="064b6cb4-adbe-44fc-9097-3f33c901ef46" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />
+    <Dynamo.Nodes.StringInput guid="d33139ab-1d6a-4f2c-8bc0-313ae6a425a9" type="Dynamo.Nodes.StringInput" nickname="String" x="263.468325798613" y="165.288021997628" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.String>NULL VALUE</System.String>
+      <System.String value="NULL VALUE" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.Function guid="d8668003-5b18-4996-bb9a-feb07326441d" type="Dynamo.Nodes.Function" nickname="List.ReplaceNull" x="401.120910041624" y="53.3042732492374" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <ID value="2dd1e892-6338-4fba-8345-f7a9f418bb57" />
+      <Name value="List.ReplaceNull" />
+      <Description value="Replaces all null values within a given list with a substitute" />
+      <Inputs>
+        <Input value="list" />
+        <Input value="replacement" />
+      </Inputs>
+      <Outputs>
+        <Output value="list" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Symbol guid="1d134e83-1bb3-4104-94a3-c81362d6aa92" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="list : var[]..[]" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="d2d9ae3a-ec95-44a8-96f2-c3c43d5ad98e" type="Dynamo.Nodes.Output" nickname="Output" x="634.120910041624" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="list" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="064b6cb4-adbe-44fc-9097-3f33c901ef46" start_index="0" end="d8668003-5b18-4996-bb9a-feb07326441d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d33139ab-1d6a-4f2c-8bc0-313ae6a425a9" start_index="0" end="d8668003-5b18-4996-bb9a-feb07326441d" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d8668003-5b18-4996-bb9a-feb07326441d" start_index="0" end="d2d9ae3a-ec95-44a8-96f2-c3c43d5ad98e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1d134e83-1bb3-4104-94a3-c81362d6aa92" start_index="0" end="064b6cb4-adbe-44fc-9097-3f33c901ef46" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

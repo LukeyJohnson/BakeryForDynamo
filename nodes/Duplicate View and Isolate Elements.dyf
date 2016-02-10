@@ -1,0 +1,105 @@
+<Workspace Version="0.8.2.2392" X="380.523371639606" Y="-176.249869452857" zoom="0.899577183476057" Name="Duplicate View and Isolate Elements" Description="" ID="a44588e7-064a-4ae0-93a0-7fa7cdf5d60e" Category="Bakery.Elements">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Function guid="050f1a47-a3a2-4baf-85bf-8843672d5e40" type="Dynamo.Nodes.Function" nickname="View.Duplicate" x="-120.407324430253" y="339.430007061325" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="237e943c-c1a0-4936-9269-1b5ad1dc8b4c" />
+      <Name value="View.Duplicate" />
+      <Description value="Duplicates a given view" />
+      <Inputs>
+        <Input value="View(s)" />
+      </Inputs>
+      <Outputs>
+        <Output value="view(s)" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Watch guid="58f35a01-d2c8-4eb9-adde-c123adecb197" type="Dynamo.Nodes.Watch" nickname="Watch" x="-232.536650376573" y="868.228701934192" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.Symbol guid="65d12783-85b1-455d-833f-8c4316554e29" type="Dynamo.Nodes.Symbol" nickname="Input" x="-282.181209738601" y="457.343681036563" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="elementsIn" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="4677fad6-0f20-4ab1-8c5c-aad39696e88e" type="Dynamo.Nodes.Symbol" nickname="Input" x="-284.411806770516" y="338.309398141537" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="sourceViewIn" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Function guid="e5dfbffd-480e-4db8-a25e-05e80313a108" type="Dynamo.Nodes.Function" nickname="Isolate in View" x="637.157745735572" y="209.277717597695" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="dfc2063c-a98c-4afa-8872-83cf333a7439" />
+      <Name value="Isolate in View" />
+      <Description value="This node will take input of elements and a view to isolate selected elements in a view." />
+      <Inputs>
+        <Input value="Elements" />
+        <Input value="View" />
+      </Inputs>
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Output guid="6435bf0d-0131-41fb-a091-94da8369dc86" type="Dynamo.Nodes.Output" nickname="Output" x="886.501617658714" y="234.610073854185" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="done" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Watch guid="8c86c057-763b-41e0-8ef1-57f96ece42e6" type="Dynamo.Nodes.Watch" nickname="Watch" x="473.57682902384" y="868.843902960167" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.Function guid="7d2db577-7e43-420b-bb03-e99ced9940a0" type="Dynamo.Nodes.Function" nickname="Id to Element" x="222.347691434208" y="791.029568308511" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="c604b806-7b57-4b06-9740-802e7feee971" />
+      <Name value="Id to Element" />
+      <Description value="Selects elements in a model from id input (ElementId, string, integer or GUID)" />
+      <Inputs>
+        <Input value="Id(s)" />
+        <Input value="Doc" />
+      </Inputs>
+      <Outputs>
+        <Output value="Element(s)" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="5a98064f-bacd-47a9-be29-384c0e5dab0c" type="Dynamo.Nodes.Function" nickname="Current Document" x="66.1162037598269" y="894.920285041093" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">
+      <ID value="5b9b1cd5-c248-4799-b689-6b31fe525bd2" />
+      <Name value="Current Document" />
+      <Description value="Retrieves Current Document" />
+      <Inputs />
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Output guid="4c163418-a673-4e07-975d-0daf5a9392ed" type="Dynamo.Nodes.Output" nickname="Output" x="586.355912404256" y="695.93321483379" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="ViewOut" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="79f83c87-c925-49b3-8ee7-e257cbc0f735" type="Dynamo.Nodes.DSFunction" nickname="Element.OverrideColorInView" x="469.130295615174" y="423.078928741395" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.OverrideColorInView@DSCore.Color" />
+    <Dynamo.Nodes.Function guid="0864edeb-b0ce-47ad-9747-bc6c09d17dac" type="Dynamo.Nodes.Function" nickname="Color.Red" x="256.80832535137" y="384.171761415567" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">
+      <ID value="6315a707-503e-4065-948a-410bdb059454" />
+      <Name value="Color.Red" />
+      <Description value="Returns the colour red." />
+      <Inputs />
+      <Outputs>
+        <Output value="255,0,0" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="3ec79573-4507-4b13-80dc-c60574ab0b18" type="Dynamo.Nodes.Function" nickname="bv Elements to IDs" x="-66.390491818422" y="572.991266253671" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="705bfefc-70ab-4a06-a877-4682df679077" />
+      <Name value="bv Elements to IDs" />
+      <Description value="forked from CAAD_RWTH" />
+      <Inputs>
+        <Input value="Element(s)" />
+      </Inputs>
+      <Outputs>
+        <Output value="ID(s)" />
+        <Output value="unmatched" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="050f1a47-a3a2-4baf-85bf-8843672d5e40" start_index="0" end="e5dfbffd-480e-4db8-a25e-05e80313a108" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="050f1a47-a3a2-4baf-85bf-8843672d5e40" start_index="0" end="4c163418-a673-4e07-975d-0daf5a9392ed" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="58f35a01-d2c8-4eb9-adde-c123adecb197" start_index="0" end="3ec79573-4507-4b13-80dc-c60574ab0b18" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="65d12783-85b1-455d-833f-8c4316554e29" start_index="0" end="58f35a01-d2c8-4eb9-adde-c123adecb197" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4677fad6-0f20-4ab1-8c5c-aad39696e88e" start_index="0" end="050f1a47-a3a2-4baf-85bf-8843672d5e40" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e5dfbffd-480e-4db8-a25e-05e80313a108" start_index="0" end="6435bf0d-0131-41fb-a091-94da8369dc86" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7d2db577-7e43-420b-bb03-e99ced9940a0" start_index="0" end="8c86c057-763b-41e0-8ef1-57f96ece42e6" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7d2db577-7e43-420b-bb03-e99ced9940a0" start_index="0" end="79f83c87-c925-49b3-8ee7-e257cbc0f735" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5a98064f-bacd-47a9-be29-384c0e5dab0c" start_index="0" end="7d2db577-7e43-420b-bb03-e99ced9940a0" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="79f83c87-c925-49b3-8ee7-e257cbc0f735" start_index="0" end="e5dfbffd-480e-4db8-a25e-05e80313a108" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="0864edeb-b0ce-47ad-9747-bc6c09d17dac" start_index="0" end="79f83c87-c925-49b3-8ee7-e257cbc0f735" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3ec79573-4507-4b13-80dc-c60574ab0b18" start_index="0" end="7d2db577-7e43-420b-bb03-e99ced9940a0" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>
