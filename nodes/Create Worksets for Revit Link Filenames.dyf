@@ -1,0 +1,103 @@
+<Workspace Version="0.8.2.2371" X="-1402.15448370667" Y="256.213234293212" zoom="1.47618023926361" Name="Create Worksets for Revit Link Filenames" Description="" ID="611b3029-f3ff-4029-adf3-417fe4e19bf5" Category="Bakery.Worksets">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.Function guid="af087684-c001-4bc5-b880-6a4570391942" type="Dynamo.Nodes.Function" nickname="Document.Worksets" x="530.539636665741" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">
+      <ID value="90dc6979-b53e-49a6-805d-ecfeba189414" />
+      <Name value="Document.Worksets" />
+      <Description value="Returns all Worksets in the current document" />
+      <Inputs />
+      <Outputs>
+        <Output value="worksets" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="5df63429-a464-46a5-aaf4-fa74a8488b86" type="Dynamo.Nodes.Function" nickname="Get Linked RVT Documents" x="250" y="140.679250500636" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">
+      <ID value="98458ceb-6e1f-49f2-ab12-e054d5034efc" />
+      <Name value="Get Linked RVT Documents" />
+      <Description value="" />
+      <Inputs />
+      <Outputs>
+        <Output value="Link Doc" />
+        <Output value="Link Name" />
+        <Output value="Link Instance" />
+        <Output value="Link Instance Id" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="be40a50a-9ac1-418c-8d89-cbd89a0638e6" type="Dynamo.Nodes.Function" nickname="Clean Link Name List" x="506.676557863501" y="217.533849907164" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="e3fabfc0-f183-4931-a15e-f5da8bc93eae" />
+      <Name value="Clean Link Name List" />
+      <Description value="" />
+      <Inputs>
+        <Input value="name list" />
+      </Inputs>
+      <Outputs>
+        <Output value="cleaned names only" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="b00d1ced-ee3f-42d7-a580-5ad8380db37d" type="Dynamo.Nodes.Function" nickname="Element Name Universal" x="736.97249774741" y="92.1237717188651" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="879451ea-d61b-4ff2-bed0-b3020778e187" />
+      <Name value="Element Name Universal" />
+      <Description value="Modified for 0.8.1" />
+      <Inputs>
+        <Input value="Element(s)" />
+      </Inputs>
+      <Outputs>
+        <Output value="Name(s)" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Function guid="568dd21d-f75c-4d2c-be95-d283349d5cd7" type="Dynamo.Nodes.Function" nickname="Remove List from List by Item not Value" x="868.662413711329" y="298.093537317544" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="3087d2ac-7716-41e4-bc15-14de29d964f6" />
+      <Name value="Remove List from List by Item not Value" />
+      <Description value="remove the items in ListA from the items in ListB and return whats left" />
+      <Inputs>
+        <Input value="ListOfItemsToRemove" />
+        <Input value="ListToRemoveFrom" />
+      </Inputs>
+      <Outputs>
+        <Output value="reducedList" />
+        <Output value="unmatched" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.StringInput guid="2ff12c0b-d32b-4269-aca7-7a62d7b78da6" type="Dynamo.Nodes.StringInput" nickname="String" x="649.724075055855" y="603.07189177515" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <System.String>
+      </System.String>
+      <System.String value="" />
+    </Dynamo.Nodes.StringInput>
+    <Dynamo.Nodes.DSVarArgFunction guid="deda565b-2564-4016-a904-6ee28d743fef" type="Dynamo.Nodes.DSVarArgFunction" nickname="String.Join" x="740.890968690849" y="616.403180883327" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.String.Join@string,string[]" inputcount="3" />
+    <DSCore.Map guid="15cea216-fbea-437d-a66f-feb0e31658fe" type="DSCore.Map" nickname="List.Map" x="1020.11205714322" y="701.285714265522" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
+    <Dynamo.Nodes.Function guid="397a952f-a786-44c1-a054-37d59babdfff" type="Dynamo.Nodes.Function" nickname="Workset.Create" x="1209.8323784181" y="583.234357377411" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="cd7ec662-0b6e-4afd-8f1a-70f41d2de6d9" />
+      <Name value="Workset.Create" />
+      <Description value="Creates a workset or worksets from input names." />
+      <Inputs>
+        <Input value="worksetNames" />
+      </Inputs>
+      <Outputs>
+        <Output value="names" />
+      </Outputs>
+    </Dynamo.Nodes.Function>
+    <Dynamo.Nodes.Symbol guid="78a8337d-f930-428c-bd8d-b62b0caa7178" type="Dynamo.Nodes.Symbol" nickname="Input" x="90" y="520" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="PrefixIfDesired : string = &quot;&quot;" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="bcea28cb-b65e-465a-97ef-029104108078" type="Dynamo.Nodes.Output" nickname="Output" x="1480.8323784181" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="worksetsCreated" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="af087684-c001-4bc5-b880-6a4570391942" start_index="0" end="b00d1ced-ee3f-42d7-a580-5ad8380db37d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5df63429-a464-46a5-aaf4-fa74a8488b86" start_index="1" end="be40a50a-9ac1-418c-8d89-cbd89a0638e6" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="be40a50a-9ac1-418c-8d89-cbd89a0638e6" start_index="0" end="568dd21d-f75c-4d2c-be95-d283349d5cd7" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b00d1ced-ee3f-42d7-a580-5ad8380db37d" start_index="0" end="568dd21d-f75c-4d2c-be95-d283349d5cd7" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="568dd21d-f75c-4d2c-be95-d283349d5cd7" start_index="0" end="15cea216-fbea-437d-a66f-feb0e31658fe" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2ff12c0b-d32b-4269-aca7-7a62d7b78da6" start_index="0" end="deda565b-2564-4016-a904-6ee28d743fef" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="deda565b-2564-4016-a904-6ee28d743fef" start_index="0" end="15cea216-fbea-437d-a66f-feb0e31658fe" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="15cea216-fbea-437d-a66f-feb0e31658fe" start_index="0" end="397a952f-a786-44c1-a054-37d59babdfff" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="397a952f-a786-44c1-a054-37d59babdfff" start_index="0" end="bcea28cb-b65e-465a-97ef-029104108078" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="78a8337d-f930-428c-bd8d-b62b0caa7178" start_index="0" end="deda565b-2564-4016-a904-6ee28d743fef" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

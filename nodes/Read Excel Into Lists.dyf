@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="Read Excel Into Lists" Description="" ID="5aa0104f-3360-4b32-a9af-e2bf4727d0ea" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Read Excel Into Lists" Description="" ID="5aa0104f-3360-4b32-a9af-e2bf4727d0ea" Category="Bakery.Excel">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.File.FileObject guid="b694b007-8d93-4ea8-ad11-55b3048cd6e8" type="DSCore.File.FileObject" nickname="File.FromPath" x="250" y="263.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
@@ -46,7 +46,4 @@
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
-  </Cameras>
 </Workspace>

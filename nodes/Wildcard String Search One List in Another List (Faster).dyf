@@ -1,0 +1,63 @@
+<Workspace Version="0.8.2.2371" X="179.101055471069" Y="290.109281676558" zoom="0.97676875" Name="Wildcard String Search One List in Another List (Faster)" Description="uses straight Python not String.Contains" ID="d9e01baa-c780-4d5b-82d1-b35431289979" Category="Bakery.Lists">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="a2a39442-4420-417f-97f9-ed02b71df471" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="107.70563043356" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;nullSearchItemReplaced&quot;;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="db1fb94b-fb6c-4c7b-9683-2df8a76f3814" type="Dynamo.Nodes.DSFunction" nickname="Manage.ReplaceNulls" x="455.421880639246" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="..\..\LunchBox%20for%20Dynamo\bin\LunchBox.dll" function="Lists.Manage.ReplaceNulls@var,var" />
+    <Dynamo.Nodes.DSFunction guid="67475f13-7ce4-4c85-b99d-0b4fb428a5bd" type="Dynamo.Nodes.DSFunction" nickname="Manage.ReplaceNulls" x="483.093030033524" y="600.632033901626" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="..\..\LunchBox%20for%20Dynamo\bin\LunchBox.dll" function="Lists.Manage.ReplaceNulls@var,var" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="9f628742-94ce-4b2e-9236-7c23cf68e04d" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="277.671149394278" y="708.337664335186" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;nullTargetItemReplaced&quot;;" ShouldFocus="false" />
+    <DSIronPythonNode.PythonNode guid="916253cb-113c-4c8a-b49f-2ce024eb432f" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="834.191293661587" y="328.944104521788" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+searchItems = IN[0]
+searchIn = IN[1]
+searchMatches = []
+foundItems = []
+for x in searchItems:
+	for z in searchIn:
+		if x in z:
+			searchMatches.append(x)
+			foundItems.append(z)
+
+#Assign your output to the OUT variable.
+OUT = searchMatches, foundItems</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="b9e5f5a7-8fdb-4723-bb6a-7fffb8faae12" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1050.37667572619" y="279.541380225557" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="0;" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="6e53f805-3466-4623-a344-fdda94d895aa" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1050.95237258435" y="542.092805636264" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="747cc8bc-8c16-47a4-a115-4cc2d9f04a41" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="1152.61208474563" y="208.36255384242" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.DSFunction guid="6e02684d-4949-40c8-9db9-888859abdda9" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="1153.18778160379" y="470.913979253131" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.Symbol guid="a2aff36f-f1ab-4ade-88bb-5d75d918733f" type="Dynamo.Nodes.Symbol" nickname="Input" x="-99" y="4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="searchForTheseFragments" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="330f3df5-3683-4dfb-8241-84d3a68c2b38" type="Dynamo.Nodes.Symbol" nickname="Input" x="-161" y="295" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="insideStringsInThisList" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="fd25f44d-95cf-458b-9574-08ee7c3e1bd9" type="Dynamo.Nodes.Output" nickname="Output" x="1444.18778160379" y="123" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="SearchItems" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="6a5fe660-163b-4882-a8b1-61dadea952ea" type="Dynamo.Nodes.Output" nickname="Output" x="1443.18778160379" y="378" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="foundInThese" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="a2a39442-4420-417f-97f9-ed02b71df471" start_index="0" end="db1fb94b-fb6c-4c7b-9683-2df8a76f3814" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="db1fb94b-fb6c-4c7b-9683-2df8a76f3814" start_index="0" end="916253cb-113c-4c8a-b49f-2ce024eb432f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="67475f13-7ce4-4c85-b99d-0b4fb428a5bd" start_index="0" end="916253cb-113c-4c8a-b49f-2ce024eb432f" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9f628742-94ce-4b2e-9236-7c23cf68e04d" start_index="0" end="67475f13-7ce4-4c85-b99d-0b4fb428a5bd" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="916253cb-113c-4c8a-b49f-2ce024eb432f" start_index="0" end="6e02684d-4949-40c8-9db9-888859abdda9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="916253cb-113c-4c8a-b49f-2ce024eb432f" start_index="0" end="747cc8bc-8c16-47a4-a115-4cc2d9f04a41" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b9e5f5a7-8fdb-4723-bb6a-7fffb8faae12" start_index="0" end="747cc8bc-8c16-47a4-a115-4cc2d9f04a41" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="6e53f805-3466-4623-a344-fdda94d895aa" start_index="0" end="6e02684d-4949-40c8-9db9-888859abdda9" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="747cc8bc-8c16-47a4-a115-4cc2d9f04a41" start_index="0" end="fd25f44d-95cf-458b-9574-08ee7c3e1bd9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="6e02684d-4949-40c8-9db9-888859abdda9" start_index="0" end="6a5fe660-163b-4882-a8b1-61dadea952ea" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a2aff36f-f1ab-4ade-88bb-5d75d918733f" start_index="0" end="db1fb94b-fb6c-4c7b-9683-2df8a76f3814" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="330f3df5-3683-4dfb-8241-84d3a68c2b38" start_index="0" end="67475f13-7ce4-4c85-b99d-0b4fb428a5bd" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

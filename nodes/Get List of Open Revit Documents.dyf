@@ -5,36 +5,40 @@
       <Script>#LSJ
 
 import clr
-clr.AddReference('ProtoGeometry')
-from Autodesk.DesignScript.Geometry import *
+#clr.AddReference('ProtoGeometry')
+#from Autodesk.DesignScript.Geometry import *
 
 # Import DocumentManager
 clr.AddReference("RevitServices")
-import RevitServices
+#import RevitServices
 from RevitServices.Persistence import DocumentManager
-from RevitServices.Transactions import TransactionManager
+#from RevitServices.Transactions import TransactionManager
 
 # Import RevitAPI
-clr.AddReference("RevitAPI")
-import Autodesk
+#clr.AddReference("RevitAPI")
+#import Autodesk
 
 # Import ToDSType(bool) extension method
-clr.AddReference("RevitNodes")
-import Revit
-from Autodesk.Revit.DB import *
-clr.ImportExtensions(Revit.Elements)
+#clr.AddReference("RevitNodes")
+#import Revit
+#from Autodesk.Revit.DB import *
+#clr.ImportExtensions(Revit.Elements)
 
-import System
+#import System
 
 #The inputs to this node will be stored as a list in the IN variable.
 #doc = docToUse
-uiapp = DocumentManager.Instance.CurrentUIApplication
-app = uiapp.Application
+#uiapp = DocumentManager.Instance.CurrentUIApplication
 doc = DocumentManager.Instance.CurrentDBDocument
-TransactionManager.Instance.EnsureInTransaction(doc)
-docList = []
+app = DocumentManager.Instance.CurrentUIApplication.Application
+
+#TransactionManager.Instance.EnsureInTransaction(doc)
+docList = app.Documents
 for z in app.Documents:
-	docList.append(z)
+	try:
+		Dispose(z)
+	except:
+		pass
 stringlist = []
 pathlist = []
 for d in docList:
@@ -47,8 +51,18 @@ for e in docList:
 		pathlist.append(d.PathName)
 	except:
 		pathlist.append("Path not found")
-TransactionManager.Instance.TransactionTaskDone()
-OUT = docList, stringlist, pathlist#.DocumentSet</Script>
+#TransactionManager.Instance.TransactionTaskDone()
+try:
+	Dispose(app)
+except:
+	pass
+try:
+	Dispose(doc)
+except:
+	pass
+OUT = docList, stringlist, pathlist#.DocumentSet
+del docList
+</Script>
     </DSIronPythonNode.PythonNode>
     <Dynamo.Nodes.CodeBlockNodeModel guid="c6c12fe9-b43e-47d9-9bbc-b5826e55166f" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="473.011828644492" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="list[0];" ShouldFocus="false" />
     <Dynamo.Nodes.CodeBlockNodeModel guid="ed056120-1757-4743-9691-868e50b0e026" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="488.425962956077" y="123.068403383586" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="list[1];" ShouldFocus="false" />
@@ -74,4 +88,7 @@ OUT = docList, stringlist, pathlist#.DocumentSet</Script>
   <Notes />
   <Annotations />
   <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
 </Workspace>
