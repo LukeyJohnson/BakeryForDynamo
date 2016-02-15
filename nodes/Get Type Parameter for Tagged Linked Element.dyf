@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-316.704054297143" Y="97.7547806886946" zoom="0.646865613092414" Name="Get Type Parameter for Tagged Linked Element" Description="and show empty tags" ID="1407494a-a237-4c66-a8c2-0a6a711be11f" Category="Bakery.Links">
+<Workspace Version="0.8.2.2371" X="-316.704054297143" Y="97.7547806886946" zoom="0.646865613092414" Name="Get Type Parameter for Tagged Linked Element" Description="and show empty tags" ID="1407494a-a237-4c66-a8c2-0a6a711be11f" Category="Bakery.Tags">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="77912bf6-5a6f-4820-a5d6-daad3555c15c" type="Dynamo.Nodes.DSFunction" nickname="Count" x="631.110024500226" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Count@var[]..[]" />
@@ -140,7 +140,4 @@
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
-  </Cameras>
 </Workspace>

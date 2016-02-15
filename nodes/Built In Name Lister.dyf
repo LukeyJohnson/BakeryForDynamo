@@ -1,7 +1,7 @@
-<Workspace Version="0.8.2.2371" X="136" Y="122" zoom="1" Name="Built In Name Lister" Description="lists BuiltInNames (Built In Category Names)" ID="de6f2c56-8759-4865-a0dd-403b908d7b43" Category="Bakery.Categories">
+<Workspace Version="0.8.2.2371" X="174.892843913785" Y="205.598727784574" zoom="1.05429821501133" Name="Built In Name Lister" Description="lists BuiltInNames (Built In Category Names)" ID="de6f2c56-8759-4865-a0dd-403b908d7b43" Category="Bakery.Categories">
   <NamespaceResolutionMap />
   <Elements>
-    <DSIronPythonNode.PythonNode guid="456cb221-c628-4400-89e7-06d318c2b755" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="95.690311716606" y="84.5890565729443" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" inputcount="0">
+    <DSIronPythonNode.PythonNode guid="456cb221-c628-4400-89e7-06d318c2b755" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="-61.6745297661552" y="6.5246569671955" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" inputcount="0">
       <Script>#LSJ
 
 import clr
@@ -41,10 +41,10 @@ for i in userCategories:
 builtInNames = []
 for x in ids:
 	builtInNames.append(System.Enum.ToObject(BuiltInCategory, x))
-
-OUT = builtInNames</Script>
+fullenumcats = System.Enum.GetValues(BuiltInCategory)
+OUT = builtInNames, fullenumcats</Script>
     </DSIronPythonNode.PythonNode>
-    <Dynamo.Nodes.Output guid="d9d8b665-4442-4021-881d-a246b2709358" type="Dynamo.Nodes.Output" nickname="Output" x="302" y="48" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+    <Dynamo.Nodes.Output guid="d9d8b665-4442-4021-881d-a246b2709358" type="Dynamo.Nodes.Output" nickname="Output" x="687.090284911123" y="-16.4978802314196" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
       <Symbol value="builtins" />
     </Dynamo.Nodes.Output>
     <Dynamo.Nodes.StringInput guid="eeeb2198-39a8-4845-9658-e5177f359909" type="Dynamo.Nodes.StringInput" nickname="String" x="15" y="259.083017422172" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
@@ -66,15 +66,27 @@ OST_Elev</System.String>
         <Output value="reduced list" />
       </Outputs>
     </Dynamo.Nodes.Function>
-    <Dynamo.Nodes.Output guid="8f6b67b3-941b-4403-a470-51dd8e078104" type="Dynamo.Nodes.Output" nickname="Output" x="584" y="257" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
-      <Symbol value="views removed" />
+    <Dynamo.Nodes.Output guid="8f6b67b3-941b-4403-a470-51dd8e078104" type="Dynamo.Nodes.Output" nickname="Output" x="729.120230520694" y="257" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="builtins views removed" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.DSFunction guid="68f58976-475c-4cde-a358-fd6e8d8707fe" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="326.385031470928" y="-79.2932460610079" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="f781ce89-7ab7-4916-834c-323ee960d854" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="196.244521345585" y="-32.3906371716535" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="0;" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel guid="b21ac11c-d44c-46e6-84d4-2ecf4a826c72" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="407.522399373229" y="633.970144006911" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Nodes.DSFunction guid="f0c72842-2f28-4b7a-b813-1aa384552429" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="537.662909498572" y="587.067535117557" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Nodes.Output guid="59621141-83b5-4030-8788-9c58a4060b39" type="Dynamo.Nodes.Output" nickname="Output" x="719.144839278985" y="573.355079150122" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="full enumeration" />
     </Dynamo.Nodes.Output>
   </Elements>
   <Connectors>
-    <Dynamo.Models.ConnectorModel start="456cb221-c628-4400-89e7-06d318c2b755" start_index="0" end="d9d8b665-4442-4021-881d-a246b2709358" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="456cb221-c628-4400-89e7-06d318c2b755" start_index="0" end="e13e8b97-47c3-4aaa-bab5-3895beb017e3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="456cb221-c628-4400-89e7-06d318c2b755" start_index="0" end="68f58976-475c-4cde-a358-fd6e8d8707fe" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="456cb221-c628-4400-89e7-06d318c2b755" start_index="0" end="f0c72842-2f28-4b7a-b813-1aa384552429" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="eeeb2198-39a8-4845-9658-e5177f359909" start_index="0" end="e13e8b97-47c3-4aaa-bab5-3895beb017e3" end_index="1" portType="0" />
     <Dynamo.Models.ConnectorModel start="e13e8b97-47c3-4aaa-bab5-3895beb017e3" start_index="0" end="8f6b67b3-941b-4403-a470-51dd8e078104" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="68f58976-475c-4cde-a358-fd6e8d8707fe" start_index="0" end="d9d8b665-4442-4021-881d-a246b2709358" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="68f58976-475c-4cde-a358-fd6e8d8707fe" start_index="0" end="e13e8b97-47c3-4aaa-bab5-3895beb017e3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f781ce89-7ab7-4916-834c-323ee960d854" start_index="0" end="68f58976-475c-4cde-a358-fd6e8d8707fe" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b21ac11c-d44c-46e6-84d4-2ecf4a826c72" start_index="0" end="f0c72842-2f28-4b7a-b813-1aa384552429" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f0c72842-2f28-4b7a-b813-1aa384552429" start_index="0" end="59621141-83b5-4030-8788-9c58a4060b39" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
