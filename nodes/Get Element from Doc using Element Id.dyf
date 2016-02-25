@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="10.7748240293988" Y="445.628594256803" zoom="1.10476425630303" Name="Get Element from Doc using Element Id" Description="" ID="3e102e9f-f5ec-47d3-bd43-4326d783c590" Category="Bakery.Links">
+<Workspace Version="0.8.2.2371" X="364.774824029399" Y="504.628594256803" zoom="1.10476425630303" Name="Get Element from Doc using Element Id" Description="slow way to go" ID="3e102e9f-f5ec-47d3-bd43-4326d783c590" Category="Bakery.Links">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="cc4a057e-2a8e-4232-bfaa-03c169023e46" type="Dynamo.Nodes.Function" nickname="Get All Family Instances From Link Doc" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
@@ -55,12 +55,9 @@
   </Connectors>
   <Notes />
   <Annotations>
-    <Dynamo.Models.AnnotationModel guid="916cd59a-6f12-4a57-b751-376575fe69d4" annotationText="ALL!" left="657.008003213062" top="12.2229852675451" width="310" height="199" fontSize="14" InitialTop="42.2229852675451" InitialHeight="112" TextblockHeight="20" backgrouund="#FFFF7BAC">
+    <Dynamo.Models.AnnotationModel guid="916cd59a-6f12-4a57-b751-376575fe69d4" annotationText="ALL!" left="657.008003213062" top="12.2229852675451" width="112" height="112" fontSize="14" InitialTop="42.2229852675451" InitialHeight="112" TextblockHeight="20" backgrouund="#FFFF7BAC">
       <Models ModelGuid="07ae4d9f-0375-4a4e-9261-c456033d24e4" />
     </Dynamo.Models.AnnotationModel>
   </Annotations>
   <Presets />
-  <Cameras>
-    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
-  </Cameras>
 </Workspace>

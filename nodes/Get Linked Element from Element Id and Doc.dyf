@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="449.703762196468" Y="411.731171213245" zoom="0.70422587858429" Name="Get Linked Element from Element Id and Doc" Description="" ID="18da62d5-3ae0-4698-9b9c-a3b3675935d5" Category="Bakery.Links">
+<Workspace Version="0.8.2.2371" X="554.474822882249" Y="426.528887434" zoom="0.842893770232269" Name="Get Linked Element from Element Id and Doc" Description="uses name string" ID="18da62d5-3ae0-4698-9b9c-a3b3675935d5" Category="Bakery.Links">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="cb578527-a43f-429b-a967-83b3b92483bd" type="Dynamo.Nodes.Watch" nickname="Watch" x="-148.536239777823" y="-208.586002589395" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
@@ -17,7 +17,7 @@
     <Dynamo.Nodes.Symbol guid="d11951bc-a0b7-4213-af43-28b0d4d6ccc7" type="Dynamo.Nodes.Symbol" nickname="Input" x="-618.4208116972" y="-208.586002589395" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
       <Symbol value="Link Name string" />
     </Dynamo.Nodes.Symbol>
-    <Dynamo.Nodes.Symbol guid="9a4a7321-4980-4a46-b47e-d3c7e0358f1b" type="Dynamo.Nodes.Symbol" nickname="Input" x="-0.206298413183163" y="275.071252693301" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+    <Dynamo.Nodes.Symbol guid="9a4a7321-4980-4a46-b47e-d3c7e0358f1b" type="Dynamo.Nodes.Symbol" nickname="Input" x="31.4932063636523" y="96.1102158247256" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
       <Symbol value="Element Ids" />
     </Dynamo.Nodes.Symbol>
     <Dynamo.Nodes.Output guid="6ee5ff44-e826-4cae-83dd-57ac37fa9b0e" type="Dynamo.Nodes.Output" nickname="Output" x="1544.71636270998" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
@@ -29,86 +29,32 @@
     <Dynamo.Nodes.Output guid="a46c78ea-a018-43ff-b22a-22774383cdbe" type="Dynamo.Nodes.Output" nickname="Output" x="1770.80248059122" y="527.301634644036" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
       <Symbol value="Point" />
     </Dynamo.Nodes.Output>
-    <DSCoreNodesUI.CreateList guid="bb5f82a1-9c79-4721-b8cd-ce246f01bbb0" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="-482.872218397013" y="299.13822556524" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2" />
-    <Dynamo.Nodes.Function guid="ac6a4622-200e-4358-9d2d-69c35eec48ea" type="Dynamo.Nodes.Function" nickname="Get Elements from Link Document Using Category" x="-1227.89111947425" y="303.542612825089" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
-      <ID value="18f8bc05-fab8-4a62-a118-8d76c9d9b53e" />
-      <Name value="Get Elements from Link Document Using Category" />
+    <Dynamo.Nodes.Function guid="4e0ad4aa-61ca-422d-97cc-b697b16d23ca" type="Dynamo.Nodes.Function" nickname="Get Linked Elements by Id and Doc" x="590.05226988159" y="380.546968799726" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
+      <ID value="cc61137a-5f67-4631-a420-e0b876e51582" />
+      <Name value="Get Linked Elements by Id and Doc" />
       <Description value="" />
       <Inputs>
-        <Input value="Link Document" />
-        <Input value="builtInName" />
+        <Input value="elementIdList" />
+        <Input value="oneLinkDoc" />
       </Inputs>
       <Outputs>
-        <Output value="Element(s)" />
-      </Outputs>
-    </Dynamo.Nodes.Function>
-    <Dynamo.Nodes.Function guid="e4f71b2d-8fa3-4600-9185-4207c8b61781" type="Dynamo.Nodes.Function" nickname="Convert Category Name to Built In Category Name" x="-1256.25523950443" y="539.340399940781" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
-      <ID value="4bde5c1f-505e-441f-bec6-37d7363003cf" />
-      <Name value="Convert Category Name to Built In Category Name" />
-      <Description value="You must use List.Map to convert list of Category Names to list of Built In Names" />
-      <Inputs>
-        <Input value="categoryName" />
-      </Inputs>
-      <Outputs>
-        <Output value="builtInName" />
-      </Outputs>
-    </Dynamo.Nodes.Function>
-    <Dynamo.Nodes.StringInput guid="a3e722cd-dce6-43d8-b411-d001b3bb1914" type="Dynamo.Nodes.StringInput" nickname="String" x="-1649.3193147357" y="610.616018916052" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
-      <System.String>Air Terminals</System.String>
-      <System.String value="Air Terminals" />
-    </Dynamo.Nodes.StringInput>
-    <DSCoreNodesUI.CreateList guid="c9115b8a-d8ce-4698-be54-0875a082d51e" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="-1478.4674633685" y="676.650783554907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1" />
-    <DSCore.Map guid="ed5b1cd9-61ce-4c1a-ab10-e34d6cdb2ade" type="DSCore.Map" nickname="List.Map" x="-789.81920356332" y="430.330629743309" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />
-    <Dynamo.Nodes.DSFunction guid="79e82bb7-b02f-40cb-850d-ff75115e8460" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="-673.472237294863" y="577.074551162984" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />
-    <Dynamo.Nodes.DSFunction guid="3eab90cc-2470-4afa-a072-d97ec125d57d" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="-248.163500189437" y="293.21318815824" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />
-    <Dynamo.Nodes.Function guid="90913983-7ebb-478a-9ef3-e9de06d54c29" type="Dynamo.Nodes.Function" nickname="Get Element from Doc using Element Id" x="673.715911806983" y="375.028794959017" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">
-      <ID value="3e102e9f-f5ec-47d3-bd43-4326d783c590" />
-      <Name value="Get Element from Doc using Element Id" />
-      <Description value="" />
-      <Inputs>
-        <Input value="linkdoc" />
-        <Input value="elementId" />
-      </Inputs>
-      <Outputs>
-        <Output value="AllElements" />
-        <Output value="Matching" />
+        <Output value="foundIds" />
+        <Output value="foundElements" />
+        <Output value="failedIds" />
       </Outputs>
     </Dynamo.Nodes.Function>
   </Elements>
   <Connectors>
     <Dynamo.Models.ConnectorModel start="cb578527-a43f-429b-a967-83b3b92483bd" start_index="0" end="62893ea3-a28f-4a0d-8a10-ec92319ccac1" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="62893ea3-a28f-4a0d-8a10-ec92319ccac1" start_index="0" end="6ee5ff44-e826-4cae-83dd-57ac37fa9b0e" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="62893ea3-a28f-4a0d-8a10-ec92319ccac1" start_index="0" end="ac6a4622-200e-4358-9d2d-69c35eec48ea" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="62893ea3-a28f-4a0d-8a10-ec92319ccac1" start_index="0" end="90913983-7ebb-478a-9ef3-e9de06d54c29" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="62893ea3-a28f-4a0d-8a10-ec92319ccac1" start_index="0" end="4e0ad4aa-61ca-422d-97cc-b697b16d23ca" end_index="1" portType="0" />
     <Dynamo.Models.ConnectorModel start="ef16c17d-c913-4e5c-8161-c7b9c30194a0" start_index="0" end="a46c78ea-a018-43ff-b22a-22774383cdbe" end_index="0" portType="0" />
     <Dynamo.Models.ConnectorModel start="d11951bc-a0b7-4213-af43-28b0d4d6ccc7" start_index="0" end="cb578527-a43f-429b-a967-83b3b92483bd" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="9a4a7321-4980-4a46-b47e-d3c7e0358f1b" start_index="0" end="90913983-7ebb-478a-9ef3-e9de06d54c29" end_index="1" portType="0" />
-    <Dynamo.Models.ConnectorModel start="bb5f82a1-9c79-4721-b8cd-ce246f01bbb0" start_index="0" end="3eab90cc-2470-4afa-a072-d97ec125d57d" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="ac6a4622-200e-4358-9d2d-69c35eec48ea" start_index="0" end="ed5b1cd9-61ce-4c1a-ab10-e34d6cdb2ade" end_index="1" portType="0" />
-    <Dynamo.Models.ConnectorModel start="e4f71b2d-8fa3-4600-9185-4207c8b61781" start_index="0" end="ed5b1cd9-61ce-4c1a-ab10-e34d6cdb2ade" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="a3e722cd-dce6-43d8-b411-d001b3bb1914" start_index="0" end="c9115b8a-d8ce-4698-be54-0875a082d51e" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="c9115b8a-d8ce-4698-be54-0875a082d51e" start_index="0" end="e4f71b2d-8fa3-4600-9185-4207c8b61781" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="ed5b1cd9-61ce-4c1a-ab10-e34d6cdb2ade" start_index="0" end="79e82bb7-b02f-40cb-850d-ff75115e8460" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="79e82bb7-b02f-40cb-850d-ff75115e8460" start_index="0" end="bb5f82a1-9c79-4721-b8cd-ce246f01bbb0" end_index="1" portType="0" />
-    <Dynamo.Models.ConnectorModel start="90913983-7ebb-478a-9ef3-e9de06d54c29" start_index="0" end="bb5f82a1-9c79-4721-b8cd-ce246f01bbb0" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="90913983-7ebb-478a-9ef3-e9de06d54c29" start_index="1" end="ef16c17d-c913-4e5c-8161-c7b9c30194a0" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="90913983-7ebb-478a-9ef3-e9de06d54c29" start_index="1" end="b27ddf79-b045-4897-bd00-d2ffc5ae1cf1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9a4a7321-4980-4a46-b47e-d3c7e0358f1b" start_index="0" end="4e0ad4aa-61ca-422d-97cc-b697b16d23ca" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4e0ad4aa-61ca-422d-97cc-b697b16d23ca" start_index="1" end="b27ddf79-b045-4897-bd00-d2ffc5ae1cf1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4e0ad4aa-61ca-422d-97cc-b697b16d23ca" start_index="1" end="ef16c17d-c913-4e5c-8161-c7b9c30194a0" end_index="0" portType="0" />
   </Connectors>
   <Notes />
-  <Annotations>
-    <Dynamo.Models.AnnotationModel guid="b931b076-e553-422c-86f6-37a3eb13ff1c" annotationText="STARTED GETTING SYSTEM FAMILIES" left="-1659.3193147357" top="263.21318815824" width="1530.15581454627" height="481.437595396666" fontSize="14" InitialTop="293.21318815824" InitialHeight="344.320153811597" TextblockHeight="20" backgrouund="#FFC1D676">
-      <Models ModelGuid="e4f71b2d-8fa3-4600-9185-4207c8b61781" />
-      <Models ModelGuid="a3e722cd-dce6-43d8-b411-d001b3bb1914" />
-      <Models ModelGuid="c9115b8a-d8ce-4698-be54-0875a082d51e" />
-      <Models ModelGuid="ed5b1cd9-61ce-4c1a-ab10-e34d6cdb2ade" />
-      <Models ModelGuid="79e82bb7-b02f-40cb-850d-ff75115e8460" />
-      <Models ModelGuid="ac6a4622-200e-4358-9d2d-69c35eec48ea" />
-      <Models ModelGuid="bb5f82a1-9c79-4721-b8cd-ce246f01bbb0" />
-      <Models ModelGuid="3eab90cc-2470-4afa-a072-d97ec125d57d" />
-    </Dynamo.Models.AnnotationModel>
-  </Annotations>
+  <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
-  </Cameras>
 </Workspace>
