@@ -1,0 +1,88 @@
+<Workspace Version="0.9.1.4062" X="18.799824138615" Y="234.137165194219" zoom="0.616647839833753" Name="Find Empty Worksets and List Names" Description="search through given elements for empty worksets" ID="8c20411b-b39d-48ba-b506-d423b7ccad59" Category="Bakery.Worksets">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6d6af5d0-53fb-475e-a4b2-defa1a32451a" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="1517.85722893554" y="170.273053187333" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="63226da9-798c-4dbd-861c-69b03707d400" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List.RemoveItemsFromOtherList" x="1857.78544369886" y="278.471541447799" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <ID value="a7e8c439-cb52-42a4-ab14-5f1aa3eae2dc" />
+      <Name value="List.RemoveItemsFromOtherList" />
+      <Description value="This will take long list A, remove entries that appear in short list B, and give you list C. (JBE List Operations are probably more robust)." />
+      <Inputs>
+        <Input value="List A" />
+        <Input value="List B" />
+      </Inputs>
+      <Outputs>
+        <Output value="" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="0129af57-e7e1-4622-aa35-711af8d8769f" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Worksets" x="1693.55452526587" y="369.965025380782" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <ID value="afaa5c4d-38d4-4dc9-a412-752118db370f" />
+      <Name value="Get Worksets" />
+      <Description value="Retrieves user worksets from specified document" />
+      <Inputs />
+      <Outputs>
+        <Output value="Worksets" />
+        <Output value="Names" />
+        <Output value="Ids" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Watch guid="aaa20ea7-4132-42f5-8780-d0224fab2e73" type="CoreNodeModels.Watch" nickname="Watch" x="2328.60781443856" y="290.832472098841" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a9fc11f6-67f8-407b-8848-8f9ccb5f5c36" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="2077.02774892415" y="165.19686147603" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <Symbol value="EmptyWorksets" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="f2c24eb6-c23d-4555-bf3a-25cbec35f887" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Collect All Elements in Model faster" x="82.032729728371" y="-38.9596146240613" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">
+      <ID value="8f4a43c7-02b4-4f6c-b681-1e7e14bf912b" />
+      <Name value="Collect All Elements in Model faster" />
+      <Description value="does not report count or categories" />
+      <Inputs />
+      <Outputs>
+        <Output value="elementList" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="4ae9a9e5-3598-4174-9021-d778cd85c352" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Element.Workset" x="735.061399587962" y="171.017927984787" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
+      <ID value="35d5bbd0-79d7-43a9-af54-2b366d290d4a" />
+      <Name value="Element.Workset" />
+      <Description value="Retrieves the workset of a given element" />
+      <Inputs>
+        <Input value="element" />
+      </Inputs>
+      <Outputs>
+        <Output value="workset" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="c2178e83-16fa-4d7a-992f-887fc179af12" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Element.Name (Universal)" x="929.030841450947" y="394.0077635749" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
+      <ID value="9266cc47-e982-46fc-9fd4-59bd7fb19a53" />
+      <Name value="Element.Name (Universal)" />
+      <Description value="Gets an element's name (Dynamo's built-in Name nodes don't work for all element types, e.g. worksets...)" />
+      <Inputs>
+        <Input value="element" />
+      </Inputs>
+      <Outputs>
+        <Output value="name" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="9a6fd00d-62b2-41e4-9acd-c16f728f1b2d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get All Revit Links as Element List" x="75.9605041607349" y="189.899452469039" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">
+      <ID value="777b258c-27af-4ade-8009-154344663f5c" />
+      <Name value="Get All Revit Links as Element List" />
+      <Description value="" />
+      <Inputs />
+      <Outputs>
+        <Output value="RevitLinkElements" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction guid="f742b4b1-580b-4532-b8ea-f55b5b6011d5" type="Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction" nickname="List.Join" x="494.088825262752" y="150.536548728455" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.Join@var[]..[]" inputcount="2" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="6d6af5d0-53fb-475e-a4b2-defa1a32451a" start_index="0" end="63226da9-798c-4dbd-861c-69b03707d400" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="63226da9-798c-4dbd-861c-69b03707d400" start_index="0" end="aaa20ea7-4132-42f5-8780-d0224fab2e73" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="63226da9-798c-4dbd-861c-69b03707d400" start_index="0" end="a9fc11f6-67f8-407b-8848-8f9ccb5f5c36" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0129af57-e7e1-4622-aa35-711af8d8769f" start_index="1" end="63226da9-798c-4dbd-861c-69b03707d400" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f2c24eb6-c23d-4555-bf3a-25cbec35f887" start_index="0" end="f742b4b1-580b-4532-b8ea-f55b5b6011d5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4ae9a9e5-3598-4174-9021-d778cd85c352" start_index="0" end="c2178e83-16fa-4d7a-992f-887fc179af12" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c2178e83-16fa-4d7a-992f-887fc179af12" start_index="0" end="6d6af5d0-53fb-475e-a4b2-defa1a32451a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9a6fd00d-62b2-41e4-9acd-c16f728f1b2d" start_index="0" end="f742b4b1-580b-4532-b8ea-f55b5b6011d5" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f742b4b1-580b-4532-b8ea-f55b5b6011d5" start_index="0" end="4ae9a9e5-3598-4174-9021-d778cd85c352" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>
