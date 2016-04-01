@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.593" X="0" Y="0" zoom="1" Name="Build NW Search String v1" Description="" ID="cf40a0fa-7224-4d4e-ba04-cc5057c34d64" Category="Bakery.Navisworks">
+<Workspace Version="0.9.1.4062" X="0" Y="0" zoom="1" Name="Build NW Search String v1" Description="" ID="cf40a0fa-7224-4d4e-ba04-cc5057c34d64" Category="Bakery.Navisworks">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="d501d7bd-010d-49cf-b2b8-7a6e35b47bbe" type="CoreNodeModels.Input.StringInput" nickname="String" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

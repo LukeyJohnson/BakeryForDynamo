@@ -1,7 +1,7 @@
 <Workspace Version="0.9.1.4062" X="180" Y="134" zoom="1" Name="List Groups" Description="" ID="97652781-e8fa-4a06-b886-0f57ce83bdc8" Category="Bakery.Elements">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="8989083d-32f4-466a-917e-fb8bfc16aadb" type="PythonNodeModels.PythonNode" nickname="Python Script" x="10" y="12" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">
+    <PythonNodeModels.PythonNode guid="8989083d-32f4-466a-917e-fb8bfc16aadb" type="PythonNodeModels.PythonNode" nickname="Python Script" x="10" y="12" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="0">
       <Script>#Copyright(c) 2014, Nathan Miller
 # The Proving Ground, http://theprovingground.org
 
@@ -39,13 +39,13 @@ famtypeitr.Reset()
 outlist = []
 groups = []
 locations = []
+failures = []
 
 for item in famtypeitr:
-	groups.append((item))
-
-
-    
-   
+	try:
+		groups.append((item))
+	except:
+		failures.append("failed")
 #Assign your output to the OUT variable
 OUT = groups</Script>
     </PythonNodeModels.PythonNode>

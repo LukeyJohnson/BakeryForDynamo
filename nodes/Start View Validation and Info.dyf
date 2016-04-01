@@ -80,6 +80,7 @@
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="7b8009db-ea08-4849-a364-e3de296ece44" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="==" x="640.190675702447" y="-151.716922542704" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="Operators" function="==@var[]..[],var[]..[]" />
     <CoreNodeModels.Watch guid="177dea0e-d1c1-48a9-9206-a4d40b981adf" type="CoreNodeModels.Watch" nickname="Watch" x="910.92776417622" y="-183.756814669778" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
     <CoreNodeModels.FromObject guid="b4892b8d-7363-4f54-9010-d118af7f50cb" type="CoreNodeModels.FromObject" nickname="String from Object" x="300.154188283276" y="-189.770068986523" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="ce64f5ee-9aad-48e2-bfbc-2860478f5596" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="54" y="99" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="true;" ShouldFocus="false" />
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="36f876d3-7a51-495f-bec6-b10faded5fb2" start_index="0" end="05a8c897-3ce2-43f8-85c4-f445d979568f" end_index="0" portType="0" />
@@ -100,8 +101,12 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="7b8009db-ea08-4849-a364-e3de296ece44" start_index="0" end="a5e48698-2069-447b-9592-f69bbe236211" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="7b8009db-ea08-4849-a364-e3de296ece44" start_index="0" end="177dea0e-d1c1-48a9-9206-a4d40b981adf" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="b4892b8d-7363-4f54-9010-d118af7f50cb" start_index="0" end="7b8009db-ea08-4849-a364-e3de296ece44" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ce64f5ee-9aad-48e2-bfbc-2860478f5596" start_index="0" end="36f876d3-7a51-495f-bec6-b10faded5fb2" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
   <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>

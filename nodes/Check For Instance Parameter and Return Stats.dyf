@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="173.765057227029" Y="169.251466853005" zoom="0.761526735775347" Name="Check For Instance Parameter and Return Stats" Description="check through all elements if a given instance parameter 'exists'" ID="1051e594-e779-452f-9e6a-d1adf7619824" Category="Bakery.Parameters">
+<Workspace Version="0.9.1.4062" X="-521.91386815597" Y="-76.0292479735305" zoom="1.18529255198324" Name="Check For Instance Parameter and Return Stats" Description="check through all elements if a given instance parameter 'exists'" ID="1051e594-e779-452f-9e6a-d1adf7619824" Category="Bakery.Parameters">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="7526f8b6-147a-4fa8-b975-45140f5317c5" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Element.ParameterExists" x="513.547314522578" y="62.834427128245" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
@@ -40,7 +40,7 @@
       <Symbol value="Instance Parameter" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="abac526d-32a9-4a67-a6b6-501a6fe9603c" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.GetParameterValueByName" x="459.59055061425" y="366.600071132879" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.GetParameterValueByName@string" />
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="665bcc97-5c58-4e2d-a51b-51cebccec711" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List.ReplaceNull" x="796.814304711563" y="504.859106970333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="665bcc97-5c58-4e2d-a51b-51cebccec711" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List.ReplaceNull" x="704.010211902621" y="624.660754050966" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
       <ID value="2dd1e892-6338-4fba-8345-f7a9f418bb57" />
       <Name value="List.ReplaceNull" />
       <Description value="Replaces all null values within a given list with a substitute" />
@@ -52,12 +52,12 @@
         <Output value="seq" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="0909404e-e4ca-4092-ae7a-a9304bff97dc" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="725.365261767358" y="372.929458690491" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="BuiltIn" function="Flatten@var[]..[]" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="0909404e-e4ca-4092-ae7a-a9304bff97dc" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="729.58362962231" y="502.011515052019" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="BuiltIn" function="Flatten@var[]..[]" />
     <CoreNodeModels.Input.StringInput guid="d2d7ffb7-dbb6-4d8b-ac3f-5e42aacb4288" type="CoreNodeModels.Input.StringInput" nickname="String" x="513.902073139599" y="712.594288706975" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
       <System.String>NULL</System.String>
       <System.String value="NULL" />
     </CoreNodeModels.Input.StringInput>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="dc250c16-7ab7-4711-9d00-c7cfeb1e24b3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1336.38414834331" y="699.219718765239" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="dc250c16-7ab7-4711-9d00-c7cfeb1e24b3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1582.7368310725" y="716.936863756037" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
       <Symbol value="Show Parameter Data" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="ab21bcb5-45af-4a0d-847a-a63d5d5c3b0d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List.RemoveItemsFromOtherList" x="1079.56181086942" y="697.266268393389" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
@@ -82,7 +82,7 @@
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="e5fbcf45-fcd9-44de-a6b7-d92b250148aa" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1386.74392386629" y="875.222246702996" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
       <Symbol value="Count of items with actual values" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="e98b7aa7-67e1-4959-83ef-4af541c44904" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Flat List to List of Strings" x="997.355086483789" y="567.778354714419" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="e98b7aa7-67e1-4959-83ef-4af541c44904" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Flat List to List of Strings" x="992.293045057847" y="582.964478992246" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
       <ID value="82b8a446-c4a1-4d64-8736-01c0b01ae798" />
       <Name value="Flat List to List of Strings" />
       <Description value="using python methods. bug:something wrong with long/complicated strings??" />
@@ -105,6 +105,9 @@
         <Output value="Categories removed" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="af1bf7ae-4dc5-46d2-ad09-9ab465fd99e3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1587.79887249844" y="581.105418826586" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <Symbol value="getParameterOutput" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="7526f8b6-147a-4fa8-b975-45140f5317c5" start_index="0" end="0b8cff3b-c666-4879-95c8-8e800523596a" end_index="0" portType="0" />
@@ -117,6 +120,7 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="2290ef49-0c32-4b91-b38b-c38e2889df35" start_index="0" end="7526f8b6-147a-4fa8-b975-45140f5317c5" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="2290ef49-0c32-4b91-b38b-c38e2889df35" start_index="0" end="abac526d-32a9-4a67-a6b6-501a6fe9603c" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="abac526d-32a9-4a67-a6b6-501a6fe9603c" start_index="0" end="0909404e-e4ca-4092-ae7a-a9304bff97dc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="abac526d-32a9-4a67-a6b6-501a6fe9603c" start_index="0" end="af1bf7ae-4dc5-46d2-ad09-9ab465fd99e3" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="665bcc97-5c58-4e2d-a51b-51cebccec711" start_index="0" end="e98b7aa7-67e1-4959-83ef-4af541c44904" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="0909404e-e4ca-4092-ae7a-a9304bff97dc" start_index="0" end="665bcc97-5c58-4e2d-a51b-51cebccec711" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="d2d7ffb7-dbb6-4d8b-ac3f-5e42aacb4288" start_index="0" end="665bcc97-5c58-4e2d-a51b-51cebccec711" end_index="1" portType="0" />
@@ -132,4 +136,7 @@
   <Notes />
   <Annotations />
   <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>

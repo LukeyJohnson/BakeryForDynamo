@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="18.9935557811414" Y="-481.596961775293" zoom="0.499357748330458" Name="Get DYF Dependencies for One DYF File" Description="" ID="5cec9276-67d6-45e8-9290-e4cb8ec3f117" Category="Bakery.Standalone">
+<Workspace Version="0.9.1.4062" X="198.255223756864" Y="464.795574103405" zoom="1.22704736140834" Name="Get DYF Dependencies for One DYF File" Description="also works for DYN files" ID="5cec9276-67d6-45e8-9290-e4cb8ec3f117" Category="Bakery.Standalone">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="7f55274c-b645-426e-ac09-9a6e2bfcf2fa" type="CoreNodeModels.Input.StringInput" nickname="String" x="1181.97834733326" y="183.62688312234" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
@@ -75,7 +75,7 @@
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8cdf1b37-50cd-4a27-a1cb-d2b721dc4155" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.RemoveItemAtIndex" x="1672.66029750097" y="2248.32521224491" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.RemoveItemAtIndex@var[]..[],int[]" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6fe785c8-2c17-4623-a254-605dc3fe6739" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.RemoveItemAtIndex" x="2128.73816522704" y="2803.94783112891" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.RemoveItemAtIndex@var[]..[],int[]" />
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ac07e72d-630b-432d-ba5d-31961bb42979" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
-      <Symbol value="path to DYF" />
+      <Symbol value="path to DYF or DYN" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1e3c207f-8f4c-48b7-8308-535e4e3b8320" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
       <Symbol value="path To Package Folder" />
@@ -129,7 +129,7 @@
       <Models ModelGuid="9e6bdbd8-473c-43cc-9ba8-e76dd71ff2e4" />
       <Models ModelGuid="cdb52537-b750-401a-87b8-b111884fc18f" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="16c12c08-d9c7-4d57-b707-36d994a0cdc2" annotationText="REFERENCED BY PACKAGE&#xD;&#xA;" left="1023.3477578665" top="1355.71854839916" width="310" height="331" fontSize="14" InitialTop="1399.71854839916" InitialHeight="406.6" TextblockHeight="34" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="16c12c08-d9c7-4d57-b707-36d994a0cdc2" annotationText="REFERENCED BY PACKAGE&#xD;&#xA;" left="1023.3477578665" top="1355.71854839916" width="310" height="422" fontSize="14" InitialTop="1399.71854839916" InitialHeight="406.6" TextblockHeight="34" backgrouund="#FFC1D676">
       <Models ModelGuid="b3010244-48b4-4cf4-8672-f0aa68e23ec1" />
     </Dynamo.Graph.Annotations.AnnotationModel>
     <Dynamo.Graph.Annotations.AnnotationModel guid="9e7b4b79-b1b6-4aba-ae81-e2974d5e3661" annotationText="&lt;Click here to edit the group title&gt;" left="1109.54672018062" top="1993.13171754177" width="189" height="137" fontSize="14" InitialTop="2037.13171754177" InitialHeight="123" TextblockHeight="34" backgrouund="#FFFFB8D8">
@@ -146,7 +146,4 @@
     </Dynamo.Graph.Annotations.AnnotationModel>
   </Annotations>
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
 </Workspace>

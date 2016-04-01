@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.593" X="308.383358049738" Y="343.351532831482" zoom="1.53053169700664" Name="Filter Element List by Parameter Value Wildcard Search" Description="" ID="ff782c8c-1d66-4538-91c8-eccfafe8178e" Category="Bakery.Lists">
+<Workspace Version="0.9.1.4062" X="308.383358049738" Y="343.351532831482" zoom="1.53053169700664" Name="Filter Element List by Parameter Value Wildcard Search" Description="" ID="ff782c8c-1d66-4538-91c8-eccfafe8178e" Category="Bakery.Lists">
   <NamespaceResolutionMap>
     <ClassMap partialName="Element" resolvedName="Revit.Elements.Element" assemblyName="RevitNodes.dll" />
   </NamespaceResolutionMap>

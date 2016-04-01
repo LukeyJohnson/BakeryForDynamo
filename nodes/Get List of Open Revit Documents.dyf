@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.593" X="7.207829967603" Y="277.659772178726" zoom="1.33823125" Name="Get List of Open Revit Documents" Description="BETA!! crashes next dynamo instance. https://github.com/DynamoDS/Dynamo/issues/6083" ID="e3e4163c-e04c-4aa2-9dab-3ec44b1683dd" Category="Bakery.Application (BETA)">
+<Workspace Version="0.9.1.4062" X="7.207829967603" Y="277.659772178726" zoom="1.33823125" Name="Get List of Open Revit Documents" Description="BETA!! crashes next dynamo instance. https://github.com/DynamoDS/Dynamo/issues/6083" ID="e3e4163c-e04c-4aa2-9dab-3ec44b1683dd" Category="Bakery.Application (BETA)">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="0decd3f1-6270-4a68-9707-fae227b22677" type="PythonNodeModels.PythonNode" nickname="Python Script" x="249.252744994559" y="120.246844602804" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="0">
@@ -88,4 +88,7 @@ del docList
   <Notes />
   <Annotations />
   <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>
