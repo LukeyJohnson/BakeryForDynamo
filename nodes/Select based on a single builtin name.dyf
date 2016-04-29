@@ -1,10 +1,10 @@
-<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="Select based on a single builtin name" ID="fcc55045-acf7-4e9f-8222-c02f16b19e58" Description="use with List.Map for input of Built In Name list" Category="Bakery.Collect">
+<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Select based on a single builtin name" Description="use with List.Map for input of Built In Name list" ID="fcc55045-acf7-4e9f-8222-c02f16b19e58" Category="Bakery.Collect">
   <NamespaceResolutionMap />
   <Elements>
-    <Dynamo.Nodes.Symbol guid="1ab3b109-8708-467c-8472-442e94daea0d" type="Dynamo.Nodes.Symbol" nickname="Input" x="438" y="324" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1ab3b109-8708-467c-8472-442e94daea0d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="438" y="324" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
       <Symbol value="builtinName" />
-    </Dynamo.Nodes.Symbol>
-    <DSIronPythonNode.PythonNode guid="96558339-f215-44f4-84c8-32d03549cdff" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="755" y="302" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="96558339-f215-44f4-84c8-32d03549cdff" type="PythonNodeModels.PythonNode" nickname="Python Script" x="755" y="302" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">
       <Script>#LSJ
 
 import clr
@@ -38,15 +38,19 @@ app = uiapp.Application
 listed = []
 listed.append(FilteredElementCollector(doc).WhereElementIsNotElementType().OfCategory(builtInName[0]).ToElements())
 OUT = listed</Script>
-    </DSIronPythonNode.PythonNode>
-    <Dynamo.Nodes.Output guid="a8816e3a-68d7-44ca-96c9-2e10a349298d" type="Dynamo.Nodes.Output" nickname="Output" x="1012" y="394" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a8816e3a-68d7-44ca-96c9-2e10a349298d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1012" y="394" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
       <Symbol value="elements" />
-    </Dynamo.Nodes.Output>
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
-    <Dynamo.Models.ConnectorModel start="1ab3b109-8708-467c-8472-442e94daea0d" start_index="0" end="96558339-f215-44f4-84c8-32d03549cdff" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="96558339-f215-44f4-84c8-32d03549cdff" start_index="0" end="a8816e3a-68d7-44ca-96c9-2e10a349298d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1ab3b109-8708-467c-8472-442e94daea0d" start_index="0" end="96558339-f215-44f4-84c8-32d03549cdff" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="96558339-f215-44f4-84c8-32d03549cdff" start_index="0" end="a8816e3a-68d7-44ca-96c9-2e10a349298d" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>

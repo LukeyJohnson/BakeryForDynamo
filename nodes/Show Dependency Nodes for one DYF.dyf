@@ -1,7 +1,6 @@
-<Workspace Version="0.9.1.4062" X="0" Y="0" zoom="1" Name="Show Dependency Nodes for one DYF" Description="used with List.Map for a folder of them" ID="09093700-1a45-4902-b61c-6c693993c200" Category="Bakery.Standalone">
+<Workspace Version="0.9.2.4472" X="364" Y="44" zoom="1" Name="Show Dependency Nodes for one DYF" Description="used with List.Map for a folder of them" ID="09093700-1a45-4902-b61c-6c693993c200" Category="Bakery.Standalone">
   <NamespaceResolutionMap />
   <Elements>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="d1303916-d8f4-4300-9d21-2e1960523cb0" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="284.871739131726" y="204.014189724001" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="&quot;nickname=&quot;;" ShouldFocus="false" />
     <CoreNodeModels.Input.FileObject guid="8b55f2a1-a9d4-40d4-809f-2bb17dc14ade" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="376.5" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="b7e1952d-d204-43e7-abdf-0a652105f6cd" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="File.ReadText" x="533.5" y="12" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.IO.File.ReadText@var" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction guid="378bb40b-4a06-42dd-b4c0-4a59bc867ca3" type="Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction" nickname="String.Split" x="513.15413975151" y="166.940449565647" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.String.Split@string,string[]" inputcount="2" />
@@ -20,7 +19,7 @@
       <System.String>" </System.String>
       <System.String value="&quot; " />
     </CoreNodeModels.Input.StringInput>
-    <CoreNodeModels.Input.StringInput guid="d2bdd318-9848-489f-bd5a-af4cf7fc18e3" type="CoreNodeModels.Input.StringInput" nickname="String" x="103.2" y="296" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+    <CoreNodeModels.Input.StringInput guid="d2bdd318-9848-489f-bd5a-af4cf7fc18e3" type="CoreNodeModels.Input.StringInput" nickname="String" x="-93.8" y="299" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
       <System.String>nickname="</System.String>
       <System.String value="nickname=&quot;" />
     </CoreNodeModels.Input.StringInput>

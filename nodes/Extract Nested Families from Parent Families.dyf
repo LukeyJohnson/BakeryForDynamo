@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-1010.08333155736" Y="265.291695671144" zoom="0.663391956006525" Name="Extract Nested Families from Parent Families" Description="with category filter" ID="1b7798d1-7eec-41d9-9d15-b49c22049e27" Category="Bakery.Families">
+<Workspace Version="0.9.2.4472" X="222.829453583978" Y="120.809133413828" zoom="0.927512705799677" Name="Extract Nested Families from Parent Families" Description="with category filter" ID="1b7798d1-7eec-41d9-9d15-b49c22049e27" Category="Bakery.Families">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e2f926cc-1c46-4741-91df-81e6c05b0d3d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="1443.42975298222" y="208.100735793333" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
@@ -26,23 +26,7 @@
         <Output value="subComponents" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="bce09395-faf2-4575-9a67-1010037cd465" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="1032.522987457" y="400.527795776452" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="ef51ff70-b49a-4765-9916-279301c7f33f" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get.NestedFamily" x="610.576203815079" y="355.34593345292" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
-      <ID value="b2e96dbc-4fe4-4f47-a3b0-5d21d97305f9" />
-      <Name value="Get.NestedFamily" />
-      <Description value="This node uses the SuperComponent and SubComponets properties of Revit API to organize the elements into lists based on there make-up. I haven't tested multiple nested families but have found it helpfull esp. on Doors, Plumbing Fixtures, &amp; Casework to find out which family is nested in which parent" />
-      <Inputs>
-        <Input value="Elements" />
-      </Inputs>
-      <Outputs>
-        <Output value="Parent Family" />
-        <Output value="Nested Family" />
-        <Output value="Parents Name [of nested family]" />
-        <Output value="Category Name [of nested family]" />
-        <Output value="Error(s)" />
-        <Output value="testing" />
-      </Outputs>
-    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="bce09395-faf2-4575-9a67-1010037cd465" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="987.240588911539" y="7.00218936946874" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
     <CoreNodeModels.Watch guid="3d08fab1-bb79-4054-80f4-305227d2517b" type="CoreNodeModels.Watch" nickname="Watch" x="1383.37884660091" y="515.173792678941" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="3fda8ba9-92d1-4d11-840b-ab11430dda7f" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="237.102555195268" y="463.81873165159" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="BuiltIn" function="Flatten@var[]..[]" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="0b1d055c-bedf-4d4f-9f84-b131a126540e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="2238.81686361914" y="552.012398799163" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="BuiltIn" function="Flatten@var[]..[]" />
@@ -72,7 +56,7 @@
     <CoreNodeModels.Input.BoolSelector guid="b69f4c1b-fe7f-4156-9383-0b55e575e1b6" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="835.007929359766" y="461.207326265006" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
       <System.Boolean>True</System.Boolean>
     </CoreNodeModels.Input.BoolSelector>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="5ac8cd61-6290-49d0-86d7-fda1c69600cd" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="==" x="987.341062225077" y="347.868583205355" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="Operators" function="==@var[]..[],var[]..[]" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="5ac8cd61-6290-49d0-86d7-fda1c69600cd" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="==" x="991.653671610359" y="237.897043880664" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="Operators" function="==@var[]..[],var[]..[]" />
     <CoreNodeModels.Watch guid="58b77bd2-ec5e-484f-8e5c-17214208d6e4" type="CoreNodeModels.Watch" nickname="Watch" x="782.857016828724" y="685.281900078605" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="9724f69b-6d25-4b76-8a89-3f612a2567c0" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="FamilyInstance.Location" x="2947.51085654074" y="841.391858444621" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.Location" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="da9ec932-9370-4b1f-9e82-cbc913b23be7" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="3234.24089233653" y="854.550872145418" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="BuiltIn" function="Flatten@var[]..[]" />
@@ -107,7 +91,7 @@
         <Output value="PointProjectedToMakeAxis" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="00d9964b-9e4b-4b27-88a0-e6368225951b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="FamilyInstance.FlipFacingOrientation" x="1798.28732523757" y="230.256514831124" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="00d9964b-9e4b-4b27-88a0-e6368225951b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="FamilyInstance.FlipFacingOrientation" x="1840.45669521724" y="137.755961327329" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
       <ID value="99bbb3d0-6e28-451b-ad29-5afff05cc36c" />
       <Name value="FamilyInstance.FlipFacingOrientation" />
       <Description value="Flips the facing orientation of a given family instance" />
@@ -136,7 +120,7 @@
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="d1b22aff-68f8-424f-868c-656daf808de5" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="4522.17602943086" y="907.225885328526" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
       <Symbol value="Newly Created Instances" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="14baa668-0ac4-4e7c-a3e0-2d293a279ff4" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List of Model Elements simplified" x="73.6631208723136" y="503.728924232804" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="14baa668-0ac4-4e7c-a3e0-2d293a279ff4" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List of Model Elements simplified" x="-125.795063196979" y="329.068244128883" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">
       <ID value="194c314e-0d39-42fd-9bd8-c1884b38588a" />
       <Name value="List of Model Elements simplified" />
       <Description value="uses familyinstance select now" />
@@ -154,6 +138,22 @@
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="4eb0c68a-e882-4dd7-91f9-199b8644037b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="FamilyInstance.Location" x="2830.93598198844" y="1109.6194087982" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.Location" />
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="b31822f6-667a-4e86-9285-dbb2c808ee99" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="3140.43483073994" y="1127.71707126319" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="BuiltIn" function="Flatten@var[]..[]" />
     <CoreNodeModels.Watch guid="f6e838a7-2ce7-4b3f-8d5c-1e19f4e40570" type="CoreNodeModels.Watch" nickname="Watch" x="2506.90247093988" y="-152.508623901505" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="5eda3bb5-0f74-4901-a309-a9a18449c84b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="bv Get Nested and Parent Family Relationships" x="188.860535624678" y="37.9411153789331" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
+      <ID value="0d851a02-1ed7-4893-a2bc-c316306e0170" />
+      <Name value="bv Get Nested and Parent Family Relationships" />
+      <Description value="forked from Blackbox" />
+      <Inputs>
+        <Input value="Elements" />
+      </Inputs>
+      <Outputs>
+        <Output value="Parent Family" />
+        <Output value="Nested Family" />
+        <Output value="Parents Name [of nested family]" />
+        <Output value="Category Name [of nested family]" />
+        <Output value="Error(s)" />
+        <Output value="testing" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="e2f926cc-1c46-4741-91df-81e6c05b0d3d" start_index="0" end="bf27ea8b-7291-4157-a5ea-c9a99561c8a5" end_index="0" portType="0" />
@@ -165,7 +165,6 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="bce09395-faf2-4575-9a67-1010037cd465" start_index="0" end="2a43e15f-a34a-4a6c-9590-0a21b27bb1d8" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="bce09395-faf2-4575-9a67-1010037cd465" start_index="0" end="3d08fab1-bb79-4054-80f4-305227d2517b" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="bce09395-faf2-4575-9a67-1010037cd465" start_index="0" end="d4fd81fa-0b99-465c-953e-f10479802836" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="ef51ff70-b49a-4765-9916-279301c7f33f" start_index="0" end="bce09395-faf2-4575-9a67-1010037cd465" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="3fda8ba9-92d1-4d11-840b-ab11430dda7f" start_index="0" end="43f7ce9c-6816-49f8-aa0e-e9a749d7c5f2" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="0b1d055c-bedf-4d4f-9f84-b131a126540e" start_index="0" end="d3dbb70c-b0ab-49f7-b016-600633284af1" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="0b1d055c-bedf-4d4f-9f84-b131a126540e" start_index="0" end="2d266e1e-2079-45b3-b48e-14b008c8a62a" end_index="0" portType="0" />
@@ -192,11 +191,15 @@
     <Dynamo.Graph.Connectors.ConnectorModel start="e8dc3f3c-271c-484b-ab93-848a44d020eb" start_index="0" end="92ffdce4-b076-48eb-a01b-a30e578f2060" end_index="2" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="bfe59b88-334a-4999-8de3-43f126eabf0c" start_index="0" end="d3dbb70c-b0ab-49f7-b016-600633284af1" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="16474b83-8fed-43e3-84fc-564df0758500" start_index="0" end="e8dc3f3c-271c-484b-ab93-848a44d020eb" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="14baa668-0ac4-4e7c-a3e0-2d293a279ff4" start_index="1" end="ef51ff70-b49a-4765-9916-279301c7f33f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="14baa668-0ac4-4e7c-a3e0-2d293a279ff4" start_index="1" end="5eda3bb5-0f74-4901-a309-a9a18449c84b" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="4eb0c68a-e882-4dd7-91f9-199b8644037b" start_index="0" end="b31822f6-667a-4e86-9285-dbb2c808ee99" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="b31822f6-667a-4e86-9285-dbb2c808ee99" start_index="0" end="15479b74-dbf9-406f-9705-917986af46bc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5eda3bb5-0f74-4901-a309-a9a18449c84b" start_index="0" end="bce09395-faf2-4575-9a67-1010037cd465" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
   <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>
