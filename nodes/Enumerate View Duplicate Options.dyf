@@ -1,7 +1,7 @@
-<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="Enumerate View Duplicate Options" Description="" ID="722df45f-cabc-49d0-8ec5-baf2aa06a6f0" Category="Bakery.Enums">
+<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="Enumerate View Duplicate Options" Description="" ID="8e140dcc-6ca6-4f84-b592-a87ee84f4a31" Category="Bakery.Enums">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="a7b9b496-b29e-47ad-97ce-daacdce81423" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="0">
+    <PythonNodeModels.PythonNode guid="caf6183c-4cc1-4d8f-9dd7-2c67405810a6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="294.4" y="47.8704254436669" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
       <Script>#Copyright(c) 2015, Konrad Sobon
 # @arch_laboratory, http://archi-lab.net
 
@@ -24,14 +24,12 @@ import System
 #Assign your output to the OUT variable
 OUT = System.Enum.GetValues(ViewDuplicateOption)</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2ef9c035-4bb6-434e-b0bb-0030af89fe84" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="419" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <Symbol value="DuplicateOptions" />
-    </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="a7b9b496-b29e-47ad-97ce-daacdce81423" start_index="0" end="2ef9c035-4bb6-434e-b0bb-0030af89fe84" end_index="0" portType="0" />
-  </Connectors>
+  <Connectors />
   <Notes />
   <Annotations />
   <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
 </Workspace>
