@@ -1,0 +1,44 @@
+<Workspace Version="1.1.0.2094" X="0" Y="0" zoom="1" Name="Get Unique GUIDs from IFC File" Description="input is File Path to IFC" ID="bba0904e-330e-4e5e-8150-7ace2ffa57fa" Category="Bakery.IFC">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Input.FileObject guid="355a998f-ca0d-48ee-9b0e-47ccdeda5fd0" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c650196d-92de-45bd-923d-8da14f29897a" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="File.ReadText" x="403.106929937241" y="72.2630253302645" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.IO.File.ReadText@var" />
+    <CoreNodeModels.Input.StringInput guid="ce378f7b-a577-4e89-ad8a-a243ecaa4226" type="CoreNodeModels.Input.StringInput" nickname="String" x="630.166411519881" y="63.9382784423921" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>,'ID(.*?)'</System.String>
+      <System.String value=",'ID(.*?)'" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="String.FindRegularExpression" x="783.444199437272" y="147.653236575847" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="1e3782ea-739f-4011-b8a3-0df1ade1e5a1" />
+      <Name value="String.FindRegularExpression" />
+      <Description value="Returns all occurences of a regular expression within a string (or list of strings). The syntax for regular expressions is explained at&#xD;&#xA;http://ironpython-test.readthedocs.org/en/latest/howto/regex.html" />
+      <Inputs>
+        <Input value="RegEx" />
+        <Input value="str" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e1b31d38-9e99-44ca-80b9-41ef47706bc7" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="1179.03302410159" y="96.2446588883457" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c9958ca9-b7a3-43e8-9435-f9e4b6fcb30d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="path" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c760ad1b-86b8-4ed5-8ff0-5152b8975510" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1362.03302410159" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="list" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="355a998f-ca0d-48ee-9b0e-47ccdeda5fd0" start_index="0" end="c650196d-92de-45bd-923d-8da14f29897a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c650196d-92de-45bd-923d-8da14f29897a" start_index="0" end="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ce378f7b-a577-4e89-ad8a-a243ecaa4226" start_index="0" end="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" start_index="0" end="e1b31d38-9e99-44ca-80b9-41ef47706bc7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e1b31d38-9e99-44ca-80b9-41ef47706bc7" start_index="0" end="c760ad1b-86b8-4ed5-8ff0-5152b8975510" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c9958ca9-b7a3-43e8-9435-f9e4b6fcb30d" start_index="0" end="355a998f-ca0d-48ee-9b0e-47ccdeda5fd0" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

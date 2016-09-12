@@ -1,0 +1,194 @@
+<Workspace Version="1.1.0.2094" X="158.105035409873" Y="498.852311755547" zoom="1.545620359375" Name="Convert IFC Guid to .NET Guid" Description="trying to adapt https://github.com/hakonhc/IfcGuid/blob/master/IfcGuid/IfcGuid.cs" ID="09f1120a-cd40-4f1f-afa3-f0f2af2475d4" Category="Bakery.BETA">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="45b822f7-213e-4b4e-b3ac-d20d7406a43f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="GuidFromIFC" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f72d7a72-d2ab-4443-9671-f37208119e55" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="446.333333333333" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="a62d64b2-63d9-4b74-9c7b-dc8a8c33e750" type="PythonNodeModels.PythonNode" nickname="Python Script" x="266.060352679197" y="181.468249869071" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+from System import *
+from System.Diagnostics import *
+
+class IfcGuid(object):
+	""" &lt;summary&gt;
+	 Conversion methods between an IFC 
+	 encoded GUID string and a .NET GUID.
+	 This is a translation of the C code 
+	 found here: 
+	 http://www.iai-tech.org/ifc/IFC2x3/TC1/html/index.htm
+	 &lt;/summary&gt;
+	"""
+	def __init__(self):
+		""" &lt;summary&gt;
+		 Conversion methods between an IFC 
+		 encoded GUID string and a .NET GUID.
+		 This is a translation of the C code 
+		 found here: 
+		 http://www.iai-tech.org/ifc/IFC2x3/TC1/html/index.htm
+		 &lt;/summary&gt;
+		""" # &lt;summary&gt;
+		# The replacement table
+		# &lt;/summary&gt;
+		self._base64Chars = Array[Char](('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '_', '$'))
+
+	def cv_to_64(self, number, result, start, len):
+		""" &lt;summary&gt;
+		 Conversion of an integer into characters 
+		 with base 64 using the table base64Chars
+		 &lt;/summary&gt;
+		 &lt;param name="number"&gt;The number to convert&lt;/param&gt;
+		 &lt;param name="result"&gt;The result char array to write to&lt;/param&gt;
+		 &lt;param name="start"&gt;The position in the char array to start writing&lt;/param&gt;
+		 &lt;param name="len"&gt;The length to write&lt;/param&gt;
+		 &lt;returns&gt;&lt;/returns&gt;
+		"""
+		Debug.Assert(len &lt;= 4)
+		act = number
+		nDigits = len
+		iDigit = 0
+		while iDigit &lt; nDigits:
+			result[start + len - iDigit - 1] = self._base64Chars[(act % 64)]
+			act /= 64
+			iDigit += 1
+		Debug.Assert(act == 0, "Logic failed, act was not null: " + act.ToString())
+		return 
+
+	cv_to_64 = staticmethod(cv_to_64)
+
+	def cv_from_64(self, str, start, len):
+		""" &lt;summary&gt;
+		 The reverse function to calculate 
+		 the number from the characters
+		 &lt;/summary&gt;
+		 &lt;param name="str"&gt;The char array to convert from&lt;/param&gt;
+		 &lt;param name="start"&gt;Position in array to start read&lt;/param&gt;
+		 &lt;param name="len"&gt;The length to read&lt;/param&gt;
+		 &lt;returns&gt;The calculated nuber&lt;/returns&gt;
+		"""
+		res = 0
+		Debug.Assert(len &lt;= 4)
+		i = 0
+		while i &lt; len:
+			index = -1
+			j = 0
+			while j &lt; 64:
+				if self._base64Chars[j] == str[start + i]:
+					index = j
+					break
+				j += 1
+			Debug.Assert(index &gt;= 0)
+			res = res * 64 + (index)
+			i += 1
+		return res
+
+	cv_from_64 = staticmethod(cv_from_64)
+
+	def FromIfcGUID(self, guid):
+		""" &lt;summary&gt;
+		 Reconstruction of the GUID 
+		 from an IFC GUID string (base64)
+		 &lt;/summary&gt;
+		 &lt;param name="guid"&gt;The GUID string to convert. Must be 22 characters long&lt;/param&gt;
+		 &lt;returns&gt;GUID correspondig to the string&lt;/returns&gt;
+		"""
+		Debug.Assert(len(guid) == 22, "Input string must not be longer that 22 chars")
+		num = Array.CreateInstance(UInt32, 6)
+		str = guid.ToCharArray()
+		n = 2
+		pos = 0
+		i = 0
+		while i &lt; 6:
+			num[i] = IfcGuid.cv_from_64(self, str, pos, n)
+			pos += n
+			n = 4
+			i += 1
+		a = ((num[0] * 16777216 + num[1]))
+		b = (num[2] / 256)
+		c = ((num[2] % 256) * 256 + num[3] / 65536)
+		d = Array.CreateInstance(Byte, 8)
+		d[0] = Convert.ToByte((num[3] / 256) % 256)
+		d[1] = Convert.ToByte(num[3] % 256)
+		d[2] = Convert.ToByte(num[4] / 65536)
+		d[3] = Convert.ToByte((num[4] / 256) % 256)
+		d[4] = Convert.ToByte(num[4] % 256)
+		d[5] = Convert.ToByte(num[5] / 65536)
+		d[6] = Convert.ToByte((num[5] / 256) % 256)
+		d[7] = Convert.ToByte(num[5] % 256)
+		return Guid(a, b, c, d)
+
+	FromIfcGUID = staticmethod(FromIfcGUID)
+
+	def ToIfcGuid(guid):
+		""" &lt;summary&gt;
+		 Conversion of a GUID to a string 
+		 representing the GUID 
+		 &lt;/summary&gt;
+		 &lt;param name="guid"&gt;The GUID to convert&lt;/param&gt;
+		 &lt;returns&gt;IFC (base64) encoded GUID string&lt;/returns&gt;
+		"""
+		num = Array.CreateInstance(UInt32, 6)
+		str = Array.CreateInstance(Char, 22)
+		b = guid.ToByteArray()
+		# Creation of six 32 Bit integers from the components of the GUID structure
+		num[0] = (BitConverter.ToUInt32(b, 0) / 16777216)
+		num[1] = (BitConverter.ToUInt32(b, 0) % 16777216)
+		num[2] = (BitConverter.ToUInt16(b, 4) * 256 + BitConverter.ToUInt16(b, 6) / 256)
+		num[3] = ((BitConverter.ToUInt16(b, 6) % 256) * 65536 + b[8] * 256 + b[9])
+		num[4] = (b[10] * 65536 + b[11] * 256 + b[12])
+		num[5] = (b[13] * 65536 + b[14] * 256 + b[15])
+		# Conversion of the numbers into a system using a base of 64
+		n = 2
+		pos = 0
+		i = 0
+		while i &lt; 6:
+			IfcGuid.cv_to_64(num[i], pos, n)
+#			IfcGuid.cv_to_64(num[i], , pos, n)
+			pos += n
+			n = 4
+			i += 1
+		return String(str)
+
+	ToIfcGuid = staticmethod(ToIfcGuid)
+
+#converted code above
+listIn = IN[0]
+listed = []
+for x in listIn:
+	try:
+		ifctemp = IfcGuid()
+		listed.append(ifctemp.FromIfcGUID(ifctemp, x))
+	except:
+		listed.append("Conversion failure")
+#Assign your output to the OUT variable.
+OUT = listed</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="81a2835d-328d-42d4-9125-b145f778b37b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="-19.477639012239" y="210.367110055365" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="TurnIntoList" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="45b822f7-213e-4b4e-b3ac-d20d7406a43f" start_index="0" end="81a2835d-328d-42d4-9125-b145f778b37b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a62d64b2-63d9-4b74-9c7b-dc8a8c33e750" start_index="0" end="f72d7a72-d2ab-4443-9671-f37208119e55" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="81a2835d-328d-42d4-9125-b145f778b37b" start_index="0" end="a62d64b2-63d9-4b74-9c7b-dc8a8c33e750" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
