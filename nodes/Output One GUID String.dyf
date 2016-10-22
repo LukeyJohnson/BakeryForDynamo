@@ -1,0 +1,40 @@
+<Workspace Version="1.2.0.2831" X="-89.6" Y="118.4" zoom="1" Name="Output One GUID String" Description="" ID="8be96d08-2f8f-4bd7-8730-b7340d0e5be8" Category="Bakery.Core">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="4ce3e381-1e51-453c-8ced-634f9d247815" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="UUID GUID Generator for Lists" x="368.450703750243" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="429fdf6e-5355-4e74-b839-f7369b028801" />
+      <Name value="UUID GUID Generator for Lists" />
+      <Description value="just makes a new GUID for every item in a list, has no relationship to item or element itself" />
+      <Inputs>
+        <Input value="list" />
+      </Inputs>
+      <Outputs>
+        <Output value="uuids" />
+        <Output value="uuidsAsStrings" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="e870bf83-cf2a-4422-ae07-ee4054adf235" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="8.35985775687982" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0..1;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="627269d2-679d-496b-bc8d-23c6ca822eb8" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FirstItem" x="635.739706338487" y="29.9516712496095" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="05885ba2-0c4f-4212-b0ac-05d5315550e8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="870.739706338487" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="item" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="4ce3e381-1e51-453c-8ced-634f9d247815" start_index="1" end="627269d2-679d-496b-bc8d-23c6ca822eb8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e870bf83-cf2a-4422-ae07-ee4054adf235" start_index="0" end="4ce3e381-1e51-453c-8ced-634f9d247815" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="627269d2-679d-496b-bc8d-23c6ca822eb8" start_index="0" end="05885ba2-0c4f-4212-b0ac-05d5315550e8" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="70661968" eyeY="23584.572265625" eyeZ="-149912912" lookX="-120913.71875" lookY="-4208.67724609375" lookZ="-196204.953125" upX="0.103100337088108" upY="0.980500519275665" upZ="0.167299434542656" />
+  </Cameras>
+</Workspace>

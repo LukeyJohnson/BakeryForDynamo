@@ -1,0 +1,77 @@
+<Workspace Version="1.2.0.2831" X="-815.125" Y="378.8275" zoom="1.1575" Name="Set Discipline Property for Views" Description="" ID="467b01a4-eb0a-44a0-b9d6-69180be1a479" Category="Bakery.Views">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ab6e066b-9166-4dbe-b3b8-925f93f383cc" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="896.972027972028" y="30" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="View" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="ab068825-92b3-4f13-adda-e2d62e7aa4b5" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="1059.04662004662" y="29.2214452214452" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="Turn Into List" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <PythonNodeModels.PythonNode guid="b6856724-6f82-4084-be90-aa106428e066" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1256.77366672653" y="46.2372429159413" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+viewinsts = UnwrapElement(IN[0])
+vdmode = IN[1]
+successlist = list()
+
+booleans = list()
+TransactionManager.Instance.EnsureInTransaction(doc)
+for item in viewinsts:
+	try:
+#		p = item.get_Parameter(BuiltInParameter.VIEWER_OPTION_VISIBILITY)
+#		p.Set(options[counter].Id)
+		item.Set(ViewDiscipline.vdmode)
+		booleans.append(True)
+	except:
+		booleans.append(False)
+TransactionManager.Instance.TransactionTaskDone()
+
+#for item in viewinsts:
+#	try:
+#		item.SetWorkSharingDisplayMode(wsmode)
+#		successlist.append("Success")
+#	except:
+#		successlist.append("Failed")
+
+OUT = booleans</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ec387c80-e36e-42b1-bd26-18d5c4281ee8" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="886.395354105937" y="175.170450668841" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ViewDiscipline" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="fea4c473-b758-4cce-8b93-8c080f318fc2" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1702.94405594406" y="18.6348135198135" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="success?" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ab6e066b-9166-4dbe-b3b8-925f93f383cc" start_index="0" end="ab068825-92b3-4f13-adda-e2d62e7aa4b5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ab068825-92b3-4f13-adda-e2d62e7aa4b5" start_index="0" end="b6856724-6f82-4084-be90-aa106428e066" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b6856724-6f82-4084-be90-aa106428e066" start_index="0" end="fea4c473-b758-4cce-8b93-8c080f318fc2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ec387c80-e36e-42b1-bd26-18d5c4281ee8" start_index="0" end="b6856724-6f82-4084-be90-aa106428e066" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

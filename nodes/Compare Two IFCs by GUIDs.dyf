@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="70.7745545178011" Y="282.626014723405" zoom="0.803321593462598" Name="Compare Two IFCs by GUIDs" Description="" ID="44c92135-3c00-4cb0-8f47-88495e76b32b" Category="Bakery.IFC">
+<Workspace Version="1.1.0.2094" X="70.7745545178011" Y="282.626014723405" zoom="0.803321593462598" Name="Compare Two IFCs by GUIDs" Description="this version makes Guids 'unique' so only reports completely new or deleted, not when items are 'split'." ID="44c92135-3c00-4cb0-8f47-88495e76b32b" Category="Bakery.IFC">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="3e23a357-3a14-4821-ae71-a71e666894a1" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Unique GUIDs from IFC File" x="250" y="180.657185605715" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
@@ -9,10 +9,13 @@
         <Input value="path" />
       </Inputs>
       <Outputs>
-        <Output value="list" />
+        <Output value="unique list matching .NET" />
+        <Output value="total list matching .NET" />
+        <Output value="total list matching IFC format" />
+        <Output value="unique list matching IFC format" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <CoreNodeModels.Watch guid="dc069670-af4a-42e8-aa9d-3af024aefd8c" type="CoreNodeModels.Watch" nickname="Watch" x="556.697389927814" y="151.70989074282" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <CoreNodeModels.Watch guid="dc069670-af4a-42e8-aa9d-3af024aefd8c" type="CoreNodeModels.Watch" nickname="Watch" x="632.217165768984" y="251.296408335571" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="1b84d33e-deb7-4f43-b10f-864c383c13ae" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Unique GUIDs from IFC File" x="291.187349274343" y="566.922416843829" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <ID value="bba0904e-330e-4e5e-8150-7ace2ffa57fa" />
       <Name value="Get Unique GUIDs from IFC File" />
@@ -21,10 +24,13 @@
         <Input value="path" />
       </Inputs>
       <Outputs>
-        <Output value="list" />
+        <Output value="unique list matching .NET" />
+        <Output value="total list matching .NET" />
+        <Output value="total list matching IFC format" />
+        <Output value="unique list matching IFC format" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <CoreNodeModels.Watch guid="126ad796-8864-46aa-976a-70d76edfbf32" type="CoreNodeModels.Watch" nickname="Watch" x="542.854237290292" y="593.791773920104" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <CoreNodeModels.Watch guid="126ad796-8864-46aa-976a-70d76edfbf32" type="CoreNodeModels.Watch" nickname="Watch" x="678.125923687112" y="556.446829822822" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="91b66cba-750b-497d-826b-f2f126317c9c" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Compare Two Lists by Item and Return Item Differences" x="1065.35343838933" y="396.381827537559" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <ID value="93ec3e03-cf0d-474f-8090-014a4d811114" />
       <Name value="Compare Two Lists by Item and Return Item Differences" />
@@ -55,9 +61,9 @@
     </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="3e23a357-3a14-4821-ae71-a71e666894a1" start_index="0" end="dc069670-af4a-42e8-aa9d-3af024aefd8c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3e23a357-3a14-4821-ae71-a71e666894a1" start_index="3" end="dc069670-af4a-42e8-aa9d-3af024aefd8c" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="dc069670-af4a-42e8-aa9d-3af024aefd8c" start_index="0" end="91b66cba-750b-497d-826b-f2f126317c9c" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="1b84d33e-deb7-4f43-b10f-864c383c13ae" start_index="0" end="126ad796-8864-46aa-976a-70d76edfbf32" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1b84d33e-deb7-4f43-b10f-864c383c13ae" start_index="3" end="126ad796-8864-46aa-976a-70d76edfbf32" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="126ad796-8864-46aa-976a-70d76edfbf32" start_index="0" end="91b66cba-750b-497d-826b-f2f126317c9c" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="91b66cba-750b-497d-826b-f2f126317c9c" start_index="0" end="8c024d0f-f623-47ca-9646-fef6dad49178" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="91b66cba-750b-497d-826b-f2f126317c9c" start_index="1" end="b6da753a-1ec9-4b4a-a330-42bf547b9eb4" end_index="0" portType="0" />
@@ -68,10 +74,10 @@
   </Connectors>
   <Notes />
   <Annotations>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="377702e0-c786-4031-a232-c2cf03bc8d11" annotationText="new items" left="1677.07364942392" top="-30" width="310" height="407.666666666667" fontSize="14" InitialTop="0" InitialHeight="407.666666666667" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="377702e0-c786-4031-a232-c2cf03bc8d11" annotationText="new items" left="1677.07364942392" top="-30" width="112" height="121.666666666667" fontSize="14" InitialTop="0" InitialHeight="407.666666666667" TextblockHeight="20" backgrouund="#FFC1D676">
       <Models ModelGuid="8c024d0f-f623-47ca-9646-fef6dad49178" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="32cf935f-315c-436b-aa5f-96b5be1fe022" annotationText="items removed from new file" left="1672.24325624046" top="498.122988057812" width="310" height="407.666666666667" fontSize="14" InitialTop="528.122988057812" InitialHeight="407.666666666667" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="32cf935f-315c-436b-aa5f-96b5be1fe022" annotationText="items removed from new file" left="1672.24325624046" top="484.789654724479" width="112" height="135" fontSize="14" InitialTop="528.122988057812" InitialHeight="407.666666666667" TextblockHeight="33.3333333333333" backgrouund="#FFC1D676">
       <Models ModelGuid="b6da753a-1ec9-4b4a-a330-42bf547b9eb4" />
     </Dynamo.Graph.Annotations.AnnotationModel>
   </Annotations>
