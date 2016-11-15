@@ -1,0 +1,53 @@
+<Workspace Version="1.2.0.2690" X="0" Y="0" zoom="1" Name="Get Elements By Workset Id" Description="" ID="14ed8d38-7bfb-4958-833c-f2ed0ba5e3ae" Category="Bakery.Worksets">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="99ca7be1-7b1a-4681-88ca-47f5d800ff3d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="435.6" y="430" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="WORKSETID" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="cdc923aa-adba-4cdb-8508-02f1e0e68982" type="PythonNodeModels.PythonNode" nickname="Python Script" x="612.80410853429" y="442.694260966954" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#LSJ
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+from Autodesk.Revit.DB import *
+clr.ImportExtensions(Revit.Elements)
+
+import System
+
+worksetId = IN
+worksetFilter = ElementWorksetFilter(worksetId)
+collector = FilteredElementCollector(doc).WherePasses(worksetFilter).ToElements()
+OUT = collector
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="1954467f-5ac8-4353-a0ad-70736489cfe8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="878.48009001749" y="446.805300950265" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="elements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="99ca7be1-7b1a-4681-88ca-47f5d800ff3d" start_index="0" end="cdc923aa-adba-4cdb-8508-02f1e0e68982" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="cdc923aa-adba-4cdb-8508-02f1e0e68982" start_index="0" end="1954467f-5ac8-4353-a0ad-70736489cfe8" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
