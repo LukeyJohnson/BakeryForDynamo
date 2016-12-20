@@ -1,14 +1,15 @@
-<Workspace Version="1.2.0.2690" X="248" Y="160.666666666667" zoom="1" Name="Collect Elements by Parameter Value" Description="" ID="b9bebda5-cc94-4948-b9e7-9fa5befb167b" Category="Bakery.Collect">
+<Workspace Version="1.2.0.2690" X="-195.333333333333" Y="143.333333333334" zoom="1" Name="Collect Elements by Parameter Value" Description="" ID="b9bebda5-cc94-4948-b9e7-9fa5befb167b" Category="Bakery.Collect">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="f5fb4aba-cf9d-4645-ab7e-39b764677e69" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Collect All Elements in Model" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <ID value="9a404669-e579-44de-a0da-8a99c4103a91" />
+      <ID value="aef4b5ca-daca-4f1f-9486-e7a41c6d6c3a" />
       <Name value="Collect All Elements in Model" />
       <Description value="uses a nested catch-all, then a refined selection by category" />
       <Inputs />
       <Outputs>
         <Output value="elements" />
-        <Output value="count" />
+        <Output value="listed" />
+        <Output value="categoryName" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
     <CoreNodeModels.Watch guid="68219a90-ec23-440b-97f7-3c82483ff3d3" type="CoreNodeModels.Watch" nickname="Watch" x="459.86659624657" y="0.547331645713825" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
@@ -35,9 +36,9 @@
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b2a7b262-c73c-489b-8b35-e144a6ef095f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="parameterValue" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="eeb4e01f-76a4-4a10-8129-175a8da11a85" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1702.95694464951" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="eeb4e01f-76a4-4a10-8129-175a8da11a85" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1701.62361131618" y="0.666666666666686" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
-      <Symbol value="in" />
+      <Symbol value="elements" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
