@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="198.255223756864" Y="464.795574103405" zoom="1.22704736140834" Name="Get DYF Dependencies for One DYF File" Description="also works for DYN files" ID="5cec9276-67d6-45e8-9290-e4cb8ec3f117" Category="Bakery.Standalone.DynamoMgmt">
+<Workspace Version="1.2.1.3083" X="198.255223756864" Y="464.795574103405" zoom="1.22704736140834" Name="Get DYF Dependencies for One DYF File" Description="also works for DYN files" ID="5cec9276-67d6-45e8-9290-e4cb8ec3f117" Category="RollingPin.General">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="7f55274c-b645-426e-ac09-9a6e2bfcf2fa" type="CoreNodeModels.Input.StringInput" nickname="String" x="1181.97834733326" y="183.62688312234" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
@@ -7,9 +7,9 @@
     </CoreNodeModels.Input.StringInput>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="b06451ea-5a19-4b8b-aea4-e954415f73e8" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Show Dependency Nodes for one DYF" x="250" y="756.44951957623" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
-      <ID value="09093700-1a45-4902-b61c-6c693993c200" />
+      <ID value="beea235d-1509-48cb-bb08-ce0d2ccf55a6" />
       <Name value="Show Dependency Nodes for one DYF" />
-      <Description value="used with List.Map for a folder of them" />
+      <Description value="rebuilt" />
       <Inputs>
         <Input value="path to DYF" />
       </Inputs>
@@ -20,7 +20,7 @@
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="a0bff4d9-d46e-4518-ae4c-99c299eb8d9b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Report Dynamo Package Details by Folder" x="1382.18845606438" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
-      <ID value="4c9c46b0-5c50-47a4-87ea-49ddb50a3df5" />
+      <ID value="051bfcba-d0e3-40ba-970a-13502159031d" />
       <Name value="Report Dynamo Package Details by Folder" />
       <Description value="" />
       <Inputs>

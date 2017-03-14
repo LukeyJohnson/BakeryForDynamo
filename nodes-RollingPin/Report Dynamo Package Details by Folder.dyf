@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="116.77466651778" Y="93.479237493683" zoom="0.852765925581495" Name="Report Dynamo Package Details by Folder" Description="" ID="4c9c46b0-5c50-47a4-87ea-49ddb50a3df5" Category="Bakery.zBugCheckNeeded.Standalone.DynamoMgmt">
+<Workspace Version="1.2.1.3083" X="116.77466651778" Y="93.479237493683" zoom="0.852765925581495" Name="Report Dynamo Package Details by Folder" Description="" ID="051bfcba-d0e3-40ba-970a-13502159031d" Category="RollingPin.General">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c1138090-e95e-4f13-83d0-96aa3523995b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Directory.Contents" x="516.614989803626" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.IO.Directory.Contents@var,string">

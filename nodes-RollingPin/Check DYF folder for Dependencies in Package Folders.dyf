@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="1778.06144223002" Y="-1183.18704491781" zoom="1.0659311740772" Name="Check DYF folder for Dependencies in Package Folders" Description="needs fixing" ID="2fbf3095-81ce-49b1-8e71-db1808ed9a9e" Category="Bakery.zBugCheckNeeded.Standalone.DynamoMgmt">
+<Workspace Version="1.2.1.3083" X="329.723260758234" Y="187.940784027236" zoom="0.188638837169228" Name="Check DYF folder for Dependencies in Package Folders" Description="new package now" ID="2d513ff6-716b-415e-a9c9-012708b8eae6" Category="RollingPin.General">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="66fa7579-94ea-4b18-a868-786f0470aede" type="CoreNodeModels.Input.StringInput" nickname="String" x="-1588.87355995177" y="1370.57809497364" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
@@ -20,7 +20,7 @@
       <Name value="Summary and Node Search for a Folder of DYFs" />
       <Description value="can search for a node and tell you what file it is in" />
       <Inputs>
-        <Input value="dir string" />
+        <Input value="Directory Path" />
         <Input value="node name to search for" />
       </Inputs>
       <Outputs>
@@ -50,7 +50,7 @@
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="9a239a22-99de-4071-8fd4-b40b225f797e" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Report Dynamo Package Details by Folder" x="-1275.87355995177" y="1314.63994809857" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
-      <ID value="4c9c46b0-5c50-47a4-87ea-49ddb50a3df5" />
+      <ID value="051bfcba-d0e3-40ba-970a-13502159031d" />
       <Name value="Report Dynamo Package Details by Folder" />
       <Description value="" />
       <Inputs>
@@ -287,10 +287,10 @@
   </Connectors>
   <Notes />
   <Annotations>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="9314081f-502b-4b19-a9ac-3c715ecfbee3" annotationText="REFERENCED BY PACKAGE&#xD;&#xA;" left="891.511762601875" top="2007.38994809857" width="102" height="169" fontSize="14" InitialTop="2067.38994809857" InitialHeight="406.6" TextblockHeight="50" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="9314081f-502b-4b19-a9ac-3c715ecfbee3" annotationText="REFERENCED BY PACKAGE&#xD;&#xA;" left="891.511762601875" top="2006.7232814319" width="101.333333333333" height="154.333333333333" fontSize="14" InitialTop="2067.38994809857" InitialHeight="406.6" TextblockHeight="50.6666666666667" backgrouund="#FFC1D676">
       <Models ModelGuid="b4a089e2-83ba-44a1-aa01-2d706f20e1c4" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="9b7cb458-3542-472a-80de-af4594d1b6bf" annotationText="Find Dependencies" left="-70.8735599517747" top="1821.90551200659" width="862.38532255365" height="564.3867550762" fontSize="14" InitialTop="1851.90551200659" InitialHeight="563.986755076207" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="9b7cb458-3542-472a-80de-af4594d1b6bf" annotationText="Find Dependencies" left="-70.8735599517747" top="1821.90551200659" width="862.051989220316" height="564.3867550762" fontSize="14" InitialTop="1851.90551200659" InitialHeight="563.986755076207" TextblockHeight="20" backgrouund="#FFC1D676">
       <Models ModelGuid="403e0774-1b7d-4ecf-9e22-d5eacf3d8901" />
       <Models ModelGuid="774316c5-61af-49b7-9f95-c12ca95d0399" />
       <Models ModelGuid="3d7a1851-ddb1-4417-9483-59a34c5cadc8" />
@@ -301,16 +301,16 @@
       <Models ModelGuid="6c7510fe-1f10-41f3-83ea-781e632ec5d2" />
       <Models ModelGuid="50048476-ef42-42f1-a76e-032a3987450e" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="3095813a-952a-4329-a356-23b2b240b687" annotationText="Node referenced in the package" left="2064.51176260188" top="2160.63994809857" width="195" height="163" fontSize="14" InitialTop="2204.63994809857" InitialHeight="148.2" TextblockHeight="34" backgrouund="#FF48B9FF">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="3095813a-952a-4329-a356-23b2b240b687" annotationText="Node referenced in the package" left="2064.51176260188" top="2161.30661476524" width="194.666666666667" height="162.333333333333" fontSize="14" InitialTop="2204.63994809857" InitialHeight="148.2" TextblockHeight="33.3333333333333" backgrouund="#FF48B9FF">
       <Models ModelGuid="c6f0ee6e-72ab-4cfd-be75-370d5c86b88a" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="cfdd925a-3016-4864-9fdb-5c4fc8be7f95" annotationText="Packages these are from" left="2064.51176260188" top="1980.63994809857" width="195" height="149" fontSize="14" InitialTop="2010.63994809857" InitialHeight="148.2" TextblockHeight="20" backgrouund="#FF48B9FF">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="cfdd925a-3016-4864-9fdb-5c4fc8be7f95" annotationText="Packages these are from" left="2064.51176260188" top="1980.63994809857" width="194.666666666667" height="149" fontSize="14" InitialTop="2010.63994809857" InitialHeight="148.2" TextblockHeight="20" backgrouund="#FF48B9FF">
       <Models ModelGuid="59d08967-29a4-424a-8780-63ec8f387e19" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="9fb1f910-5793-42f5-9de6-bd11136d44d0" annotationText="Matched list" left="2914.51176260187" top="2132.63994809857" width="183" height="123" fontSize="14" InitialTop="2162.63994809857" InitialHeight="122.6" TextblockHeight="20" backgrouund="#FFFF7BAC">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="9fb1f910-5793-42f5-9de6-bd11136d44d0" annotationText="Matched list" left="2914.51176260187" top="2132.63994809857" width="183.333333333333" height="123" fontSize="14" InitialTop="2162.63994809857" InitialHeight="122.6" TextblockHeight="20" backgrouund="#FFFF7BAC">
       <Models ModelGuid="48b1ba41-7476-4124-a054-af6ea39ac908" />
     </Dynamo.Graph.Annotations.AnnotationModel>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="c6d6bfe7-4aee-4b8e-ac60-3ceed8da9d75" annotationText="outputs" left="-664.873559951775" top="651.373601131872" width="496.882096484695" height="1480.67197097379" fontSize="14" InitialTop="681.373601131872" InitialHeight="1222.75370531655" TextblockHeight="20" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="c6d6bfe7-4aee-4b8e-ac60-3ceed8da9d75" annotationText="outputs" left="-664.873559951775" top="651.373601131872" width="470.215429818028" height="1461.33863764045" fontSize="14" InitialTop="681.373601131872" InitialHeight="1222.75370531655" TextblockHeight="20" backgrouund="#FFC1D676">
       <Models ModelGuid="12086acf-2879-4f22-92f9-f1ba3bae8b80" />
       <Models ModelGuid="d625725a-5951-47d9-beb6-9265e9b18a7c" />
       <Models ModelGuid="9055364e-734b-4f26-96ff-65ca9d2b3257" />
@@ -320,7 +320,4 @@
     </Dynamo.Graph.Annotations.AnnotationModel>
   </Annotations>
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
 </Workspace>

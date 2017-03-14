@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-395.688363110959" Y="69.8801489939147" zoom="0.691347793867187" Name="Get DYF Dependencies through Recursion v1" Description="slow to run, repeats for 4 levels deep" ID="d168115a-55bf-4425-a088-ca79c726cc70" Category="Bakery.Standalone.DynamoMgmt">
+<Workspace Version="1.2.1.3083" X="-395.688363110959" Y="69.8801489939147" zoom="0.691347793867187" Name="Get DYF Dependencies through Recursion v1" Description="slow to run, repeats for 4 levels deep" ID="d168115a-55bf-4425-a088-ca79c726cc70" Category="RollingPin.General">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="a2bbe0ea-2e63-4453-8f5f-633c1c5bb51d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get DYF Dependencies for One DYF File" x="595.439878261565" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
@@ -6,7 +6,7 @@
       <PortInfo index="1" default="False" />
       <ID value="5cec9276-67d6-45e8-9290-e4cb8ec3f117" />
       <Name value="Get DYF Dependencies for One DYF File" />
-      <Description value="" />
+      <Description value="also works for DYN files" />
       <Inputs>
         <Input value="path to DYF or DYN" />
         <Input value="path To Package Folder" />
@@ -27,7 +27,7 @@
       <PortInfo index="1" default="False" />
       <ID value="5cec9276-67d6-45e8-9290-e4cb8ec3f117" />
       <Name value="Get DYF Dependencies for One DYF File" />
-      <Description value="" />
+      <Description value="also works for DYN files" />
       <Inputs>
         <Input value="path to DYF or DYN" />
         <Input value="path To Package Folder" />
@@ -54,7 +54,7 @@
       <PortInfo index="1" default="False" />
       <ID value="5cec9276-67d6-45e8-9290-e4cb8ec3f117" />
       <Name value="Get DYF Dependencies for One DYF File" />
-      <Description value="" />
+      <Description value="also works for DYN files" />
       <Inputs>
         <Input value="path to DYF or DYN" />
         <Input value="path To Package Folder" />
@@ -84,7 +84,7 @@
       <PortInfo index="1" default="False" />
       <ID value="5cec9276-67d6-45e8-9290-e4cb8ec3f117" />
       <Name value="Get DYF Dependencies for One DYF File" />
-      <Description value="" />
+      <Description value="also works for DYN files" />
       <Inputs>
         <Input value="path to DYF or DYN" />
         <Input value="path To Package Folder" />
@@ -124,7 +124,7 @@
       <PortInfo index="1" default="False" />
       <ID value="5cec9276-67d6-45e8-9290-e4cb8ec3f117" />
       <Name value="Get DYF Dependencies for One DYF File" />
-      <Description value="" />
+      <Description value="also works for DYN files" />
       <Inputs>
         <Input value="path to DYF or DYN" />
         <Input value="path To Package Folder" />

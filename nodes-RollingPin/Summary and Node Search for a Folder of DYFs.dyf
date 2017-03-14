@@ -1,13 +1,13 @@
-<Workspace Version="1.2.1.3083" X="462.900314569597" Y="-125.824638807344" zoom="0.765829392851552" Name="Summary and Node Search for a Folder of DYFs" Description="can search for a node and tell you what file it is in" ID="e59d15d7-0550-4052-8fb6-a95798a420c1" Category="Bakery.Standalone.DynamoMgmt">
+<Workspace Version="1.2.1.3083" X="462.900314569597" Y="-125.824638807344" zoom="0.765829392851552" Name="Summary and Node Search for a Folder of DYFs" Description="can search for a node and tell you what file it is in" ID="e59d15d7-0550-4052-8fb6-a95798a420c1" Category="RollingPin.General">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="546a163e-bfb8-4d73-854f-d11efc209591" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List Nodes in DYFs for an Entire Folder" x="-4.36351242545243" y="159.753219914426" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
-      <ID value="a5dc00ed-6f4c-4e43-8e6c-68c79d484166" />
+      <ID value="69f68072-3642-4a97-abd3-9439f951fc01" />
       <Name value="List Nodes in DYFs for an Entire Folder" />
       <Description value="takes Directory Path as input node" />
       <Inputs>
-        <Input value="Directory Path" />
+        <Input value="dir string" />
       </Inputs>
       <Outputs>
         <Output value="mappedResult" />

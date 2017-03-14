@@ -1,7 +1,7 @@
-<Workspace Version="1.1.0.2065" X="191.502740605895" Y="193.863408597542" zoom="0.770134879856095" Name="Built In Name Lister" Description="lists BuiltInNames (Built In Category Names)" ID="de6f2c56-8759-4865-a0dd-403b908d7b43" Category="Bakery.Categories">
+<Workspace Version="1.1.0.2094" X="484.251733556748" Y="267.359412439792" zoom="0.87809957367715" Name="Built In Name Lister" Description="lists BuiltInNames (Built In Category Names)" ID="de6f2c56-8759-4865-a0dd-403b908d7b43" Category="Bakery.Categories">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="456cb221-c628-4400-89e7-06d318c2b755" type="PythonNodeModels.PythonNode" nickname="Python Script" x="-87.3967630120634" y="-15.8425023770725" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="0">
+    <PythonNodeModels.PythonNode guid="456cb221-c628-4400-89e7-06d318c2b755" type="PythonNodeModels.PythonNode" nickname="Python Script" x="-87.3967630120634" y="-15.8425023770725" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
       <Script>#LSJ
 
 import clr
@@ -29,7 +29,7 @@ import System
 #doc = DocumentManager.Instance.CurrentDBDocument
 #uiapp = DocumentManager.Instance.CurrentUIApplication
 #app = uiapp.Application
-doc = DocumentManager.Instance.CurrentDBDocument
+doc = IN[0]
 
 #create workset collector
 userCategories = doc.Settings.Categories
@@ -124,6 +124,15 @@ OUT = builtInNames, fullenumcats, fullenumcatids, ids, userCategories, builtInNa
         <Output value="single linebreaked string" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="1a02e30f-48d3-41a3-b1e2-9d5f4e0a1e15" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Current Document" x="-281.803728158657" y="-23.8690611726666" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <ID value="5b9b1cd5-c248-4799-b689-6b31fe525bd2" />
+      <Name value="Current Document" />
+      <Description value="Retrieves Current Document" />
+      <Inputs />
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="456cb221-c628-4400-89e7-06d318c2b755" start_index="0" end="68f58976-475c-4cde-a358-fd6e8d8707fe" end_index="0" portType="0" />
@@ -152,11 +161,10 @@ OUT = builtInNames, fullenumcats, fullenumcatids, ids, userCategories, builtInNa
     <Dynamo.Graph.Connectors.ConnectorModel start="cb34d3de-3c0e-4867-ae67-f498ae1874e7" start_index="0" end="c914485a-f2eb-46be-aee8-6cc04d3ab4ce" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="25d4ebea-e628-4f57-8221-e62c7aef1953" start_index="0" end="cb34d3de-3c0e-4867-ae67-f498ae1874e7" end_index="1" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="94b3ea87-9893-40c0-b9f9-5de31b804800" start_index="0" end="e13e8b97-47c3-4aaa-bab5-3895beb017e3" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1a02e30f-48d3-41a3-b1e2-9d5f4e0a1e15" start_index="0" end="456cb221-c628-4400-89e7-06d318c2b755" end_index="0" portType="0" />
   </Connectors>
   <Notes />
-  <Annotations>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="d08b8e5f-0342-40e9-aad9-936c5c5e32d8" annotationText="&lt;Click here to edit the group title&gt;" left="-194.341632603825" top="-318.526379480099" width="0" height="0" fontSize="14" InitialTop="296.273620519901" InitialHeight="139.4" TextblockHeight="604.8" backgrouund="#FFC1D676" />
-  </Annotations>
+  <Annotations />
   <Presets />
   <Cameras>
     <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />

@@ -1,11 +1,11 @@
-<Workspace Version="1.2.1.3083" X="565.792950344937" Y="174.182450484209" zoom="1.10476425630303" Name="List Nodes in DYFs for an Entire Folder" Description="takes Directory Path as input node" ID="a5dc00ed-6f4c-4e43-8e6c-68c79d484166" Category="Bakery.Standalone.DynamoMgmt">
+<Workspace Version="1.2.1.3083" X="441.563502742757" Y="300.363568766463" zoom="0.684553387063722" Name="List Nodes in DYFs for an Entire Folder" Description="takes Directory Path as input node" ID="69f68072-3642-4a97-abd3-9439f951fc01" Category="RollingPin.General">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="dec60693-95a9-4e20-8281-813a33bd3dda" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Show Dependency Nodes for one DYF" x="16.4532702064383" y="413.63851280302" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
-      <ID value="09093700-1a45-4902-b61c-6c693993c200" />
+      <ID value="beea235d-1509-48cb-bb08-ce0d2ccf55a6" />
       <Name value="Show Dependency Nodes for one DYF" />
-      <Description value="used with List.Map for a folder of them" />
+      <Description value="rebuilt" />
       <Inputs>
         <Input value="path to DYF" />
       </Inputs>
@@ -57,7 +57,4 @@
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
 </Workspace>
