@@ -37,6 +37,10 @@ elementlist = list()
 ST = StructuralType.NonStructural
 
 TransactionManager.Instance.EnsureInTransaction(doc)
+# Make sure the familysymbol is active
+if famtype.IsActive == False:
+	famtype.Activate()
+	doc.Regenerate()
 for point in points:
 	newobj = doc.Create.NewFamilyInstance(point.ToXyz(),famtype,ST)
 	elementlist.append(newobj)
