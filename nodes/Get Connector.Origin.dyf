@@ -4,18 +4,6 @@
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b391a46e-1937-45b5-ab3a-0bb5b3cdf5e0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="487" y="185.197845103378" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="connectors" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="3298c6d3-7ad8-48fb-927b-1bd32518b3d9" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="668.252539499433" y="171" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
-      <Name value="TurnIntoList" />
-      <Description value="Turns an element (or a nested list) into a flat list" />
-      <Inputs>
-        <Input value="unknownItem" />
-      </Inputs>
-      <Outputs>
-        <Output value="seq" />
-      </Outputs>
-    </Dynamo.Graph.Nodes.CustomNodes.Function>
     <PythonNodeModels.PythonNode guid="ad091af2-dcc7-49e3-87a7-fd7ca6d88a7e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="930.779454735376" y="319.122221184016" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
       <PortInfo index="0" default="False" />
       <Script>#Created by Luke Johnson for Bakery
@@ -63,14 +51,13 @@ OUT = cnctcs</Script>
     </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="b391a46e-1937-45b5-ab3a-0bb5b3cdf5e0" start_index="0" end="3298c6d3-7ad8-48fb-927b-1bd32518b3d9" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="3298c6d3-7ad8-48fb-927b-1bd32518b3d9" start_index="0" end="ad091af2-dcc7-49e3-87a7-fd7ca6d88a7e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b391a46e-1937-45b5-ab3a-0bb5b3cdf5e0" start_index="0" end="ad091af2-dcc7-49e3-87a7-fd7ca6d88a7e" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="ad091af2-dcc7-49e3-87a7-fd7ca6d88a7e" start_index="0" end="dfe8c409-0e08-411e-8e79-6e14014f3abd" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
   <Presets />
   <Cameras>
-    <Camera Name="Background Preview" eyeX="8.48541774912829" eyeY="185.192474699015" eyeZ="-5.47070713858691" lookX="-8.48541774912829" lookY="-185.192474699015" lookZ="5.47070713858691" upX="-0.809898708538472" upY="0.26723837607826" upZ="0.522156808113024" />
+    <Camera Name="Background Preview" eyeX="8.48541736602783" eyeY="185.192474365234" eyeZ="-5.47070693969727" lookX="-8.48541736602783" lookY="-185.192474365234" lookZ="5.47070693969727" upX="-0.809898734092712" upY="0.26723837852478" upZ="0.522156834602356" />
   </Cameras>
 </Workspace>

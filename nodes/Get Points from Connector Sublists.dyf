@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="404.561661445508" Y="277.092831515515" zoom="0.873239338949514" Name="Get Points from Connector Sublists" Description="" ID="da29c449-cba8-45cc-9600-084218efa466" Category="Bakery.MEP">
+<Workspace Version="1.2.1.3083" X="247.630684367188" Y="184.455330249044" zoom="0.988548899604764" Name="Get Points from Connector Sublists" Description="" ID="da29c449-cba8-45cc-9600-084218efa466" Category="Bakery.MEP">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c3f07f21-72a7-47a3-94e4-1e9a4e4349c8" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="23.2160897439804" y="-48.1384325846586" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
@@ -36,7 +36,7 @@
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="977aab4b-d533-411d-a94c-576bcca719af" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-224.42125912137" y="776.340622662601" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1/304.8;" ShouldFocus="false" />
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="081e1cd3-e1f6-4139-8cea-1f50d91d3e91" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Comma Separated Point Value to Point Object" x="988.36526033796" y="204.801029938619" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
       <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
+      <PortInfo index="1" default="True" />
       <ID value="6267db9a-37db-4770-81e2-b94af0ef1f20" />
       <Name value="Comma Separated Point Value to Point Object" />
       <Description value="" />
@@ -97,9 +97,9 @@
         <Output value="revitCoordinateSystems" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="04a36209-2b7d-4bf2-a3b5-be70d998b27d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Comma Separated Point Value to Point Object" x="973.159238373691" y="739.546135682083" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="04a36209-2b7d-4bf2-a3b5-be70d998b27d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Comma Separated Point Value to Point Object" x="973.159238373691" y="740.557719429129" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
       <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
+      <PortInfo index="1" default="True" />
       <ID value="6267db9a-37db-4770-81e2-b94af0ef1f20" />
       <Name value="Comma Separated Point Value to Point Object" />
       <Description value="" />

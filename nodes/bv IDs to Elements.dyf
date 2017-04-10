@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="160.8" Y="170.4" zoom="1" Name="bv IDs to Elements" Description="forked from CAAD_RWTH" ID="b2a2941e-7151-4158-81ce-522d451de0ff" Category="Bakery.Forks">
+<Workspace Version="1.3.0.875" X="160.8" Y="170.4" zoom="1" ScaleFactor="1" Name="bv IDs to Elements" Description="forked from CAAD_RWTH" ID="b2a2941e-7151-4158-81ce-522d451de0ff" Category="Bakery.Forks">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c937e2c8-b4c0-4387-8c03-c45cb120b59c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="10" y="13.1980519480519" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
@@ -8,27 +8,28 @@
       <PortInfo index="0" default="False" />
       <Symbol value="Element(s)" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="977a78f7-103f-4b19-a42d-407d886c62c8" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Id to Element" x="421.6" y="-123.2" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="a2e348c8-e42d-4f63-8196-c4561f1ae391" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Element.ByID" x="403.2" y="104.6" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
       <PortInfo index="0" default="False" />
-      <ID value="c604b806-7b57-4b06-9740-802e7feee971" />
-      <Name value="Id to Element" />
-      <Description value="Selects elements in a model from id input (ElementId, string, integer or GUID)" />
+      <ID value="a4dd8f6e-689f-4998-b8ef-4a04146d12c2" />
+      <Name value="Element.ByID" />
+      <Description value="Gets the Revit element(s) for a list of IDs (or a single ID)" />
       <Inputs>
-        <Input value="Id" />
+        <Input value="ID/UniqueId" />
       </Inputs>
       <Outputs>
-        <Output value="Element" />
+        <Output value="element" />
+        <Output value="unmatched" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
   </Elements>
   <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="c937e2c8-b4c0-4387-8c03-c45cb120b59c" start_index="0" end="977a78f7-103f-4b19-a42d-407d886c62c8" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="977a78f7-103f-4b19-a42d-407d886c62c8" start_index="0" end="d280e77f-e6a3-450d-a713-4021b4e5afbb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c937e2c8-b4c0-4387-8c03-c45cb120b59c" start_index="0" end="a2e348c8-e42d-4f63-8196-c4561f1ae391" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a2e348c8-e42d-4f63-8196-c4561f1ae391" start_index="0" end="d280e77f-e6a3-450d-a713-4021b4e5afbb" end_index="0" portType="0" />
   </Connectors>
   <Notes />
   <Annotations />
   <Presets />
   <Cameras>
-    <Camera Name="Background Preview" eyeX="-228.505096435547" eyeY="1271.94482421875" eyeZ="1191.52368164063" lookX="278.505096435547" lookY="-771.944885253906" lookZ="-1191.52368164063" upX="0.0773471742868423" upY="0.940486013889313" upZ="-0.330913156270981" />
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
   </Cameras>
 </Workspace>

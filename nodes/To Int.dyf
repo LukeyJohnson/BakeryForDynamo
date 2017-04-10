@@ -1,7 +1,8 @@
-<Workspace Version="1.0.0.1180" X="243" Y="186" zoom="1" Name="To Int" Description="" ID="568c0891-7142-453e-9a71-875fcac7968e" Category="Bakery.Math">
+<Workspace Version="1.2.1.3083" X="82.4058227797252" Y="166.38448607647" zoom="1.545620359375" Name="To Int" Description="" ID="568c0891-7142-453e-9a71-875fcac7968e" Category="Bakery.Math">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="83499486-dbca-48c6-98d1-88ea8db3c49b" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
       <Script>import clr
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *
@@ -9,8 +10,10 @@ from Autodesk.DesignScript.Geometry import *
 dataEnteringNode = IN[0]
 intlist = []
 for x in dataEnteringNode:
-	intlist.append(int(x))
-
+	try:
+		intlist.append(int(x))
+	except:
+		pass
 #Assign your output to the OUT variable.
 OUT = intlist</Script>
     </PythonNodeModels.PythonNode>
@@ -18,6 +21,7 @@ OUT = intlist</Script>
       <Symbol value="listIn" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="73f240e3-4c45-4d4c-9961-aee2d4b45e17" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="447" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <Symbol value="ints" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
