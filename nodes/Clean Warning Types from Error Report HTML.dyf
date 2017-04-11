@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="-344.743994929092" Y="-48.1710915241434" zoom="0.721421914372468" Name="Clean Warning Types from Error Report HTML" Description="working with error report html parsing" ID="a3f04d3b-0e0a-4d34-b6e5-7100a87a8f4f" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2392" X="-344.743994929092" Y="-48.1710915241434" zoom="0.721421914372468" Name="Clean Warning Types from Error Report HTML" Description="working with error report html parsing" ID="a3f04d3b-0e0a-4d34-b6e5-7100a87a8f4f" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.Map guid="fb7f861b-4e6f-448f-8ef5-578271f29b6e" type="DSCore.Map" nickname="List.Map" x="138.10110062166" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

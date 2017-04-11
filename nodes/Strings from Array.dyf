@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Strings from Array" Description="" ID="c2d6e5f1-91c1-42fd-8664-500ebc5fdc6b" Category="Bakery.Strings">
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Strings from Array" Description="" ID="c2d6e5f1-91c1-42fd-8664-500ebc5fdc6b" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="5fa99804-1125-4fce-99df-c156e1017709" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Remove First and Last Characters from String" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">

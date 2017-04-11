@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Convert List to Comma Delimited String" Description="" ID="6920fefb-e083-43cc-9dd4-80213c542894" Category="Bakery.Strings">
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Convert List to Comma Delimited String" Description="" ID="6920fefb-e083-43cc-9dd4-80213c542894" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="370f8640-0316-4ea2-a338-bb8054cbb85f" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="261.76594683719" y="144.227823165152" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="0;" ShouldFocus="false" />

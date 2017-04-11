@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="-94.8563852367045" Y="46.2147572411841" zoom="0.593767140625" Name="List to Single String" Description="renamed fork of &quot;Convert List into List of Strings with Line Breaks&quot;" ID="5c6eba64-17ff-4764-9134-0afcdb6716a4" Category="Bakery.Strings">
+<Workspace Version="1.0.0.1180" X="-94.8563852367045" Y="46.2147572411841" zoom="0.593767140625" Name="List to Single String" Description="renamed fork of &quot;Convert List into List of Strings with Line Breaks&quot;" ID="5c6eba64-17ff-4764-9134-0afcdb6716a4" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="e19b7bcc-ee29-4763-968b-42547722dafe" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Flat List to List of Strings" x="746.636177441226" y="388.8" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">

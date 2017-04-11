@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="-989.067306220636" Y="-868.874308715882" zoom="0.619952718741735" Name="Parse Revit Error Report HTML and Output Summary" ID="c8f3e85b-70ee-43cd-9f2d-5ead971f4609" Description="this version gives more detail, slower" Category="Bakery.Standalone">
+<Workspace Version="0.8.0.950" X="-989.067306220636" Y="-868.874308715882" zoom="0.619952718741735" Name="Parse Revit Error Report HTML and Output Summary" ID="c8f3e85b-70ee-43cd-9f2d-5ead971f4609" Description="this version gives more detail, slower" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="d26abc89-36a7-48dc-bbf4-39dc6214ccca" type="Dynamo.Nodes.DSFunction" nickname="File.ReadText" x="396.23856887365" y="170.745976958543" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.IO.File.ReadText@var" />

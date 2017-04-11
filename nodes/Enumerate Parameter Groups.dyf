@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Enumerate Parameter Groups" Description="" ID="92612a7b-e100-4f0f-970f-5a02d955e777" Category="Bakery.Enums">
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Enumerate Parameter Groups" Description="" ID="92612a7b-e100-4f0f-970f-5a02d955e777" Category="Bakery.Revit.Application.Enums">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="cdbd40c8-a47b-43be-b1b8-9be5fd40d6b3" type="PythonNodeModels.PythonNode" nickname="Python Script" x="294.4" y="47.8704254436669" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">

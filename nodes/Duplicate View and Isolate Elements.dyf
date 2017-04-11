@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-94.676628360394" Y="-79.449869452857" zoom="0.899577183476057" Name="Duplicate View and Isolate Elements" Description="" ID="a44588e7-064a-4ae0-93a0-7fa7cdf5d60e" Category="Bakery.Elements">
+<Workspace Version="0.9.2.4472" X="-94.676628360394" Y="-79.449869452857" zoom="0.899577183476057" Name="Duplicate View and Isolate Elements" Description="" ID="a44588e7-064a-4ae0-93a0-7fa7cdf5d60e" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="050f1a47-a3a2-4baf-85bf-8843672d5e40" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="View.Duplicate" x="-120.407324430253" y="339.430007061325" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">

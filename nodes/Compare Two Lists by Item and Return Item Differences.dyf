@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-1244.60435160008" Y="-107.172945387387" zoom="1.285282768853" Name="Compare Two Lists by Item and Return Item Differences" Description="" ID="93ec3e03-cf0d-474f-8090-014a4d811114" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="-1244.60435160008" Y="-107.172945387387" zoom="1.285282768853" Name="Compare Two Lists by Item and Return Item Differences" Description="" ID="93ec3e03-cf0d-474f-8090-014a4d811114" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="8b83f1f9-e6ab-4f43-8288-503140a4ae95" type="Dynamo.Nodes.Watch" nickname="Watch" x="282.819690315833" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

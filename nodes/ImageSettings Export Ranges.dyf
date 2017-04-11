@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="ImageSettings Export Ranges" ID="041a51d5-b231-46a8-9767-2b70ab60bc3d" Description="" Category="Bakery.Images">
+<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="ImageSettings Export Ranges" ID="041a51d5-b231-46a8-9767-2b70ab60bc3d" Description="" Category="Bakery.Revit.Image">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="9c52ca0f-b13a-42d0-a5aa-10d8afe28757" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-904.0125" Y="326.1375" zoom="0.8425" Name="subnode to Search List for One String Match" Description="" ID="44f8be2c-e7f9-40b4-a77b-fab371a65eee" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="-904.0125" Y="326.1375" zoom="0.8425" Name="subnode to Search List for One String Match" Description="" ID="44f8be2c-e7f9-40b4-a77b-fab371a65eee" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Watch guid="e2adf2bd-caf8-47be-874e-79a375bd24c1" type="CoreNodeModels.Watch" nickname="Watch" x="1167.44861279908" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

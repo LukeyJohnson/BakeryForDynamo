@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="Export Images using many input variables" ID="b0c439a5-a2e8-4016-953b-cd604e7897ed" Description="code originally from Konrad" Category="Bakery.Images">
+<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="Export Images using many input variables" ID="b0c439a5-a2e8-4016-953b-cd604e7897ed" Description="code originally from Konrad" Category="Bakery.Revit.Image">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="fa70884d-6aa7-4a6a-b440-565bddc548d2" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="531.5" y="418.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="9">

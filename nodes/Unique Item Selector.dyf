@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-267.746298366665" Y="137.481324859466" zoom="1.05429821501133" Name="Unique Item Selector" Description="" ID="1c7d50c7-e779-4cc3-9c73-f3217ed566b2" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="-267.746298366665" Y="137.481324859466" zoom="1.05429821501133" Name="Unique Item Selector" Description="" ID="1c7d50c7-e779-4cc3-9c73-f3217ed566b2" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="a909d441-cf5a-4839-bdb1-e46a0e21f6b5" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="448.228163721564" y="-22.6650098251096" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />

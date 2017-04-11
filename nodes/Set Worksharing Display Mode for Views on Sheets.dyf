@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="150.869434181431" Y="99.8410392343431" zoom="1.45108194886609" Name="Set Worksharing Display Mode for Views on Sheets" Description="" ID="328a348f-9921-425e-8874-9151405474af" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="150.869434181431" Y="99.8410392343431" zoom="1.45108194886609" Name="Set Worksharing Display Mode for Views on Sheets" Description="" ID="328a348f-9921-425e-8874-9151405474af" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="2d4038f2-90df-4cc9-9696-718ef3c1cb19" type="Dynamo.Nodes.Function" nickname="Enumerate Worksharing Display Modes for Document" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">

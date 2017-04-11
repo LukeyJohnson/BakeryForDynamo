@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="306.832499017152" Y="430.029625142613" zoom="0.518509692727329" Name="Export to Image using Directory and View Parameter" ID="f12e0230-7dff-40c6-be57-3e9e0b5d95dd" Description="" Category="Bakery.Images">
+<Workspace Version="0.8.1.1942" X="306.832499017152" Y="430.029625142613" zoom="0.518509692727329" Name="Export to Image using Directory and View Parameter" ID="f12e0230-7dff-40c6-be57-3e9e0b5d95dd" Description="" Category="Bakery.Revit.Image">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="8690a0c1-86d5-4514-bef6-14cfce549e18" type="Dynamo.Nodes.DSFunction" nickname="Element.GetParameterValueByName" x="-122.016146492258" y="4.07259580956145" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Element.GetParameterValueByName@string" />

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Switch" Description="" ID="d7a35180-4030-4710-8c04-549d34963856" Category="Bakery.Functions">
+<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Switch" Description="" ID="d7a35180-4030-4710-8c04-549d34963856" Category="Bakery.Core.Logic">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="846dbee8-c2d9-4889-97dd-a1ba3c3209fb" type="PythonNodeModels.PythonNode" nickname="Python Script" x="348.414243323442" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="3">

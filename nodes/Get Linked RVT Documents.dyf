@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="203.181676539239" Y="101.501378981973" zoom="0.784369328044827" Name="Get Linked RVT Documents" Description="" ID="98458ceb-6e1f-49f2-ab12-e054d5034efc" Category="Bakery.Links">
+<Workspace Version="0.8.2.2371" X="203.181676539239" Y="101.501378981973" zoom="0.784369328044827" Name="Get Linked RVT Documents" Description="" ID="98458ceb-6e1f-49f2-ab12-e054d5034efc" Category="Bakery.Revit.Document.Links">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="2ed3349c-5a86-4cbe-9646-a87f2a2034f0" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="143.577213466722" y="3.38154888971292" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="127.968635762389" Y="249.421933386536" zoom="1.3231529419852" Name="Find Sheets and Views Where an Element is Visible" Description="doesn't work yet" ID="441eb7e9-8dbb-471c-9a98-105da60e1651" Category="Bakery.Views">
+<Workspace Version="0.8.2.2392" X="127.968635762389" Y="249.421933386536" zoom="1.3231529419852" Name="Find Sheets and Views Where an Element is Visible" Description="doesn't work yet" ID="441eb7e9-8dbb-471c-9a98-105da60e1651" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="7280423f-2d2d-408e-b229-c27e14b0217d" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="304.371621667465" y="-49.2478168372583" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

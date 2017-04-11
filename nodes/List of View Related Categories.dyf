@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2065" X="-12" Y="56" zoom="1" Name="List of View Related Categories" Description="" ID="ceeaa885-f044-40bf-bc65-6dc59a10e6ee" Category="Bakery.Categories">
+<Workspace Version="1.1.0.2065" X="-12" Y="56" zoom="1" Name="List of View Related Categories" Description="" ID="ceeaa885-f044-40bf-bc65-6dc59a10e6ee" Category="Bakery.Revit.Document.Category">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="5d9c3a48-aa5e-4686-8590-1189e1ac7ed2" type="CoreNodeModels.Input.StringInput" nickname="String" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

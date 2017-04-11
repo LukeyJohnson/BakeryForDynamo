@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Get All Revisions" Description="using python api, get IDs of Revisions" ID="1c0baa1f-5c06-4f05-9eaf-4b02ed8330de" Category="Bakery.DocInfo">
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Get All Revisions" Description="using python api, get IDs of Revisions" ID="1c0baa1f-5c06-4f05-9eaf-4b02ed8330de" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="c9c324c9-0e72-4b95-93d4-4d2d78933bc5" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="427" y="302" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

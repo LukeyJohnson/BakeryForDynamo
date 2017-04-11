@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2831" X="156.988" Y="352.38" zoom="1.1575" Name="Unpack Three Sublists" Description="" ID="48fb64c5-9963-40a9-857f-d079a897a7da" Category="Bakery.Lists">
+<Workspace Version="1.2.0.2831" X="156.988" Y="352.38" zoom="1.1575" Name="Unpack Three Sublists" Description="" ID="48fb64c5-9963-40a9-857f-d079a897a7da" Category="Bakery.Core.List">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
     <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />

@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="329.546746654814" Y="50.8547476858867" zoom="1.21980720172549" Name="Get Worksets with all Properties" Description="based on Konrad's, added some more properties of Worksets" ID="72368624-3e40-4a97-83a4-59bc2a299c83" Category="Bakery.Properties">
+<Workspace Version="1.0.0.1180" X="329.546746654814" Y="50.8547476858867" zoom="1.21980720172549" Name="Get Worksets with all Properties" Description="based on Konrad's, added some more properties of Worksets" ID="72368624-3e40-4a97-83a4-59bc2a299c83" Category="Bakery.Revit.Elements.Properties">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="d2dc3aa6-32cf-47db-92e8-29266b3ae776" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Current Document" x="-132.441559644054" y="150.787395897485" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

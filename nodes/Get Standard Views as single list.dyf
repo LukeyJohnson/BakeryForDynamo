@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Get Standard Views as single list" Description="" ID="497a9e1c-c5c2-4a0f-8064-e4a47cbb49de" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Get Standard Views as single list" Description="" ID="497a9e1c-c5c2-4a0f-8064-e4a47cbb49de" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <DSCoreNodesUI.CreateList guid="80853747-beee-4451-8985-d72dd2174301" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="784.407232742338" y="10.0000000000001" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1" />

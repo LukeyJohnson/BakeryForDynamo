@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Boolean to Int" Description="0 false, 1 true" ID="f608d2c2-698c-4d25-8ba3-81c87b02b0f0" Category="Bakery.Functions">
+<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Boolean to Int" Description="0 false, 1 true" ID="f608d2c2-698c-4d25-8ba3-81c87b02b0f0" Category="Bakery.Core.Math">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="cc4ff72d-2533-4411-b51b-d9a468568a38" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="13.1477693844929" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="false;" ShouldFocus="false" />

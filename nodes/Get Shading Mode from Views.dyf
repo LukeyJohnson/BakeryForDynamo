@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="49.9370276054098" Y="177.691584719651" zoom="0.803321593462598" Name="Get Shading Mode from Views" Description="using built in parameter name" ID="c925d04a-cacf-4d4c-a8ec-4013edef8099" Category="Bakery.Views">
+<Workspace Version="0.9.1.4062" X="49.9370276054098" Y="177.691584719651" zoom="0.803321593462598" Name="Get Shading Mode from Views" Description="using built in parameter name" ID="c925d04a-cacf-4d4c-a8ec-4013edef8099" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="9d470523-af90-4c66-8e9e-4f8d0381d9ca" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="785" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">

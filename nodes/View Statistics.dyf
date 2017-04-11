@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="-814.851730787931" Y="-1558.22698422297" zoom="1.16652323684606" Name="View Statistics" ID="7c0fb605-4dbd-4715-8493-7a898d1e2e99" Description="some key view details" Category="Bakery.DocInfo">
+<Workspace Version="0.8.1.1942" X="-814.851730787931" Y="-1558.22698422297" zoom="1.16652323684606" Name="View Statistics" ID="7c0fb605-4dbd-4715-8493-7a898d1e2e99" Description="some key view details" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <DSCoreNodesUI.CreateList guid="9df31c31-7b66-47ac-bc88-a990e20080c4" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="933.903172619349" y="1413.79995179443" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="20" />

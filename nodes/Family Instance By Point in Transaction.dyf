@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-460.702822994236" Y="-173.103120418116" zoom="0.803321593462598" Name="Family Instance By Point in Transaction" Description="this is to skip binding problems with the core node, it was based on a clockwork node&#xD;&#xA;" ID="6bad299e-eaa5-4d0c-9041-7df07d67c210" Category="Bakery.Families">
+<Workspace Version="0.9.2.4472" X="-460.702822994236" Y="-173.103120418116" zoom="0.803321593462598" Name="Family Instance By Point in Transaction" Description="this is to skip binding problems with the core node, it was based on a clockwork node&#xD;&#xA;" ID="6bad299e-eaa5-4d0c-9041-7df07d67c210" Category="Bakery.Revit.Elements.Family">
   <NamespaceResolutionMap>
     <ClassMap partialName="Autodesk.Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
   </NamespaceResolutionMap>

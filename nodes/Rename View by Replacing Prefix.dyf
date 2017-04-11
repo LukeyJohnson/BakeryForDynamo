@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="186.224940106998" Y="273.602049212184" zoom="0.954042924882813" Name="Rename View by Replacing Prefix" Description="replaces the same number of characters as the input string" ID="120b5ddd-b282-4043-8d01-45f1d77d90fd" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="186.224940106998" Y="273.602049212184" zoom="0.954042924882813" Name="Rename View by Replacing Prefix" Description="replaces the same number of characters as the input string" ID="120b5ddd-b282-4043-8d01-45f1d77d90fd" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="91abfc88-617a-476d-a03f-4e2057d7da65" type="Dynamo.Nodes.Function" nickname="Element Name Universal" x="250" y="19.3233443964356" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

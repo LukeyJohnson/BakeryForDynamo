@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="548.071666666667" Y="298.503333333333" zoom="1.1575" Name="Filter List by List" Description="filters a source list by a list of 'approved' values, and gives those that pass the test" ID="2db7dfa5-37fa-417d-83a9-b3c70dc1cf77" Category="Bakery.Lists">
+<Workspace Version="1.1.0.2094" X="548.071666666667" Y="298.503333333333" zoom="1.1575" Name="Filter List by List" Description="filters a source list by a list of 'approved' values, and gives those that pass the test" ID="2db7dfa5-37fa-417d-83a9-b3c70dc1cf77" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f09bd242-0f3f-4165-a162-6396af65945d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="==" x="250" y="59.4929075023338" isVisible="true" isUpstreamVisible="true" lacing="CrossProduct" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Operators" function="==@var[]..[],var[]..[]" />

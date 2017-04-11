@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="344.824837268584" Y="344.513293146248" zoom="0.954042924882813" Name="Keep First Matching Result After Search" Description="" ID="7bece2fc-9132-44e6-a621-0223ad3447dc" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="344.824837268584" Y="344.513293146248" zoom="0.954042924882813" Name="Keep First Matching Result After Search" Description="" ID="7bece2fc-9132-44e6-a621-0223ad3447dc" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Watch guid="5739c10b-1d2a-4739-89cf-bf9c7743ba85" type="CoreNodeModels.Watch" nickname="Watch" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

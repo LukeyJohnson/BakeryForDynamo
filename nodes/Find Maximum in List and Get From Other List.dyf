@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="Find Maximum in List and Get From Other List" Description="" ID="89c4575b-4c18-44ca-9600-31b1069ae443" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="Find Maximum in List and Get From Other List" Description="" ID="89c4575b-4c18-44ca-9600-31b1069ae443" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="d371872d-03fa-48ab-9d61-6da4251c3f59" type="Dynamo.Nodes.DSFunction" nickname="List.MaximumItem" x="250" y="0.774406833607827" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.MaximumItem@var[]" />

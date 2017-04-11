@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-169.14560147641" Y="390.871415674191" zoom="0.789161032924816" Name="Filter Elements by Workset Name" Description="" ID="259c382f-cac2-4bef-9e8a-55e742b0a371" Category="Bakery.Worksets">
+<Workspace Version="0.9.2.4472" X="-169.14560147641" Y="390.871415674191" zoom="0.789161032924816" Name="Filter Elements by Workset Name" Description="" ID="259c382f-cac2-4bef-9e8a-55e742b0a371" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="d24f7b05-c618-426a-b034-03650d010802" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Collect All Elements in Model faster" x="47.2175443976282" y="41.2884358212701" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">

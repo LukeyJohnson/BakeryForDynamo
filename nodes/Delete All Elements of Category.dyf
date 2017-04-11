@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="98" Y="216" zoom="1" Name="Delete All Elements of Category" Description="be careful!" ID="3cef17a2-34f5-4707-b372-b42712a78200" Category="Bakery.Elements">
+<Workspace Version="0.9.1.4062" X="98" Y="216" zoom="1" Name="Delete All Elements of Category" Description="be careful!" ID="3cef17a2-34f5-4707-b372-b42712a78200" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.ElementsOfCategory guid="160cb0d5-bdba-4bd7-b91d-0cc6d3515671" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

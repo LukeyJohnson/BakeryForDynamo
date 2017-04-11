@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="93" Y="275" zoom="1" Name="Collect all FamilyInstance using Element Types" ID="504197ab-9a5e-40c6-aad7-583fb2705ee1" Description="should get model family instances" Category="Bakery.Collect">
+<Workspace Version="0.8.0.950" X="93" Y="275" zoom="1" Name="Collect all FamilyInstance using Element Types" ID="504197ab-9a5e-40c6-aad7-583fb2705ee1" Description="should get model family instances" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.ElementTypes guid="b7f771e0-9d50-4f19-870e-7f70be1328c7" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="218" y="-18.489556271989" isVisible="true" isUpstreamVisible="true" lacing="Disabled" index="108:FamilyInstance" />

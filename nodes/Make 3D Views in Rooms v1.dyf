@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-152.881236626548" Y="190.617466605482" zoom="0.565567847054031" Name="Make 3D Views in Rooms v1" Description="" ID="998f5f85-e22e-4936-896c-2c8d51bb2845" Category="Bakery.Views">
+<Workspace Version="0.9.2.4472" X="-152.881236626548" Y="190.617466605482" zoom="0.565567847054031" Name="Make 3D Views in Rooms v1" Description="" ID="998f5f85-e22e-4936-896c-2c8d51bb2845" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Watch guid="3f4632f5-ea43-46d2-b98a-2b37516115b8" type="CoreNodeModels.Watch" nickname="Watch" x="59.667773379651" y="-77.5282403355466" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

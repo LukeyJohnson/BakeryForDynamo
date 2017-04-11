@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="79.14" Y="164.545" zoom="1.1575" Name="Remove List from List by Item not Value" ID="3087d2ac-7716-41e4-bc15-14de29d964f6" Description="remove the items in ListA from the items in ListB and return whats left" Category="Bakery.Lists">
+<Workspace Version="0.8.0.950" X="79.14" Y="164.545" zoom="1.1575" Name="Remove List from List by Item not Value" ID="3087d2ac-7716-41e4-bc15-14de29d964f6" Description="remove the items in ListA from the items in ListB and return whats left" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="6e64687d-0654-47a7-9a35-d43f19c7249a" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="34.4088692109809" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

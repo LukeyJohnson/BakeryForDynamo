@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="376.933880779794" Y="648.678351710349" zoom="0.789161032924816" Name="Get View Template for View" Description="doesn't really work" ID="62fd7fe1-16c9-4e91-8eb1-915c91765a20" Category="Bakery.Views">
+<Workspace Version="0.8.2.2392" X="376.933880779794" Y="648.678351710349" zoom="0.789161032924816" Name="Get View Template for View" Description="doesn't really work" ID="62fd7fe1-16c9-4e91-8eb1-915c91765a20" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="b890f9cf-6cb7-4984-9420-9687172699b4" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-19.9771897204592" y="-365.437011082093" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;View Template&quot;;" ShouldFocus="false" />

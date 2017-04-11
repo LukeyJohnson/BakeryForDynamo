@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-428.71081729723" Y="75.4311581726014" zoom="0.70823125" Name="Set View Discipline for All Views by Name" Description="" ID="14605cfc-9cc0-42a0-aaca-517f86651e00" Category="Bakery.Views">
+<Workspace Version="1.2.1.3083" X="-428.71081729723" Y="75.4311581726014" zoom="0.70823125" Name="Set View Discipline for All Views by Name" Description="" ID="14605cfc-9cc0-42a0-aaca-517f86651e00" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="8901eb2f-0976-41f8-9d2f-6b76f715d977" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List All Views" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">

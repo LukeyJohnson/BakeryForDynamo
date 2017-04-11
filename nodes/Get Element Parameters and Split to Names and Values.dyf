@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.706" X="-53.7409413435823" Y="255.208454082333" zoom="0.770516848202245" Name="Get Element Parameters and Split to Names and Values" ID="dd5eb53c-a2e9-40dc-831c-55b69defb961" Description="as per title, output is strings" Category="Bakery.Parameters">
+<Workspace Version="0.8.0.706" X="-53.7409413435823" Y="255.208454082333" zoom="0.770516848202245" Name="Get Element Parameters and Split to Names and Values" ID="dd5eb53c-a2e9-40dc-831c-55b69defb961" Description="as per title, output is strings" Category="Bakery.Revit.Parameters">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="2752c5cd-55bd-4af7-843a-92e361a388ec" type="Dynamo.Nodes.DSFunction" nickname="Element.Parameters" x="250" y="76.0400999688354" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.Element.Parameters" />

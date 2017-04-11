@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-453.974099051417" Y="245.655877968403" zoom="1.10476425630303" Name="Compare Two Line Breaked Strings and Return Differences" Description="" ID="badd1d7a-cf2c-4120-92f8-361f3585549a" Category="Bakery.Strings">
+<Workspace Version="0.8.2.2371" X="-453.974099051417" Y="245.655877968403" zoom="1.10476425630303" Name="Compare Two Line Breaked Strings and Return Differences" Description="" ID="badd1d7a-cf2c-4120-92f8-361f3585549a" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="37421bd2-ac2c-4b70-804d-152348836bb6" type="Dynamo.Nodes.Function" nickname="Convert String with Line Breaks into List of Strings" x="252.736586411108" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

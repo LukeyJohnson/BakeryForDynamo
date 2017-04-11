@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="226.685" Y="370.9925" zoom="0.8425" Name="Two Lists into One Replacing Nulls with Backup Values" Description="" ID="150c8307-0e8f-4854-ae96-3a073f18b516" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="226.685" Y="370.9925" zoom="0.8425" Name="Two Lists into One Replacing Nulls with Backup Values" Description="" ID="150c8307-0e8f-4854-ae96-3a073f18b516" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="2d0f5ae4-57eb-4b65-b9b8-6d584ac3f645" type="Dynamo.Nodes.Watch" nickname="Watch" x="252.815525381563" y="39.7692514338546" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

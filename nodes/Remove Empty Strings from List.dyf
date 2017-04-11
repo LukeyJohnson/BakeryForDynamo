@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="0" Y="229" zoom="1" Name="Remove Empty Strings from List" Description="" ID="63fabaf0-acfd-4acd-a524-8678112e90b5" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="0" Y="229" zoom="1" Name="Remove Empty Strings from List" Description="" ID="63fabaf0-acfd-4acd-a524-8678112e90b5" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="a530abcf-d484-4d5e-8ac1-230879e53ed9" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="33.3008373975456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;&quot;;" ShouldFocus="false" />

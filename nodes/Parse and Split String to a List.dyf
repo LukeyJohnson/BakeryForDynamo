@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="97.051028212159" Y="-14.763814023033" zoom="0.798825425049558" Name="Parse and Split String to a List" Description="takes input String, split options, returns list or String" ID="f01ef3d4-9754-4ad8-8f49-c5f2fdf6b39f" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2371" X="97.051028212159" Y="-14.763814023033" zoom="0.798825425049558" Name="Parse and Split String to a List" Description="takes input String, split options, returns list or String" ID="f01ef3d4-9754-4ad8-8f49-c5f2fdf6b39f" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="4aed1bcc-e507-46c9-bb66-8fd3b34691cc" type="Dynamo.Nodes.Watch" nickname="Watch" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

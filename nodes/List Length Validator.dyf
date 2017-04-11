@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="697.775012504507" Y="375.486666854578" zoom="1.05429821501133" Name="List Length Validator" Description="" ID="fea88a4f-7457-4d39-ae65-da37267eb281" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="697.775012504507" Y="375.486666854578" zoom="1.05429821501133" Name="List Length Validator" Description="" ID="fea88a4f-7457-4d39-ae65-da37267eb281" Category="Bakery.Core.List">
   <NamespaceResolutionMap>
     <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>

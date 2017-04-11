@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-372.021261896084" Y="219.858801452039" zoom="0.966383756979732" Name="Find Empty Worksets and List Names" Description="search through given elements for empty worksets" ID="8c20411b-b39d-48ba-b506-d423b7ccad59" Category="Bakery.Worksets">
+<Workspace Version="0.9.1.4062" X="-372.021261896084" Y="219.858801452039" zoom="0.966383756979732" Name="Find Empty Worksets and List Names" Description="search through given elements for empty worksets" ID="8c20411b-b39d-48ba-b506-d423b7ccad59" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6d6af5d0-53fb-475e-a4b2-defa1a32451a" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="1478.53537597025" y="241.673259887462" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />

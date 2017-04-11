@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="ImageSettings Image Resolution" ID="823d4772-595b-4626-a273-8b87532ec72e" Description="" Category="Bakery.Images">
+<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="ImageSettings Image Resolution" ID="823d4772-595b-4626-a273-8b87532ec72e" Description="" Category="Bakery.Revit.Image">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="25c152d5-3f1a-4d34-a2c6-9a9d62758d77" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">

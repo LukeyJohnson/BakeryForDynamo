@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="30" Y="102.447159124445" zoom="0.620881589470733" Name="Filter Items in List by String Contains and Return List and Unmatched" Description="the two lists are items that contain the string, and everything that is left" ID="ae3ab7c9-a3c7-4636-9c73-735edc385768" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2392" X="30" Y="102.447159124445" zoom="0.620881589470733" Name="Filter Items in List by String Contains and Return List and Unmatched" Description="the two lists are items that contain the string, and everything that is left" ID="ae3ab7c9-a3c7-4636-9c73-735edc385768" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="e970a3d3-bab8-41e7-879d-3c3cf6bd5a40" type="Dynamo.Nodes.DSFunction" nickname="String.Contains" x="299.963736224654" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.String.Contains@string,string,bool">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.706" X="-161.622490953375" Y="190.97129340336" zoom="2.05851865085815" Name="Get Build Number and Worksharing from RVT file" ID="62b6eca2-e145-4790-a234-e0eeed649887" Description="uses read.text and string split methods, from Marcello" Category="Bakery.Standalone">
+<Workspace Version="0.8.0.706" X="-161.622490953375" Y="190.97129340336" zoom="2.05851865085815" Name="Get Build Number and Worksharing from RVT file" ID="62b6eca2-e145-4790-a234-e0eeed649887" Description="uses read.text and string split methods, from Marcello" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.File.FileObject guid="0552593f-8b86-4a21-9d65-98a18aab01c3" type="DSCore.File.FileObject" nickname="File.FromPath" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />

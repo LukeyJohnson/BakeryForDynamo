@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="309" Y="297" zoom="1" Name="Get Matching Items from List with String Conversion" Description="" ID="cba05ff5-4974-4c87-b9b2-98982b6b12b8" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="309" Y="297" zoom="1" Name="Get Matching Items from List with String Conversion" Description="" ID="cba05ff5-4974-4c87-b9b2-98982b6b12b8" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="bff3d434-9ea2-44d6-aa1c-9951050073b8" type="Dynamo.Nodes.Function" nickname="Convert String with Line Breaks into List of Strings" x="250" y="113.231454005935" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

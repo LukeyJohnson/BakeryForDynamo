@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="-808.57290312622" Y="175.58344921031" zoom="0.67933048377427" Name="From File Path into RVT Build Information" ID="d1b64ba9-3614-4443-a695-7bb84f8e9ccb" Description="" Category="Bakery.Standalone">
+<Workspace Version="0.8.1.1942" X="-808.57290312622" Y="175.58344921031" zoom="0.67933048377427" Name="From File Path into RVT Build Information" ID="d1b64ba9-3614-4443-a695-7bb84f8e9ccb" Description="" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="90bc960b-4130-4e53-a7b9-49538b358e54" type="Dynamo.Nodes.DSFunction" nickname="File.ReadText" x="179.181680653125" y="-7.86485847913391" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.IO.File.ReadText@var" />

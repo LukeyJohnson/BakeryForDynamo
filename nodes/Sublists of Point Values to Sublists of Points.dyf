@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="591" Y="268" zoom="1" Name="Sublists of Point Values to Sublists of Points" Description="" ID="eb527a7f-cc33-4de4-b2d4-29f9fa6f601a" Category="Bakery.Geometry">
+<Workspace Version="0.8.2.2371" X="591" Y="268" zoom="1" Name="Sublists of Point Values to Sublists of Points" Description="" ID="eb527a7f-cc33-4de4-b2d4-29f9fa6f601a" Category="Bakery.Geometry.Point">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="d3bd2907-014d-47c8-9e2d-4b84679683b8" type="Dynamo.Nodes.Function" nickname="Comma Separated Point Value to Point Object" x="250" y="160.13982518007" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

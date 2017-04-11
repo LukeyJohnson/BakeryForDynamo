@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="0" Y="0" zoom="1" Name="Flat List to List of Strings" Description="using python methods" ID="82b8a446-c4a1-4d64-8736-01c0b01ae798" Category="Bakery.Lists">
+<Workspace Version="0.9.1.4062" X="0" Y="0" zoom="1" Name="Flat List to List of Strings" Description="using python methods" ID="82b8a446-c4a1-4d64-8736-01c0b01ae798" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ac91d8c7-c565-48ff-9a5c-c7307d07c25f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="562" y="427.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

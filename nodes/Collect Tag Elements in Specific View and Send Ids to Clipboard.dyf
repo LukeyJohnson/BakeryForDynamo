@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="-787.621288425266" Y="97.1213850838931" zoom="0.721395744756143" Name="Collect Tag Elements in Specific View and Send Ids to Clipboard" ID="b97a3b4c-f38b-49b0-8f0c-54baaf4803f2" Description="" Category="Bakery.Collect">
+<Workspace Version="0.8.1.1942" X="-787.621288425266" Y="97.1213850838931" zoom="0.721395744756143" Name="Collect Tag Elements in Specific View and Send Ids to Clipboard" ID="b97a3b4c-f38b-49b0-8f0c-54baaf4803f2" Description="" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="b9a7f37a-a4de-428f-86a1-9a3970253dc8" type="Dynamo.Nodes.Function" nickname="Collect All Tags in Project" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest">

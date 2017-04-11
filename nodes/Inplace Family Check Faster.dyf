@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="539" Y="206" zoom="1" Name="Inplace Family Check Faster" ID="35608799-aa53-4fd0-b3c2-fd8c8adbe948" Description="" Category="Bakery.Families">
+<Workspace Version="0.8.1.1942" X="539" Y="206" zoom="1" Name="Inplace Family Check Faster" ID="35608799-aa53-4fd0-b3c2-fd8c8adbe948" Description="" Category="Bakery.Revit.Elements.Family">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="758186fb-647c-42d2-9c6f-24793905e94b" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

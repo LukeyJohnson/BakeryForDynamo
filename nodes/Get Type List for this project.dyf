@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="350.208069266315" Y="5.62405577179931" zoom="0.770516848202245" Name="Get Type List for this project" Description="" ID="d1bd75c3-8d60-466f-909b-7295795bfb16" Category="Bakery.Families">
+<Workspace Version="0.8.2.2371" X="350.208069266315" Y="5.62405577179931" zoom="0.770516848202245" Name="Get Type List for this project" Description="" ID="d1bd75c3-8d60-466f-909b-7295795bfb16" Category="Bakery.Revit.Elements.Family">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="65d21408-1c0c-4f39-9d34-2e5e96cb4fe5" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="-295.497087711305" y="726.832472959163" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="0">

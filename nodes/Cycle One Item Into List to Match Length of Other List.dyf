@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="104.725" Y="78.6075" zoom="0.8425" Name="Cycle One Item Into List to Match Length of Other List" Description="" ID="1b883429-3c51-463c-b7fb-5165ee9956a1" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="104.725" Y="78.6075" zoom="0.8425" Name="Cycle One Item Into List to Match Length of Other List" Description="" ID="1b883429-3c51-463c-b7fb-5165ee9956a1" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="a1078148-72db-475b-9ec7-7a9951b81db9" type="Dynamo.Nodes.Symbol" nickname="Input" x="205" y="275" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

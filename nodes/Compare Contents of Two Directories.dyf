@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="-142.187442622984" Y="134.508317837131" zoom="0.784369328044827" Name="Compare Contents of Two Directories" Description="" ID="e726b14c-bd32-4bc4-b08e-9207802f4841" Category="Bakery.Standalone">
+<Workspace Version="1.2.0.2690" X="-142.187442622984" Y="134.508317837131" zoom="0.784369328044827" Name="Compare Contents of Two Directories" Description="" ID="e726b14c-bd32-4bc4-b08e-9207802f4841" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="66ab239b-7895-42fa-b50b-15bab0a93f54" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="FilePath.FileName" x="709" y="412" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.IO.FilePath.FileName@string,bool">

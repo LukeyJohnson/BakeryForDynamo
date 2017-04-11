@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="85.3254597057235" Y="394.60326875" zoom="1.33823125" Name="Split Comma Separated Sublist Item to Multiple Items" Description="" ID="7ea0b072-68a6-45d7-824c-969eb44aaa87" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="85.3254597057235" Y="394.60326875" zoom="1.33823125" Name="Split Comma Separated Sublist Item to Multiple Items" Description="" ID="7ea0b072-68a6-45d7-824c-969eb44aaa87" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.Map guid="3b782386-39a4-4476-ba70-f2e717f83bc0" type="DSCore.Map" nickname="List.Map" x="398.287601622281" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

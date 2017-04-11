@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2831" X="0" Y="0" zoom="1" Name="Copy Elements To Same Place" Description="" ID="081c391b-4f0f-4907-9365-05acc8d766a2" Category="Bakery.Elements">
+<Workspace Version="1.2.0.2831" X="0" Y="0" zoom="1" Name="Copy Elements To Same Place" Description="" ID="081c391b-4f0f-4907-9365-05acc8d766a2" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
     <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />

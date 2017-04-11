@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="-227.856236272803" Y="344.611914775622" zoom="1.01204214144457" Name="Set Discipline Property for Views" Description="" ID="467b01a4-eb0a-44a0-b9d6-69180be1a479" Category="Bakery.Views">
+<Workspace Version="1.2.0.2690" X="-227.856236272803" Y="344.611914775622" zoom="1.01204214144457" Name="Set Discipline Property for Views" Description="" ID="467b01a4-eb0a-44a0-b9d6-69180be1a479" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ab6e066b-9166-4dbe-b3b8-925f93f383cc" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="238.56829483457" y="-81.0942609412171" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

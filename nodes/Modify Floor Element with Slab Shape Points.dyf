@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2831" X="225.51891512779" Y="191.214595284377" zoom="1.33823125" Name="Modify Floor Element with Slab Shape Points" Description="" ID="dce3c6b8-f34c-4169-8396-4a91123d6ed1" Category="Bakery.Elements">
+<Workspace Version="1.2.0.2831" X="225.51891512779" Y="191.214595284377" zoom="1.33823125" Name="Modify Floor Element with Slab Shape Points" Description="" ID="dce3c6b8-f34c-4169-8396-4a91123d6ed1" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>

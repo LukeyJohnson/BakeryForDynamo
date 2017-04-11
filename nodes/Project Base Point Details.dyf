@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-2013.31528702688" Y="134.07980000088" zoom="0.862350674627429" Name="Project Base Point Details" Description="some lists and details of project base point" ID="26a64d05-fd65-43c5-beeb-0dc0ca065751" Category="Bakery.DocInfo">
+<Workspace Version="0.8.2.2371" X="-2013.31528702688" Y="134.07980000088" zoom="0.862350674627429" Name="Project Base Point Details" Description="some lists and details of project base point" ID="26a64d05-fd65-43c5-beeb-0dc0ca065751" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.Categories guid="59eaa512-d08f-49fc-bf5a-1bad5e1a14e5" type="DSRevitNodesUI.Categories" nickname="Categories" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="619:ProjectBasePoint" />

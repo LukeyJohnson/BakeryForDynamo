@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="40.972907660643" Y="221.610950272027" zoom="0.691347793867188" Name="Parse CSV Text of Elem IDs to Actual Revit Elements" Description="input file path" ID="e3d4b2fd-d79d-41a7-82b8-596fc20da127" Category="Bakery.Standalone">
+<Workspace Version="0.9.2.4472" X="40.972907660643" Y="221.610950272027" zoom="0.691347793867188" Name="Parse CSV Text of Elem IDs to Actual Revit Elements" Description="input file path" ID="e3d4b2fd-d79d-41a7-82b8-596fc20da127" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.FileObject guid="c49ffe81-0be7-4755-ac1b-f1978dca4faf" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="188.147613463764" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

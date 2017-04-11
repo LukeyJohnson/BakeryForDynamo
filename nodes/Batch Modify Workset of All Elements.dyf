@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-53.768483314031" Y="275.588615475052" zoom="0.496430451551016" Name="Batch Modify Workset of All Elements" Description="for all elements in current model" ID="ee50ae8f-f92f-4439-838b-79f734040283" Category="Bakery.Worksets">
+<Workspace Version="0.9.2.4472" X="-53.768483314031" Y="275.588615475052" zoom="0.496430451551016" Name="Batch Modify Workset of All Elements" Description="for all elements in current model" ID="ee50ae8f-f92f-4439-838b-79f734040283" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="19af3fc8-ad0f-422b-bec3-be7dd3dbecc6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-437.682259060893" y="216.820437528763" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

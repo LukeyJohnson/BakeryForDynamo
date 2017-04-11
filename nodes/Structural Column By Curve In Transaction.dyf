@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="8.42333333333323" Y="230.28" zoom="0.8425" Name="Structural Column By Curve In Transaction" Description="" ID="0892cac6-b61d-491c-a8bd-202cf0338b75" Category="Bakery.Elements">
+<Workspace Version="1.2.0.2690" X="8.42333333333323" Y="230.28" zoom="0.8425" Name="Structural Column By Curve In Transaction" Description="" ID="0892cac6-b61d-491c-a8bd-202cf0338b75" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
     <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />

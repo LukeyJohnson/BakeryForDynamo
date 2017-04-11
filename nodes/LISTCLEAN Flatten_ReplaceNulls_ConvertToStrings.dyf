@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="155" Y="157" zoom="1" Name="LISTCLEAN Flatten_ReplaceNulls_ConvertToStrings" Description="" ID="42474bc3-9c48-424b-a88a-b04abdc5894c" Category="Bakery.Lists">
+<Workspace Version="0.9.1.4062" X="155" Y="157" zoom="1" Name="LISTCLEAN Flatten_ReplaceNulls_ConvertToStrings" Description="" ID="42474bc3-9c48-424b-a88a-b04abdc5894c" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="5e77f560-e84e-4618-bdf1-e1558c9f1ac3" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Flatten List and Replace Null with NULL VALUE" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="313.468407027886" Y="318.76851787228" zoom="0.593767140625" Name="Create Floors from Rooms v4" Description="" ID="7d385223-3879-4eb4-a465-abaedac672d0" Category="Bakery.Elements">
+<Workspace Version="0.8.2.2371" X="313.468407027886" Y="318.76851787228" zoom="0.593767140625" Name="Create Floors from Rooms v4" Description="" ID="7d385223-3879-4eb4-a465-abaedac672d0" Category="Bakery.Revit.Elements.Room">
   <NamespaceResolutionMap>
     <ClassMap partialName="FloorType" resolvedName="Revit.Elements.FloorType" assemblyName="RevitNodes.dll" />
     <ClassMap partialName="Level" resolvedName="Revit.Elements.Level" assemblyName="RevitNodes.dll" />

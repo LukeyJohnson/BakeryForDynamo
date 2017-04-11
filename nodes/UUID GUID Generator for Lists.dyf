@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-399.435121021003" Y="-169.547279900621" zoom="1.545620359375" Name="UUID GUID Generator for Lists" Description="just makes a new GUID for every item in a list, has no relationship to item or element itself" ID="429fdf6e-5355-4e74-b839-f7369b028801" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2371" X="-399.435121021003" Y="-169.547279900621" zoom="1.545620359375" Name="UUID GUID Generator for Lists" Description="just makes a new GUID for every item in a list, has no relationship to item or element itself" ID="429fdf6e-5355-4e74-b839-f7369b028801" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="9be78dc0-6514-4659-9318-b9196c6f4720" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="449" y="298" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

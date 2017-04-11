@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="50.19" Y="140.12" zoom="0.8425" Name="Single Curve to Room Separation Line in Active View" Description="view should be a Plan View" ID="26238d52-01f3-4313-9aaa-999aaddfc43b" Category="Bakery.Rooms">
+<Workspace Version="0.9.2.4472" X="50.19" Y="140.12" zoom="0.8425" Name="Single Curve to Room Separation Line in Active View" Description="view should be a Plan View" ID="26238d52-01f3-4313-9aaa-999aaddfc43b" Category="Bakery.Revit.Elements.Room">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e471754c-711b-4356-a2de-22f41e27513c" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Document.Current" x="250" y="86.8660660157175" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="RevitNodes.dll" function="Revit.Application.Document.Current" />

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Get Info from a Linked Element Tag" Description="use with List.Map" ID="7cec3415-12f0-440e-a32c-95ff2ff724db" Category="Bakery.Tags">
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Get Info from a Linked Element Tag" Description="use with List.Map" ID="7cec3415-12f0-440e-a32c-95ff2ff724db" Category="Bakery.Revit.Elements.Tag">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="7908a628-1ae4-4d5a-b914-f3e7877149e6" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="453.48706037747" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

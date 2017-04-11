@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-40" Y="171" zoom="1" Name="Get Loaded RVT Links" Description="" ID="8e3c2714-7168-4346-bbf0-aff16a267efe" Category="Bakery.Links">
+<Workspace Version="0.8.2.2371" X="-40" Y="171" zoom="1" Name="Get Loaded RVT Links" Description="" ID="8e3c2714-7168-4346-bbf0-aff16a267efe" Category="Bakery.Revit.Document.Links">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="35237308-ce63-4eda-b1ae-1a76b8297448" type="Dynamo.Nodes.Function" nickname="Get Linked RVT Documents" x="250" y="351.5" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">

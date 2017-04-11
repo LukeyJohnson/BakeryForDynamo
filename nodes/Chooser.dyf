@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2831" X="398.221144467804" Y="306.415599777108" zoom="1.545620359375" Name="Chooser" Description="" ID="0bcf0ce4-0b44-4ce8-a7e2-9406c1e9b9e6" Category="Bakery.Lists">
+<Workspace Version="1.2.0.2831" X="398.221144467804" Y="306.415599777108" zoom="1.545620359375" Name="Chooser" Description="" ID="0bcf0ce4-0b44-4ce8-a7e2-9406c1e9b9e6" Category="Bakery.Core.List">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
     <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />

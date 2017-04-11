@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="Enumerate View Duplicate Options" Description="" ID="8e140dcc-6ca6-4f84-b592-a87ee84f4a31" Category="Bakery.Enums">
+<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="Enumerate View Duplicate Options" Description="" ID="8e140dcc-6ca6-4f84-b592-a87ee84f4a31" Category="Bakery.Revit.Application.Enums">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="caf6183c-4cc1-4d8f-9dd7-2c67405810a6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="294.4" y="47.8704254436669" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">

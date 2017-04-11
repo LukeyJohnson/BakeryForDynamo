@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Speak Single String via Speech Synthesizer" Description="" ID="489ddc1d-c89a-47b6-9ebd-fde0ddd4547d" Category="Bakery.Standalone">
+<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Speak Single String via Speech Synthesizer" Description="" ID="489ddc1d-c89a-47b6-9ebd-fde0ddd4547d" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction guid="22bc7b0a-6c25-4c45-a97e-be80a07f7d1b" type="Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction" nickname="String.Split" x="316" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.String.Split@string,string[]" inputcount="2" />

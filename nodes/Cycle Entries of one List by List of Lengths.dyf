@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="257" Y="191" zoom="1" Name="Cycle Entries of one List by List of Lengths" Description="" ID="ac9a0ac6-10f8-4831-a297-7689a0472c84" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="257" Y="191" zoom="1" Name="Cycle Entries of one List by List of Lengths" Description="" ID="ac9a0ac6-10f8-4831-a297-7689a0472c84" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="a5877a09-5311-4c31-b823-1a38e040225f" type="Dynamo.Nodes.DSFunction" nickname="List.Chop" x="263.619562220372" y="284.150073225631" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.Chop@var[]..[],int" />

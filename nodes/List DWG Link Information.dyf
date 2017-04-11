@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="208.829870245965" Y="244.217736020967" zoom="0.691347793867187" Name="List DWG Link Information" ID="067d8946-9bc3-4351-82cf-527f354305d3" Description="shows element IDs, DWG name and Workset" Category="Bakery.DocInfo">
+<Workspace Version="0.8.1.1942" X="208.829870245965" Y="244.217736020967" zoom="0.691347793867187" Name="List DWG Link Information" ID="067d8946-9bc3-4351-82cf-527f354305d3" Description="shows element IDs, DWG name and Workset" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.StringInput guid="5140a387-cb9c-476c-8f19-f98d41b76114" type="Dynamo.Nodes.StringInput" nickname="String" x="-279.085847618871" y="-85.7521965264136" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

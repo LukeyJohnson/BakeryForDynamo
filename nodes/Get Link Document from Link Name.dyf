@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="328.4" Y="300.8" zoom="1" Name="Get Link Document from Link Name" Description="" ID="5d605a51-f1f4-48c1-bf58-63d53719a140" Category="Bakery.Links">
+<Workspace Version="0.9.2.4472" X="328.4" Y="300.8" zoom="1" Name="Get Link Document from Link Name" Description="" ID="5d605a51-f1f4-48c1-bf58-63d53719a140" Category="Bakery.Revit.Document.Links">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="f973e3a8-d772-4015-863a-78e6fd6ec786" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Linked RVT Documents" x="-281" y="172.000942506283" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">

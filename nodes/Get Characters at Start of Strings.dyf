@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="-403.36060300555" Y="392.306175322227" zoom="0.658674852158215" Name="Get Characters at Start of Strings" Description="" ID="9604522d-2f7b-42f8-be57-056b1268c789" Category="Bakery.Strings">
+<Workspace Version="1.0.0.1180" X="-403.36060300555" Y="392.306175322227" zoom="0.658674852158215" Name="Get Characters at Start of Strings" Description="" ID="9604522d-2f7b-42f8-be57-056b1268c789" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="0df9ba86-e04d-4bde-b0c3-baab698f576b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.Length" x="523.492358754657" y="65.6667999518079" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.String.Length@string" />

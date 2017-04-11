@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="401" Y="249" zoom="1" Name="Filter Text Notes by Search" Description="" ID="68d043ad-82f5-4f46-8c4f-67cb2ba70c66" Category="Bakery.Elements">
+<Workspace Version="0.8.2.2371" X="401" Y="249" zoom="1" Name="Filter Text Notes by Search" Description="" ID="68d043ad-82f5-4f46-8c4f-67cb2ba70c66" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="6216e4c8-265c-4428-bfc7-fa34817cfe33" type="Dynamo.Nodes.Watch" nickname="Watch" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

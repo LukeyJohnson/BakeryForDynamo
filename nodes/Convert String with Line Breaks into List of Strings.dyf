@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="400" Y="218" zoom="1" Name="Convert String with Line Breaks into List of Strings" Description="" ID="70035512-1675-4888-bf5b-24f20c6512ba" Category="Bakery.Strings">
+<Workspace Version="0.8.2.2371" X="400" Y="218" zoom="1" Name="Convert String with Line Breaks into List of Strings" Description="" ID="70035512-1675-4888-bf5b-24f20c6512ba" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.StringInput guid="2d9b14f1-3819-4934-9668-4cd15c10e02d" type="Dynamo.Nodes.StringInput" nickname="String" x="250" y="129.97318754314" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

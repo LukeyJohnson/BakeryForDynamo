@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="108.241285799136" Y="55.4435951808855" zoom="0.97676875" Name="List Design Option Information" Description="doesn't work that well, try Archi-lab &quot;Get Design Options&quot;" ID="bdd520cf-8c62-40cb-bcb6-3a54a41131c8" Category="Bakery.DocInfo">
+<Workspace Version="0.8.2.2371" X="108.241285799136" Y="55.4435951808855" zoom="0.97676875" Name="List Design Option Information" Description="doesn't work that well, try Archi-lab &quot;Get Design Options&quot;" ID="bdd520cf-8c62-40cb-bcb6-3a54a41131c8" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="cc991cf3-f4b6-4efd-962a-dd6474c3925b" type="Dynamo.Nodes.DSFunction" nickname="Element.GetParameterValueByName" x="164.569580193115" y="274.729123475251" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.GetParameterValueByName@string" />

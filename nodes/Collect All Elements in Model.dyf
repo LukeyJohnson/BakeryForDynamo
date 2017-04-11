@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="-848" Y="226" zoom="1" Name="Collect All Elements in Model" Description="" ID="aef4b5ca-daca-4f1f-9486-e7a41c6d6c3a" Category="Bakery.Collect">
+<Workspace Version="1.2.0.2690" X="-848" Y="226" zoom="1" Name="Collect All Elements in Model" Description="" ID="aef4b5ca-daca-4f1f-9486-e7a41c6d6c3a" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="6ae66fc9-0675-4e1d-a2c7-aebff6078ac6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="298.722887879737" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="0">

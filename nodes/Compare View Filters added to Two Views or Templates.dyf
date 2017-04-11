@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-2726.80258843946" Y="-38.6430800914579" zoom="1.42639164656832" Name="Compare View Filters added to Two Views or Templates" Description="takes input from Views dynamo node" ID="ac6b624d-45b5-4abe-a1de-6b4e47633a6e" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="-2726.80258843946" Y="-38.6430800914579" zoom="1.42639164656832" Name="Compare View Filters added to Two Views or Templates" Description="takes input from Views dynamo node" ID="ac6b624d-45b5-4abe-a1de-6b4e47633a6e" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <DSCoreNodesUI.CreateList guid="e423047e-5c0a-426b-a53d-a0573dedb8cb" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2" />

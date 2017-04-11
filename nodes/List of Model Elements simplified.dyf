@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="555.895291273875" Y="188.686309148458" zoom="0.910063803931441" Name="List of Model Elements simplified" Description="uses familyinstance select now, so doesn't include system families" ID="194c314e-0d39-42fd-9bd8-c1884b38588a" Category="Bakery.Collect">
+<Workspace Version="1.0.0.1180" X="555.895291273875" Y="188.686309148458" zoom="0.910063803931441" Name="List of Model Elements simplified" Description="uses familyinstance select now, so doesn't include system families" ID="194c314e-0d39-42fd-9bd8-c1884b38588a" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="7f5d66c1-ee7f-44f3-951a-6cdeb06b5ffd" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="-59.4924631604872" y="192.146402069388" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Flatten@var[]..[]" />

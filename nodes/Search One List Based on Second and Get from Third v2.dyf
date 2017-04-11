@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="936" Y="297" zoom="1" Name="Search One List Based on Second and Get from Third v2" Description="no null replacement, faster" ID="e2061c58-4744-4643-b2b0-8bf3075008bb" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="936" Y="297" zoom="1" Name="Search One List Based on Second and Get from Third v2" Description="no null replacement, faster" ID="e2061c58-4744-4643-b2b0-8bf3075008bb" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="11aaef9e-d187-44e0-b46a-a3f626bfc5be" type="Dynamo.Nodes.Function" nickname="If Equal Return Index using IndexOf" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="0" Y="0" zoom="1" Name="Get Elements By Workset Id" Description="" ID="14ed8d38-7bfb-4958-833c-f2ed0ba5e3ae" Category="Bakery.Worksets">
+<Workspace Version="1.2.0.2690" X="0" Y="0" zoom="1" Name="Get Elements By Workset Id" Description="" ID="14ed8d38-7bfb-4958-833c-f2ed0ba5e3ae" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="99ca7be1-7b1a-4681-88ca-47f5d800ff3d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="435.6" y="430" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

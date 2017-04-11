@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="264" Y="142.4" zoom="1" Name="Find Index in One List and Get From Other Sublists" Description="" ID="0174d722-2adf-4048-92a8-d346800550bd" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2392" X="264" Y="142.4" zoom="1" Name="Find Index in One List and Get From Other Sublists" Description="" ID="0174d722-2adf-4048-92a8-d346800550bd" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="d6180540-76ec-4a9b-ab00-1a6d91052f88" type="Dynamo.Nodes.Function" nickname="Turn Into List" x="250" y="24.8000000000001" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

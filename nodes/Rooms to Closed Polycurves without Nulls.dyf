@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-167.730239799703" Y="199.654736702522" zoom="0.97676875" Name="Rooms to Closed Polycurves without Nulls" Description="" ID="481784e3-5734-4c4d-b1bb-21b32ad80dea" Category="Bakery.Rooms">
+<Workspace Version="0.8.2.2371" X="-167.730239799703" Y="199.654736702522" zoom="0.97676875" Name="Rooms to Closed Polycurves without Nulls" Description="" ID="481784e3-5734-4c4d-b1bb-21b32ad80dea" Category="Bakery.Revit.Elements.Room">
   <NamespaceResolutionMap>
     <ClassMap partialName="FloorType" resolvedName="Revit.Elements.FloorType" assemblyName="RevitNodes.dll" />
     <ClassMap partialName="Level" resolvedName="Revit.Elements.Level" assemblyName="RevitNodes.dll" />

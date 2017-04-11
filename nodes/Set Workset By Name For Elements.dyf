@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="-193.747163316024" Y="180.157364094955" zoom="0.70823125" Name="Set Workset By Name For Elements" Description="" ID="e166d099-df7c-41b5-b0d9-a25f7787871e" Category="Bakery.Worksets">
+<Workspace Version="1.2.0.2690" X="-193.747163316024" Y="180.157364094955" zoom="0.70823125" Name="Set Workset By Name For Elements" Description="" ID="e166d099-df7c-41b5-b0d9-a25f7787871e" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="8a6ff652-3f64-4aee-8e3c-3feda80d2f8e" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Document.Worksets" x="250" y="192.604979984864" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">

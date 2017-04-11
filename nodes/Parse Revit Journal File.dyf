@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="-879.491193876812" Y="-79.4709252190579" zoom="0.72583335096494" Name="Parse Revit Journal File" Description="very basic implementation at this stage..." ID="7e5b27a2-0b47-4486-80f7-960a467e8bde" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2392" X="-879.491193876812" Y="-79.4709252190579" zoom="0.72583335096494" Name="Parse Revit Journal File" Description="very basic implementation at this stage..." ID="7e5b27a2-0b47-4486-80f7-960a467e8bde" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.StringInput guid="c2f25e6c-e161-4f16-8b5c-c5b72031b913" type="Dynamo.Nodes.StringInput" nickname="String" x="10.0000000000004" y="240.469751702806" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

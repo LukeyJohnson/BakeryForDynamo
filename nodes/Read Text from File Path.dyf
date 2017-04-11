@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="131.045996283512" Y="158.026846857758" zoom="0.910063803931439" Name="Read Text from File Path" Description="" ID="a1fbfafd-5523-445f-8704-05b47977a02a" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2371" X="131.045996283512" Y="158.026846857758" zoom="0.910063803931439" Name="Read Text from File Path" Description="" ID="a1fbfafd-5523-445f-8704-05b47977a02a" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.File.FileObject guid="f8bb543a-0d39-4f36-8706-e862829e7c3d" type="DSCore.File.FileObject" nickname="File.FromPath" x="268.26162154553" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

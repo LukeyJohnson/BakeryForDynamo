@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="164.8" Y="127.2" zoom="1" Name="Add Prefix to Items in String List" Description="" ID="3630869f-6ca4-463c-afc3-09b27b01c5e7" Category="Bakery.Strings">
+<Workspace Version="1.1.0.2094" X="164.8" Y="127.2" zoom="1" Name="Add Prefix to Items in String List" Description="" ID="3630869f-6ca4-463c-afc3-09b27b01c5e7" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Watch guid="a2b8941c-71d7-44d2-84bf-2870577cddf9" type="CoreNodeModels.Watch" nickname="Watch" x="418.412383710065" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-596.185794277023" Y="126.801106498391" zoom="0.541452935161283" Name="Duplicate Views" Description="" ID="3eec46ea-09cf-4dd5-b864-40c28a5da0f9" Category="Bakery.Views">
+<Workspace Version="0.9.1.4062" X="-596.185794277023" Y="126.801106498391" zoom="0.541452935161283" Name="Duplicate Views" Description="" ID="3eec46ea-09cf-4dd5-b864-40c28a5da0f9" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="c420f28b-5d1b-477c-aeeb-bc533957e97e" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Enumerate View Duplicate Options" x="250" y="12.855629750742" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">

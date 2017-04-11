@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Enumerate Structural Types" Description="" ID="0ee3e125-b032-406d-9002-bd0eaf5dde18" Category="Bakery.Enums">
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Enumerate Structural Types" Description="" ID="0ee3e125-b032-406d-9002-bd0eaf5dde18" Category="Bakery.Revit.Application.Enums">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="740eb0f7-b6a9-4aed-850a-a5a00a704c7c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="396" y="249.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="0">

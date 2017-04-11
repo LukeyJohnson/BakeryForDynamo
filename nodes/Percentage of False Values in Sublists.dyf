@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="-91.2590863739281" Y="205.224836976347" zoom="0.822695359375" Name="Percentage of False Values in Sublists" Description="" ID="114064ab-aa4e-4b64-a247-ab693c666abe" Category="Bakery.Lists">
+<Workspace Version="1.0.0.1180" X="-91.2590863739281" Y="205.224836976347" zoom="0.822695359375" Name="Percentage of False Values in Sublists" Description="" ID="114064ab-aa4e-4b64-a247-ab693c666abe" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Watch guid="f08ba392-6e54-403c-b33a-829a03a612b9" type="CoreNodeModels.Watch" nickname="Watch" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />

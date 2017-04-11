@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="658.354799358574" Y="334.295389312487" zoom="1.27771698410773" Name="Filter One List by String Search in Another List" Description="" ID="d7f34c30-3d50-4c23-a6fa-075dc33b6bb1" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="658.354799358574" Y="334.295389312487" zoom="1.27771698410773" Name="Filter One List by String Search in Another List" Description="" ID="d7f34c30-3d50-4c23-a6fa-075dc33b6bb1" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="ee8256e2-d959-4365-91d1-4408a21fcd51" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.Contains" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.String.Contains@string,string,bool">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="50.4093730484483" Y="240.883200187616" zoom="0.822695359375" Name="String Replace using RegEx" ID="2224fcdb-4c1e-4a0f-8dac-c2f9a5dab985" Description="for lists" Category="Bakery.Strings">
+<Workspace Version="0.8.1.1942" X="50.4093730484483" Y="240.883200187616" zoom="0.822695359375" Name="String Replace using RegEx" ID="2224fcdb-4c1e-4a0f-8dac-c2f9a5dab985" Description="for lists" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="92638a9d-9cbb-485d-92a9-10a8fb16535f" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

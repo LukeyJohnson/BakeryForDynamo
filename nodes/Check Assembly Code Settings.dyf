@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-1031.0564443094" Y="-198.680641855118" zoom="1.16438980805626" Name="Check Assembly Code Settings" Description="and report bool and path" ID="b82941a6-de7f-4023-a657-f306017a62c7" Category="Bakery.DocInfo">
+<Workspace Version="0.9.1.4062" X="-1031.0564443094" Y="-198.680641855118" zoom="1.16438980805626" Name="Check Assembly Code Settings" Description="and report bool and path" ID="b82941a6-de7f-4023-a657-f306017a62c7" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.ElementTypes guid="7724a4d7-b327-43eb-99c4-bd5df3b74a10" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="250" y="142.911112080046" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" index="21:AssemblyCodeTable" />

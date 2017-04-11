@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="25.0318048008754" Y="-135.201633911813" zoom="0.651506037525315" Name="List Detailed View Information for a List of Views" Description="" ID="d1300dc4-02a3-4ebb-9561-5ae9c9a99876" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="25.0318048008754" Y="-135.201633911813" zoom="0.651506037525315" Name="List Detailed View Information for a List of Views" Description="" ID="d1300dc4-02a3-4ebb-9561-5ae9c9a99876" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="a7603f97-809d-4ae8-baf3-a94c9e2ad0a0" type="Dynamo.Nodes.Function" nickname="List View Filter Information for View or Template" x="-480.45926700147" y="-315.34231820988" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

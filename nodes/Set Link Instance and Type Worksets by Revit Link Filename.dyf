@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-344" Y="295" zoom="1" Name="Set Link Instance and Type Worksets by Revit Link Filename" Description="" ID="0887418f-c783-494d-a31d-c09718a22841" Category="Bakery.Worksets">
+<Workspace Version="0.8.2.2371" X="-344" Y="295" zoom="1" Name="Set Link Instance and Type Worksets by Revit Link Filename" Description="" ID="0887418f-c783-494d-a31d-c09718a22841" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="415dd71f-dc58-40ec-b58b-ce80789690be" type="Dynamo.Nodes.Function" nickname="Get Linked RVT Documents" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">

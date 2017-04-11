@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="To Float" Description="converts input object to a float with python" ID="81df57f1-0eeb-4cb8-83ac-07eebd0e2ce0" Category="Bakery.Math">
+<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="To Float" Description="converts input object to a float with python" ID="81df57f1-0eeb-4cb8-83ac-07eebd0e2ce0" Category="Bakery.Core.Math">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="59b217d6-5793-4fd7-be08-549fc3787923" type="PythonNodeModels.PythonNode" nickname="Python Script" x="172.8" y="170.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">

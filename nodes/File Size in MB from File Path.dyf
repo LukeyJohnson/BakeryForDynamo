@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="237.217949611384" Y="168.809770634962" zoom="0.784369328044827" Name="File Size in MB from File Path" ID="a39332bf-48c4-411c-9f8f-b23130dc4196" Description="Input a File Path node, and this will do a ReadText to calculate approximate, rounded file size in MB. Also reports the string length if you want more granularity." Category="Bakery.Standalone">
+<Workspace Version="0.8.0.950" X="237.217949611384" Y="168.809770634962" zoom="0.784369328044827" Name="File Size in MB from File Path" ID="a39332bf-48c4-411c-9f8f-b23130dc4196" Description="Input a File Path node, and this will do a ReadText to calculate approximate, rounded file size in MB. Also reports the string length if you want more granularity." Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.File.FileObject guid="b44484b5-41ca-4a12-ac94-5893936883d8" type="DSCore.File.FileObject" nickname="File.FromPath" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />

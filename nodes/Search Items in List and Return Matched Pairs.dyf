@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Search Items in List and Return Matched Pairs" Description="" ID="12d064de-9869-4c7d-a25f-7e1f66d6009b" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Search Items in List and Return Matched Pairs" Description="" ID="12d064de-9869-4c7d-a25f-7e1f66d6009b" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="eafcab5d-b67c-4c79-89b0-1a17c4535c1a" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="568.996487942209" y="262.551425410711" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />

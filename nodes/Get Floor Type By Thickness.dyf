@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="283.731969150514" Y="282.41875761416" zoom="0.496186487382813" Name="Get Floor Type By Thickness" Description="" ID="67cef447-1337-4290-b027-bdabe0e9d976" Category="Bakery.Families">
+<Workspace Version="1.2.0.2690" X="283.731969150514" Y="282.41875761416" zoom="0.496186487382813" Name="Get Floor Type By Thickness" Description="" ID="67cef447-1337-4290-b027-bdabe0e9d976" Category="Bakery.Revit.Elements.Family">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
     <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />

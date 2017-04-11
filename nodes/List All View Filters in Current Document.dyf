@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="0" Y="0" zoom="1" Name="List All View Filters in Current Document" Description="uses ParameterFilterElement type selection" ID="2599cd5b-ca2e-42a1-82a1-3e43998ebaaa" Category="Bakery.Enums">
+<Workspace Version="1.1.0.2094" X="0" Y="0" zoom="1" Name="List All View Filters in Current Document" Description="uses ParameterFilterElement type selection" ID="2599cd5b-ca2e-42a1-82a1-3e43998ebaaa" Category="Bakery.Revit.Application.Enums">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.ElementTypes guid="c6025fd5-6401-44b2-be05-557135f430d9" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="207:ParameterFilterElement" />

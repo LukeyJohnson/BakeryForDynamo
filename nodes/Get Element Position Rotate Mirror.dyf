@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="-59.9872117585696" Y="264.847057835196" zoom="1.03605787560061" Name="Get Element Position Rotate Mirror" ID="7e6294a9-9e07-4b6b-b02b-3b140de98b0a" Description="details to various outputs" Category="Bakery.Elements">
+<Workspace Version="0.8.0.950" X="-59.9872117585696" Y="264.847057835196" zoom="1.03605787560061" Name="Get Element Position Rotate Mirror" ID="7e6294a9-9e07-4b6b-b02b-3b140de98b0a" Description="details to various outputs" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap>
     <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="0" Y="0" zoom="1" Name="Merge Sublists to Strings" Description="" ID="0b043335-ffe0-419f-9eb7-61078ebfbf43" Category="Bakery.Lists">
+<Workspace Version="0.9.1.4062" X="0" Y="0" zoom="1" Name="Merge Sublists to Strings" Description="" ID="0b043335-ffe0-419f-9eb7-61078ebfbf43" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.HigherOrder.Map guid="ada906a6-fcba-4b27-a802-d96960752620" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="266.515937642903" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-587.316188063569" Y="714.270700926277" zoom="1.66537098414077" Name="Filter List By Removing Certain Category Names" Description="" ID="9c69fd0a-0964-4ac2-8cab-226558e67520" Category="Bakery.Categories">
+<Workspace Version="1.2.1.3083" X="-587.316188063569" Y="714.270700926277" zoom="1.66537098414077" Name="Filter List By Removing Certain Category Names" Description="" ID="9c69fd0a-0964-4ac2-8cab-226558e67520" Category="Bakery.Revit.Document.Category">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="d0759838-5151-4c84-8840-8241dfeb6a9e" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="bv Get Category Name" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">

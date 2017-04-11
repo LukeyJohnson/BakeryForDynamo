@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-182.779656203587" Y="816.623233708695" zoom="0.554398928534729" Name="Create Floors From Rooms v1" Description="this version uses only the outermost boundary, does not detect cutout or openings (yet)" ID="55129f24-2c86-47e3-9be1-2f08e865c468" Category="Bakery.Make">
+<Workspace Version="0.8.2.2371" X="-182.779656203587" Y="816.623233708695" zoom="0.554398928534729" Name="Create Floors From Rooms v1" Description="this version uses only the outermost boundary, does not detect cutout or openings (yet)" ID="55129f24-2c86-47e3-9be1-2f08e865c468" Category="Bakery.Revit.Elements.Room">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="6c29b64f-a1ee-43d9-bbb5-bfc50c652343" type="Dynamo.Nodes.DSFunction" nickname="Element.Id" x="776.103714390455" y="1196.84841080129" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Elements.Element.Id" />

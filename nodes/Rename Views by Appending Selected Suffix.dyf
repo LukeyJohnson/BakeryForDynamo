@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-418.555384356409" Y="87.5526408860456" zoom="0.712594832628488" Name="Rename Views by Appending Selected Suffix" Description="" ID="669bcc42-cced-48a4-a1ac-0cedc0100cf8" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="-418.555384356409" Y="87.5526408860456" zoom="0.712594832628488" Name="Rename Views by Appending Selected Suffix" Description="" ID="669bcc42-cced-48a4-a1ac-0cedc0100cf8" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="2dcfdd10-e6a9-4960-b4fd-c91768617a38" type="Dynamo.Nodes.Watch" nickname="Watch" x="250" y="27.4958547598567" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

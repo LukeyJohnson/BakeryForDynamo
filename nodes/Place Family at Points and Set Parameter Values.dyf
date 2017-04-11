@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="214.718546019202" Y="-173.707898229361" zoom="0.53180847137906" Name="Place Family at Points and Set Parameter Values" Description="" ID="b60dc71b-990b-4b7a-a48b-adcae92ec006" Category="Bakery.Families">
+<Workspace Version="0.8.2.2371" X="214.718546019202" Y="-173.707898229361" zoom="0.53180847137906" Name="Place Family at Points and Set Parameter Values" Description="" ID="b60dc71b-990b-4b7a-a48b-adcae92ec006" Category="Bakery.Revit.Elements.Family">
   <NamespaceResolutionMap>
     <ClassMap partialName="FamilySymbol" resolvedName="Revit.Elements.FamilySymbol" assemblyName="RevitNodes.dll" />
   </NamespaceResolutionMap>

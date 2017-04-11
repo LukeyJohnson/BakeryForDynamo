@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-149.642948219706" Y="159.350134916081" zoom="0.98848094076446" Name="Create Worksets for Revit Link Filenames" Description="" ID="611b3029-f3ff-4029-adf3-417fe4e19bf5" Category="Bakery.Worksets">
+<Workspace Version="1.2.1.3083" X="-149.642948219706" Y="159.350134916081" zoom="0.98848094076446" Name="Create Worksets for Revit Link Filenames" Description="" ID="611b3029-f3ff-4029-adf3-417fe4e19bf5" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="5df63429-a464-46a5-aaf4-fa74a8488b86" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Linked RVT Documents" x="-1089.58073535518" y="402.825169044906" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">

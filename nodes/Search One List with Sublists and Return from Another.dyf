@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-79.1416887010738" Y="543.257862820171" zoom="0.712594832628488" Name="Search One List with Sublists and Return from Another" Description="" ID="ee08dbe2-5be2-4da5-a60f-dee6cccf1530" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="-79.1416887010738" Y="543.257862820171" zoom="0.712594832628488" Name="Search One List with Sublists and Return from Another" Description="" ID="ee08dbe2-5be2-4da5-a60f-dee6cccf1530" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="e8df823a-4565-4c16-b274-dae72dbf4713" type="Dynamo.Nodes.Function" nickname="Turn Into List" x="53.500570954864" y="116.548911230182" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

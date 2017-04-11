@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="17.0325" Y="175.875" zoom="0.8425" Name="Document Design Option Sets" Description="taken originally from Clockwork" ID="16db6bbd-5924-4c30-932f-107229b0fe99" Category="Bakery.DocInfo">
+<Workspace Version="0.8.2.2371" X="17.0325" Y="175.875" zoom="0.8425" Name="Document Design Option Sets" Description="taken originally from Clockwork" ID="16db6bbd-5924-4c30-932f-107229b0fe99" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="e4678ca5-2ff4-48ed-b9f0-a288cbad6b92" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

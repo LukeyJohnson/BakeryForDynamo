@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="253" Y="349" zoom="1" Name="List Phase Information" Description="uses Clockwork" ID="5b4e7d22-9048-46df-813c-ca924790686b" Category="Bakery.DocInfo">
+<Workspace Version="0.9.1.4062" X="253" Y="349" zoom="1" Name="List Phase Information" Description="uses Clockwork" ID="5b4e7d22-9048-46df-813c-ca924790686b" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="603bd91e-5ff6-41d3-8454-0a23b30ffcd3" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Document.Phases" x="156.549421810187" y="9.99999999999991" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">

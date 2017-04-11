@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="-188.858870126563" Y="40.8557650555142" zoom="0.616107147327431" Name="subnode to Create Filter for All Categories" Description="" ID="629e3053-df7b-4e42-88fb-c3a59400cc68" Category="Bakery.Views">
+<Workspace Version="1.1.0.2094" X="-188.858870126563" Y="40.8557650555142" zoom="0.616107147327431" Name="subnode to Create Filter for All Categories" Description="" ID="629e3053-df7b-4e42-88fb-c3a59400cc68" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="14ede4b8-8827-4724-8e86-ac87b92cb0a6" type="CoreNodeModels.Input.StringInput" nickname="String" x="760.429594389029" y="566.990666978974" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

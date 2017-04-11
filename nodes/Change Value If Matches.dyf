@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="97.2197256083085" Y="87.095192388724" zoom="0.70823125" Name="Change Value If Matches" Description="" ID="47b04529-428b-4eb2-9116-b2e760b6f35c" Category="Bakery.Functions">
+<Workspace Version="0.9.2.4472" X="97.2197256083085" Y="87.095192388724" zoom="0.70823125" Name="Change Value If Matches" Description="" ID="47b04529-428b-4eb2-9116-b2e760b6f35c" Category="Bakery.Core.Logic">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="8c576783-d8ee-48d6-b6fc-80560f7495d9" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="3">

@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="140.424554774944" Y="262.584638058651" zoom="1.07925372895183" Name="Parse XYZ from Delimited String List" Description="" ID="f2c1ca50-39a6-4eac-b20f-97665a43576c" Category="Bakery.Standalone">
+<Workspace Version="1.2.1.3083" X="140.424554774944" Y="262.584638058651" zoom="1.07925372895183" Name="Parse XYZ from Delimited String List" Description="" ID="f2c1ca50-39a6-4eac-b20f-97665a43576c" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction guid="a5177509-7f5d-4312-b967-5c8b8c594bc3" type="Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction" nickname="String.Split" x="250" y="32.9835870803664" isVisible="true" isUpstreamVisible="true" lacing="Longest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.String.Split@string,string[]" inputcount="2">

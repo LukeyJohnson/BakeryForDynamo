@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="-1418.97236817385" Y="-597.58978068102" zoom="1.07925372895184" Name="Get View Discipline Name by Code" Description="" ID="7aabbd8a-d41a-4c22-9040-0df917dbdae6" Category="Bakery.Views">
+<Workspace Version="1.2.0.2690" X="-1418.97236817385" Y="-597.58978068102" zoom="1.07925372895184" Name="Get View Discipline Name by Code" Description="" ID="7aabbd8a-d41a-4c22-9040-0df917dbdae6" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="16a876ef-64b1-400d-91a5-5679db75ed10" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Enumerate View Discipline" x="1407" y="598.666666666667" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="true">

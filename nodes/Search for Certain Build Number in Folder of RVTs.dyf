@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="295.406029539202" Y="318.362317192052" zoom="0.674831658426865" Name="Search for Certain Build Number in Folder of RVTs" ID="caab95e5-5398-4b93-b09d-74003d2ba37b" Description="" Category="Bakery.Standalone">
+<Workspace Version="0.8.1.1942" X="295.406029539202" Y="318.362317192052" zoom="0.674831658426865" Name="Search for Certain Build Number in Folder of RVTs" ID="caab95e5-5398-4b93-b09d-74003d2ba37b" Description="" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSVarArgFunction guid="ec756236-2ccd-4e1e-baca-f734c9a8c3cb" type="Dynamo.Nodes.DSVarArgFunction" nickname="String.Split" x="135.417652370238" y="459.308441579168" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Split@string,string[]" inputcount="2" />

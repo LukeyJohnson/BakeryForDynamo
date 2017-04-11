@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-41.8760866472735" Y="227.651775574853" zoom="0.712594832628488" Name="Preflight to Make Revit Section Views from Lines" Description="" ID="2525742a-26f6-4f13-93a9-6e881e1bd4ce" Category="Bakery.Views">
+<Workspace Version="0.9.1.4062" X="-41.8760866472735" Y="227.651775574853" zoom="0.712594832628488" Name="Preflight to Make Revit Section Views from Lines" Description="" ID="2525742a-26f6-4f13-93a9-6e881e1bd4ce" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap>
     <ClassMap partialName="Element" resolvedName="Revit.Elements.Element" assemblyName="RevitNodes.dll" />
   </NamespaceResolutionMap>

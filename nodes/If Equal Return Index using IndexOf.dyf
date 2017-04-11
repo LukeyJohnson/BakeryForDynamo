@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="524.003333456973" Y="188.378724962908" zoom="0.97676875" Name="If Equal Return Index using IndexOf" Description="" ID="ca92b390-30de-4023-886c-cb172a3025bf" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="524.003333456973" Y="188.378724962908" zoom="0.97676875" Name="If Equal Return Index using IndexOf" Description="" ID="ca92b390-30de-4023-886c-cb172a3025bf" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.Map guid="406d8e62-7b2a-4990-9c5c-79f141720b76" type="DSCore.Map" nickname="List.Map" x="400.35326875369" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

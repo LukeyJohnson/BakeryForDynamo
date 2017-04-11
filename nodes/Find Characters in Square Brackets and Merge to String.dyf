@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="-224.666666666667" Y="326" zoom="1.1575" Name="Find Characters in Square Brackets and Merge to String" Description="" ID="b7b8e610-3721-4183-97fa-723cefc71f7b" Category="Bakery.Strings">
+<Workspace Version="1.1.0.2094" X="-224.666666666667" Y="326" zoom="1.1575" Name="Find Characters in Square Brackets and Merge to String" Description="" ID="b7b8e610-3721-4183-97fa-723cefc71f7b" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="f1bd4d3a-e38d-4f6e-b26a-0768a0d9515f" type="CoreNodeModels.Input.StringInput" nickname="String" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

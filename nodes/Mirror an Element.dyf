@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="102.045641890625" Y="221.538324546875" zoom="1.545620359375" Name="Mirror an Element" ID="888c2901-ed8c-4bb1-a658-7749481fe527" Description="using python" Category="Bakery.Elements">
+<Workspace Version="0.8.0.950" X="102.045641890625" Y="221.538324546875" zoom="1.545620359375" Name="Mirror an Element" ID="888c2901-ed8c-4bb1-a658-7749481fe527" Description="using python" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="090f06d1-590a-4bf4-b0c4-838948577fb5" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="9.99999999999999" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

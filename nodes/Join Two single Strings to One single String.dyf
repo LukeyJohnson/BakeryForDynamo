@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="224.0225" Y="226.48" zoom="1.1575" Name="Join Two single Strings to One single String" ID="be427b49-872b-47ac-b13c-8ac223e1d7cd" Description="use with list.map" Category="Bakery.Strings">
+<Workspace Version="0.8.0.950" X="224.0225" Y="226.48" zoom="1.1575" Name="Join Two single Strings to One single String" ID="be427b49-872b-47ac-b13c-8ac223e1d7cd" Description="use with list.map" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="72b7f075-2925-4c1c-8000-ee2d3c6cdc37" type="Dynamo.Nodes.Symbol" nickname="Input" x="-2.09503239740775" y="3.9524838012955" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

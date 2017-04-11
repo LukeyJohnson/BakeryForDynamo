@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="49.8907011498516" Y="220.145361739614" zoom="0.70823125" Name="Get Characters at End of Strings" Description="" ID="9fb8e934-4997-489d-b98b-ba6a9c2afd50" Category="Bakery.Strings">
+<Workspace Version="1.0.0.1180" X="49.8907011498516" Y="220.145361739614" zoom="0.70823125" Name="Get Characters at End of Strings" Description="" ID="9fb8e934-4997-489d-b98b-ba6a9c2afd50" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="a5db6963-b1f6-4a8e-b32b-4d8b292383af" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.Length" x="508.019204729123" y="119.218904580894" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.String.Length@string" />

@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="282.666666666666" Y="250" zoom="1" Name="Text File to List of Strings" Description="" ID="f653e33f-7818-4350-a6a9-377747101c79" Category="Bakery.Standalone">
+<Workspace Version="1.2.1.3083" X="282.666666666666" Y="250" zoom="1" Name="Text File to List of Strings" Description="" ID="f653e33f-7818-4350-a6a9-377747101c79" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.FileObject guid="ce5517c6-15b0-47fb-b2a2-d43e54fcfcd3" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="250" y="8.68666051588121" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">

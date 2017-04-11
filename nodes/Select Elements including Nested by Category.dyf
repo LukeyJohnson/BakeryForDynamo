@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="255" Y="246" zoom="1" Name="Select Elements including Nested by Category" Description="and report as list and number of items" ID="6b62dfa4-0e33-4a5f-a6ca-6cc6d316d69e" Category="Bakery.Collect">
+<Workspace Version="0.9.1.4062" X="255" Y="246" zoom="1" Name="Select Elements including Nested by Category" Description="and report as list and number of items" ID="6b62dfa4-0e33-4a5f-a6ca-6cc6d316d69e" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.ElementsOfCategory guid="126496a1-5bee-42e4-92cc-26f3fe539044" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="724.205503821332" y="291.208201753606" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

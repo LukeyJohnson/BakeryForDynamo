@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-163.60620467834" Y="77.4619090129901" zoom="0.756889548913338" Name="Search by Workset and return Items" Description="also has a bool result, FALSE if it contains items, TRUE if empty" ID="9433c10c-367e-443f-91db-8dfd61492418" Category="Bakery.Collect">
+<Workspace Version="0.9.2.4472" X="-163.60620467834" Y="77.4619090129901" zoom="0.756889548913338" Name="Search by Workset and return Items" Description="also has a bool result, FALSE if it contains items, TRUE if empty" ID="9433c10c-367e-443f-91db-8dfd61492418" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="7d2cbf2a-c582-4aea-856d-3e28e547be39" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Worksets" x="669.093743769788" y="157.988474193829" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-253.649536652058" Y="263.073070399479" zoom="1.130842140625" Name="Get Indices of Null Values" Description="." ID="7c252180-4f63-4ae3-8ed6-c16dfed93518" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="-253.649536652058" Y="263.073070399479" zoom="1.130842140625" Name="Get Indices of Null Values" Description="." ID="7c252180-4f63-4ae3-8ed6-c16dfed93518" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Output guid="93cbf6d0-5f87-4cf1-8964-49f90fcc33a9" type="Dynamo.Nodes.Output" nickname="Output" x="927.876182346831" y="106.544864124697" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">

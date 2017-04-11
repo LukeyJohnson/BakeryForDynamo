@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="219.128815100768" Y="139.672721481028" zoom="0.784369328044827" Name="Collect All Tags in Project" Description="" ID="2c06f8c5-312b-4a38-a621-bce8d238a0aa" Category="Bakery.Tags">
+<Workspace Version="0.8.2.2371" X="219.128815100768" Y="139.672721481028" zoom="0.784369328044827" Name="Collect All Tags in Project" Description="" ID="2c06f8c5-312b-4a38-a621-bce8d238a0aa" Category="Bakery.Revit.Elements.Tag">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="76e06de3-985b-4d94-adbe-dfcf6555cd53" type="Dynamo.Nodes.Watch" nickname="Watch" x="236.068538309967" y="9.99999999999997" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="ImageSettings Zoom Fit Type" ID="5fed5d72-9873-4c3d-ac70-d404fb506007" Description="" Category="Bakery.Images">
+<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="ImageSettings Zoom Fit Type" ID="5fed5d72-9873-4c3d-ac70-d404fb506007" Description="" Category="Bakery.Revit.Image">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="81d639f6-987f-4306-8aff-c8cdff2dad41" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="11" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">

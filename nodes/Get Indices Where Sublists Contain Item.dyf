@@ -1,4 +1,4 @@
-<Workspace Version="1.3.0.875" X="173" Y="129" zoom="1" ScaleFactor="1" Name="Get Indices Where Sublists Contain Item" Description="" ID="11dbcfc6-9d18-4774-8988-484e9eb11cdb" Category="Bakery.Lists">
+<Workspace Version="1.3.0.875" X="173" Y="129" zoom="1" ScaleFactor="1" Name="Get Indices Where Sublists Contain Item" Description="" ID="11dbcfc6-9d18-4774-8988-484e9eb11cdb" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e591e777-d9b1-47fd-b506-ab89bc6e203e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.AllIndicesOf" x="250" y="9.15745122800115" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="DSCoreNodes.dll" function="DSCore.List.AllIndicesOf@var[]..[],var">

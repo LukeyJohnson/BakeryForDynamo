@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-502.135311747428" Y="207.114268151805" zoom="0.888789228297156" Name="Search One List Based on Second List and Get Values" Description="get values from a 3rd list or the 1st list" ID="a75e0ea5-4603-4b9c-9337-a509af12b856" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="-502.135311747428" Y="207.114268151805" zoom="0.888789228297156" Name="Search One List Based on Second List and Get Values" Description="get values from a 3rd list or the 1st list" ID="a75e0ea5-4603-4b9c-9337-a509af12b856" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.HigherOrder.Map guid="c79a5505-f953-4cbc-bb6d-b47e1fbd31e2" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="777.990999392387" y="97.0205006790715" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

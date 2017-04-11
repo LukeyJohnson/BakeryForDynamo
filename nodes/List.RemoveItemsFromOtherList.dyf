@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="384.77449353633" Y="267.975678533016" zoom="0.983140629271199" Name="List.RemoveItemsFromOtherList" ID="a7e8c439-cb52-42a4-ab14-5f1aa3eae2dc" Description="This will take long list A, remove entries that appear in short list B, and give you list C. (JBE List Operations are probably more robust)." Category="Bakery.Lists">
+<Workspace Version="0.8.0.950" X="384.77449353633" Y="267.975678533016" zoom="0.983140629271199" Name="List.RemoveItemsFromOtherList" ID="a7e8c439-cb52-42a4-ab14-5f1aa3eae2dc" Description="This will take long list A, remove entries that appear in short list B, and give you list C. (JBE List Operations are probably more robust)." Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="9f8caba8-2f5a-48c1-bee6-b1f1169b1a33" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="98.6452698139811" y="-7.40078767142586" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="2">

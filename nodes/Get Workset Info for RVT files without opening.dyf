@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="39.747573298652" Y="347.399626227559" zoom="0.822695359375" Name="Get Workset Info for RVT files without opening" Description="thanks to dimven for the assist." ID="d9198273-f0ae-4aa3-b1b2-41f8481c351b" Category="Bakery.Worksets">
+<Workspace Version="1.1.0.2094" X="39.747573298652" Y="347.399626227559" zoom="0.822695359375" Name="Get Workset Info for RVT files without opening" Description="thanks to dimven for the assist." ID="d9198273-f0ae-4aa3-b1b2-41f8481c351b" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.CreateList guid="ae701fa5-7621-45bf-90d6-fc889df40003" type="CoreNodeModels.CreateList" nickname="List.Create" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1" />

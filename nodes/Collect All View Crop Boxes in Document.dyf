@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-50.9635899729744" Y="231.442678331506" zoom="1.78359936238281" Name="Collect All View Crop Boxes in Document" Description="" ID="abd3a42b-eb56-4a9c-8e27-1f4a9fadbbd6" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="-50.9635899729744" Y="231.442678331506" zoom="1.78359936238281" Name="Collect All View Crop Boxes in Document" Description="" ID="abd3a42b-eb56-4a9c-8e27-1f4a9fadbbd6" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="c632051b-b8bd-4f63-ac20-e6cbdc3c793c" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" inputcount="0">

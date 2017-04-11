@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="304" Y="298" zoom="1" Name="View Templates for View List" Description="" ID="ef91964c-52ca-429b-abd8-6d5c2c5122d5" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="304" Y="298" zoom="1" Name="View Templates for View List" Description="" ID="ef91964c-52ca-429b-abd8-6d5c2c5122d5" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="87346fd4-8caa-4447-bb19-8c42439c8621" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10.773892773893" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

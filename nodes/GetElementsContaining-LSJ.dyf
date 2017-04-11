@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="-219.134410151483" Y="207.298579744197" zoom="1.06060772236021" Name="GetElementsContaining" Description="This node search the selected element type for a inputvalue(string) and returns a list of the elements containing the given input." ID="7f478a35-26a5-453d-a5a3-394e923ad577" Category="Bakery.Elements">
+<Workspace Version="1.2.0.2690" X="-219.134410151483" Y="207.298579744197" zoom="1.06060772236021" Name="GetElementsContaining" Description="This node search the selected element type for a inputvalue(string) and returns a list of the elements containing the given input." ID="7f478a35-26a5-453d-a5a3-394e923ad577" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="20ccb954-e690-41a2-8212-e99852bdf0fe" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.Contains" x="705.031788013913" y="224.178967695269" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.String.Contains@string,string,bool">

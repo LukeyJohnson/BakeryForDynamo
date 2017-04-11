@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Read CSV to Flat List" Description="" ID="6e61a5e7-9944-40b1-9423-1f18635e9764" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Read CSV to Flat List" Description="" ID="6e61a5e7-9944-40b1-9423-1f18635e9764" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.File.FileObject guid="0164487e-3996-4fca-bdd8-37452bd13004" type="DSCore.File.FileObject" nickname="File.FromPath" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="586.911082669326" Y="50.3795652814664" zoom="1.130842140625" Name="Make Openings in Walls" Description="" ID="09165f27-9cf0-4225-b16b-894ac8cd6be8" Category="Bakery.Walls">
+<Workspace Version="1.0.0.1180" X="586.911082669326" Y="50.3795652814664" zoom="1.130842140625" Name="Make Openings in Walls" Description="" ID="09165f27-9cf0-4225-b16b-894ac8cd6be8" Category="Bakery.Revit.Elements.Wall">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="9f0f9fd3-bf76-4bf2-b227-c6916948fe22" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="5">

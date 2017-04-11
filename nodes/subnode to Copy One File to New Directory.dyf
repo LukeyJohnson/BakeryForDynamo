@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="277" Y="349" zoom="1" Name="subnode to Copy One File to New Directory" Description="" ID="9a91c964-7e3f-4e85-a252-b1c5f22e4c29" Category="Bakery.Standalone">
+<Workspace Version="0.9.1.4062" X="277" Y="349" zoom="1" Name="subnode to Copy One File to New Directory" Description="" ID="9a91c964-7e3f-4e85-a252-b1c5f22e4c29" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="adc47725-ba71-4b7f-b8f0-bd3b82b1fc70" type="CoreNodeModels.Input.StringInput" nickname="String" x="485.401544280819" y="225.193114919147" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

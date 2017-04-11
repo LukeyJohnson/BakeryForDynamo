@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-1314.33445981337" Y="185.484317099441" zoom="1.47618023926361" Name="List Room and Space Elements" Description="with a general bool test too" ID="a796ca46-dc3b-4d64-8ac3-473421cbe4ff" Category="Bakery.Rooms">
+<Workspace Version="0.9.1.4062" X="-1314.33445981337" Y="185.484317099441" zoom="1.47618023926361" Name="List Room and Space Elements" Description="with a general bool test too" ID="a796ca46-dc3b-4d64-8ac3-473421cbe4ff" Category="Bakery.Revit.Elements.Room">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.Categories guid="98ba286f-9b55-4006-bc03-6cb337da0cd2" type="DSRevitNodesUI.Categories" nickname="Categories" x="250" y="11.6442201801904" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" index="721:Rooms" />

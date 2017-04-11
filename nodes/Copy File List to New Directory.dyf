@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="298" Y="127" zoom="1" Name="Copy File List to New Directory" Description="takes list of file paths and a Directory Path" ID="87ce2a73-00f2-48be-852a-ea14ce53c3b4" Category="Bakery.Standalone">
+<Workspace Version="0.9.1.4062" X="298" Y="127" zoom="1" Name="Copy File List to New Directory" Description="takes list of file paths and a Directory Path" ID="87ce2a73-00f2-48be-852a-ea14ce53c3b4" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="0c3d2e89-77d4-49fb-9f63-9fb906b4a5bf" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="subnode to Copy One File to New Directory" x="250" y="590.001674987962" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">

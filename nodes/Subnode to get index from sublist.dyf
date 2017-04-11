@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Subnode to get index from sublist" Description="" ID="3faf52c9-2fa9-44d0-93b3-cace3035fca7" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Subnode to get index from sublist" Description="" ID="3faf52c9-2fa9-44d0-93b3-cace3035fca7" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="2c473fff-6a24-427f-aa93-338a18eae67b" type="Dynamo.Nodes.DSFunction" nickname="List.GetItemAtIndex" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />

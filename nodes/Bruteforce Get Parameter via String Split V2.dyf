@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="-602.5909634723" Y="-214.997954139876" zoom="1.02785294004215" Name="Bruteforce Get Parameter via String Split V2" Description="BETTER" ID="712081d4-a042-43a4-bb1c-e29599a1f2f7" Category="Bakery.Parameters">
+<Workspace Version="0.8.2.2392" X="-602.5909634723" Y="-214.997954139876" zoom="1.02785294004215" Name="Bruteforce Get Parameter via String Split V2" Description="BETTER" ID="712081d4-a042-43a4-bb1c-e29599a1f2f7" Category="Bakery.Revit.Parameters">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSVarArgFunction guid="e7262fac-b53b-4154-8df7-3ea57e3998ec" type="Dynamo.Nodes.DSVarArgFunction" nickname="String.Split" x="1454.59964909564" y="363.191493036027" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.String.Split@string,string[]" inputcount="2" />

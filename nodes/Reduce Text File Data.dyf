@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="70.1043054994868" Y="482.319560070941" zoom="0.852765925581496" Name="Reduce Text File Data" Description="" ID="62fd4085-bc8f-4d85-bffe-86d311cd9526" Category="Bakery.Standalone">
+<Workspace Version="1.2.1.3083" X="70.1043054994868" Y="482.319560070941" zoom="0.852765925581496" Name="Reduce Text File Data" Description="" ID="62fd4085-bc8f-4d85-bffe-86d311cd9526" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2f24e2d6-b967-4e85-9872-d46d68a89b17" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

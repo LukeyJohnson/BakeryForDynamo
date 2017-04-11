@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-1445.42529808665" Y="-13.3516135472322" zoom="0.915562285281226" Name="Write Room Numbers and Location Points to Excel" Description="" ID="41338f67-1772-4834-a35d-e02ebd68a8c7" Category="Bakery.Rooms">
+<Workspace Version="0.9.2.4472" X="-1445.42529808665" Y="-13.3516135472322" zoom="0.915562285281226" Name="Write Room Numbers and Location Points to Excel" Description="" ID="41338f67-1772-4834-a35d-e02ebd68a8c7" Category="Bakery.Revit.Elements.Room">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="7b0a17dd-4506-4bd5-bf08-1ab87ae4115c" type="CoreNodeModels.Input.StringInput" nickname="String" x="250" y="103.30022902856" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

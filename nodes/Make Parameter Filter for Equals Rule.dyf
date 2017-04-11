@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="354.27575" Y="344.843175" zoom="1.33823125" Name="Make Parameter Filter for Equals Rule" Description="" ID="d9255db8-5be7-4759-ae5a-0f7c39e7b5b1" Category="Bakery.Views">
+<Workspace Version="1.1.0.2094" X="354.27575" Y="344.843175" zoom="1.33823125" Name="Make Parameter Filter for Equals Rule" Description="" ID="d9255db8-5be7-4759-ae5a-0f7c39e7b5b1" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="c76877f6-7af2-4ba1-ab01-fde5b23b8342" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="4">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="-848.374743718361" Y="-291.228343932525" zoom="0.591776229073242" Name="Display Parent Child Pairs as Hierarchy" Description="" ID="0fe49e14-36da-4fa1-9a31-c8ebdc74f7fa" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2392" X="-848.374743718361" Y="-291.228343932525" zoom="0.591776229073242" Name="Display Parent Child Pairs as Hierarchy" Description="" ID="0fe49e14-36da-4fa1-9a31-c8ebdc74f7fa" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="20e2dfee-d927-4ff0-a788-7766ead260b9" type="Dynamo.Nodes.DSFunction" nickname="GroupByKey" x="1221.65955786594" y="1372.79490539404" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="GroupByKey@var[]..[],_FunctionObject" />

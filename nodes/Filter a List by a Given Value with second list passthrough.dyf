@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="-148" Y="14" zoom="1" Name="Filter a List by a Given Value with second list passthrough" ID="4a76c31e-f813-4237-bc84-4dc8db17db66" Description="" Category="Bakery.Lists">
+<Workspace Version="0.8.0.950" X="-148" Y="14" zoom="1" Name="Filter a List by a Given Value with second list passthrough" ID="4a76c31e-f813-4237-bc84-4dc8db17db66" Description="" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="210b2cbb-f44e-4af8-8483-8346ae50e45e" type="Dynamo.Nodes.Symbol" nickname="Input" x="382.5" y="236" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

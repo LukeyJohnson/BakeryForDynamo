@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-1163.95440975182" Y="179.86557112547" zoom="0.679023042340542" Name="Summary of Unique Values present in List" Description="" ID="fb9cf775-a964-424e-ba2c-b02a0ee291dd" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="-1163.95440975182" Y="179.86557112547" zoom="0.679023042340542" Name="Summary of Unique Values present in List" Description="" ID="fb9cf775-a964-424e-ba2c-b02a0ee291dd" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="e92c9a40-0282-490b-b325-eee70c65351b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Filter a List by a Given Value with second list passthrough" x="259.305744154637" y="266.305744154637" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">

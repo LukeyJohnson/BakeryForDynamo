@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Get System Types as List" Description="uses HostObjAttributes parent class to collect" ID="3c9ec9d4-c6dd-4d3c-9511-b9459d65ee99" Category="Bakery.Families">
+<Workspace Version="0.8.2.2371" X="0" Y="0" zoom="1" Name="Get System Types as List" Description="uses HostObjAttributes parent class to collect" ID="3c9ec9d4-c6dd-4d3c-9511-b9459d65ee99" Category="Bakery.Revit.Elements.Family">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="685c89ed-756a-4d53-b5be-63bd90fb7e9e" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="0">

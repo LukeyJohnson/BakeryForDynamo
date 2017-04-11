@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="146.8175" Y="140.385" zoom="1.1575" Name="Set Worksharing Display Mode for View" Description="" ID="16113707-a440-40c3-a0dc-30112d1e243c" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="146.8175" Y="140.385" zoom="1.1575" Name="Set Worksharing Display Mode for View" Description="" ID="16113707-a440-40c3-a0dc-30112d1e243c" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="4337222c-29cc-4701-a8d3-fbe31dd84a8b" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="21.3651864801865" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

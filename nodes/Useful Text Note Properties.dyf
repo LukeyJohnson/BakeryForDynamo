@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="Useful Text Note Properties" Description="" ID="8e288d3a-a66c-462d-b4cc-313172eb3197" Category="Bakery.Properties">
+<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="Useful Text Note Properties" Description="" ID="8e288d3a-a66c-462d-b4cc-313172eb3197" Category="Bakery.Revit.Elements.Properties">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b9dd5b15-501d-49a0-a673-0655eb31fee2" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

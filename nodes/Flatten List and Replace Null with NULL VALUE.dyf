@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="87.0275" Y="171.2275" zoom="1.1575" Name="Flatten List and Replace Null with NULL VALUE" Description="" ID="904eddbd-0acf-43fc-be8f-7491edd0de86" Category="Bakery.Lists">
+<Workspace Version="0.9.1.4062" X="87.0275" Y="171.2275" zoom="1.1575" Name="Flatten List and Replace Null with NULL VALUE" Description="" ID="904eddbd-0acf-43fc-be8f-7491edd0de86" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="064b6cb4-adbe-44fc-9097-3f33c901ef46" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="BuiltIn" function="Flatten@var[]..[]" />

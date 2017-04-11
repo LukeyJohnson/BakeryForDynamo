@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="247" Y="184" zoom="1" Name="Get Date Modified From File Path List" Description="list of paths to files" ID="8eb227f2-6a6a-4f79-9464-9013a3c9640e" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2371" X="247" Y="184" zoom="1" Name="Get Date Modified From File Path List" Description="list of paths to files" ID="8eb227f2-6a6a-4f79-9464-9013a3c9640e" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="0443a968-3168-4c2a-8ee1-5b4df6b3d06d" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="249" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="60" Y="223" zoom="1" Name="Zero to One Range with Divisor" Description="" ID="55d867e2-438a-43b4-bd9e-0ffd79e4292c" Category="Bakery.Math">
+<Workspace Version="0.8.2.2371" X="60" Y="223" zoom="1" Name="Zero to One Range with Divisor" Description="" ID="55d867e2-438a-43b4-bd9e-0ffd79e4292c" Category="Bakery.Core.Math">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="26642e15-4e66-4dde-8303-e28729102450" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="404.326530542864" y="139.895256759259" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="0.01;" ShouldFocus="false" />

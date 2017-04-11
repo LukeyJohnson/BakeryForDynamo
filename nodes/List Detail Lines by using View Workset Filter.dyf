@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-78.5450073152124" Y="187.924082005497" zoom="0.827702570441191" Name="List Detail Lines by using View Workset Filter" Description="only works on workshared projects" ID="cd42fbb4-58cb-400d-bc2f-6b2192d41aba" Category="Bakery.Elements">
+<Workspace Version="0.8.2.2371" X="-78.5450073152124" Y="187.924082005497" zoom="0.827702570441191" Name="List Detail Lines by using View Workset Filter" Description="only works on workshared projects" ID="cd42fbb4-58cb-400d-bc2f-6b2192d41aba" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="1ad510e3-e7ce-4574-9266-46d1d899379d" type="Dynamo.Nodes.Function" nickname="Element.Workset" x="250" y="224.787599998433" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

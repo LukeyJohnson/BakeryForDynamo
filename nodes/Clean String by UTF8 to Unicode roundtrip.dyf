@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="31.48681875" Y="116.934905264579" zoom="1.33823125" Name="Clean String by UTF8 to Unicode roundtrip" Description="" ID="fda5b97b-7814-415a-89b5-bc00286e7c59" Category="Bakery.Strings">
+<Workspace Version="0.8.2.2371" X="31.48681875" Y="116.934905264579" zoom="1.33823125" Name="Clean String by UTF8 to Unicode roundtrip" Description="" ID="fda5b97b-7814-415a-89b5-bc00286e7c59" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="010efebd-29a9-41da-a0af-8079e935c4f9" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="250" y="-1" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

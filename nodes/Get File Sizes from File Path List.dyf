@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="400.739995205353" Y="378.864919279045" zoom="1.89067933822999" Name="Get File Sizes from File Path List" Description="" ID="fb88935c-caa8-44e8-bd4d-1f81534a54c6" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2371" X="400.739995205353" Y="378.864919279045" zoom="1.89067933822999" Name="Get File Sizes from File Path List" Description="" ID="fb88935c-caa8-44e8-bd4d-1f81534a54c6" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="d90cb709-ab93-4776-ab9f-c78f35cca38c" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

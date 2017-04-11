@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="208" Y="698" zoom="1" Name="Generate Family--Type Name String From Types" Description="" ID="3acc8978-a03e-4f38-a484-6f0fdc195f24" Category="Bakery.Families">
+<Workspace Version="1.2.1.3083" X="208" Y="698" zoom="1" Name="Generate Family--Type Name String From Types" Description="" ID="3acc8978-a03e-4f38-a484-6f0fdc195f24" Category="Bakery.Revit.Elements.Family">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8439a7d9-ca8c-4d75-ab38-36fa0ec8b6a1" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Flatten@var[]..[]">

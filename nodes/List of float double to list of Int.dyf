@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="68.578550124857" Y="15.2841814646842" zoom="0.822695359375" Name="List of float double to list of Int" Description="no decimals" ID="07886f46-cd5b-4530-8833-28ca7956cdbc" Category="Bakery.Math">
+<Workspace Version="0.8.2.2371" X="68.578550124857" Y="15.2841814646842" zoom="0.822695359375" Name="List of float double to list of Int" Description="no decimals" ID="07886f46-cd5b-4530-8833-28ca7956cdbc" Category="Bakery.Core.Math">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="8f26e5bc-9305-4eda-829c-82b7dfe78874" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

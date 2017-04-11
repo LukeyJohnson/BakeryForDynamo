@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="771" Y="385" zoom="1" Name="Is Family Instance InPlace" ID="58fca8f8-24ef-49ac-98fd-39d32793a8ab" Description="takes FamilyInstance, returns bool" Category="Bakery.Families">
+<Workspace Version="0.8.1.1942" X="771" Y="385" zoom="1" Name="Is Family Instance InPlace" ID="58fca8f8-24ef-49ac-98fd-39d32793a8ab" Description="takes FamilyInstance, returns bool" Category="Bakery.Revit.Elements.Family">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="0150ac36-c72e-44fa-9061-3551f2838a22" type="Dynamo.Nodes.DSFunction" nickname="FamilyInstance.Symbol" x="10" y="107.517365361141" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.Symbol" />

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-191.1075" Y="51.33" zoom="0.8425" Name="Show Categories containing Family Instances" Description="list" ID="d02cb9de-45df-4a94-907b-00d6030757a9" Category="Bakery.Categories">
+<Workspace Version="0.9.2.4472" X="-191.1075" Y="51.33" zoom="0.8425" Name="Show Categories containing Family Instances" Description="list" ID="d02cb9de-45df-4a94-907b-00d6030757a9" Category="Bakery.Revit.Document.Category">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="6a054490-d337-4250-b300-bc93250ab736" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Collect all FamilyInstance using Element Types" x="335" y="276" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">

@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="319.066666666667" Y="239.466666666667" zoom="1" Name="Create View Filter" Description="uses Contains rule" ID="3952c307-26d2-4a8c-be63-0b6a99a36016" Category="Bakery.Views">
+<Workspace Version="1.1.0.2094" X="319.066666666667" Y="239.466666666667" zoom="1" Name="Create View Filter" Description="uses Contains rule" ID="3952c307-26d2-4a8c-be63-0b6a99a36016" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="d9130148-3bf5-4bd2-9905-b6e0213f4ca2" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">

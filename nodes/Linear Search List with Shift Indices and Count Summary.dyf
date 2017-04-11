@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="384.705600128863" Y="374.03537868717" zoom="0.954042924882813" Name="Linear Search List with Shift Indices and Count Summary" Description="" ID="afd800f2-7a0d-4bb7-8f4f-54157e5300e3" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="384.705600128863" Y="374.03537868717" zoom="0.954042924882813" Name="Linear Search List with Shift Indices and Count Summary" Description="" ID="afd800f2-7a0d-4bb7-8f4f-54157e5300e3" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="920eb6ca-3b15-45e8-ac3a-aa8465a938e1" type="Dynamo.Nodes.Watch" nickname="Watch" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

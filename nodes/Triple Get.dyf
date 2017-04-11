@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2831" X="444.232466447084" Y="402.371891835853" zoom="1.33823125" Name="Triple Get" Description="" ID="757e996a-10d1-4221-8d28-653a6ca7b823" Category="Bakery.Lists">
+<Workspace Version="1.2.0.2831" X="444.232466447084" Y="402.371891835853" zoom="1.33823125" Name="Triple Get" Description="" ID="757e996a-10d1-4221-8d28-653a6ca7b823" Category="Bakery.Core.List">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
     <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />

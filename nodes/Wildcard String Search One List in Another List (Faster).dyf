@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-39.298944528931" Y="211.709281676558" zoom="0.97676875" Name="Wildcard String Search One List in Another List (Faster)" Description="uses straight Python not String.Contains" ID="d9e01baa-c780-4d5b-82d1-b35431289979" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="-39.298944528931" Y="211.709281676558" zoom="0.97676875" Name="Wildcard String Search One List in Another List (Faster)" Description="uses straight Python not String.Contains" ID="d9e01baa-c780-4d5b-82d1-b35431289979" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="a2a39442-4420-417f-97f9-ed02b71df471" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="107.70563043356" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="&quot;nullSearchItemReplaced&quot;;" ShouldFocus="false" />

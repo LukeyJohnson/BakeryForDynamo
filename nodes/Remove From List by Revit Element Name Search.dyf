@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-459.831358602565" Y="291.535838164841" zoom="1.10476425630303" Name="Remove From List by Revit Element Name Search" Description="" ID="d80727de-c9ba-4dd4-9b1e-10a5102b0eb9" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="-459.831358602565" Y="291.535838164841" zoom="1.10476425630303" Name="Remove From List by Revit Element Name Search" Description="" ID="d80727de-c9ba-4dd4-9b1e-10a5102b0eb9" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="3eec0a40-8a99-4e71-b793-8902d9ad90fa" type="Dynamo.Nodes.Watch" nickname="Watch" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

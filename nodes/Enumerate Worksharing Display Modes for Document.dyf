@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="Enumerate Worksharing Display Modes for Document" Description="" ID="def12513-7d38-43ba-b0bc-8565d5524652" Category="Bakery.Enums">
+<Workspace Version="1.0.0.1180" X="0" Y="0" zoom="1" Name="Enumerate Worksharing Display Modes for Document" Description="" ID="def12513-7d38-43ba-b0bc-8565d5524652" Category="Bakery.Revit.Application.Enums">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="9fd4253b-a1e8-4964-9ffb-6cd4dc36081f" type="PythonNodeModels.PythonNode" nickname="Python Script" x="10" y="9" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-85.8965196795882" Y="203.069127542915" zoom="0.822695359375" Name="Build New Order of Headings by Search" Description="" ID="2533fa96-149e-4fdd-93cd-97288beb92c4" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="-85.8965196795882" Y="203.069127542915" zoom="0.822695359375" Name="Build New Order of Headings by Search" Description="" ID="2533fa96-149e-4fdd-93cd-97288beb92c4" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="53ef05bf-ccdb-4009-a5fd-cc6f67ff9926" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Flat List to List of Strings" x="250" y="271.275433743697" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">

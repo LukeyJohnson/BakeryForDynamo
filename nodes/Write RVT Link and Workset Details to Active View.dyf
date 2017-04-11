@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-793.249321206195" Y="79.8254679112256" zoom="0.481306156926782" Name="Write RVT Link and Workset Details to Active View" Description="uses 5 instance parameters..." ID="0b843dd3-19c4-4b34-b6c7-5db67103567b" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="-793.249321206195" Y="79.8254679112256" zoom="0.481306156926782" Name="Write RVT Link and Workset Details to Active View" Description="uses 5 instance parameters..." ID="0b843dd3-19c4-4b34-b6c7-5db67103567b" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="13b60b7c-38e1-49ef-9d44-129c78700732" type="Dynamo.Nodes.DSFunction" nickname="Document.Current" x="250" y="632.338040257467" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="RevitNodes.dll" function="Revit.Application.Document.Current" />

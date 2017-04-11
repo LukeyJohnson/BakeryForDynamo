@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="112.14" Y="80.01" zoom="0.8425" Name="Get Text by View Workset and Value" Description="model must be workshared" ID="b2a4baa9-e36e-4e8a-afea-855404fdefcb" Category="Bakery.2D">
+<Workspace Version="1.2.1.3083" X="112.14" Y="80.01" zoom="0.8425" Name="Get Text by View Workset and Value" Description="model must be workshared" ID="b2a4baa9-e36e-4e8a-afea-855404fdefcb" Category="Bakery.Revit.Elements.Text">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="2435cfab-02d6-4358-9c71-7766265c6a66" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="447.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;Text Notes&quot;;" ShouldFocus="false" />

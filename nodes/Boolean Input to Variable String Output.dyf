@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-219.85260736276" Y="467.385998423591" zoom="0.97676875" Name="Boolean Input to Variable String Output" Description="you choose what you want to convert true / false to, good for validation" ID="27ace888-af1a-4066-ab8a-53440b3602ba" Category="Bakery.Functions">
+<Workspace Version="0.8.2.2371" X="-219.85260736276" Y="467.385998423591" zoom="0.97676875" Name="Boolean Input to Variable String Output" Description="you choose what you want to convert true / false to, good for validation" ID="27ace888-af1a-4066-ab8a-53440b3602ba" Category="Bakery.Core.Logic">
   <NamespaceResolutionMap />
   <Elements>
     <DSCoreNodesUI.CreateList guid="05742dc5-0646-42f2-a4d3-3ef9f017532c" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="476.360671158068" y="50.1907291056216" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2" />

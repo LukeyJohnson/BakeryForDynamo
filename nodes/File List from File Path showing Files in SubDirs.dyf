@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="235.31" Y="318.8225" zoom="1.1575" Name="File List from File Path showing Files in SubDirs" ID="e1bb43c7-abb5-44fd-89c2-cddca0f56130" Description="" Category="Bakery.Standalone">
+<Workspace Version="0.8.1.1942" X="235.31" Y="318.8225" zoom="1.1575" Name="File List from File Path showing Files in SubDirs" ID="e1bb43c7-abb5-44fd-89c2-cddca0f56130" Description="" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="5ae5772c-78f6-4a8d-9546-993b6802a690" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

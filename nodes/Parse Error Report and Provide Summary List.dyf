@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="-822.910060648571" Y="-57.4673572907265" zoom="0.785482402891884" Name="Parse Error Report and Provide Summary List" Description="this version is intended to be faster" ID="bf0e1700-742b-47ae-83ff-ed66d30127ec" Category="Bakery.Standalone">
+<Workspace Version="0.8.2.2392" X="-822.910060648571" Y="-57.4673572907265" zoom="0.785482402891884" Name="Parse Error Report and Provide Summary List" Description="this version is intended to be faster" ID="bf0e1700-742b-47ae-83ff-ed66d30127ec" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="f3621f08-c4af-41cf-85f7-67539fa4d952" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="2636.8" y="407" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />

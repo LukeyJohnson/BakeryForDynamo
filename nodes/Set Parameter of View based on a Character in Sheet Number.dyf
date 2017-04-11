@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-42.536722347251" Y="275.727901500504" zoom="0.568853839275299" Name="Set Parameter of View based on a Character in Sheet Number" Description="" ID="9f96124e-4e29-4b48-b7ad-9001caf5c264" Category="Bakery.Views">
+<Workspace Version="0.9.2.4472" X="-42.536722347251" Y="275.727901500504" zoom="0.568853839275299" Name="Set Parameter of View based on a Character in Sheet Number" Description="" ID="9f96124e-4e29-4b48-b7ad-9001caf5c264" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="edc9a2d9-615c-4404-9428-4fc1db2458d8" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.GetParameterValueByName" x="435.044768659991" y="139.901767974568" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.GetParameterValueByName@string" />

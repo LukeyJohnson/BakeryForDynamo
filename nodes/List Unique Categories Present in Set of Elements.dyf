@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="223.263079162524" Y="157.629746950795" zoom="0.679007436100057" Name="List Unique Categories Present in Set of Elements" Description="uses Bruteforce, returns sorted list" ID="81db064c-d21b-46b8-8617-bb3dcfff3285" Category="Bakery.Categories">
+<Workspace Version="0.8.2.2392" X="223.263079162524" Y="157.629746950795" zoom="0.679007436100057" Name="List Unique Categories Present in Set of Elements" Description="uses Bruteforce, returns sorted list" ID="81db064c-d21b-46b8-8617-bb3dcfff3285" Category="Bakery.Revit.Document.Category">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="c7b71982-b4db-46e9-8bc7-ebc271886019" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="28.6291719122501" y="10.0000000000001" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />

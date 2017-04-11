@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-154.77543490322" Y="130.296389502607" zoom="0.747692817123326" Name="Preflight for Section View Creation" Description="" ID="4233c748-2d63-48f2-a8dd-58eae7d586c9" Category="Bakery.Views">
+<Workspace Version="0.8.2.2371" X="-154.77543490322" Y="130.296389502607" zoom="0.747692817123326" Name="Preflight for Section View Creation" Description="" ID="4233c748-2d63-48f2-a8dd-58eae7d586c9" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap>
     <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
     <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />

@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="25.8786724651158" Y="309.716718965205" zoom="0.416207671750707" Name="List of Model Elements simplified with Annotation removed" Description="also reports categories included and excluded. Only works on Workshared models..." ID="8dfc9d77-0d5f-4d89-ac6b-0a85145f5939" Category="Bakery.Collect">
+<Workspace Version="1.0.0.1180" X="25.8786724651158" Y="309.716718965205" zoom="0.416207671750707" Name="List of Model Elements simplified with Annotation removed" Description="also reports categories included and excluded. Only works on Workshared models..." ID="8dfc9d77-0d5f-4d89-ac6b-0a85145f5939" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="06a5eb3d-adc8-4d3b-86ed-2643cafc44fe" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List of Model Elements simplified" x="250" y="71.2770912532639" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">

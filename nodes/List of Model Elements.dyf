@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-805.181991950774" Y="-235.367169092916" zoom="0.601309027157206" Name="List of Model Elements" Description="refined, removes tags, systems etc" ID="821f8164-79dd-4851-ba37-3570bdd40497" Category="Bakery.Collect">
+<Workspace Version="0.9.2.4472" X="-805.181991950774" Y="-235.367169092916" zoom="0.601309027157206" Name="List of Model Elements" Description="refined, removes tags, systems etc" ID="821f8164-79dd-4851-ba37-3570bdd40497" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="3b268593-4385-40a9-b020-9e4859886fbe" type="CoreNodeModels.Input.StringInput" nickname="String" x="0" y="881.25" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-505.6" Y="199.4" zoom="1" Name="Line Break String with Ids to Revit Elements" Description="" ID="9b49813d-c9d7-477e-8baf-c182e3eb167b" Category="Bakery.Collect">
+<Workspace Version="0.9.2.4472" X="-505.6" Y="199.4" zoom="1" Name="Line Break String with Ids to Revit Elements" Description="" ID="9b49813d-c9d7-477e-8baf-c182e3eb167b" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="ab5bc1f5-f18b-402c-89fb-2b9ee8a3098b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Convert String with Line Breaks into List of Strings" x="250" y="20.8648651664361" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">

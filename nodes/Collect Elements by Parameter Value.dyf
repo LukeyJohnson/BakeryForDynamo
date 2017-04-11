@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="-195.333333333333" Y="143.333333333334" zoom="1" Name="Collect Elements by Parameter Value" Description="" ID="b9bebda5-cc94-4948-b9e7-9fa5befb167b" Category="Bakery.Collect">
+<Workspace Version="1.2.0.2690" X="-195.333333333333" Y="143.333333333334" zoom="1" Name="Collect Elements by Parameter Value" Description="" ID="b9bebda5-cc94-4948-b9e7-9fa5befb167b" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="f5fb4aba-cf9d-4645-ab7e-39b764677e69" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Collect All Elements in Model" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">

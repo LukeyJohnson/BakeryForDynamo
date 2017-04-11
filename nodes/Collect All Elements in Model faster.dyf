@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="225" Y="153" zoom="1" Name="Collect All Elements in Model faster" Description="does not report count or categories" ID="8f4a43c7-02b4-4f6c-b681-1e7e14bf912b" Category="Bakery.Collect">
+<Workspace Version="0.9.1.4062" X="225" Y="153" zoom="1" Name="Collect All Elements in Model faster" Description="does not report count or categories" ID="8f4a43c7-02b4-4f6c-b681-1e7e14bf912b" Category="Bakery.Revit.Selection">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="2724a797-af30-432b-bd37-20c0f1bc062f" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Built In Name Lister" x="-134" y="-37.9999999999998" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false">

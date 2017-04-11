@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="457" Y="377" zoom="1" Name="Send List to Clipboard as Single Line Breaked String" Description="" ID="382b131a-5940-432a-bb0a-1eec4b9ddec9" Category="Bakery.Strings">
+<Workspace Version="0.8.2.2371" X="457" Y="377" zoom="1" Name="Send List to Clipboard as Single Line Breaked String" Description="" ID="382b131a-5940-432a-bb0a-1eec4b9ddec9" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="07e3c645-f9e7-4d02-9398-b0c24a529092" type="Dynamo.Nodes.Function" nickname="Convert List into List of Strings with Line Breaks" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

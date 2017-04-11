@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-66" Y="105" zoom="1" Name="Get Open Worksets" Description="as sorted list" ID="5317f78f-48fe-4b76-9987-572e3928a65f" Category="Bakery.Worksets">
+<Workspace Version="0.8.2.2371" X="-66" Y="105" zoom="1" Name="Get Open Worksets" Description="as sorted list" ID="5317f78f-48fe-4b76-9987-572e3928a65f" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="0b5bff7b-0d79-43bb-a708-9287eafa6bc4" type="Dynamo.Nodes.Function" nickname="Get Worksets with all Properties" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True">

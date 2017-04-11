@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2831" X="-2116.48" Y="574.696" zoom="1.1575" Name="Copy to Level and Delete" Description="combined Clockwork and SteamNodes code" ID="2af56001-8171-46ad-970a-58f3cddbb24b" Category="Bakery.Elements">
+<Workspace Version="1.2.0.2831" X="-2116.48" Y="574.696" zoom="1.1575" Name="Copy to Level and Delete" Description="combined Clockwork and SteamNodes code" ID="2af56001-8171-46ad-970a-58f3cddbb24b" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap>
     <ClassMap partialName="Level" resolvedName="Revit.Elements.Level" assemblyName="RevitNodes.dll" />
   </NamespaceResolutionMap>

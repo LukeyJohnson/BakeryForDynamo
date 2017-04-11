@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="-267.86694752623" Y="94.5046224032329" zoom="0.646865613092415" Name="Duplicate View and Rename and Isolate for System Types" ID="2f2c14d7-efa6-418d-a4ad-972cd96b09a8" Description="" Category="Bakery.Elements">
+<Workspace Version="0.8.1.1942" X="-267.86694752623" Y="94.5046224032329" zoom="0.646865613092415" Name="Duplicate View and Rename and Isolate for System Types" ID="2f2c14d7-efa6-418d-a4ad-972cd96b09a8" Description="" Category="Bakery.Revit.Elements">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="f7511a99-44f1-4d64-9528-37a970f792ef" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled">

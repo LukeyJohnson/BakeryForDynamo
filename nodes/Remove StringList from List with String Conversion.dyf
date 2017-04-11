@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="407.455" Y="208.2075" zoom="1.1575" Name="Remove StringList from List with String Conversion" Description="" ID="ace937a2-af2e-4b66-bc0d-7024f22052e1" Category="Bakery.Strings">
+<Workspace Version="0.8.2.2371" X="407.455" Y="208.2075" zoom="1.1575" Name="Remove StringList from List with String Conversion" Description="" ID="ace937a2-af2e-4b66-bc0d-7024f22052e1" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="cf26501c-a830-4d69-8a02-3d6171a7ed73" type="Dynamo.Nodes.Function" nickname="Flat List to List of Strings" x="332.654411434192" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

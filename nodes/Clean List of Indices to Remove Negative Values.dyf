@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="422" Y="152" zoom="1" Name="Clean List of Indices to Remove Negative Values" Description="" ID="ae97c5be-e2b0-4dc3-98e1-435f251f5682" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="422" Y="152" zoom="1" Name="Clean List of Indices to Remove Negative Values" Description="" ID="ae97c5be-e2b0-4dc3-98e1-435f251f5682" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="c647abde-629f-43df-8c24-8fa5bfaeb14f" type="Dynamo.Nodes.DSFunction" nickname="&gt;=" x="354.755096721907" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="Operators" function="&gt;=@var[]..[],var[]..[]" />

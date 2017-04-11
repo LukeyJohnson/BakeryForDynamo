@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-320.80816362147" Y="292.392559294193" zoom="0.93181152849833" Name="Rooms to PolyCurves" Description="deeply nested, could be hidden" ID="f01158c3-ae96-4423-96c5-6191b9d19093" Category="Bakery.Geometry">
+<Workspace Version="0.8.2.2371" X="-320.80816362147" Y="292.392559294193" zoom="0.93181152849833" Name="Rooms to PolyCurves" Description="deeply nested, could be hidden" ID="f01158c3-ae96-4423-96c5-6191b9d19093" Category="Bakery.Revit.Elements.Room">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Output guid="5d6590a5-4aac-479e-8070-88a2266714df" type="Dynamo.Nodes.Output" nickname="Output" x="1259.01421840897" y="-105.590848264172" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">

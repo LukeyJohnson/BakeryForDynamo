@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-45.467462074458" Y="-64.192334081158" zoom="0.822695359375" Name="Get Open Worksets and Write to View Parameter" Description="" ID="02f09020-1816-4431-bc3c-6adf918753ac" Category="Bakery.DocInfo">
+<Workspace Version="0.8.2.2371" X="-45.467462074458" Y="-64.192334081158" zoom="0.822695359375" Name="Get Open Worksets and Write to View Parameter" Description="" ID="02f09020-1816-4431-bc3c-6adf918753ac" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <DSCoreNodesUI.StringNodes.FromArray guid="4ac9cf3b-2534-4e61-8599-b1720f45bb9d" type="DSCoreNodesUI.StringNodes.FromArray" nickname="String from Array" x="945.077224054833" y="183.842813204113" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

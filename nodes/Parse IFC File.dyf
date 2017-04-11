@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="-1482.19880565606" Y="-268.803012872024" zoom="0.977220601341527" Name="Parse IFC File" ID="395a10cf-6971-4a62-8d38-3187cca97d0f" Description="very basic implementation at this stage" Category="Bakery.Standalone">
+<Workspace Version="0.8.0.950" X="-1482.19880565606" Y="-268.803012872024" zoom="0.977220601341527" Name="Parse IFC File" ID="395a10cf-6971-4a62-8d38-3187cca97d0f" Description="very basic implementation at this stage" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.File.FileObject guid="a681d98b-503e-4913-9be9-b6c8a41ba55f" type="DSCore.File.FileObject" nickname="File.FromPath" x="702.118454618559" y="190.827311171879" isVisible="true" isUpstreamVisible="true" lacing="Disabled" />

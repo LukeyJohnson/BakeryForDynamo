@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="44.9159999999999" Y="94.7300000000001" zoom="0.8425" Name="Common Architectural Model Categories" Description="" ID="55c8863f-42b7-47ed-a228-35dbf9a888c6" Category="Bakery.Categories">
+<Workspace Version="1.1.0.2094" X="44.9159999999999" Y="94.7300000000001" zoom="0.8425" Name="Common Architectural Model Categories" Description="" ID="55c8863f-42b7-47ed-a228-35dbf9a888c6" Category="Bakery.Revit.Document.Category">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="ebb51718-11e0-4eb7-a476-861ed6f959d6" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Categories" x="424.192355966335" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="true">

@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="0" Y="0" zoom="1" Name="Send Element ID to Clipboard" Description="for single element" ID="fbf98ecc-a0c1-4f44-a3b5-aa1d38d2088f" Category="Bakery.Functions">
+<Workspace Version="1.1.0.2094" X="0" Y="0" zoom="1" Name="Send Element ID to Clipboard" Description="for single element" ID="fbf98ecc-a0c1-4f44-a3b5-aa1d38d2088f" Category="Bakery.Revit.Clipboard">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e9306450-3f37-4532-9d97-d82db1769d80" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.Id" x="250" y="5.43749692720894" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.Id" />

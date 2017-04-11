@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="151" Y="9" zoom="1" Name="Get Linked Element by Link Search and GUID string" Description="" ID="ef878efc-c59b-4ca9-8723-3fa8eb029d09" Category="Bakery.Links">
+<Workspace Version="0.8.2.2371" X="151" Y="9" zoom="1" Name="Get Linked Element by Link Search and GUID string" Description="" ID="ef878efc-c59b-4ca9-8723-3fa8eb029d09" Category="Bakery.Revit.Document.Links">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="f59c6c15-3800-4751-9650-02eac358735d" type="Dynamo.Nodes.Function" nickname="Search Link Names and Send Instance Ids to Clipboard" x="310.154302670623" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

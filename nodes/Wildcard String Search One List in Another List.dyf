@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-115.884643480027" Y="251.767168976026" zoom="0.784369328044827" Name="Wildcard String Search One List in Another List" Description="this is slow List.Map way" ID="05f1529f-2476-4bc9-bf09-f9789c2a70ff" Category="Bakery.Lists">
+<Workspace Version="0.8.2.2371" X="-115.884643480027" Y="251.767168976026" zoom="0.784369328044827" Name="Wildcard String Search One List in Another List" Description="this is slow List.Map way" ID="05f1529f-2476-4bc9-bf09-f9789c2a70ff" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="c88d615e-39bb-4a79-b8e9-e92666302f21" type="Dynamo.Nodes.Watch" nickname="Watch" x="201.373649882585" y="-12.7077137587476" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="432" Y="175" zoom="1" Name="File Path from Directory and String" Description="" ID="7bc3cadb-78d9-4c1b-8c7f-6bf4a8b2bbaf" Category="Bakery.Standalone">
+<Workspace Version="0.9.2.4472" X="432" Y="175" zoom="1" Name="File Path from Directory and String" Description="" ID="7bc3cadb-78d9-4c1b-8c7f-6bf4a8b2bbaf" Category="Bakery.Core">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="1134a8fb-1c0f-45a4-b863-92f1de2badbf" type="CoreNodeModels.Input.StringInput" nickname="String" x="250" y="70.6551625713901" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

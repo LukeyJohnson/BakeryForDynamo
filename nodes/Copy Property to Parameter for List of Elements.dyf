@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="-118.774883529691" Y="143.230853047811" zoom="0.642869557405948" Name="Copy Property to Parameter for List of Elements" ID="66b6f4b6-5c48-4225-bb5a-59e9f8212417" Description="Uses bruteforce get parameter which works for Worksets etc" Category="Bakery.Parameters">
+<Workspace Version="0.8.0.950" X="-118.774883529691" Y="143.230853047811" zoom="0.642869557405948" Name="Copy Property to Parameter for List of Elements" ID="66b6f4b6-5c48-4225-bb5a-59e9f8212417" Description="Uses bruteforce get parameter which works for Worksets etc" Category="Bakery.Revit.Parameters">
   <NamespaceResolutionMap />
   <Elements>
     <DSCoreNodesUI.CreateList guid="d2a285ae-95a1-4ace-a68a-e6d5f20cc00e" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="312.682724876156" y="9.99999999999983" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1" />

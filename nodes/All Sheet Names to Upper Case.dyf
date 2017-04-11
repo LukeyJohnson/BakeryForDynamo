@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2831" X="-219" Y="257" zoom="1" Name="All Sheet Names to Upper Case" Description="" ID="73243311-18f2-4127-9618-fe07b58c16c3" Category="Bakery.Sheets">
+<Workspace Version="1.2.0.2831" X="-219" Y="257" zoom="1" Name="All Sheet Names to Upper Case" Description="" ID="73243311-18f2-4127-9618-fe07b58c16c3" Category="Bakery.Revit.Views.Sheet">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.ElementsOfType guid="beda0948-e473-4a1d-98ba-312494a134c2" type="DSRevitNodesUI.ElementsOfType" nickname="All Elements of Type" x="433.995927791845" y="55.9784172967763" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">

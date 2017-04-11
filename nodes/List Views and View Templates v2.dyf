@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-558.976694148945" Y="677.820218767194" zoom="0.384243365745364" Name="List Views and View Templates v2" Description="uses other nodes, null handling" ID="1ab0e9df-1504-48d0-bb43-7c1d56a3d1b2" Category="Bakery.Views">
+<Workspace Version="0.9.1.4062" X="-558.976694148945" Y="677.820218767194" zoom="0.384243365745364" Name="List Views and View Templates v2" Description="uses other nodes, null handling" ID="1ab0e9df-1504-48d0-bb43-7c1d56a3d1b2" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.CreateList guid="2740d4a5-0482-42e5-b034-c2e6f6084b54" type="CoreNodeModels.CreateList" nickname="List.Create" x="3839.0958591847" y="1028.38739402715" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="2" />

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-418.61351752145" Y="205.433331500244" zoom="0.944950804585415" Name="Check Common Items between Two Lists and Get From One" Description="" ID="458f560c-8b74-415f-a05f-01c5aa883001" Category="Bakery.Lists">
+<Workspace Version="0.9.2.4472" X="-418.61351752145" Y="205.433331500244" zoom="0.944950804585415" Name="Check Common Items between Two Lists and Get From One" Description="" ID="458f560c-8b74-415f-a05f-01c5aa883001" Category="Bakery.Core.List">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Watch guid="7726866d-5b7b-4632-87c1-f5c6c65fdf5a" type="CoreNodeModels.Watch" nickname="Watch" x="250" y="31.2139593104328" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

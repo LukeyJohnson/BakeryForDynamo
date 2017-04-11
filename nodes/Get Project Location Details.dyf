@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="Get Project Location Details" Description="query built-in category" ID="1b4502e5-412b-4e76-8eb2-f7399b5903bb" Category="Bakery.DocInfo">
+<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="Get Project Location Details" Description="query built-in category" ID="1b4502e5-412b-4e76-8eb2-f7399b5903bb" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="c10f0bc4-5107-464a-b7ab-656dedca6379" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="1011" y="394.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

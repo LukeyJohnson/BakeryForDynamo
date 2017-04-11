@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="161.33536057514" Y="153.541578168653" zoom="0.971377355631052" Name="Copy Workset Name to Target Parameter" Description="uses archi-lab" ID="a32c3aa1-cea1-4688-898e-438c649c7d4b" Category="Bakery.Parameters">
+<Workspace Version="0.8.2.2371" X="161.33536057514" Y="153.541578168653" zoom="0.971377355631052" Name="Copy Workset Name to Target Parameter" Description="uses archi-lab" ID="a32c3aa1-cea1-4688-898e-438c649c7d4b" Category="Bakery.Revit.Parameters">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="ab0654fb-1e66-46b1-8536-77b4327e87b7" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

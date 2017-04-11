@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="0" Y="0" zoom="1" Name="Clear Rules from View Filter" Description="wipes rules leaving only category selection" ID="3b03d423-0145-45d2-ab8f-60bd684e3082" Category="Bakery.Views">
+<Workspace Version="1.1.0.2094" X="0" Y="0" zoom="1" Name="Clear Rules from View Filter" Description="wipes rules leaving only category selection" ID="3b03d423-0145-45d2-ab8f-60bd684e3082" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="f5041a83-b448-4bbf-bfb7-4645b6aa960f" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">

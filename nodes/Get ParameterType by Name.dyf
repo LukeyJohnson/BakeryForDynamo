@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Get ParameterType by Name" Description="" ID="3c539e64-ec47-44b0-88e3-e35e6d0021e9" Category="Bakery.Parameters">
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Get ParameterType by Name" Description="" ID="3c539e64-ec47-44b0-88e3-e35e6d0021e9" Category="Bakery.Revit.Parameters">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="53c0e2a3-944f-40ee-9097-69c0a6a72f8f" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Enumerate Parameter Types" x="250" y="3.50336024122441" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">

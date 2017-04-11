@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.950" X="-27.924727800445" Y="7.08082377596446" zoom="0.97676875" Name="Remove Characters from end of single String" ID="acfd7d70-bdb9-4190-84dc-d0e4e70a020e" Description="" Category="Bakery.Strings">
+<Workspace Version="0.8.0.950" X="-27.924727800445" Y="7.08082377596446" zoom="0.97676875" Name="Remove Characters from end of single String" ID="acfd7d70-bdb9-4190-84dc-d0e4e70a020e" Description="" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="dd5983e4-08b1-456f-bb0b-6733950f0591" type="Dynamo.Nodes.DSFunction" nickname="String.Remove" x="765.999999999995" y="433.000000000002" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Remove@string,int,int" />

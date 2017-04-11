@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="0" Y="0" zoom="1" Name="Get Starting View Details" Description="like name etc" ID="f7290224-47c9-4a5a-ae66-a5594b8faf27" Category="Bakery.Views">
+<Workspace Version="0.9.1.4062" X="0" Y="0" zoom="1" Name="Get Starting View Details" Description="like name etc" ID="f7290224-47c9-4a5a-ae66-a5594b8faf27" Category="Bakery.Revit.Views">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="26ef15b3-3e0a-42e1-9315-a241d586f7f7" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="259.727272727273" y="190.672727272727" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="109" Y="171" zoom="1" Name="Remove First and Last Characters from String" ID="915497d3-5acd-45bd-ac78-41057fceab49" Description="" Category="Bakery.Strings">
+<Workspace Version="0.8.1.1942" X="109" Y="171" zoom="1" Name="Remove First and Last Characters from String" ID="915497d3-5acd-45bd-ac78-41057fceab49" Description="" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="a729c79a-8e27-4143-90eb-f9a46f774388" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="42.30534254436" y="60.130131631211" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="0;" ShouldFocus="false" />

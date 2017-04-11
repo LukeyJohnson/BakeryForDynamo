@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-16.961752967359" Y="253.864421272255" zoom="0.97676875" Name="Example FFE Category List for a project" Description="" ID="f64db692-f917-40c9-bd4c-3341cda3fc27" Category="Bakery.Categories">
+<Workspace Version="0.8.2.2371" X="-16.961752967359" Y="253.864421272255" zoom="0.97676875" Name="Example FFE Category List for a project" Description="" ID="f64db692-f917-40c9-bd4c-3341cda3fc27" Category="Bakery.Revit.Document.Category">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="1dc55e57-f50b-49b6-9c34-7a176ce90313" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="{&quot;Casework&quot;,&quot;Electrical Equipment&quot;,&quot;Furniture&quot;,&quot;Furniture Systems&quot;,&quot;Generic Models&quot;, &quot;Specialty Equipment&quot;};" ShouldFocus="false" />

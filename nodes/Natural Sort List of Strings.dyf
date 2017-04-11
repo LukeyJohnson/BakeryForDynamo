@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="376.020982176718" Y="287.19333122792" zoom="1.545620359375" Name="Natural Sort List of Strings" Description="" ID="abe61fa9-e7bd-4cfc-821c-a7491004eea9" Category="Bakery.Strings">
+<Workspace Version="1.1.0.2094" X="376.020982176718" Y="287.19333122792" zoom="1.545620359375" Name="Natural Sort List of Strings" Description="" ID="abe61fa9-e7bd-4cfc-821c-a7491004eea9" Category="Bakery.Core.String">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="e7ec8e12-c8e1-462c-b5b4-aea9cd250df3" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">

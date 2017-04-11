@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="Design Option and Design OptionSet" ID="f639e11d-ee10-4b39-a8cc-d5978a9bf663" Description="taken originally from Clockwork" Category="Bakery.DocInfo">
+<Workspace Version="0.8.1.1942" X="0" Y="0" zoom="1" Name="Design Option and Design OptionSet" ID="f639e11d-ee10-4b39-a8cc-d5978a9bf663" Description="taken originally from Clockwork" Category="Bakery.Revit.Document">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="764dd9eb-19f2-459a-8e70-7bd1f9522a22" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="468.777567869119" y="71.9197241572753" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
