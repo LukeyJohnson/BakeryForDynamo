@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="210.506433651223" Y="353.315952677008" zoom="0.803321593462598" Name="Split XML and Return Lists" Description="" ID="1ea12500-ebc2-48cb-a5f8-d3b44fae6c6d" Category="Bakery.XML">
+<Workspace Version="0.8.2.2371" X="210.506433651223" Y="353.315952677008" zoom="0.803321593462598" Name="Split XML and Return Lists" Description="" ID="1ea12500-ebc2-48cb-a5f8-d3b44fae6c6d" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="d11534f8-0a2a-4346-97a8-0794ad99ae60" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="&quot;&quot;;" ShouldFocus="false" />

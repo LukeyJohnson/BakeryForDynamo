@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-382.880181755198" Y="195.547074842756" zoom="1.00600419002725" Name="Compare Two IFCs by GUIDs" Description="this version makes Guids 'unique' so only reports completely new or deleted, not when items are 'split'." ID="44c92135-3c00-4cb0-8f47-88495e76b32b" Category="Bakery.IFC">
+<Workspace Version="1.2.1.3083" X="-382.880181755198" Y="195.547074842756" zoom="1.00600419002725" Name="Compare Two IFCs by GUIDs" Description="this version makes Guids 'unique' so only reports completely new or deleted, not when items are 'split'." ID="44c92135-3c00-4cb0-8f47-88495e76b32b" Category="Bakery.BIM.IFC">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="3e23a357-3a14-4821-ae71-a71e666894a1" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Unique GUIDs from IFC File" x="291.155047050852" y="248.1300162136" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">

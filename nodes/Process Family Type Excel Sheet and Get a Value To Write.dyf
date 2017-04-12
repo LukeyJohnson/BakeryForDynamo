@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-1006.34767520316" Y="-33.7930957703642" zoom="0.770841453607489" Name="Process Family Type Excel Sheet and Get a Value To Write" Description="column 1 - Family, column 2 - Type, column 3 - Value" ID="1d6f9163-864b-43a7-840c-045a94b4a8d6" Category="Bakery.Excel">
+<Workspace Version="0.9.2.4472" X="-1006.34767520316" Y="-33.7930957703642" zoom="0.770841453607489" Name="Process Family Type Excel Sheet and Get a Value To Write" Description="column 1 - Family, column 2 - Type, column 3 - Value" ID="1d6f9163-864b-43a7-840c-045a94b4a8d6" Category="Bakery.Office.Excel">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.FileObject guid="6f0c25d7-91a5-4d1d-bfc6-a0f11aefb4c4" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="250" y="3.04872343607838" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

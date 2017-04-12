@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="507" Y="317" zoom="1" Name="subnode for Filtering Lists by List" Description="" ID="3229bfa6-db87-47f8-b504-827e407839be" Category="Bakery.Core.List">
+<Workspace Version="0.8.2.2371" X="507" Y="317" zoom="1" Name="subnode for Filtering Lists by List" Description="" ID="3229bfa6-db87-47f8-b504-827e407839be" Category="Bakery.Core.List.Helper">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Watch guid="35a2b7c9-0f6d-4f63-8329-2b6f9213ff32" type="Dynamo.Nodes.Watch" nickname="Watch" x="270.287438275632" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

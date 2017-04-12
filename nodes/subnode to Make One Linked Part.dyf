@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="885.159884603894" Y="654.427358814322" zoom="1.27771698410772" Name="subnode to Make One Linked Part" Description="" ID="2a2543da-947a-4d19-a783-7537c6ed00d8" Category="Bakery.Revit.Elements.Parts">
+<Workspace Version="0.8.2.2371" X="885.159884603894" Y="654.427358814322" zoom="1.27771698410772" Name="subnode to Make One Linked Part" Description="" ID="2a2543da-947a-4d19-a783-7537c6ed00d8" Category="Bakery.Revit.Elements.Parts.Helper">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="51ccff2c-82b3-4d95-b7e1-a22ca385e999" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="253.397353723311" y="-103.311508245634" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3">

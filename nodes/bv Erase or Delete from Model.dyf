@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv Erase or Delete from Model" Description="forked from SteamNodes" ID="fe919115-3690-4f54-beed-e3ad71e1e198" Category="Bakery.Forks">
+<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv Erase or Delete from Model" Description="forked from SteamNodes" ID="fe919115-3690-4f54-beed-e3ad71e1e198" Category="Bakery.Dynamo.ForkedNodes">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="d049028a-05be-4442-9cdf-518ed6cb4161" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="517" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

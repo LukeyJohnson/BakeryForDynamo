@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="75" Y="306.2" zoom="1" Name="Read Excel Into Lists" Description="" ID="5aa0104f-3360-4b32-a9af-e2bf4727d0ea" Category="Bakery.Excel">
+<Workspace Version="0.9.2.4472" X="75" Y="306.2" zoom="1" Name="Read Excel Into Lists" Description="" ID="5aa0104f-3360-4b32-a9af-e2bf4727d0ea" Category="Bakery.Office.Excel">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.FileObject guid="b694b007-8d93-4ea8-ad11-55b3048cd6e8" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="250" y="263.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

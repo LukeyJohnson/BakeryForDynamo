@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-247.858560029698" Y="281.88245" zoom="1.33823125" Name="Get Connectors from ConnectorManager" Description="" ID="4753d5a0-f88d-4382-b2da-54fda7a86aa5" Category="Bakery.MEP">
+<Workspace Version="1.2.1.3083" X="-247.858560029698" Y="281.88245" zoom="1.33823125" Name="Get Connectors from ConnectorManager" Description="" ID="4753d5a0-f88d-4382-b2da-54fda7a86aa5" Category="Bakery.Revit.API.MEP">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="09fbeca9-4c5f-40ed-a400-d4fa562efb5c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="467.902884187891" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">

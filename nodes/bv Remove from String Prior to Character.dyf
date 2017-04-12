@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="25.765468473542" Y="427.008061718063" zoom="0.423453152645802" Name="bv Remove from String Prior to Character" Description="forked from Rhythm" ID="2812ede2-544b-40b6-b5eb-fac31831cf27" Category="Bakery.Forks">
+<Workspace Version="0.8.2.2392" X="25.765468473542" Y="427.008061718063" zoom="0.423453152645802" Name="bv Remove from String Prior to Character" Description="forked from Rhythm" ID="2812ede2-544b-40b6-b5eb-fac31831cf27" Category="Bakery.Dynamo.ForkedNodes">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="42675226-78da-495a-a751-53f9d674422a" type="Dynamo.Nodes.DSFunction" nickname="String.Remove" x="859.63278590775" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.String.Remove@string,int,int" />

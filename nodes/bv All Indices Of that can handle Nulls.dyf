@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv All Indices Of that can handle Nulls" Description="forked from spring nodes" ID="4a8f639e-d12f-4f33-8378-0ffad7097f82" Category="Bakery.Forks">
+<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv All Indices Of that can handle Nulls" Description="forked from spring nodes" ID="4a8f639e-d12f-4f33-8378-0ffad7097f82" Category="Bakery.Dynamo.ForkedNodes">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="79792c64-201a-4500-b7e3-07cfc78cd2d9" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="126.4" y="10.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="def NullAllInd(l1:var[],val)&#xA;{&#xA;return = [Imperative]&#xA;{&#xA;out1 = {};&#xA;for(i in GetKeys(l1))&#xA;{&#xA;if(l1[i] == val)&#xA;{&#xA;out1 = List.AddItemToEnd(i,out1);&#xA;}&#xA;}&#xA;return = out1;&#xA;}&#xA;};&#xA;&#xA;NullAllInd(l1,val);" ShouldFocus="false" />

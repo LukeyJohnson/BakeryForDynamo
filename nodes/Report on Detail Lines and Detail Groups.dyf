@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="282.288028654456" Y="130.226408973306" zoom="0.608772931697611" Name="Report on Detail Lines and Detail Groups" Description="" ID="8b7d1b26-2772-4a15-94e5-31453401d592" Category="Bakery.Report">
+<Workspace Version="0.9.1.4062" X="282.288028654456" Y="130.226408973306" zoom="0.608772931697611" Name="Report on Detail Lines and Detail Groups" Description="" ID="8b7d1b26-2772-4a15-94e5-31453401d592" Category="Bakery.Revit.Document.Utility">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.Categories guid="1323d1e4-a78c-499c-96c0-2a7b190af557" type="DSRevitNodesUI.Categories" nickname="Categories" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" index="489:Lines" />

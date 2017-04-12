@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="-564.8" Y="82.4" zoom="1" Name="Iterate through BCF files and Get Combined List" Description="" ID="b96835d4-2689-4a17-aec3-5b4d0245fae0" Category="Bakery.BCF">
+<Workspace Version="0.8.2.2392" X="-564.8" Y="82.4" zoom="1" Name="Iterate through BCF files and Get Combined List" Description="" ID="b96835d4-2689-4a17-aec3-5b4d0245fae0" Category="Bakery.BIM.BCF">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="befc8fc4-5e53-46e8-996a-381e5f0db7cf" type="Dynamo.Nodes.DSFunction" nickname="Count" x="632.0503090452" y="277.19658821199" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Count@var[]..[]" />

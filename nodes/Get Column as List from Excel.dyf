@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="255.8525" Y="221.31" zoom="0.8425" Name="Get Column as List from Excel" Description="" ID="3dd9c960-5bd6-433c-abb3-1decb5782d95" Category="Bakery.Excel">
+<Workspace Version="0.8.2.2371" X="255.8525" Y="221.31" zoom="0.8425" Name="Get Column as List from Excel" Description="" ID="3dd9c960-5bd6-433c-abb3-1decb5782d95" Category="Bakery.Office.Excel">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.File.FileObject guid="6cd99c3c-633c-4280-a12a-828e401183ad" type="DSCore.File.FileObject" nickname="File.FromPath" x="250" y="109" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

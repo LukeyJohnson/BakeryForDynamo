@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="249.24" Y="249.7375" zoom="0.8425" Name="Get ConnectorManager" Description="Get the connector manager object from Revit" ID="6d4982ef-8338-4385-b45f-064bc3b0ae55" Category="Bakery.MEP">
+<Workspace Version="1.0.0.1180" X="249.24" Y="249.7375" zoom="0.8425" Name="Get ConnectorManager" Description="Get the connector manager object from Revit" ID="6d4982ef-8338-4385-b45f-064bc3b0ae55" Category="Bakery.Revit.API.MEP">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="13deef45-81cc-4aee-9b6b-41cef59ddcb0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="467.902884187891" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">

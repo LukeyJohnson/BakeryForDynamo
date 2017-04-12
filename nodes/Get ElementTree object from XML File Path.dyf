@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="Get ElementTree object from XML File Path" Description="this may break with utf8" ID="8f5d579c-f889-43f0-a502-eb1f1fb21352" Category="Bakery.XML">
+<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="Get ElementTree object from XML File Path" Description="this may break with utf8" ID="8f5d579c-f889-43f0-a502-eb1f1fb21352" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="6da3aa63-22df-4571-b77b-61c2cb8dd33a" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv Remove Nulls" Description="forked from Lunchbox" ID="a8b0f382-e8bc-4198-93af-a93c1afcf265" Category="Bakery.Forks">
+<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv Remove Nulls" Description="forked from Lunchbox" ID="a8b0f382-e8bc-4198-93af-a93c1afcf265" Category="Bakery.Dynamo.ForkedNodes">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="92c941b4-c020-46d7-86d2-e2a60d85b0dc" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

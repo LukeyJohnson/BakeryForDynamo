@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-456.413830647158" Y="330.394512234845" zoom="0.888789228297156" Name="Check Flex Ducts for Geometry Errors" Description="" ID="f135d977-46da-4874-aa04-fa5f5db0e086" Category="Bakery.MEP">
+<Workspace Version="0.8.2.2371" X="-456.413830647158" Y="330.394512234845" zoom="0.888789228297156" Name="Check Flex Ducts for Geometry Errors" Description="" ID="f135d977-46da-4874-aa04-fa5f5db0e086" Category="Bakery.Revit.API.MEP">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.Categories guid="69b211b3-1adb-42e2-843b-036c1f1bd5e7" type="DSRevitNodesUI.Categories" nickname="Categories" x="250" y="163.672866653474" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" index="300:FlexDuctCurves" />

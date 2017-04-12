@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="-301.933136599221" Y="171.661535742065" zoom="0.662759780568406" Name="bv Remove from String after Character" Description="forked from Rhythm" ID="225d2d73-1c8d-4d5b-9358-8ff374fb7e61" Category="Bakery.Forks">
+<Workspace Version="0.9.2.4472" X="-301.933136599221" Y="171.661535742065" zoom="0.662759780568406" Name="bv Remove from String after Character" Description="forked from Rhythm" ID="225d2d73-1c8d-4d5b-9358-8ff374fb7e61" Category="Bakery.Dynamo.ForkedNodes">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="d6c30bcf-5a66-4f12-b7cd-fd840e49a7f4" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.Remove" x="951.94398094921" y="-34.5093367267898" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="DSCoreNodes.dll" function="DSCore.String.Remove@string,int,int" />

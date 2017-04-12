@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="373" Y="126" zoom="1" Name="Read File Path to ElementTree with UTF8 roundtrip" Description="to clean unsupported characters..." ID="b223cace-86e4-435e-8e6c-94a60e29ecb6" Category="Bakery.XML">
+<Workspace Version="0.8.2.2371" X="373" Y="126" zoom="1" Name="Read File Path to ElementTree with UTF8 roundtrip" Description="to clean unsupported characters..." ID="b223cace-86e4-435e-8e6c-94a60e29ecb6" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="daaadd11-b063-4fb8-a61f-0f99cc7b0793" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

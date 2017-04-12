@@ -1,4 +1,4 @@
-<Workspace Version="0.8.1.1942" X="-190.085468897669" Y="-37.9155363342619" zoom="0.931811528498331" Name="Summary of System Related Elements" ID="a2246620-4936-437f-bb54-d8f3c5306855" Description="provides some statistics" Category="Bakery.Systems">
+<Workspace Version="0.8.1.1942" X="-190.085468897669" Y="-37.9155363342619" zoom="0.931811528498331" Name="Summary of System Related Elements" ID="a2246620-4936-437f-bb54-d8f3c5306855" Description="provides some statistics" Category="Bakery.Revit.Elements.Systems">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="aa0a22a7-3948-4ef9-a749-fc72239c61d7" type="Dynamo.Nodes.Function" nickname="Get System Related Properties of Element" x="195.155059076842" y="521.310746163605" isVisible="true" isUpstreamVisible="true" lacing="Shortest">

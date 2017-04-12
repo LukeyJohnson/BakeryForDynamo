@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="248.8" Y="216" zoom="1" Name="bv Get Character from String at Index" Description="forked from Rhythm" ID="6b73939e-4316-4963-87ad-8477c7f222dc" Category="Bakery.Forks">
+<Workspace Version="0.9.2.4472" X="248.8" Y="216" zoom="1" Name="bv Get Character from String at Index" Description="forked from Rhythm" ID="6b73939e-4316-4963-87ad-8477c7f222dc" Category="Bakery.Dynamo.ForkedNodes">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="48e89692-e972-4b8a-9a7f-4227777729b2" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="263.53718689488" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="def CharacterAtIndex (x,y)&#xA;{&#xA;return=x[y];&#xA;};&#xA;CharacterAtIndex(x,y);" ShouldFocus="false" />

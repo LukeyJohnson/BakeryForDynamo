@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="25.1046836321894" Y="238.36589093882" zoom="0.803321593462598" Name="Subnode to create point from one XYZ sublist" Description="" ID="a4199d6d-da12-4c80-bc9c-9f6af4544412" Category="Bakery.Geometry">
+<Workspace Version="0.8.2.2392" X="25.1046836321894" Y="238.36589093882" zoom="0.803321593462598" Name="Subnode to create point from one XYZ sublist" Description="" ID="a4199d6d-da12-4c80-bc9c-9f6af4544412" Category="Bakery.Geometry.Helper">
   <NamespaceResolutionMap />
   <Elements>
     <DSCoreNodesUI.Input.IntegerSlider guid="940925a5-9792-493b-8a2f-419e9cc80ff5" type="DSCoreNodesUI.Input.IntegerSlider" nickname="Integer Slider" x="463.269068905156" y="334.882749519052" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

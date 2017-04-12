@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-432.374001525302" Y="338.066216803738" zoom="0.568853839275299" Name="Make Points From Point Cloud File" Description="" ID="d831452b-15ba-4761-8bb3-4d05338d0301" Category="Bakery.PointCloud">
+<Workspace Version="1.2.1.3083" X="-432.374001525302" Y="338.066216803738" zoom="0.568853839275299" Name="Make Points From Point Cloud File" Description="" ID="d831452b-15ba-4761-8bb3-4d05338d0301" Category="Bakery.Construction.PointCloud">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="19f8f4d8-3aa0-4a6b-92dc-9b4e9f5d2368" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Flat List to List of Strings" x="836.269440891794" y="445.220102874565" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">

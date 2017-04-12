@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-223.4175" Y="133.7125" zoom="0.8425" Name="mysql Create Table by Name" Description="" ID="2dcbd52d-297e-40f0-aea5-4ff166ee4b6a" Category="Bakery.Database">
+<Workspace Version="0.8.2.2371" X="-223.4175" Y="133.7125" zoom="0.8425" Name="mysql Create Table by Name" Description="" ID="2dcbd52d-297e-40f0-aea5-4ff166ee4b6a" Category="Bakery.Data.Database">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.StringInput guid="cafc4734-2d8b-48a3-9c96-2b1f0b375d4f" type="Dynamo.Nodes.StringInput" nickname="String" x="346.372041872203" y="505.959929356281" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

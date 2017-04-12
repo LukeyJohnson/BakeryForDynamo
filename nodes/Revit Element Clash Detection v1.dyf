@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="577.729470109653" Y="92.1113056814313" zoom="0.867977507649016" Name="Revit Element Clash Detection v1" Description="" ID="ce666788-480a-4df7-9d60-a37ada1a994e" Category="Bakery.Coordination">
+<Workspace Version="1.0.0.1180" X="577.729470109653" Y="92.1113056814313" zoom="0.867977507649016" Name="Revit Element Clash Detection v1" Description="" ID="ce666788-480a-4df7-9d60-a37ada1a994e" Category="Bakery.Construction.Coordination">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="e269c51a-1466-43dc-a802-c6882b62c9ee" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">

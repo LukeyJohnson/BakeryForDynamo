@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="42" Y="323" zoom="1" Name="Get BCF Data from unzipped BCFZIP folder" Description="" ID="f6938449-bdae-4b10-814e-aaf109bdd5a7" Category="Bakery.BCF">
+<Workspace Version="0.8.2.2371" X="42" Y="323" zoom="1" Name="Get BCF Data from unzipped BCFZIP folder" Description="" ID="f6938449-bdae-4b10-814e-aaf109bdd5a7" Category="Bakery.BIM.BCF">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="7233d50d-cd90-4c9f-a310-fb949f0fe302" type="Dynamo.Nodes.Function" nickname="Get BCF files from unzipped BCFZIP" x="230" y="11.7041749396969" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="16" Y="124" zoom="1" Name="LSJ MySql at localhost connection string" Description="" ID="df007b20-3b39-49b1-b8a7-763d40e868dc" Category="Bakery.Database">
+<Workspace Version="0.9.1.4062" X="16" Y="124" zoom="1" Name="LSJ MySql at localhost connection string" Description="" ID="df007b20-3b39-49b1-b8a7-763d40e868dc" Category="Bakery.Data.Database">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="7721b3b4-1360-48a1-8325-c1de1b65f6f1" type="CoreNodeModels.Input.StringInput" nickname="String" x="373.910554211547" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

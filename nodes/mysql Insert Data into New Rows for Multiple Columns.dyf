@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-400.11581992937" Y="131.691079530407" zoom="0.675795799398271" Name="mysql Insert Data into New Rows for Multiple Columns" Description="" ID="f54f77db-edf6-49ec-8685-a6e34ba0d456" Category="Bakery.Database">
+<Workspace Version="0.9.1.4062" X="-400.11581992937" Y="131.691079530407" zoom="0.675795799398271" Name="mysql Insert Data into New Rows for Multiple Columns" Description="" ID="f54f77db-edf6-49ec-8685-a6e34ba0d456" Category="Bakery.Data.Database">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="c2808e75-cc75-4cd8-aeb1-65a729348ade" type="CoreNodeModels.Input.StringInput" nickname="String" x="-525.147466928186" y="-237.836149352004" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">

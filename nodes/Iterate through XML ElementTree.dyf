@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="172" Y="148" zoom="1" Name="Iterate through XML ElementTree" Description="" ID="b907dff1-130b-4ba5-aff8-33a2ca75df75" Category="Bakery.XML">
+<Workspace Version="0.8.2.2371" X="172" Y="148" zoom="1" Name="Iterate through XML ElementTree" Description="" ID="b907dff1-130b-4ba5-aff8-33a2ca75df75" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="5b0a1209-4906-401f-b597-1b8eb1b13e9d" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.0.706" X="368.563029080119" Y="239.730823460683" zoom="0.97676875" Name="Transpose Data within Excel Sheet" ID="1d411c23-e01c-466e-b494-152ee2187390" Description="uses same excel sheet" Category="Bakery.Excel">
+<Workspace Version="0.8.0.706" X="368.563029080119" Y="239.730823460683" zoom="0.97676875" Name="Transpose Data within Excel Sheet" ID="1d411c23-e01c-466e-b494-152ee2187390" Description="uses same excel sheet" Category="Bakery.Office.Excel">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.DSFunction guid="c1b3962f-2630-41bf-96f6-becbb56873cd" type="Dynamo.Nodes.DSFunction" nickname="Excel.ReadFromFile" x="512.298690686962" y="109.544864124697" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSOffice.dll" function="DSOffice.Excel.ReadFromFile@var,string" />

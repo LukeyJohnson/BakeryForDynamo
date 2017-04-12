@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="36.8105487186535" Y="234.44712319847" zoom="0.597487094815786" Name="Get XML Element Names and Attributes" Description="" ID="73521080-78db-41f9-80a4-7db02cc4dd7d" Category="Bakery.XML">
+<Workspace Version="0.9.1.4062" X="36.8105487186535" Y="234.44712319847" zoom="0.597487094815786" Name="Get XML Element Names and Attributes" Description="" ID="73521080-78db-41f9-80a4-7db02cc4dd7d" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="57022a90-af09-4442-9824-f3b8690e0273" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">

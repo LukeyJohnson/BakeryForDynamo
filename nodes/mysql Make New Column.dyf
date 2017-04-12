@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="68.1411326224035" Y="265.988026372404" zoom="0.70823125" Name="mysql Make New Column" Description="" ID="6c6f788e-c942-4568-be2c-6f2b453535f7" Category="Bakery.Database">
+<Workspace Version="0.8.2.2371" X="68.1411326224035" Y="265.988026372404" zoom="0.70823125" Name="mysql Make New Column" Description="" ID="6c6f788e-c942-4568-be2c-6f2b453535f7" Category="Bakery.Data.Database">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="3bec631e-5a5b-48b1-8153-b27db3afe214" type="Dynamo.Nodes.Symbol" nickname="Input" x="225.57268314621" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

@@ -1,4 +1,4 @@
-<Workspace Version="1.3.0.875" X="0" Y="0" zoom="1" ScaleFactor="1" Name="subnode to Set Link Worksets by Name Match" Description="" ID="9cbe53f3-82ee-4d32-ba53-a32470165090" Category="Bakery.Revit.Document.Worksets">
+<Workspace Version="1.3.0.875" X="0" Y="0" zoom="1" ScaleFactor="1" Name="subnode to Set Link Worksets by Name Match" Description="" ID="9cbe53f3-82ee-4d32-ba53-a32470165090" Category="Bakery.Revit.Document.Worksets.Helper">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="06c7c316-977d-464e-910c-d56db7fa7528" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Worksets with all Properties" x="503.291928576586" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">

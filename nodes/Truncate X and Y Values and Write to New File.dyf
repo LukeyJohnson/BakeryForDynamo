@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-309.825922586149" Y="182.994563348602" zoom="0.867977507649016" Name="Truncate X and Y Values and Write to New File" Description="for doing a row by row translation of data" ID="3f15c0cd-81b3-4767-b3d9-2b6a9e1fb571" Category="Bakery.PointCloud">
+<Workspace Version="1.3.0.875" X="-309.825922586149" Y="182.994563348602" zoom="0.867977507649016" ScaleFactor="1" Name="Truncate X and Y Values and Write to New File" Description="for doing a row by row translation of data" ID="3f15c0cd-81b3-4767-b3d9-2b6a9e1fb571" Category="Bakery.Construction.PointCloud">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="392d6f69-a597-4fa5-a505-3f01a9ca85e4" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Truncate X and Y Values in a String List" x="461.452907807643" y="280.304398480239" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
@@ -127,7 +127,4 @@
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="23.0919036865234" eyeY="12.2534189224243" eyeZ="-26.1171703338623" lookX="-32.8016319274902" lookY="-13.1470985412598" lookZ="17.9166965484619" upX="-0.106954418122768" upY="0.992546141147614" upZ="0.0584199503064156" />
-  </Cameras>
 </Workspace>

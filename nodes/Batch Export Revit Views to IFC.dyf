@@ -1,4 +1,4 @@
-<Workspace Version="0.9.2.4472" X="176.165241253187" Y="211.14002553516" zoom="0.555002712934566" Name="Batch Export Revit Views to IFC" Description="" ID="28cd378a-903d-4fc9-9cf6-2a317f25cf73" Category="Bakery.IFC">
+<Workspace Version="0.9.2.4472" X="176.165241253187" Y="211.14002553516" zoom="0.555002712934566" Name="Batch Export Revit Views to IFC" Description="" ID="28cd378a-903d-4fc9-9cf6-2a317f25cf73" Category="Bakery.BIM.IFC">
   <NamespaceResolutionMap>
     <ClassMap partialName="String" resolvedName="DSCore.String" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>

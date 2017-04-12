@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2392" X="200.592" Y="18.396" zoom="0.8425" Name="Subnode for creating list hierarchy by nest level" Description="" ID="55062b74-cfd7-410f-ab31-e23adff50af5" Category="Bakery.Core.List">
+<Workspace Version="0.8.2.2392" X="200.592" Y="18.396" zoom="0.8425" Name="Subnode for creating list hierarchy by nest level" Description="" ID="55062b74-cfd7-410f-ab31-e23adff50af5" Category="Bakery.Core.List.Helper">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Function guid="57bd0a03-0a4c-4fdf-930d-308631a8a5b9" type="Dynamo.Nodes.Function" nickname="If Equal Return Index using IndexOf" x="407.974261290783" y="21.6044706194425" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False">

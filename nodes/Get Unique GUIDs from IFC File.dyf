@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="152.529535553214" Y="142.685742017925" zoom="0.910063803931435" Name="Get Unique GUIDs from IFC File" Description="input is File Path to IFC" ID="bba0904e-330e-4e5e-8150-7ace2ffa57fa" Category="Bakery.IFC">
+<Workspace Version="1.1.0.2094" X="152.529535553214" Y="142.685742017925" zoom="0.910063803931435" Name="Get Unique GUIDs from IFC File" Description="input is File Path to IFC" ID="bba0904e-330e-4e5e-8150-7ace2ffa57fa" Category="Bakery.BIM.IFC">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.FileObject guid="355a998f-ca0d-48ee-9b0e-47ccdeda5fd0" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="292.004333288115" y="450.928872063585" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />

@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2831" X="-9.28431920437606" Y="111.926203451553" zoom="0.593767140625" Name="Make Floor using NURBS from Point Lists" Description="" ID="7f2608f9-adb4-4e5b-9567-86bd12b782b7" Category="Bakery.Civil">
+<Workspace Version="1.2.0.2831" X="-9.28431920437606" Y="111.926203451553" zoom="0.593767140625" Name="Make Floor using NURBS from Point Lists" Description="" ID="7f2608f9-adb4-4e5b-9567-86bd12b782b7" Category="Bakery.Construction.Civil">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>

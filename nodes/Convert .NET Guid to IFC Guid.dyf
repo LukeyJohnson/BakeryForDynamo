@@ -1,4 +1,4 @@
-<Workspace Version="1.1.0.2094" X="45.038333333333" Y="366.333333333334" zoom="1.1575" Name="Convert .NET Guid to IFC Guid" Description="" ID="9d845363-1427-465c-bce3-3fa7c6cf4b92" Category="Bakery.IFC">
+<Workspace Version="1.1.0.2094" X="45.038333333333" Y="366.333333333334" zoom="1.1575" Name="Convert .NET Guid to IFC Guid" Description="" ID="9d845363-1427-465c-bce3-3fa7c6cf4b92" Category="Bakery.BIM.IFC">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="79118f72-ad46-44e9-96bb-64bebe5b27ac" type="PythonNodeModels.PythonNode" nickname="Python Script" x="449.558280267753" y="7.72642444567839" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">

@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="39.73" Y="318.1875" zoom="0.8425" Name="subnode for Nurbs surface creation with diameter list" Description="" ID="e550fc59-da53-4e72-aa71-065b2ed57033" Category="Bakery.Geometry">
+<Workspace Version="0.8.2.2371" X="39.73" Y="318.1875" zoom="0.8425" Name="subnode for Nurbs surface creation with diameter list" Description="" ID="e550fc59-da53-4e72-aa71-065b2ed57033" Category="Bakery.Geometry.Helper">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.CodeBlockNodeModel guid="dbebae8e-de32-475c-a96f-173914cf3f32" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="680.094901919578" y="-98.5163204747774" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" CodeText="3;" ShouldFocus="false" />

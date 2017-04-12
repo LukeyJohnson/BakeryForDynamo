@@ -1,4 +1,4 @@
-<Workspace Version="1.2.0.2690" X="0" Y="0" zoom="1" Name="First Three Rows into a Single Header List" Description="this climbs from row 3 to row 1 replacing nulls" ID="e8e88fb5-a65e-40df-a6fa-cba7340ffce0" Category="Bakery.Civil">
+<Workspace Version="1.2.0.2690" X="0" Y="0" zoom="1" Name="First Three Rows into a Single Header List" Description="this climbs from row 3 to row 1 replacing nulls" ID="e8e88fb5-a65e-40df-a6fa-cba7340ffce0" Category="Bakery.Construction.Civil">
   <NamespaceResolutionMap>
     <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
   </NamespaceResolutionMap>

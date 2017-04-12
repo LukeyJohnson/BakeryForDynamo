@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="-319.294855239578" Y="51.6528763245399" zoom="0.915562285281226" Name="Get Matching Tag Info from single BCF file" Description="" ID="4c228e38-dd07-4276-9780-4b1d46535731" Category="Bakery.BCF">
+<Workspace Version="0.8.2.2371" X="-319.294855239578" Y="51.6528763245399" zoom="0.915562285281226" Name="Get Matching Tag Info from single BCF file" Description="" ID="4c228e38-dd07-4276-9780-4b1d46535731" Category="Bakery.BIM.BCF">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.Symbol guid="ab821038-4f55-4a79-a861-563b98db63df" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

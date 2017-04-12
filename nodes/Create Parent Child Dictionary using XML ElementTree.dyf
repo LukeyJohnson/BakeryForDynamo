@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="153.56" Y="213.26" zoom="1.1575" Name="Create Parent Child Dictionary using XML ElementTree" Description="" ID="47aa67f3-5640-498f-a296-012be54122f2" Category="Bakery.XML">
+<Workspace Version="0.8.2.2371" X="153.56" Y="213.26" zoom="1.1575" Name="Create Parent Child Dictionary using XML ElementTree" Description="" ID="47aa67f3-5640-498f-a296-012be54122f2" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <DSIronPythonNode.PythonNode guid="822a3f6d-ec1c-40e3-8f41-e4821bf5bd24" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">

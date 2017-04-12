@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="197" Y="86" zoom="1" Name="List of File Paths to List of ElementTree objects" Description="" ID="5707c5af-a542-4234-a5fb-194250a9d9a5" Category="Bakery.XML">
+<Workspace Version="0.8.2.2371" X="197" Y="86" zoom="1" Name="List of File Paths to List of ElementTree objects" Description="" ID="5707c5af-a542-4234-a5fb-194250a9d9a5" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.Map guid="105dcca3-aec2-4fe1-b6f7-40030949df50" type="DSCore.Map" nickname="List.Map" x="536.208641878044" y="6.76117364078482" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

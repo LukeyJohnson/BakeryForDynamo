@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="271.903333469043" Y="94.6950436546603" zoom="0.982642311367966" Name="Report on Groups" Description="" ID="1f47fb2e-ab48-4b71-ba3e-a5dbc5b38a93" Category="Bakery.Report">
+<Workspace Version="0.9.1.4062" X="271.903333469043" Y="94.6950436546603" zoom="0.982642311367966" Name="Report on Groups" Description="" ID="1f47fb2e-ab48-4b71-ba3e-a5dbc5b38a93" Category="Bakery.Revit.Document.Utility">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="828e9b5d-e1c6-41c0-899f-ef38109ce102" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="1318.72954200382" y="81.0686349564453" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" assembly="BuiltIn" function="Flatten@var[]..[]" />

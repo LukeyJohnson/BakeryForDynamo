@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="218.812033613446" Y="472.013836354833" zoom="0.910063803931439" Name="mysql Insert Data into New Row" Description="" ID="0ef94391-9490-4e5a-90ff-87f016038e99" Category="Bakery.Database">
+<Workspace Version="0.9.1.4062" X="218.812033613446" Y="472.013836354833" zoom="0.910063803931439" Name="mysql Insert Data into New Row" Description="" ID="0ef94391-9490-4e5a-90ff-87f016038e99" Category="Bakery.Data.Database">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="ccf8e92d-9808-4ed4-bcb4-99dbee553d11" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="756.926633384846" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">

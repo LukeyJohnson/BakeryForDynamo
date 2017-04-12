@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="5" Y="165" zoom="1" Name="mysql Default Connection String" Description="" ID="fb0b1513-9f2f-40fd-af8d-3c51900b47de" Category="Bakery.Database">
+<Workspace Version="0.8.2.2371" X="5" Y="165" zoom="1" Name="mysql Default Connection String" Description="" ID="fb0b1513-9f2f-40fd-af8d-3c51900b47de" Category="Bakery.Data.Database">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Nodes.StringInput guid="3faa59a0-863e-4b7c-ad3f-766c23d24da0" type="Dynamo.Nodes.StringInput" nickname="String" x="133.910554211547" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">

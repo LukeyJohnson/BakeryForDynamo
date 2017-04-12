@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="86.511160578953" Y="124.720699438347" zoom="0.716982951558226" Name="Report Category Summary" Description="for BEP compliance" ID="83509839-1b46-4d45-a56e-4e28d7944170" Category="Bakery.Report">
+<Workspace Version="0.9.1.4062" X="86.511160578953" Y="124.720699438347" zoom="0.716982951558226" Name="Report Category Summary" Description="for BEP compliance" ID="83509839-1b46-4d45-a56e-4e28d7944170" Category="Bakery.Revit.Document.Utility">
   <NamespaceResolutionMap />
   <Elements>
     <DSRevitNodesUI.ElementsOfCategory guid="43ef467c-2b02-4a14-800a-de3d9589a742" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="136.278931750742" y="-60.7774480712166" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" />

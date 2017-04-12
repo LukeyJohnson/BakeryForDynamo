@@ -1,4 +1,4 @@
-<Workspace Version="0.8.2.2371" X="321.162029843864" Y="100.578279584785" zoom="0.808219866393026" Name="Extract Specific Tag Entries from XML as Unique List" Description="" ID="1d8b8588-1d3d-4d3a-be74-d14ae4e47368" Category="Bakery.XML">
+<Workspace Version="0.8.2.2371" X="321.162029843864" Y="100.578279584785" zoom="0.808219866393026" Name="Extract Specific Tag Entries from XML as Unique List" Description="" ID="1d8b8588-1d3d-4d3a-be74-d14ae4e47368" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <DSCore.File.FileObject guid="f7767a33-3c29-43e1-ba3c-f0f958318a0b" type="DSCore.File.FileObject" nickname="File.FromPath" x="187.927157974304" y="-14.8702727100934" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" />

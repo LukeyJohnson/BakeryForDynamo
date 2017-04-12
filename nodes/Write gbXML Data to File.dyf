@@ -1,4 +1,4 @@
-<Workspace Version="1.0.0.1180" X="135" Y="99" zoom="1" Name="Write gbXML Data to File" Description="from Ezra at https://forum.dynamobim.com/t/how-do-you-create-an-xml-file-using-a-python-script/3859/6?u=luke_johnson" ID="6f8691d9-346a-492f-ae42-3ac1768306c2" Category="Bakery.XML">
+<Workspace Version="1.0.0.1180" X="135" Y="99" zoom="1" Name="Write gbXML Data to File" Description="from Ezra at https://forum.dynamobim.com/t/how-do-you-create-an-xml-file-using-a-python-script/3859/6?u=luke_johnson" ID="6f8691d9-346a-492f-ae42-3ac1768306c2" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Input.StringInput guid="6540d623-de29-49d9-9df1-8424a4eac248" type="CoreNodeModels.Input.StringInput" nickname="String" x="497.457793258589" y="85.126182256101" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">

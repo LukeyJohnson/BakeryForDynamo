@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="-227.658460350074" Y="234.76422962679" zoom="0.931811528498331" Name="Truncate X and Y Values in a String List" Description="for point cloud translation" ID="26a9426b-3769-4f73-aa47-af97cf18687e" Category="Bakery.PointCloud">
+<Workspace Version="1.3.0.875" X="-227.658460350074" Y="234.76422962679" zoom="0.931811528498331" ScaleFactor="1" Name="Truncate X and Y Values in a String List" Description="for point cloud translation" ID="26a9426b-3769-4f73-aa47-af97cf18687e" Category="Bakery.Construction.PointCloud">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6fb29eeb-72f9-49e8-8b5c-43b6e2abef07" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.Remove" x="271.333333333333" y="149.023296845529" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="DSCoreNodes.dll" function="DSCore.String.Remove@string,int,int">
@@ -85,7 +85,4 @@
   <Notes />
   <Annotations />
   <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="23.0919036865234" eyeY="12.2534189224243" eyeZ="-26.1171703338623" lookX="-32.8016319274902" lookY="-13.1470985412598" lookZ="17.9166965484619" upX="-0.106954418122768" upY="0.992546141147614" upZ="0.0584199503064156" />
-  </Cameras>
 </Workspace>

@@ -1,4 +1,4 @@
-<Workspace Version="0.9.1.4062" X="-232.732665075028" Y="208.635946398009" zoom="0.954042924882813" Name="Get XML Children Texts and Tags from XML Elements" Description="" ID="92c70a18-0090-4733-ab9d-086a6f570af0" Category="Bakery.XML">
+<Workspace Version="0.9.1.4062" X="-232.732665075028" Y="208.635946398009" zoom="0.954042924882813" Name="Get XML Children Texts and Tags from XML Elements" Description="" ID="92c70a18-0090-4733-ab9d-086a6f570af0" Category="Bakery.Data.XML">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="6dd222a9-544d-4da2-9886-779d09901994" type="PythonNodeModels.PythonNode" nickname="Python Script" x="251.048170867283" y="20.0915764186104" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">
