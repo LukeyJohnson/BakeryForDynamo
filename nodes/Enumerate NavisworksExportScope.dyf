@@ -1,0 +1,33 @@
+<Workspace Version="1.3.0.875" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Enumerate NavisworksExportScope" Description="" ID="1d9ad72a-d37a-42dc-b6e3-b91ac999073d" Category="Bakery.Construction.Navisworks">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="698c85d2-42ef-4a4b-a0f0-fd0bb56f7514" type="PythonNodeModels.PythonNode" nickname="Python Script" x="510" y="269.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="0">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB import Structure
+import System
+
+#Assign your output to the OUT variable
+OUT = System.Enum.GetValues(Autodesk.Revit.DB.NavisworksExportScope)</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors />
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
