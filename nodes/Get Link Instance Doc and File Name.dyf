@@ -1,0 +1,112 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Get Link Instance Doc and File Name" Description="" ID="eb85f63b-6876-40af-a69b-d9835b7406c0" Category="Bakery.Revit.Document.Links">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="7583f41b-f428-451d-a7e5-9fc7f9acb6f7" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="250" y="62.8831493786529" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="TurnIntoList" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="db9f1b76-a98f-4453-a93a-d78976477db0" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="794.03696374372" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="bfe90463-7b59-4f36-b68a-817ee1acb48a" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="623.27995543517" y="69.0699150417652" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0;" ShouldFocus="false" />
+    <PythonNodeModels.PythonNode guid="ad675038-4b2a-40aa-957e-207b0a5969ac" type="PythonNodeModels.PythonNode" nickname="Python Script" x="546.736098695312" y="187.288088078921" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Analysis import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+linkInstances = UnwrapElement(IN[0])
+
+collector = Autodesk.Revit.DB.FilteredElementCollector(doc)
+#linkInstances = collector.OfClass(Autodesk.Revit.DB.RevitLinkInstance)
+
+linkDoc, linkName, linkInstId, linktype = [], [], [], []
+for i in linkInstances:
+	linkDoc.append(i.GetLinkDocument())
+	linkName.append(i.Name)
+
+OUT = linkDoc, linkName</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="90b6f5dd-b9bf-47c2-9adb-56e8ba7ccd39" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="800.190041751958" y="143.982025392767" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="1e3d8e5b-be70-49c2-a81c-bba577d97cb2" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="720.185125865423" y="278.891073708073" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="e768ddd3-ab0c-4225-8215-fc20cff132f0" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Clean Link Name List" x="678.287306545484" y="390.624895834327" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
+      <PortInfo index="0" default="False" />
+      <ID value="e3fabfc0-f183-4931-a15e-f5da8bc93eae" />
+      <Name value="Clean Link Name List" />
+      <Description value="" />
+      <Inputs>
+        <Input value="name list" />
+      </Inputs>
+      <Outputs>
+        <Output value="cleaned names only" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a3fdecb3-7c57-456e-b728-6e34f96b604a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="unknownItem : var[]..[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="9ae380a8-be21-4427-bffa-ad7e0fdca4c7" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1051.19004175196" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="item" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="adab9d48-cc11-4c41-9087-d48fb82835cc" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1051.19004175196" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="cleaned names only" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="7583f41b-f428-451d-a7e5-9fc7f9acb6f7" start_index="0" end="ad675038-4b2a-40aa-957e-207b0a5969ac" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="db9f1b76-a98f-4453-a93a-d78976477db0" start_index="0" end="9ae380a8-be21-4427-bffa-ad7e0fdca4c7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bfe90463-7b59-4f36-b68a-817ee1acb48a" start_index="0" end="db9f1b76-a98f-4453-a93a-d78976477db0" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ad675038-4b2a-40aa-957e-207b0a5969ac" start_index="0" end="db9f1b76-a98f-4453-a93a-d78976477db0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ad675038-4b2a-40aa-957e-207b0a5969ac" start_index="0" end="90b6f5dd-b9bf-47c2-9adb-56e8ba7ccd39" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="90b6f5dd-b9bf-47c2-9adb-56e8ba7ccd39" start_index="0" end="e768ddd3-ab0c-4225-8215-fc20cff132f0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1e3d8e5b-be70-49c2-a81c-bba577d97cb2" start_index="0" end="90b6f5dd-b9bf-47c2-9adb-56e8ba7ccd39" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e768ddd3-ab0c-4225-8215-fc20cff132f0" start_index="0" end="adab9d48-cc11-4c41-9087-d48fb82835cc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a3fdecb3-7c57-456e-b728-6e34f96b604a" start_index="0" end="7583f41b-f428-451d-a7e5-9fc7f9acb6f7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,85 @@
+<Workspace Version="1.2.1.3083" X="-1119.97909506937" Y="259.307554175411" zoom="0.659303492768027" Name="mysql Insert New Row of Data" Description="" ID="ab94b114-5ca1-435d-82e3-a30fe25dc9ae" Category="Bakery.Data.Database">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="9b9d9b17-5d00-417d-b4e3-57f72726cb16" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="3095.70193424837" y="576.970411480464" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="true;" ShouldFocus="false" />
+    <CoreNodeModels.Watch guid="14947c76-9f5c-4115-948b-65465a8c36a0" type="CoreNodeModels.Watch" nickname="Watch" x="2704.79101799627" y="374.676417369699" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="666215b6-c892-4aa3-8ba2-001230a8a110" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Command.MySQL_Command" x="3266.96787022844" y="633.417056962231" isVisible="false" isUpstreamVisible="false" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="..\..\Slingshot!%20for%20Dynamo\bin\Slingshot.dll" function="Database.Command.MySQL_Command@string,bool,string[]">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5d459f3e-f684-442c-b6d9-243875781587" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1756.9034046105" y="138.495495331863" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="columnNameList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="32bf20d2-5725-4482-a011-60efa54ad977" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1722.87768749873" y="277.417354876868" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dataList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="da4bd175-fd56-4c9d-90e0-c3862719f25c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1735.5384194473" y="432.16512935758" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dbName : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="acb5934f-dc4b-4458-bc24-b4b1a8e87e8c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1750.63624910289" y="552.072581238283" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="tableName : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="efbbac6b-5698-4d6c-80fa-e253df22e730" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1756.77931658347" y="847.3531909956" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ConnectionString : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e6a9be8c-91ed-4816-8eec-1d355ec717ab" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="3783.03904927409" y="842.369384263641" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="success" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="8f94308b-cfdb-481a-aba4-23e28dca1635" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="3165" y="990" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="8c873f2c-b9c2-4f0f-b329-471110311a69" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Wait Then Passthrough" x="3386.48323212913" y="897.231149616297" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="43fbb704-a454-4470-910a-f3daac166d4a" />
+      <Name value="Wait Then Passthrough" />
+      <Description value="" />
+      <Inputs>
+        <Input value="anyData" />
+        <Input value="secondsToWait" />
+      </Inputs>
+      <Outputs>
+        <Output value="anyData" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="4e261f7e-39d1-4507-894b-39dcea5c0fc9" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="mysql Create List of Insert Instructions" x="2171.09553513607" y="407.817197630651" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <ID value="6f71e5c9-ef56-4cbf-9bf6-66f30417df80" />
+      <Name value="mysql Create List of Insert Instructions" />
+      <Description value="" />
+      <Inputs>
+        <Input value="columnNameList" />
+        <Input value="dataList" />
+        <Input value="dbName" />
+        <Input value="tableName" />
+      </Inputs>
+      <Outputs>
+        <Output value="commandString" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="9b9d9b17-5d00-417d-b4e3-57f72726cb16" start_index="0" end="666215b6-c892-4aa3-8ba2-001230a8a110" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="14947c76-9f5c-4115-948b-65465a8c36a0" start_index="0" end="666215b6-c892-4aa3-8ba2-001230a8a110" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="666215b6-c892-4aa3-8ba2-001230a8a110" start_index="0" end="8c873f2c-b9c2-4f0f-b329-471110311a69" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5d459f3e-f684-442c-b6d9-243875781587" start_index="0" end="4e261f7e-39d1-4507-894b-39dcea5c0fc9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="32bf20d2-5725-4482-a011-60efa54ad977" start_index="0" end="4e261f7e-39d1-4507-894b-39dcea5c0fc9" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="da4bd175-fd56-4c9d-90e0-c3862719f25c" start_index="0" end="4e261f7e-39d1-4507-894b-39dcea5c0fc9" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="acb5934f-dc4b-4458-bc24-b4b1a8e87e8c" start_index="0" end="4e261f7e-39d1-4507-894b-39dcea5c0fc9" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="efbbac6b-5698-4d6c-80fa-e253df22e730" start_index="0" end="666215b6-c892-4aa3-8ba2-001230a8a110" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8f94308b-cfdb-481a-aba4-23e28dca1635" start_index="0" end="8c873f2c-b9c2-4f0f-b329-471110311a69" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8c873f2c-b9c2-4f0f-b329-471110311a69" start_index="0" end="e6a9be8c-91ed-4816-8eec-1d355ec717ab" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4e261f7e-39d1-4507-894b-39dcea5c0fc9" start_index="0" end="14947c76-9f5c-4115-948b-65465a8c36a0" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

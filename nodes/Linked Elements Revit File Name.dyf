@@ -1,0 +1,34 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Linked Elements Revit File Name" Description="" ID="a7ab6aea-7ba1-428a-bef7-1400aca0ba77" Category="Bakery.Revit.Elements.Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="856d3aed-54d8-4691-991b-f03a14ed8544" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Element.Document Parent Link" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="451420b5-b164-41a1-ab37-d85084d4717f" />
+      <Name value="Element.Document Parent Link" />
+      <Description value="" />
+      <Inputs>
+        <Input value="Element" />
+      </Inputs>
+      <Outputs>
+        <Output value="Docs" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1e32f2e9-17ab-4dba-bc9c-405143124a40" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="item" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="64d0942a-de75-4f7a-b155-6b87a84d527b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1309.87580611003" y="59.3333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="fileName" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="856d3aed-54d8-4691-991b-f03a14ed8544" start_index="0" end="64d0942a-de75-4f7a-b155-6b87a84d527b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1e32f2e9-17ab-4dba-bc9c-405143124a40" start_index="0" end="856d3aed-54d8-4691-991b-f03a14ed8544" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

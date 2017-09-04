@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="76.3659544838611" Y="78.6985167247944" zoom="0.593767140625" Name="All Directory Contents of Specific Filetype" Description="from clockwork" ID="90217de8-7cff-426b-a80a-cd2b58999b27" Category="Bakery.Dynamo.ForkedNodes">
+<Workspace Version="1.2.1.3083" X="-351.103083447662" Y="68.8331431835626" zoom="1.05429821501133" Name="All Directory Contents of Specific Filetype" Description="from clockwork" ID="90217de8-7cff-426b-a80a-cd2b58999b27" Category="Bakery.Dynamo.ForkedNodes">
   <NamespaceResolutionMap />
   <Elements>
     <CoreNodeModels.Watch guid="410f9d88-1e71-4f7a-b932-b0270daa9db6" type="CoreNodeModels.Watch" nickname="Watch" x="954.280197497236" y="425.84408135003" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
@@ -23,14 +23,14 @@
       <PortInfo index="0" default="False" />
       <Symbol value="files found" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="53029e9d-5a71-45fc-a3e5-ccad1aade9fb" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Directory.ContentsAll" x="599.214900119315" y="412.959039566359" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="53029e9d-5a71-45fc-a3e5-ccad1aade9fb" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Directory.ContentsAll" x="587.466939672721" y="354.753235535508" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="True" />
       <ID value="2276a44a-c7cc-4438-ac43-2ae6b821d4c9" />
       <Name value="Directory.ContentsAll" />
       <Description value="Unlike the built-in node Directory.Contents, this node browses a directory recursively and returns all relevant files contained in subfolders as well." />
       <Inputs>
-        <Input value="directoryPath" />
+        <Input value="dir" />
         <Input value="searchString" />
       </Inputs>
       <Outputs>
