@@ -1,0 +1,91 @@
+<Workspace Version="1.2.1.3083" X="320" Y="218" zoom="1" Name="Add RVT Link and Unload" Description="" ID="e370cd14-27b1-42b8-be71-616bef341c37" Category="Bakery.Revit.Document.Links">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="6ad16931-f6ea-440d-9980-77384dc24651" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
+      <PortInfo index="0" default="False" />
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="TurnIntoList" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <PythonNodeModels.PythonNode guid="90cca356-e956-40a1-900f-dee774c163e4" type="PythonNodeModels.PythonNode" nickname="Python Script" x="632.11257415473" y="69.0692543139101" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+linkpaths = IN[0]
+elementlist = list()
+booleans = list()
+successlist = list()
+
+
+for path in linkpaths:
+	try:
+		TransactionManager.Instance.EnsureInTransaction(doc)
+		linkpath = ModelPathUtils.ConvertUserVisiblePathToModelPath(path)
+		linkoptions = RevitLinkOptions(False)
+		linkloadresult = RevitLinkType.Create(doc, linkpath, linkoptions)
+		TransactionManager.Instance.TransactionTaskDone()
+		tempelem = RevitLinkInstance.Create(doc, linkloadresult.ElementId)
+		elementlist.append(tempelem)
+#		tempunload = doc.GetElement(tempelem.GetTypeId())
+		try:
+			x = doc.GetElement(tempelem.GetTypeId())
+			try:
+				TransactionManager.Instance.ForceCloseTransaction()
+				x.Unload(None);
+				successlist.append("unloaded")
+			except:
+				successlist.append("could not unload")
+		except:
+			successlist.append("could not get link type")
+		booleans.append(True)
+	except:
+		booleans.append(False)
+
+OUT = (elementlist, booleans, successlist, x)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="9494b0e7-df9f-4367-9275-62cf1a0657d9" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="878.866649474727" y="187.481627205388" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="31e6c16f-514d-4b40-8028-0516b071060a" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="990.045597284548" y="125.947857140844" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="930fae53-0960-4678-961a-cf9d56a085f6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="filePath" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="82bc9c73-3fd0-47ee-b3ac-fe72dc930c29" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1240.37893061788" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="allOutput" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6a8d570e-a25a-4956-88a0-d8b9425e5e31" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1240.37893061788" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="linkInstances" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="6ad16931-f6ea-440d-9980-77384dc24651" start_index="0" end="90cca356-e956-40a1-900f-dee774c163e4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="90cca356-e956-40a1-900f-dee774c163e4" start_index="0" end="31e6c16f-514d-4b40-8028-0516b071060a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="90cca356-e956-40a1-900f-dee774c163e4" start_index="0" end="82bc9c73-3fd0-47ee-b3ac-fe72dc930c29" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9494b0e7-df9f-4367-9275-62cf1a0657d9" start_index="0" end="31e6c16f-514d-4b40-8028-0516b071060a" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="31e6c16f-514d-4b40-8028-0516b071060a" start_index="0" end="6a8d570e-a25a-4956-88a0-d8b9425e5e31" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="930fae53-0960-4678-961a-cf9d56a085f6" start_index="0" end="6ad16931-f6ea-440d-9980-77384dc24651" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
