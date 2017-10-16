@@ -1,0 +1,44 @@
+<Workspace Version="1.2.1.3083" X="502.755978463242" Y="134.657903010546" zoom="1.78359936238281" Name="Remove Character from List of Strings" Description="" ID="39266fd7-8b43-4a1c-a742-bbbd521e815a" Category="Bakery.Core.String">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="b01c747b-6100-4af7-9158-c7602e5be7e6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+stringlist = IN[0]
+removechar = IN[1]
+def EscapeStringQuotes(instring):
+	escapedstring = instring.Replace(removechar, r"")
+	return escapedstring
+#Assign your output to the OUT variable.
+newstringlist = []
+for s in stringlist:
+	newstringlist.append(EscapeStringQuotes(s))
+OUT = newstringlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="88cba3fd-3299-43d5-b2fc-d2ec05333db1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="listOfStrings" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="cb7b4de9-343c-438b-8a89-88fcb85f75ff" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="charToRemove" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f6625196-eae7-4d98-8338-ed2d72c6ba85" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="446.333333333333" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="newList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b01c747b-6100-4af7-9158-c7602e5be7e6" start_index="0" end="f6625196-eae7-4d98-8338-ed2d72c6ba85" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="88cba3fd-3299-43d5-b2fc-d2ec05333db1" start_index="0" end="b01c747b-6100-4af7-9158-c7602e5be7e6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="cb7b4de9-343c-438b-8a89-88fcb85f75ff" start_index="0" end="b01c747b-6100-4af7-9158-c7602e5be7e6" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
