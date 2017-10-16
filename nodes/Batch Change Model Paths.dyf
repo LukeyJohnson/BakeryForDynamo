@@ -1,13 +1,14 @@
 <Workspace Version="1.2.1.3083" X="137.146216475429" Y="-60.0559565756785" zoom="1.18529255198324" Name="Batch Change Model Paths" Description="run from a federated file with links with links" ID="8cdf4863-e487-4c46-beb2-8ba5988acf8f" Category="Bakery.Revit.Document.Links">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="9785e662-e2d1-4d17-93ec-df1af8541286" type="PythonNodeModels.PythonNode" nickname="Python Script" x="982.163450297935" y="216.71722631895" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="6">
+    <PythonNodeModels.PythonNode guid="9785e662-e2d1-4d17-93ec-df1af8541286" type="PythonNodeModels.PythonNode" nickname="Python Script" x="982.163450297935" y="216.71722631895" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="7">
       <PortInfo index="0" default="False" />
       <PortInfo index="1" default="False" />
       <PortInfo index="2" default="False" />
       <PortInfo index="3" default="False" />
       <PortInfo index="4" default="False" />
       <PortInfo index="5" default="False" />
+      <PortInfo index="6" default="False" />
       <Script>import clr
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *
@@ -47,6 +48,7 @@ tempvalue = IN[0]
 approvedFilenames = IN[1]
 approvedFilepaths = IN[2]
 targetfilepath = IN[5]
+boolsetting = IN[6]
 
 def stripquotes(string):
 	string = string[1:-1]
@@ -89,7 +91,7 @@ for f in filenames:
 		newpath.append(ModelPathUtils.ConvertUserVisiblePathToModelPath(stripquotes(approvedFilepaths[tempindex])))
 		matchrefs.append(erefids[origcounter])
 		newpathtypes.append(pathtypevar)
-		newbools.append(True)
+		newbools.append(boolsetting)
 	origcounter = origcounter + 1
 
 currentfilepathstring=ModelPathUtils.ConvertModelPathToUserVisiblePath(targetfilepath)
@@ -174,6 +176,9 @@ OUT = successreport, currentdata, newdata</Script>
       <PortInfo index="0" default="False" />
       <Symbol value="oneOutput" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0d718c76-095a-4db6-b843-4fccf07decee" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="606.747473302154" y="722.493768677031" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="TrueForLoad" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="9785e662-e2d1-4d17-93ec-df1af8541286" start_index="0" end="de4d6792-b76e-4c87-ad5a-5c50315ce4b0" end_index="0" portType="0" />
@@ -189,10 +194,11 @@ OUT = successreport, currentdata, newdata</Script>
     <Dynamo.Graph.Connectors.ConnectorModel start="83dce6c3-8163-4c51-97f3-16c2b9bb08b9" start_index="0" end="9785e662-e2d1-4d17-93ec-df1af8541286" end_index="4" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="c608584b-bf60-4532-920b-3dfb3c3822d1" start_index="0" end="9754c77a-dbdf-4c07-8415-a7e22bf013ab" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="b387dee5-7ecf-47ff-8970-36b807da5703" start_index="0" end="9d18e071-cfc7-4468-939b-d120ee4c2e0a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0d718c76-095a-4db6-b843-4fccf07decee" start_index="0" end="9785e662-e2d1-4d17-93ec-df1af8541286" end_index="6" portType="0" />
   </Connectors>
   <Notes />
   <Annotations>
-    <Dynamo.Graph.Annotations.AnnotationModel guid="e9c964b8-4b38-41e6-bae5-e115fad5052c" annotationText="read current transmission data" left="972.163450297935" top="173.383892985617" width="141.333333333333" height="241" fontSize="14" InitialTop="216.71722631895" InitialHeight="123" TextblockHeight="33.3333333333333" backgrouund="#FFC1D676">
+    <Dynamo.Graph.Annotations.AnnotationModel guid="e9c964b8-4b38-41e6-bae5-e115fad5052c" annotationText="read current transmission data" left="972.163450297935" top="173.383892985617" width="141.333333333333" height="267" fontSize="14" InitialTop="216.71722631895" InitialHeight="123" TextblockHeight="33.3333333333333" backgrouund="#FFC1D676">
       <Models ModelGuid="9785e662-e2d1-4d17-93ec-df1af8541286" />
     </Dynamo.Graph.Annotations.AnnotationModel>
   </Annotations>
