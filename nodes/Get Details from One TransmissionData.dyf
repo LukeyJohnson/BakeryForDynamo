@@ -1,0 +1,87 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Get Details from One TransmissionData" Description="" ID="efec39a8-03de-4922-ac1f-a5353752191f" Category="Bakery.Revit.API">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="346c0db8-557b-4f9c-ba97-c1262f5b6087" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+clr.AddReference('RevitNodes')
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+from System import Guid
+
+import System
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+import os.path
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+outerlist = []
+transData = IN[0]
+#transData = TransmissionData.ReadTransmissionData(check)
+
+erefids = transData.GetAllExternalFileReferenceIds()
+refdata = []
+for x in erefids:
+	refdata.append(transData.GetDesiredReferenceData(x))
+
+currentpaths, currenterefType, currenterefPath, pstr = [], [], [], []
+
+for e in refdata:
+	currentpaths.append(ExternalFileReference.GetAbsolutePath(e))
+	currenterefType.append(e.ExternalFileReferenceType)
+	currenterefPath.append(e.PathType)
+for s in currentpaths:
+	pstr.append(ModelPathUtils.ConvertModelPathToUserVisiblePath(s))
+	
+filenames = []
+for p in pstr:
+	templist = os.path.split(p)
+	filenames.append(templist[1])
+	
+outerlist.append(pstr)
+outerlist.append(filenames)
+outerlist.append(currenterefPath)
+OUT = outerlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0010a650-2a3a-4da6-b79e-31bdafd4b51f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="IN[0]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="61f090ab-8a14-474e-92f7-b6765d28a114" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="446.333333333333" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="346c0db8-557b-4f9c-ba97-c1262f5b6087" start_index="0" end="61f090ab-8a14-474e-92f7-b6765d28a114" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0010a650-2a3a-4da6-b79e-31bdafd4b51f" start_index="0" end="346c0db8-557b-4f9c-ba97-c1262f5b6087" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
