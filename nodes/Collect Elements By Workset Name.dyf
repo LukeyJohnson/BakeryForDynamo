@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="305.333333333333" Y="232.666666666667" zoom="1" Name="Collect Elements By Workset Name" Description="" ID="65c54169-f791-4eaa-9e49-9f6c18a52137" Category="Bakery.Revit.Document.Worksets">
+<Workspace Version="1.3.2.2480" X="-7.9385274143292" Y="260.8368108504" zoom="0.905016698856708" ScaleFactor="1" Name="Collect Elements By Workset Name" Description="" ID="65c54169-f791-4eaa-9e49-9f6c18a52137" Category="Bakery.Revit.Document.Worksets">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="b6443e86-f2ff-4f34-98c2-e5888c2cb376" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="IndexOf" x="562.451509047984" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="IndexOf@var[]..[],var[]..[]">
@@ -40,7 +40,7 @@
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="0f2713db-0383-452b-8592-120e02f8bc86" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1250.19759589643" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
       <PortInfo index="0" default="False" />
-      <Symbol value="elements" />
+      <Symbol value="elementz" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>

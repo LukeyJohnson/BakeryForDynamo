@@ -1,0 +1,43 @@
+<Workspace Version="1.3.2.2480" X="0" Y="0" zoom="1" ScaleFactor="1" Name="DoesIntersect and AnyTrue" Description="" ID="507c7db3-22b5-4759-a66a-c5158323fdf9" Category="Bakery.Geometry">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="0ce81c85-c5a4-47b1-826b-5dc3ef2971d6" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Geometry.DoesIntersect" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Geometry.DoesIntersect@Autodesk.DesignScript.Geometry.Geometry">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="5bc54104-246e-4095-9d6d-b5b07e6702b5" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List.AnyTrue" x="685.38266842796" y="116.102044914123" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="605e21d1-67ee-4465-8543-67f7781dd84d" />
+      <Name value="List.AnyTrue" />
+      <Description value="Returns true if any item in a list of booleans is true." />
+      <Inputs>
+        <Input value="seq" />
+      </Inputs>
+      <Outputs>
+        <Output value="bool" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ab638dd5-dd0f-41e9-94e6-cbc0236506b8" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="68" y="96" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="other" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f89355dd-7ed4-4c00-855f-002661df4280" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="927.38266842796" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="bool" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="16640df0-f055-4339-92af-e7b3bc9511f0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="159" y="116" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="geom" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="0ce81c85-c5a4-47b1-826b-5dc3ef2971d6" start_index="0" end="5bc54104-246e-4095-9d6d-b5b07e6702b5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5bc54104-246e-4095-9d6d-b5b07e6702b5" start_index="0" end="f89355dd-7ed4-4c00-855f-002661df4280" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ab638dd5-dd0f-41e9-94e6-cbc0236506b8" start_index="0" end="0ce81c85-c5a4-47b1-826b-5dc3ef2971d6" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="16640df0-f055-4339-92af-e7b3bc9511f0" start_index="0" end="0ce81c85-c5a4-47b1-826b-5dc3ef2971d6" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-57135.14453125" eyeY="31928.802734375" eyeZ="5514.82080078125" lookX="-45.1421318054199" lookY="-108.30534362793" lookZ="357.870788574219" upX="-0.00945612508803606" upY="0.997141301631927" upZ="0.0749648064374924" />
+  </Cameras>
+</Workspace>

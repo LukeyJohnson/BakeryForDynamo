@@ -1,0 +1,107 @@
+<Workspace Version="1.3.2.2480" X="152.594059740715" Y="169.564910641974" zoom="0.496186487382813" ScaleFactor="1" Name="Dimension to Detail Line Endpoints" Description="" ID="e3495e57-1aa7-476d-9b15-c89e9a233a65" Category="Bakery.Revit.Elements.Dimension">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Math" resolvedName="DSCore.Math" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <CoreNodeModels.Watch guid="f2514029-1a43-4912-ad8f-7ce8d4f17ae3" type="CoreNodeModels.Watch" nickname="Watch" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="979538c5-a88e-4eb9-adfb-e8b5adf23510" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.Curves" x="522.783408442418" y="86.0036609384838" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="RevitNodes.dll" function="Revit.Elements.Element.Curves">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="7489e6c3-6a50-4b58-8f48-17c45a64ac93" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Curve.SmartOffset" x="778.098401718671" y="220.60885705511" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="..\..\WombatDynamo\bin\WombatDynamo.dll" function="WombatDynamo.Curve.SmartOffset@Autodesk.DesignScript.Geometry.Curve,double">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="4d8a87b2-184d-4c3c-be6e-7574b041f190" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="1043.93468123522" y="163.27118177475" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Flatten@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <PythonNodeModels.PythonNode guid="48a85228-638f-43a3-8629-ff13fc3a32f4" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1412.08466660981" y="129.522226075617" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+if isinstance(IN[0], list):
+	lines = []
+	for i in IN[0]:
+		lines.append(UnwrapElement(i))
+else:
+	lines = [UnwrapElement(IN[0])]
+
+#get the curves to dimension
+crvs = []
+
+for line in lines:
+	crvs.append(line.GeometryCurve)
+
+
+if isinstance(IN[1], list):
+	linea = []
+	for i in IN[1]:
+		linea.append(UnwrapElement(i).ToRevitType())
+else:
+	linea = [UnwrapElement(IN[1]).ToRevitType()]
+
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+
+for i in range (0,len(linea)):
+	ref = ReferenceArray()
+	#get the end points of the lines
+	ref.Append(crvs[i].GetEndPointReference(0))
+	ref.Append(crvs[i].GetEndPointReference(1))
+	dim = doc.Create.NewDimension(doc.ActiveView, linea[i], ref)
+
+
+
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = linea</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f8c34398-ef58-4d09-bc5f-d48b0ba04a69" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="detailLines" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e0e2fb1c-8c0b-4029-b332-8c97bdd3b674" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="offsetDist : double" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f03c325c-6e01-40fc-8fb5-c32253cb8428" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1611.08466660981" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="f2514029-1a43-4912-ad8f-7ce8d4f17ae3" start_index="0" end="979538c5-a88e-4eb9-adfb-e8b5adf23510" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f2514029-1a43-4912-ad8f-7ce8d4f17ae3" start_index="0" end="48a85228-638f-43a3-8629-ff13fc3a32f4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="979538c5-a88e-4eb9-adfb-e8b5adf23510" start_index="0" end="7489e6c3-6a50-4b58-8f48-17c45a64ac93" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7489e6c3-6a50-4b58-8f48-17c45a64ac93" start_index="0" end="4d8a87b2-184d-4c3c-be6e-7574b041f190" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4d8a87b2-184d-4c3c-be6e-7574b041f190" start_index="0" end="48a85228-638f-43a3-8629-ff13fc3a32f4" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="48a85228-638f-43a3-8629-ff13fc3a32f4" start_index="0" end="f03c325c-6e01-40fc-8fb5-c32253cb8428" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f8c34398-ef58-4d09-bc5f-d48b0ba04a69" start_index="0" end="f2514029-1a43-4912-ad8f-7ce8d4f17ae3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e0e2fb1c-8c0b-4029-b332-8c97bdd3b674" start_index="0" end="7489e6c3-6a50-4b58-8f48-17c45a64ac93" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="0fc4531d-4a93-4b2f-9812-bec2c2bb5a28" annotationText="from Wombat" left="768.098401718671" top="174.60885705511" width="232" height="165" fontSize="30" InitialTop="220.60885705511" InitialHeight="149" TextblockHeight="36" backgrouund="#FFC1D676">
+      <Models ModelGuid="7489e6c3-6a50-4b58-8f48-17c45a64ac93" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
