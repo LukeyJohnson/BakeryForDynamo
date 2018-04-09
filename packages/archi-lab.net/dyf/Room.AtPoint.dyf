@@ -1,0 +1,72 @@
+<Workspace Version="1.2.0.2690" X="-3622.64264953574" Y="-1104.90650797405" zoom="2.06862614151419" Name="Room.AtPoint" Description="This node will attempt to retrieve a room at a given point in model. " ID="1724061b-fdb9-4757-a993-fc1a97e423cb" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="960325be-db32-4773-8d46-5933555ab4b0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1997.77476818544" y="634.953885465632" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def GetRoomAtPoint(pt):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	return doc.GetRoomAtPoint(pt.ToXyz())
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+    
+if isinstance(IN[0], list):
+	points = ProcessList(Unwrap, IN[0])
+else:
+	points = [Unwrap(IN[0])]
+
+try:
+	errorReport = None
+	result = ProcessList(GetRoomAtPoint, points)
+
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = result
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f2319fcf-147e-4753-8ec5-bbf26a640653" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1884.16967731189" y="651.595027696696" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Point" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="84551af7-220e-4cb4-8554-fec3db8d948a" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="2141.34519555734" y="641.443362502796" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Room" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="960325be-db32-4773-8d46-5933555ab4b0" start_index="0" end="84551af7-220e-4cb4-8554-fec3db8d948a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f2319fcf-147e-4753-8ec5-bbf26a640653" start_index="0" end="960325be-db32-4773-8d46-5933555ab4b0" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

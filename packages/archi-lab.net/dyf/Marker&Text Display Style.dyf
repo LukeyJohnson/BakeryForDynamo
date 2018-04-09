@@ -1,0 +1,208 @@
+<Workspace Version="0.7.5.3566" X="206.956494074415" Y="71.4097329326472" zoom="1.17131835730765" Description="This node will take an input of Points and a matching input of values to create Analysis Display Style in Revit. Use Legend, Marker and Color Settings nodes to fully customize your display style. " Category="Archi-lab_Grimshaw.Analysis" Name="Marker&amp;Text Display Style" ID="883ff008-b413-4446-b508-2b5c4ce15895">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" nickname="Python Script" x="234.327381446139" y="116.639642671054" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="11">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Analysis import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+points = IN[0]
+values = IN[1]
+colorSettings = IN[2]
+legendSettings = IN[3]
+markerSettings = IN[4]
+
+displayStyleName = IN[5]
+analysisResultName = IN[6]
+analysisResultDescription = IN[7]
+unitNames = IN[8]
+unitMultipliers = IN[9]
+displayUnit = IN[10]
+
+message = ""
+
+def dsPointToRvtPoint(dsPoint):
+	factor = 3.2808398950
+	x = dsPoint.X * factor
+	y = dsPoint.Y * factor
+	z = dsPoint.Z * factor
+	return Autodesk.Revit.DB.XYZ(x,y,z)
+
+def chunks(data, n):
+	if n &lt; 1:
+		n = 1
+	return [data[i:i + n] for i in range(0, len(data), n)]
+
+#"Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+#create spatial field manager if one doesnt already exist
+sfm = SpatialFieldManager.GetSpatialFieldManager(doc.ActiveView)
+if sfm == None:
+	sfm = SpatialFieldManager.CreateSpatialFieldManager(doc.ActiveView, 1)
+sfm.Clear()
+
+#get result schema index if existing else crete one
+regResults = sfm.GetRegisteredResults()
+if len(regResults) != 0:
+	for i in regResults:
+		if sfm.GetResultSchema(i).Name == analysisResultName:
+			resultSchema = sfm.GetResultSchema(i)
+else:
+	resultSchema = AnalysisResultSchema(analysisResultName, analysisResultDescription)
+
+names = List[str]()
+multipliers = List[float]()
+for i,j in zip(unitMultipliers, unitNames):
+	multipliers.Add(i)
+	names.Add(j)
+resultSchema.SetUnits(names, multipliers)
+
+for i in range(0, resultSchema.GetNumberOfUnits(), 1):
+	if resultSchema.GetUnitsName(i) == displayUnit:
+		resultSchema.CurrentUnits = i
+		message = "Success! Remember that your current \ndisplay units are set to " + displayUnit
+	else:
+		continue
+if resultSchema.GetUnitsName(resultSchema.CurrentUnits) != displayUnit:
+	message = "Display Units supplied not available. \nEither add those units to results or \nspecify one of the already supplied."
+
+schemaIndex = sfm.RegisterResult(resultSchema)
+
+#create spatial field primitives and assign values to points
+points = chunks(points, 999)
+values = chunks(values, 999)
+for i, j in zip(points, values):
+	fieldPoints = List[Autodesk.Revit.DB.XYZ]()
+	for point in i:
+		fieldPoints.Add(dsPointToRvtPoint(point))
+	pnts = FieldDomainPointsByXYZ(fieldPoints)
+	fieldPoints.Clear()
+	valList = List[ValueAtPoint]()
+	doubleList = List[float]()
+	for value in j:
+		doubleList.Add(float(value))
+		valList.Add(ValueAtPoint(doubleList))
+		doubleList.Clear()
+	vals = FieldValues(valList)
+	valList.Clear()
+	idx = sfm.AddSpatialFieldPrimitive()
+	sfm.UpdateSpatialFieldPrimitive(idx, pnts, vals, schemaIndex)
+
+#define analysis display style and set legend/color settings
+collector = FilteredElementCollector(doc)
+collection = collector.OfClass(AnalysisDisplayStyle).ToElements()
+displayStyle = []
+for i in collection:
+	if i.Name == displayStyleName and i.HasMarkersAndTextSettings():
+		displayStyle.append(i)
+	elif i.Name == displayStyleName and not i.HasMarkersAndTextSettings():
+		message = "Specified Display Style name already \nexists; please supply different name"
+	else:
+		continue
+if len(displayStyle) == 0:
+	try:
+		analysisDisplayStyle = AnalysisDisplayStyle.CreateAnalysisDisplayStyle(doc, displayStyleName, markerSettings, colorSettings, legendSettings)
+	except:
+		pass
+else:
+	analysisDisplayStyle = displayStyle[0]
+	analysisDisplayStyle.SetLegendSettings(legendSettings)
+	analysisDisplayStyle.SetColorSettings(colorSettings)
+	analysisDisplayStyle.SetMarkersAndTextSettings(markerSettings)
+
+try:
+	doc.ActiveView.AnalysisDisplayStyleId = analysisDisplayStyle.Id
+except:
+	pass
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+if len(message) != 0:
+	OUT = '\n'.join('{:^35}'.format(s) for s in message.split('\n'))
+else:
+	OUT = 0</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="9ec2dba7-62a2-4fc0-b862-c14b7f8ae374" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Points" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="e70b1f72-14aa-42f6-b23f-5c7b35c0857b" nickname="Input" x="2.29420703573834" y="55.937511534729" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Values" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="a07b4fce-2fec-404a-a833-d965c3c7d72a" nickname="Input" x="5.3531497500561" y="111.110287390878" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Color Settings" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="040cc8d7-9052-40fc-b824-c21d1a0d3ca6" nickname="Input" x="3.82367839289725" y="164.753591889869" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Legend Settings" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="96fe8ca4-30f8-4ab9-ac4a-91463fb3e138" nickname="Input" x="4.52585243546162" y="218.018054447039" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Marker Settings" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="f2270375-c7be-44e5-a3c2-50d09e349710" nickname="Input" x="8.1465343838309" y="271.164812328161" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Display Style Name" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="85e021a3-b18a-46dc-a617-1c0b5521629c" nickname="Input" x="4.55459926877461" y="326.120492134405" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Analysis Result Name" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="d3837f78-3a44-4b3d-81c5-172a4bcc3fcf" nickname="Input" x="6.07279902503274" y="377.437507977623" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Analysis Result Description" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="b7e6861c-5278-427b-bc2e-277351eda28d" nickname="Input" x="4.55459926877461" y="431.790923333357" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Units Names" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="5d9f6da1-3570-410c-97e0-f228d78000ec" nickname="Input" x="8.69241962322599" y="487.277352394814" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Units Multipliers" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="9d93e939-5bbd-4376-9638-8c734e374468" nickname="Input" x="8.69241962322621" y="541.660736539327" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Display Unit" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="5eb5041f-546b-4579-8843-0dd8f2638e05" nickname="Output" x="379.348087851041" y="116.70668208697" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" start_index="0" end="5eb5041f-546b-4579-8843-0dd8f2638e05" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9ec2dba7-62a2-4fc0-b862-c14b7f8ae374" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e70b1f72-14aa-42f6-b23f-5c7b35c0857b" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a07b4fce-2fec-404a-a833-d965c3c7d72a" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="040cc8d7-9052-40fc-b824-c21d1a0d3ca6" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="96fe8ca4-30f8-4ab9-ac4a-91463fb3e138" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="4" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f2270375-c7be-44e5-a3c2-50d09e349710" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="5" portType="0" />
+    <Dynamo.Models.ConnectorModel start="85e021a3-b18a-46dc-a617-1c0b5521629c" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="6" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d3837f78-3a44-4b3d-81c5-172a4bcc3fcf" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="7" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b7e6861c-5278-427b-bc2e-277351eda28d" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="8" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5d9f6da1-3570-410c-97e0-f228d78000ec" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="9" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9d93e939-5bbd-4376-9638-8c734e374468" start_index="0" end="7d0590ff-e4cd-4739-a5f5-6e5cacb93443" end_index="10" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

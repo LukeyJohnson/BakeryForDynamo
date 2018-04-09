@@ -1,0 +1,36 @@
+<Workspace Version="0.8.2.1594" X="-218" Y="120" zoom="1" Name="Tool.UpdateString" ID="7a88b34a-63f8-47e1-acdd-4efd4591ec66" Description="Replace a Parameter string value by another one" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="String" resolvedName="DSCore.String" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="a38a73dc-7ee7-471b-9faf-8d57c6f461ca" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="637.511628590791" y="145.240863216562" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="t1 = t2.GetParameterValueByName(t3);&#xA;t4 = String.Replace(t1, t5, t6);&#xA;t7 = t2.SetParameterByName(t3, t4);" ShouldFocus="false" />
+    <Dynamo.Nodes.Symbol guid="c0dd2708-693d-4fc3-acd0-da9e9cb728b1" type="Dynamo.Nodes.Symbol" nickname="Input" x="265.5" y="50.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="List" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="8cc743d0-2baf-4eec-b248-ed8156280870" type="Dynamo.Nodes.Symbol" nickname="Input" x="257.5" y="181.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="String OUT" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="07402c45-a5cf-40e9-84b3-bf60ff3598e8" type="Dynamo.Nodes.Symbol" nickname="Input" x="260.5" y="252.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="String IN" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="fbc46aef-47ea-4012-8141-87bea08ee8b9" type="Dynamo.Nodes.Symbol" nickname="Input" x="244.5" y="110.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="ParameterName" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="c050cac2-198c-4cb6-9e8a-055c3f21836e" type="Dynamo.Nodes.Output" nickname="Output" x="1217.5" y="162.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="" />
+    </Dynamo.Nodes.Output>
+    <DSCoreNodesUI.CreateList guid="4f674988-997f-4299-88b9-5ce1a4a8054c" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="1030.5" y="156.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="3" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="a38a73dc-7ee7-471b-9faf-8d57c6f461ca" start_index="0" end="4f674988-997f-4299-88b9-5ce1a4a8054c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a38a73dc-7ee7-471b-9faf-8d57c6f461ca" start_index="1" end="4f674988-997f-4299-88b9-5ce1a4a8054c" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a38a73dc-7ee7-471b-9faf-8d57c6f461ca" start_index="2" end="4f674988-997f-4299-88b9-5ce1a4a8054c" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c0dd2708-693d-4fc3-acd0-da9e9cb728b1" start_index="0" end="a38a73dc-7ee7-471b-9faf-8d57c6f461ca" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8cc743d0-2baf-4eec-b248-ed8156280870" start_index="0" end="a38a73dc-7ee7-471b-9faf-8d57c6f461ca" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="07402c45-a5cf-40e9-84b3-bf60ff3598e8" start_index="0" end="a38a73dc-7ee7-471b-9faf-8d57c6f461ca" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fbc46aef-47ea-4012-8141-87bea08ee8b9" start_index="0" end="a38a73dc-7ee7-471b-9faf-8d57c6f461ca" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4f674988-997f-4299-88b9-5ce1a4a8054c" start_index="0" end="c050cac2-198c-4cb6-9e8a-055c3f21836e" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+</Workspace>

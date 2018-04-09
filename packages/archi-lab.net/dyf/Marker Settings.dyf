@@ -1,0 +1,100 @@
+<Workspace Version="0.7.5.3566" X="223.761436724817" Y="134.782814003576" zoom="1.41803684721607" Description="This node will generate AnalysisDisplayMarkerAndTextSettings to be used with a Marker Analysis Display Style. Inputs are: Marker Shape(Circle, Triangle, Rectangle), Marker Size, Show Text (Boolean), Rounding, TextDisplayMethod (Show All, Show None, Show Predefined). " Category="Archi-lab_Grimshaw.Analysis" Name="Marker Settings" ID="3911181b-3609-4e22-9c1c-44afd538e9b8">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="33aa5559-a633-45bf-9f6d-88011de29e77" nickname="Python Script" x="228.456878137329" y="60.9150342323809" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="5">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Analysis import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+markerType = IN[0]
+markerSize = IN[1]
+TextTypeId = IN[2]
+rounding = IN[3]
+textLabelType = IN[4]
+
+#define marker settings
+markerSettings = AnalysisDisplayMarkersAndTextSettings()
+
+#marker
+if markerType == "Circle":
+	markerSettings.MarkerType = AnalysisDisplayStyleMarkerType.Circle
+elif markerType == "Square":
+	markerSettings.MarkerType = AnalysisDisplayStyleMarkerType.Square
+elif markerType == "Triangle":
+	markerSettings.MarkerType = AnalysisDisplayStyleMarkerType.Triangle
+else:
+	message = "Please specify one of the marker types: \nCircle, Square or Triangle"
+markerSettings.MarkerSize = markerSize
+
+#text annotation
+if textLabelType == "ShowAll":
+	markerSettings.TextLabelType = AnalysisDisplayStyleMarkerTextLabelType.ShowAll
+elif textLabelType == "ShowNone":
+	markerSettings.TextLabelType = AnalysisDisplayStyleMarkerTextLabelType.ShowNone
+elif textLabelType == "ShowPredefined":
+	markerSettings.TextLabelType = AnalysisDisplayStyleMarkerTextLabelType.ShowPredefined
+else:
+	message = "Please specify one of the text label types: \nShowAll, ShowNone or ShowPredefined"
+markerSettings.TextTypeId = TextTypeId[0]
+markerSettings.Rounding = rounding
+
+#Assign your output to the OUT variable
+OUT = markerSettings</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="cd4437ad-36f7-4b1c-a671-659eb0c9e44b" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Marker Type" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="f9897b4c-222d-4a0c-be01-3918ddcd0450" nickname="Input" x="0.994797399484469" y="56.4890444484593" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Marker Size" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="89bcf76d-223e-4c09-a8a2-b1a2e0891466" nickname="Input" x="-2.18969370167383" y="118.823969751962" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Text Type Id" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="7acb829b-e615-4ff1-bea9-f1380030061f" nickname="Input" x="9.53194904820077" y="179.30155769824" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Rounding" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="f5c6eb9b-ea2f-4e59-86f9-5e2087a33bc6" nickname="Input" x="-19.835597052758" y="239.301656260518" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Text Label Type" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="56a88e27-59c4-4bd2-bc69-9cd26154b7b9" nickname="Output" x="383.62776814086" y="61.6579005035074" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Marker Settings" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="33aa5559-a633-45bf-9f6d-88011de29e77" start_index="0" end="56a88e27-59c4-4bd2-bc69-9cd26154b7b9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="cd4437ad-36f7-4b1c-a671-659eb0c9e44b" start_index="0" end="33aa5559-a633-45bf-9f6d-88011de29e77" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f9897b4c-222d-4a0c-be01-3918ddcd0450" start_index="0" end="33aa5559-a633-45bf-9f6d-88011de29e77" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="89bcf76d-223e-4c09-a8a2-b1a2e0891466" start_index="0" end="33aa5559-a633-45bf-9f6d-88011de29e77" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7acb829b-e615-4ff1-bea9-f1380030061f" start_index="0" end="33aa5559-a633-45bf-9f6d-88011de29e77" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f5c6eb9b-ea2f-4e59-86f9-5e2087a33bc6" start_index="0" end="33aa5559-a633-45bf-9f6d-88011de29e77" end_index="4" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

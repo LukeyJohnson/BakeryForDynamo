@@ -1,0 +1,60 @@
+<Workspace Version="1.2.0.2690" X="139" Y="184" zoom="1" Name="Get Level by Name" Description="This node will retrieve a Revit Level Element by its name. " ID="23048f64-4029-4911-b156-a37b572bc6f3" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="ef95f7a3-58b2-433a-8d74-cccdecc34aa4" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+levelName = IN[0]
+
+level = None
+message = "Name doesn't match any levels in \n the project. Pick a different one"
+allLevels = FilteredElementCollector(doc).OfClass(Level).ToElements()
+for i in allLevels:
+	if i.Name == levelName:
+		level = i
+		break
+	else:
+		continue
+
+if level == None:
+	OUT = '\n'.join('{:^35}'.format(s) for s in message.split('\n'))
+else:
+	OUT = level</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4b14ed67-52a1-4115-bbbc-befced559fb8" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Level Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="1b2de20c-dcb5-417b-b1e0-8ff1d4f06eb5" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Level" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ef95f7a3-58b2-433a-8d74-cccdecc34aa4" start_index="0" end="1b2de20c-dcb5-417b-b1e0-8ff1d4f06eb5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4b14ed67-52a1-4115-bbbc-befced559fb8" start_index="0" end="ef95f7a3-58b2-433a-8d74-cccdecc34aa4" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

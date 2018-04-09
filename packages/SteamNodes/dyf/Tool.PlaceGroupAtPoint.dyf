@@ -1,0 +1,92 @@
+<Workspace Version="1.0.0.1180" X="-1285.85169819174" Y="173.177817794967" zoom="0.921519451351419" Name="Tool.PlaceGroupAtPoint" Description="place a given group at given points" ID="4622efe7-bf59-4b90-816b-d4c4afae7f01" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="String" resolvedName="DSCore.String" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="b7f732b3-ed7c-4afd-955a-a17bb393dd01" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FirstItem" x="1282.97802853494" y="-16.4065715502148" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="1f1d5d95-cbaf-40a5-abe7-d0689f92055f" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1296" y="135.218333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e69a5944-5980-4839-8964-b0fed5d29e93" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FilterByBoolMask" x="1049.2962936391" y="-19.0000717444108" isVisible="true" isUpstreamVisible="true" lacing="Longest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f8f17e1a-df8a-4821-9325-dcbdd0177347" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Equals" x="812" y="53" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Equals@var,var" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e1817c6f-8bb1-4699-9cd9-8db132f20e8c" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.Name" x="485.137612465591" y="54.714399729009" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.Name" />
+    <DSRevitNodesUI.ElementsOfType guid="73e415e1-e83e-456e-9c97-c5ecdce58065" type="DSRevitNodesUI.ElementsOfType" nickname="All Elements of Type" x="220.815270146708" y="0.0868405901390759" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <DSRevitNodesUI.ElementTypes guid="b03a9e6f-711e-4d4a-9574-4171106c289a" type="DSRevitNodesUI.ElementTypes" nickname="Element Types" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="139:GroupType" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="827feb43-eae0-411f-ad86-9f5a26ac867e" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1774.56535284174" y="46.6351811660003" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="715e7963-c294-414d-a847-edb870ba7e2a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-239.965839896265" y="228.02513593939" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="GroupName" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e0b06468-032f-4648-9e12-8c0b1828e1f9" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-239.965839896265" y="312.02513593939" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Point" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="1cba6c30-759f-4109-9e2c-0315f857c2f7" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1574.92782552908" y="48.6772489011697" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#feed IN[0] with a GroupType
+grp=[]
+for g in IN[0]:
+	grp.append(UnwrapElement(g))
+#unwrap the points and turn into XYZ, UI units
+pts = []
+for i in IN[1]:
+	pts.append(UnwrapElement(i.ToXyz(False)))
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+groups=[]
+#Revit API to place a group at XYZ
+for pt,g in zip(pts,grp):
+	b=doc.Create.PlaceGroup(pt,g)
+	groups.append(b)
+	
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = groups</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b7f732b3-ed7c-4afd-955a-a17bb393dd01" start_index="0" end="1cba6c30-759f-4109-9e2c-0315f857c2f7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1f1d5d95-cbaf-40a5-abe7-d0689f92055f" start_index="0" end="1cba6c30-759f-4109-9e2c-0315f857c2f7" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e69a5944-5980-4839-8964-b0fed5d29e93" start_index="0" end="b7f732b3-ed7c-4afd-955a-a17bb393dd01" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f8f17e1a-df8a-4821-9325-dcbdd0177347" start_index="0" end="e69a5944-5980-4839-8964-b0fed5d29e93" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e1817c6f-8bb1-4699-9cd9-8db132f20e8c" start_index="0" end="f8f17e1a-df8a-4821-9325-dcbdd0177347" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="73e415e1-e83e-456e-9c97-c5ecdce58065" start_index="0" end="e1817c6f-8bb1-4699-9cd9-8db132f20e8c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="73e415e1-e83e-456e-9c97-c5ecdce58065" start_index="0" end="e69a5944-5980-4839-8964-b0fed5d29e93" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b03a9e6f-711e-4d4a-9574-4171106c289a" start_index="0" end="73e415e1-e83e-456e-9c97-c5ecdce58065" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="715e7963-c294-414d-a847-edb870ba7e2a" start_index="0" end="f8f17e1a-df8a-4821-9325-dcbdd0177347" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e0b06468-032f-4648-9e12-8c0b1828e1f9" start_index="0" end="1f1d5d95-cbaf-40a5-abe7-d0689f92055f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1cba6c30-759f-4109-9e2c-0315f857c2f7" start_index="0" end="827feb43-eae0-411f-ad86-9f5a26ac867e" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

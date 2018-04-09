@@ -1,0 +1,272 @@
+<Workspace Version="1.2.1.3083" X="20.4610384038214" Y="447.783759240375" zoom="0.631031913063342" Name="Tool.AlignSheetViewsFromTemplateSheet" Description="Align views and schedules from a sheet template" ID="369b6856-2958-4fe6-8931-8daa800f865e" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.HigherOrder.Map guid="82079580-26d7-4eba-ab45-260e8784534c" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="2307.56277674762" y="-33.8569631681313" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </CoreNodeModels.HigherOrder.Map>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="956cf73c-6467-42a1-87f2-80c647f27a97" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="ViewSchedule.SetColumnWidth" x="1871.60803426205" y="-261.614847801819" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="dbbe98c0-0adb-4b3e-a24f-72145fdb1851" />
+      <Name value="ViewSchedule.SetColumnWidth" />
+      <Description value="ViewSchedule.SetColumnWidth" />
+      <Inputs>
+        <Input value="ViewSchedule List" />
+        <Input value="Width list" />
+      </Inputs>
+      <Outputs>
+        <Output value="ViewSchedule List" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.HigherOrder.Map guid="0873f5bd-9370-47e6-b6b9-4a383b09ecc3" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="1631.64333967996" y="-571.70448649434" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </CoreNodeModels.HigherOrder.Map>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="e92eb86a-29fc-4f2b-b2e7-036727b60c57" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="ViewSchedule.GetColumnWidth" x="1151.94085970245" y="-249.968944890131" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="725b4f11-bd08-42f2-8da2-d16b0925f277" />
+      <Name value="ViewSchedule.GetColumnWidth" />
+      <Description value="ViewSchedule.GetColumnWidth" />
+      <Inputs>
+        <Input value="ViewSchedule List" />
+      </Inputs>
+      <Outputs>
+        <Output value="" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="20598933-c10c-4755-8319-61eda90faf88" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Viewport.SetBoxCenter" x="1363.3775169545" y="-782.60059019917" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="ad18d18c-3f19-4122-9d00-80361ab3184f" />
+      <Name value="Viewport.SetBoxCenter" />
+      <Description value="API class" />
+      <Inputs>
+        <Input value="Points" />
+        <Input value="Viewport list" />
+      </Inputs>
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <PythonNodeModels.PythonNode guid="a5a56004-fa53-4ad2-a66f-ee6dffde3500" type="PythonNodeModels.PythonNode" nickname="Python Script" x="857.238451715222" y="-35.5098973572676" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+sheets = UnwrapElement(IN[0])
+elementlist = list()
+
+for sheet in sheets:
+	try:
+		viewlist = list()
+		collector = FilteredElementCollector(doc, sheet.Id).OfClass(ScheduleSheetInstance)
+		for item in collector:
+			viewlist.append(doc.GetElement(item.ScheduleId))
+		elementlist.append(viewlist)
+	except:
+		elementlist.append(list())
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <PythonNodeModels.PythonNode guid="a2e57af7-fbe8-4031-a736-6a1f4df5bc1d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="859.364438687368" y="-250.179279592848" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+sheets = UnwrapElement(IN[0])
+elementlist = list()
+
+for sheet in sheets:
+	try:
+		viewlist = list()
+		collector = FilteredElementCollector(doc, sheet.Id).OfClass(ScheduleSheetInstance)
+		for item in collector:
+			viewlist.append(doc.GetElement(item.ScheduleId))
+		elementlist.append(viewlist)
+	except:
+		elementlist.append(list())
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="2ddafbfd-820f-42cc-afe6-13cd0ca1c95f" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="View.ViewPortBoxCenter" x="1079.57658426727" y="-781.499270583756" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="d64ef3b4-181a-4494-b4e1-92548f4b2afb" />
+      <Name value="View.ViewPortBoxCenter" />
+      <Description value="Get ViewPort Box center point" />
+      <Inputs>
+        <Input value="Viewports" />
+      </Inputs>
+      <Outputs>
+        <Output value="Points" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <PythonNodeModels.PythonNode guid="70ca0c03-936e-465d-a25c-eadbfbc1fd91" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1135.09557318688" y="297.304274070317" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+sheets = UnwrapElement(IN[0])
+elementlist = list()
+
+for sheet in sheets:
+	viewlist = list()
+	collector = FilteredElementCollector(doc, sheet.Id).OfClass(ScheduleSheetInstance)
+	for item in collector:
+		try:
+			viewlist.append(item.Point)
+		except:
+			0
+	
+OUT = viewlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="e0005ab5-ed1c-4e7f-89a2-4726ade31d6c" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="805.119793924689" y="-777.175886396319" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({a});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="bb0d291f-1e6f-4efd-a12d-0d5e5523a7ec" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="View.GetViewport" x="854.162993904378" y="-569.52973328115" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="05b17d97-e731-4911-86b7-3fb5e2a140a6" />
+      <Name value="View.GetViewport" />
+      <Description value="Get Vieworts from Views" />
+      <Inputs>
+        <Input value="Sheet" />
+      </Inputs>
+      <Outputs>
+        <Output value="Viewport(s)" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="fae46348-f595-402c-bbfa-a99477eb1620" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="218.498160717432" y="26.13701010725" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({a});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="725ccc2f-45be-4e79-8e3b-8fb5167e27d7" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="View.GetViewport" x="567.383304127519" y="-784.157874050749" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="05b17d97-e731-4911-86b7-3fb5e2a140a6" />
+      <Name value="View.GetViewport" />
+      <Description value="Get Vieworts from Views" />
+      <Inputs>
+        <Input value="Sheet" />
+      </Inputs>
+      <Outputs>
+        <Output value="Viewport(s)" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8754a6a0-2faf-459d-b807-7cd5802f5215" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="2646.29304228242" y="-550.710110290429" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="9c6766d8-a794-405e-813b-d2f06c5d26cc" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="155.985470300855" y="-536.600740271301" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({a});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5498f0fd-216f-4342-949a-7a015b5b13e2" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-113.9343937123" y="-539.99820047416" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="TemplateSheet" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e3fc2521-9d6e-482d-ac36-a1b37c10ead3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-43.1657051405921" y="18.0303110502956" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Sheets" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="a4f846aa-2982-4995-9e8e-f9f23792914e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1608.30901506567" y="255.915701589201" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+sheets = UnwrapElement(IN[0])
+pts = UnwrapElement(IN[1])
+elementlist = list()
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+
+for sheet in sheets:
+	viewlist = list()
+	collector = FilteredElementCollector(doc, sheet.Id).OfClass(ScheduleSheetInstance)
+	for item,p in zip(collector,pts):
+		if item.IsTitleblockRevisionSchedule == 0:
+			item.Point=p
+			elementlist.append(viewlist)			
+		else:
+			0
+#doc.Regenerate()
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()	
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="956cf73c-6467-42a1-87f2-80c647f27a97" start_index="0" end="82079580-26d7-4eba-ab45-260e8784534c" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e92eb86a-29fc-4f2b-b2e7-036727b60c57" start_index="0" end="956cf73c-6467-42a1-87f2-80c647f27a97" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="20598933-c10c-4755-8319-61eda90faf88" start_index="0" end="0873f5bd-9370-47e6-b6b9-4a383b09ecc3" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a5a56004-fa53-4ad2-a66f-ee6dffde3500" start_index="0" end="82079580-26d7-4eba-ab45-260e8784534c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a2e57af7-fbe8-4031-a736-6a1f4df5bc1d" start_index="0" end="e92eb86a-29fc-4f2b-b2e7-036727b60c57" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2ddafbfd-820f-42cc-afe6-13cd0ca1c95f" start_index="0" end="20598933-c10c-4755-8319-61eda90faf88" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="70ca0c03-936e-465d-a25c-eadbfbc1fd91" start_index="0" end="a4f846aa-2982-4995-9e8e-f9f23792914e" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e0005ab5-ed1c-4e7f-89a2-4726ade31d6c" start_index="0" end="2ddafbfd-820f-42cc-afe6-13cd0ca1c95f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bb0d291f-1e6f-4efd-a12d-0d5e5523a7ec" start_index="0" end="0873f5bd-9370-47e6-b6b9-4a383b09ecc3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fae46348-f595-402c-bbfa-a99477eb1620" start_index="0" end="bb0d291f-1e6f-4efd-a12d-0d5e5523a7ec" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fae46348-f595-402c-bbfa-a99477eb1620" start_index="0" end="a5a56004-fa53-4ad2-a66f-ee6dffde3500" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fae46348-f595-402c-bbfa-a99477eb1620" start_index="0" end="a4f846aa-2982-4995-9e8e-f9f23792914e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="725ccc2f-45be-4e79-8e3b-8fb5167e27d7" start_index="0" end="e0005ab5-ed1c-4e7f-89a2-4726ade31d6c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9c6766d8-a794-405e-813b-d2f06c5d26cc" start_index="0" end="725ccc2f-45be-4e79-8e3b-8fb5167e27d7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9c6766d8-a794-405e-813b-d2f06c5d26cc" start_index="0" end="a2e57af7-fbe8-4031-a736-6a1f4df5bc1d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9c6766d8-a794-405e-813b-d2f06c5d26cc" start_index="0" end="70ca0c03-936e-465d-a25c-eadbfbc1fd91" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5498f0fd-216f-4342-949a-7a015b5b13e2" start_index="0" end="9c6766d8-a794-405e-813b-d2f06c5d26cc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e3fc2521-9d6e-482d-ac36-a1b37c10ead3" start_index="0" end="fae46348-f595-402c-bbfa-a99477eb1620" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="27b7a67f-1088-420b-b2b7-b911fdde065a" annotationText="Set schedule column width" left="1861.60803426205" top="-293.614847801819" width="585.95474248557" height="353.757884633688" fontSize="18" InitialTop="-261.614847801819" InitialHeight="273.898325790085" TextblockHeight="22" backgrouund="#FF848484">
+      <Models ModelGuid="82079580-26d7-4eba-ab45-260e8784534c" />
+      <Models ModelGuid="956cf73c-6467-42a1-87f2-80c647f27a97" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="a2916ef0-16b6-4b74-978a-ff7f775e102d" annotationText="Get schedules from template sheet,  and get columns width" left="849.364438687368" top="-282.179279592848" width="542.576421015082" height="125.210334702717" fontSize="18" InitialTop="-250.179279592848" InitialHeight="187.249059385577" TextblockHeight="22" backgrouund="#FFBB87C6">
+      <Models ModelGuid="a2e57af7-fbe8-4031-a736-6a1f4df5bc1d" />
+      <Models ModelGuid="e92eb86a-29fc-4f2b-b2e7-036727b60c57" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="2496ac24-5350-4bec-8a48-54a594aac40c" annotationText="Get schedules from other sheets" left="847.238451715222" top="-88.5098973572676" width="142" height="121" fontSize="18" InitialTop="-35.5098973572676" InitialHeight="276.344239832873" TextblockHeight="43" backgrouund="#FFBB87C6">
+      <Models ModelGuid="a5a56004-fa53-4ad2-a66f-ee6dffde3500" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="547b6e6b-7003-4e0f-bad2-df5943376a20" annotationText="Set viewport center" left="1353.3775169545" top="-814.60059019917" width="418.26582272546" height="336.89610370483" fontSize="18" InitialTop="-782.60059019917" InitialHeight="363.808209267261" TextblockHeight="22" backgrouund="#FFFFC999">
+      <Models ModelGuid="0873f5bd-9370-47e6-b6b9-4a383b09ecc3" />
+      <Models ModelGuid="20598933-c10c-4755-8319-61eda90faf88" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="cb487608-1180-4308-b61b-315b848f5f09" annotationText="Get viewports from sheets" left="844.162993904378" top="-601.52973328115" width="236" height="125" fontSize="18" InitialTop="-569.52973328115" InitialHeight="137.951733366285" TextblockHeight="22" backgrouund="#FFC1D676">
+      <Models ModelGuid="bb0d291f-1e6f-4efd-a12d-0d5e5523a7ec" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="eac2ad5e-668a-4675-8058-1d71c0ee582f" annotationText="Get schedule on sheet, get point and set point for others" left="1125.09557318688" top="223.915701589201" width="615.213441878793" height="141.388572481116" fontSize="18" InitialTop="255.915701589201" InitialHeight="189.567361316924" TextblockHeight="22" backgrouund="#FFFFAA45">
+      <Models ModelGuid="70ca0c03-936e-465d-a25c-eadbfbc1fd91" />
+      <Models ModelGuid="a4f846aa-2982-4995-9e8e-f9f23792914e" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="46b5cda8-6ba5-4b49-afe8-8a6c54355f47" annotationText="Get viewports from template sheet, get center points from viewport" left="557.383304127519" top="-816.157874050749" width="743.193280139751" height="127.658603466993" fontSize="18" InitialTop="-784.157874050749" InitialHeight="125.658603466993" TextblockHeight="22" backgrouund="#FFC1D676">
+      <Models ModelGuid="2ddafbfd-820f-42cc-afe6-13cd0ca1c95f" />
+      <Models ModelGuid="e0005ab5-ed1c-4e7f-89a2-4726ade31d6c" />
+      <Models ModelGuid="725ccc2f-45be-4e79-8e3b-8fb5167e27d7" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

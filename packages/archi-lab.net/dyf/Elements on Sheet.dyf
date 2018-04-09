@@ -1,0 +1,74 @@
+<Workspace Version="0.8.0.950" X="74.0307625" Y="-162.754048191145" zoom="1.33823125" Name="Elements on Sheet" ID="c97ab529-0007-4aff-855b-ee90a0dcfbce" Description="This node will return elements on sheet." Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="2799c943-505f-48c0-a92f-57a87e5c474f" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="350" y="306.076645571851" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference('RevitNodes')
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference('RevitAPI')
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+schName, schId, ids = [], [], []
+for i in elements:
+	trans = SubTransaction(doc)
+	trans.Start()
+	ids.append(doc.Delete(i.Id))
+	trans.RollBack()
+
+TransactionManager.Instance.TransactionTaskDone()
+
+
+
+elementsOnSheet = []
+elementsOnSheet1 = []
+for i in ids:
+	for j in i:
+		if doc.GetElement(j) != None:
+			elementsOnSheet.append(doc.GetElement(j).GetType())
+			elementsOnSheet1.append(doc.GetElement(j))
+
+OUT = elementsOnSheet1</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.DSFunction guid="9e49e75f-1e54-4b0f-893a-b19a17c972d9" type="Dynamo.Nodes.DSFunction" nickname="Transaction.End" x="548.558696530004" y="256" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="RevitNodes.dll" function="Revit.Transaction.Transaction.End@var" />
+    <Dynamo.Nodes.Symbol guid="5c8b7904-b4b6-4d3c-86c6-8a5b40b25cb0" type="Dynamo.Nodes.Symbol" nickname="Input" x="186.5493071545" y="301.465776704246" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Sheets" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="8830807d-f385-4714-a7ac-baa425d0d703" type="Dynamo.Nodes.Output" nickname="Output" x="739.518011180803" y="298.476756682483" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="2799c943-505f-48c0-a92f-57a87e5c474f" start_index="0" end="9e49e75f-1e54-4b0f-893a-b19a17c972d9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9e49e75f-1e54-4b0f-893a-b19a17c972d9" start_index="0" end="8830807d-f385-4714-a7ac-baa425d0d703" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5c8b7904-b4b6-4d3c-86c6-8a5b40b25cb0" start_index="0" end="2799c943-505f-48c0-a92f-57a87e5c474f" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

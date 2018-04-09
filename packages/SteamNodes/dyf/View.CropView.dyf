@@ -1,0 +1,65 @@
+<Workspace Version="1.0.0.1180" X="-365" Y="253.64175224647" zoom="1.27086007702182" Name="View.CropView" Description="Crop a 3D view" ID="44b3e212-a9cd-4559-81fc-72cf656396d8" Category="SteamNodes.View">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="138f8653-5d88-4229-8227-0e1644986122" type="PythonNodeModels.PythonNode" nickname="Python Script" x="483" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+elt = []
+for i in IN[0]:
+	elt.append(UnwrapElement(i))
+#view = UnwrapElement(IN[0])
+cropviews=[]
+TransactionManager.Instance.EnsureInTransaction(doc)
+for i in elt:
+	i.CropBoxActive = True
+	cropviews.append(i.ToDSType(False))
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = cropviews</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="5eff8616-5324-4e1c-a160-3cb96b2bca23" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="175" y="4.21833333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="49f4d16f-81e9-471e-a28f-0133edf71b6d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="707" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="Views" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6f77d0b0-82ed-4f10-9bec-314c370af712" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Views" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="138f8653-5d88-4229-8227-0e1644986122" start_index="0" end="49f4d16f-81e9-471e-a28f-0133edf71b6d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5eff8616-5324-4e1c-a160-3cb96b2bca23" start_index="0" end="138f8653-5d88-4229-8227-0e1644986122" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6f77d0b0-82ed-4f10-9bec-314c370af712" start_index="0" end="5eff8616-5324-4e1c-a160-3cb96b2bca23" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

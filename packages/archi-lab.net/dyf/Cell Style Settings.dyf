@@ -1,0 +1,220 @@
+<Workspace Version="1.2.0.2690" X="717.047523384971" Y="236.908029326575" zoom="0.794352463051344" Name="Cell Style Settings" Description="This node will generate a Cell Style Settings that can be used to override cell properties. " ID="69d9d323-de49-4f25-ac91-f582439ad593" Category="Archi-lab_Grimshaw.Views.Schedule">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="15">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <PortInfo index="6" default="False" />
+      <PortInfo index="7" default="False" />
+      <PortInfo index="8" default="False" />
+      <PortInfo index="9" default="False" />
+      <PortInfo index="10" default="False" />
+      <PortInfo index="11" default="False" />
+      <PortInfo index="12" default="False" />
+      <PortInfo index="13" default="False" />
+      <PortInfo index="14" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+_backgroundColor = IN[0]
+_bold = IN[1]
+_font = IN[2]
+_fontColor = IN[3]
+_fontSize = IN[4]
+_italics = IN[5]
+_underline = IN[6]
+_orientation = IN[7]
+_hAlign = IN[8]
+_vAlign = IN[9]
+_headerText = IN[10]
+
+_borderBottom = IN[11]
+_borderLeft = IN[12]
+_borderRight = IN[13]
+_borderTop = IN[14]
+
+
+#design script color to RVT color function
+def dsColorToRvtColor(dsColor):
+	R = dsColor.Red
+	G = dsColor.Green
+	B = dsColor.Blue
+	return Autodesk.Revit.DB.Color(R,G,B)
+
+options = TableCellStyleOverrideOptions()
+
+if _backgroundColor != None:
+	options.BackgroundColor = True
+if _bold != None:
+	options.Bold = True
+
+borderOptions = [_borderBottom, _borderLeft, _borderRight, _borderTop]
+if any(item != None for item in borderOptions):
+	options.BorderLineStyle = True
+
+if _borderBottom != None:
+	options.BorderBottomLineStyle = True
+if _borderLeft != None:
+	options.BorderLeftLineStyle = True
+if _borderRight != None:
+	options.BorderRightLineStyle = True
+if _borderTop != None:
+	options.BorderTopLineStyle = True
+
+if _font != None:
+	options.Font = True
+if _fontColor != None:
+	options.FontColor = True
+if _fontSize != None:
+	options.FontSize = True
+if _italics != None:
+	options.Italics = True
+if _underline != None:
+	options.Underline = True
+if _orientation != None:
+	options.TextOrientation = True
+
+if _hAlign != None:
+	options.HorizontalAlignment = True
+if _vAlign != None:
+	options.VerticalAlignment = True
+
+tcs = TableCellStyle()
+tcs.SetCellStyleOverrideOptions(options)
+
+if _backgroundColor != None:
+	tcs.BackgroundColor = dsColorToRvtColor(_backgroundColor)
+if _bold != None:
+	tcs.IsFontBold = _bold
+
+if _borderBottom != None:
+	tcs.BorderBottomLineStyle = UnwrapElement(_borderBottom).GraphicsStyleCategory.Id
+if _borderLeft != None:
+	tcs.BorderLeftLineStyle = UnwrapElement(_borderLeft).GraphicsStyleCategory.Id
+if _borderRight != None:
+	tcs.BorderRightLineStyle = UnwrapElement(_borderRight).GraphicsStyleCategory.Id
+if _borderTop != None:
+	tcs.BorderTopLineStyle = UnwrapElement(_borderTop).GraphicsStyleCategory.Id
+
+if _font != None:
+	tcs.FontName = _font
+if _fontColor != None:
+	tcs.TextColor = dsColorToRvtColor(_fontColor)
+if _fontSize != None:
+	tcs.TextSize = _fontSize
+if _italics != None:
+	tcs.IsFontItalic  = _italics
+if _underline != None:
+	tcs.IsFontUnderline  = _underline
+if _orientation != None:
+	tcs.TextOrientation = _orientation
+
+if _hAlign != None:
+	if _hAlign == "Left":
+		has = HorizontalAlignmentStyle.Left
+	elif _hAlign == "Center":
+		has = HorizontalAlignmentStyle.Center
+	elif _hAlign == "Right":
+		has = HorizontalAlignmentStyle.Right
+	tcs.FontHorizontalAlignment = has
+if _vAlign != None:
+	if _vAlign == "Top":
+		vas = VerticalAlignmentStyle.Top
+	elif _vAlign == "Middle":
+		vas = VerticalAlignmentStyle.Middle
+	elif _vAlign == "Bottom":
+		vas = VerticalAlignmentStyle.Bottom
+	tcs.FontVerticalAlignment = vas
+
+_headerOut = [tcs, _headerText]
+#Assign your output to the OUT variable
+OUT = _headerOut</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="66b33cb6-f936-42cd-811f-696f863a4edf" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-180.669865294421" y="-208.988635049089" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="BackgroundColor: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5ae2457e-bec6-4a44-bba9-4ad28192a9f0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-89.6698652944207" y="-148.988635049089" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Bold: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b0f1dd01-0234-4e12-89b5-17ba3025bd3d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-89.6698652944207" y="-91.9886350490894" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Font: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4882a04e-4467-462e-b074-bfb48576f5fe" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-130.669865294421" y="-32.9886350490894" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="FontColor: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="73611b9a-8b15-4ce1-9183-0b07f409c7d1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-122.669865294421" y="27.3121280238166" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="FontSize: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="76318dbf-f417-4c28-b966-704a5e3bf576" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-114.669865294421" y="88.4537917291286" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Italics: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="36aa73f3-a77e-4a10-929a-079be5979813" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-130.669865294421" y="147.528982497356" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Underline: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="98fb5ad5-ee37-44be-bbd9-d644e979d319" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-147.669865294421" y="208.670646202668" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Orientation: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bf9ee41a-b687-421d-9713-757589cfe476" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-180.669865294421" y="265.679364033809" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="HorizontalAlign: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7d49d587-1ed3-4030-88c0-50902310a051" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-163.669865294421" y="325.669272267426" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="VerticalAlign: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7c44301c-c017-4548-9fda-caecd89efd88" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-138.669865294421" y="382.283802059803" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="HeaderText: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b57d5608-371a-4065-871b-cbed600424e1" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="457" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="fbb606f2-cb6d-4985-9bc4-b9bc02749451" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-138.669865294421" y="496.093497206695" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="BorderLeft: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7674f97b-9199-437c-953c-2cc998a1feae" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-147.669865294421" y="554.515734440532" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="BorderRight: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="08848215-262f-4a15-bf3c-95ec0333a659" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-130.669865294421" y="612.3166535902" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="BorderTop: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="13ff9c50-b5e7-4bca-a53e-ae1a9cd24737" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-155.669865294421" y="437.088840056939" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="BorderBottom: var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" start_index="0" end="b57d5608-371a-4065-871b-cbed600424e1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="66b33cb6-f936-42cd-811f-696f863a4edf" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5ae2457e-bec6-4a44-bba9-4ad28192a9f0" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b0f1dd01-0234-4e12-89b5-17ba3025bd3d" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4882a04e-4467-462e-b074-bfb48576f5fe" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="73611b9a-8b15-4ce1-9183-0b07f409c7d1" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="76318dbf-f417-4c28-b966-704a5e3bf576" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="36aa73f3-a77e-4a10-929a-079be5979813" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="6" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="98fb5ad5-ee37-44be-bbd9-d644e979d319" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="7" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bf9ee41a-b687-421d-9713-757589cfe476" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="8" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7d49d587-1ed3-4030-88c0-50902310a051" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="9" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7c44301c-c017-4548-9fda-caecd89efd88" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="10" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fbb606f2-cb6d-4985-9bc4-b9bc02749451" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="12" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7674f97b-9199-437c-953c-2cc998a1feae" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="13" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="08848215-262f-4a15-bf3c-95ec0333a659" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="14" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="13ff9c50-b5e7-4bca-a53e-ae1a9cd24737" start_index="0" end="0e9aadf4-9950-4a19-b0bf-a7273bcafaa6" end_index="11" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

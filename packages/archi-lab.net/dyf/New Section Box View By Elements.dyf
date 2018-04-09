@@ -1,0 +1,107 @@
+<Workspace Version="0.7.4.3090" X="183.851555426566" Y="92.3128286177106" zoom="1.33823125" Description="This node will create new section box around specified elements and apply it to a new 3D View with a specified name. Section box will be offset from the elements by a supplied offset values. " Category="Archi-lab_Grimshaw.Modify" Name="New Section Box View By Elements" ID="be9499a5-9be5-4143-a2ba-eaf4d274b45b">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="86d42f14-4b60-4b84-bdd8-9e8cd4983793" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="3">
+      <Script>#Copyright(c) 2014, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+viewName = IN[1]
+offset = float(IN[2])
+
+#get ViewFamilyType for a 3D View
+collector = FilteredElementCollector(doc)
+viewTypeColl = collector.OfClass(ViewFamilyType)
+for i in viewTypeColl:
+	if i.ViewFamily == ViewFamily.ThreeDimensional:
+		viewType = i
+	else:
+		continue
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+#define bounding box enclosing all elements
+bboxMin, bboxMax = [], []
+for i in elements:
+	bboxMin.append(i.get_BoundingBox(doc.ActiveView).Min)
+	bboxMax.append(i.get_BoundingBox(doc.ActiveView).Max)
+minX, minY, minZ, maxX, maxY, maxZ = [], [], [], [], [], []
+for i, j in zip(bboxMin, bboxMax):
+	minX.append(i.X)
+	minY.append(i.Y)
+	minZ.append(i.Z)
+	maxX.append(j.X)
+	maxY.append(j.Y)
+	maxZ.append(j.Z)
+bboxMinX = min(minX)
+bboxMinY = min(minY)
+bboxMinZ = min(minZ)
+bboxMaxX = max(maxX)
+bboxMaxY = max(maxY)
+bboxMaxZ = max(maxZ)
+#create a bounding box
+bbox = BoundingBoxXYZ()
+bbox.Min = XYZ((bboxMinX - offset), (bboxMinY - offset), (bboxMinZ - offset))
+bbox.Max = XYZ((bboxMaxX + offset), (bboxMaxY + offset), (bboxMaxZ + offset))
+#create 3d View
+view = View3D.CreateIsometric(doc, viewType.Id)
+view.Name = viewName
+view.SectionBox = bbox
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = 0</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="de5b10cf-39b2-4ee6-a3a4-cbdb3f7a0465" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Elements" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="97c3f0cb-c59e-43a3-86e5-9e6187c9e053" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="View Name" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="d304ce74-55ca-408a-b578-6decd5419ae8" nickname="Input" x="0" y="300" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Offset" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="ce8fafc3-e385-4885-9d37-9a06de12ebeb" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="86d42f14-4b60-4b84-bdd8-9e8cd4983793" start_index="0" end="ce8fafc3-e385-4885-9d37-9a06de12ebeb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="de5b10cf-39b2-4ee6-a3a4-cbdb3f7a0465" start_index="0" end="86d42f14-4b60-4b84-bdd8-9e8cd4983793" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="97c3f0cb-c59e-43a3-86e5-9e6187c9e053" start_index="0" end="86d42f14-4b60-4b84-bdd8-9e8cd4983793" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="d304ce74-55ca-408a-b578-6decd5419ae8" start_index="0" end="86d42f14-4b60-4b84-bdd8-9e8cd4983793" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

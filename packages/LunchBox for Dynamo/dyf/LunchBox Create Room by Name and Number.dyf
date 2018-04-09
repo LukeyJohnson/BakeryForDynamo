@@ -1,0 +1,107 @@
+<Workspace Version="1.1.0.2094" X="271.648539135982" Y="105.479684389468" zoom="1.545620359375" Name="LunchBox Create Room by Name and Number" Description="Creates an unplaced room element using a name and number." ID="92039ed4-bee4-4437-8d41-d5a3d4d307c6" Category="LunchBox.Revit.Elements.Create">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f01e985f-04c3-4be4-a749-2a873f472e6a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Toggle" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="865f308d-8e6d-4013-98a0-2d33d81b5125" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1.72786177105831" y="148.272138228942" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Number" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="71fc9fc3-22cd-4c51-bc53-f39dbb5260a0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="300" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c7fe7d7e-803d-419b-9ff5-af4e98c1ccdc" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="Room" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="b05f7061-d8da-4116-bf9b-660f4fa536dc" type="PythonNodeModels.PythonNode" nickname="Python Script" x="197.559160638575" y="80.5633251757139" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="3">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+#The inputs to this node will be stored as a list in the IN variable.
+doc =  DocumentManager.Instance.CurrentDBDocument
+app =  DocumentManager.Instance.CurrentUIApplication.Application
+
+bool = IN[0]
+rmnumbers = IN[1]
+rmnames = IN[2]
+
+rooms = []
+
+existrooms = []
+existnames = []
+existnumbers = []
+collector = FilteredElementCollector(doc)
+collector.OfCategory(BuiltInCategory.OST_Rooms)
+for roomexist in collector:
+	existrooms.append(roomexist)
+
+if bool == True:
+	
+	# "Start" the transaction
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	for i in range(0,len(rmnumbers)):
+		name = rmnames[i]
+		number = rmnumbers[i]
+
+		v = doc.ActiveView
+		p = v.get_Parameter(BuiltInParameter.VIEW_PHASE).AsElementId()
+		phase = doc.GetElement(p)
+		
+		#search for matching rooms
+		match = False
+		for j in range(0, len(existrooms)):
+			existrm = existrooms[j]
+			existnm = ''
+			for p in existrm.Parameters:
+				if p.Definition.Name == 'Name':		
+					existnm = p.AsString()
+			existnum = existrm.Number
+			if existnm == name and existnum == number:
+				rooms.append(existrm)
+				match = True
+				break
+
+		if match == False:
+			room = doc.Create.NewRoom(phase)
+			room.Name = name
+			room.Number = str(number)
+			rooms.append(room)
+	
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = rooms</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="f01e985f-04c3-4be4-a749-2a873f472e6a" start_index="0" end="b05f7061-d8da-4116-bf9b-660f4fa536dc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="865f308d-8e6d-4013-98a0-2d33d81b5125" start_index="0" end="b05f7061-d8da-4116-bf9b-660f4fa536dc" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="71fc9fc3-22cd-4c51-bc53-f39dbb5260a0" start_index="0" end="b05f7061-d8da-4116-bf9b-660f4fa536dc" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b05f7061-d8da-4116-bf9b-660f4fa536dc" start_index="0" end="c7fe7d7e-803d-419b-9ff5-af4e98c1ccdc" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

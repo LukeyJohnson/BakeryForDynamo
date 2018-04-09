@@ -1,0 +1,121 @@
+<Workspace Version="0.9.0.2912" X="-2996.29271597651" Y="-1215.13598966223" zoom="1.9321962254316" Name="Material.SetMaterialAssetByAssetId" Description="This node will set the material asset by asset id. Please make sure that the two input lists match in length. " ID="0165cb8b-9780-4ac7-bc20-60e376ba6105" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="8bb37580-015f-4725-b973-1a3872576737" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1904.82272134273" y="750.091032634116" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+dsCorePath = r'C:\Program Files\Dynamo 0.9\DSCoreNodes.dll'
+clr.AddReferenceToFileAndPath(dsCorePath)
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+import DSCore as ds
+
+#The inputs to this node will be stored as a list in the IN variables.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+	return map(lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list)
+
+def ProcessParallelLists(_func, *lists):
+	return map( lambda *xs: ProcessParallelLists(_func, *xs) if all(type(x) is list for x in xs) else _func(*xs), *lists )
+
+def toRvtId(_id):
+	if isinstance(_id, int):
+		id = ElementId(int(_id))
+		return id
+	elif isinstance(_id, str) and len(_id) &gt; 7:
+		return _id
+	elif isinstance(_id, str) and len(_id) &lt; 7:
+		id = ElementId(int(_id))
+		return id
+	elif isinstance(_id, Autodesk.Revit.DB.ElementId):
+		return _id
+
+def SetMaterialAsset(mat, assetId):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	try:
+		assetElem = doc.GetElement(assetId)
+		id = assetElem.Id
+		mat.AppearanceAssetId = id
+		return mat
+	except:
+		return None
+		pass
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+if isinstance(IN[1], list):
+	assetIds = ProcessList(toRvtId, IN[1])
+else:
+	assetIds = [toRvtId(IN[1])]
+
+output = []
+try:
+	errorReport = None
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	output = ProcessParallelLists(SetMaterialAsset, elements, assetIds)
+	TransactionManager.Instance.TransactionTaskDone()
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="2593eb75-39f6-4572-956c-76e2c3de82d2" type="Dynamo.Nodes.Symbol" nickname="Input" x="1668.71908429295" y="739.125752791087" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="TargetMaterial" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="11f55464-1348-40d0-9008-f971146e9536" type="Dynamo.Nodes.Symbol" nickname="Input" x="1706.58732687829" y="812.432967992272" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="AssetId" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="8d9fec19-bbb0-4730-93a6-56aa66f14f00" type="Dynamo.Nodes.Output" nickname="Output" x="2110.18563348335" y="750.511759921437" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Material" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="8bb37580-015f-4725-b973-1a3872576737" start_index="0" end="8d9fec19-bbb0-4730-93a6-56aa66f14f00" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2593eb75-39f6-4572-956c-76e2c3de82d2" start_index="0" end="8bb37580-015f-4725-b973-1a3872576737" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="11f55464-1348-40d0-9008-f971146e9536" start_index="0" end="8bb37580-015f-4725-b973-1a3872576737" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

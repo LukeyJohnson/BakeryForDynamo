@@ -1,0 +1,68 @@
+<Workspace Version="1.2.0.2690" X="105.112240994474" Y="126.930113123867" zoom="1.51051845643135" Name="Select Model Lines by Style" Description="This node will select all model lines in the revit project by a line style name. " ID="2a241d0e-ff72-4ef7-bdfe-e264b12263d3" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="f30ebc72-d04d-4f86-9e8d-3c69ca8c9da9" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script># Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.BuiltInCategory import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+styleName = IN[0]
+
+try:
+	errorReport = None
+	collector = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Lines)
+	modelLines = []
+	for i in collector:
+		if i.Name == "Model Lines" and i.LineStyle.Name == styleName:
+			modelLines.append(i)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+	
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = modelLines
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e97eb81b-275e-4dd4-96e9-5e525ebd5ee1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Style Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="32148c28-e2a9-4cc8-9720-b013ae3507de" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Model Line(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="f30ebc72-d04d-4f86-9e8d-3c69ca8c9da9" start_index="0" end="32148c28-e2a9-4cc8-9720-b013ae3507de" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e97eb81b-275e-4dd4-96e9-5e525ebd5ee1" start_index="0" end="f30ebc72-d04d-4f86-9e8d-3c69ca8c9da9" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

@@ -1,0 +1,136 @@
+<Workspace Version="0.8.2.2311" X="-215.691525387005" Y="-138.673042172418" zoom="1.703916824555" Name="Get Built In Parameter" Description="This node will take an input of a built in parameter name and element to return that parameters value. " ID="a1e64de5-460f-4dd3-8357-d9ec9980e47e" Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="4d3d9bd1-ef10-451d-8359-b125530014c3" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="456.000000000001" y="270.000000000001" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+import sys
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+import System
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+paramNames = IN[0]
+
+if isinstance(IN[1], list):
+	sheets = []
+	for i in IN[1]:
+		sheets.append(UnwrapElement(i))
+else:
+	sheets = IN[1]
+
+elements = []
+for i in sheets:
+	elements.append(UnwrapElement(i))
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def ProcessListArg(_func, _list, _arg):
+    return map( lambda x: ProcessListArg(_func, x, _arg) if type(x)==list else _func(x, _arg), _list )
+
+def GetBuiltInParam(paramName):
+	builtInParams = System.Enum.GetValues(BuiltInParameter)
+	test = []
+	for i in builtInParams:
+		if i.ToString() == paramName:
+			test.append(i)
+			break
+		else:
+			continue
+	return test[0]
+
+def GetBipValue(element, bip):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	value = None
+	try:
+		tempValue = element.get_Parameter(bip)
+	except:
+		tempValue = None
+		pass
+	if tempValue != None:
+		if element.get_Parameter(bip).StorageType == StorageType.String:
+			value = element.get_Parameter(bip).AsString()
+		elif element.get_Parameter(bip).StorageType == StorageType.Integer:
+			value  = element.get_Parameter(bip).AsInteger()
+		elif element.get_Parameter(bip).StorageType == StorageType.Double:
+			value = element.get_Parameter(bip).AsDouble()
+		elif element.get_Parameter(bip).StorageType == StorageType.ElementId:
+			id = element.get_Parameter(bip).AsElementId()
+			value = doc.GetElement(id)
+		return value
+	else:
+		return None
+
+try:
+	errorReport = None
+	paramValues = []
+	if isinstance(paramNames, list):
+		builtInParams = ProcessList(GetBuiltInParam, paramNames)
+		for i in builtInParams:
+			paramValues.append(ProcessListArg(GetBipValue, elements, i))
+	else:
+		builtInParams = GetBuiltInParam(paramNames)
+		if isinstance(sheets, list):
+			for sheet in sheets:
+				paramValues.append(GetBipValue(sheet, builtInParams))
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = paramValues
+else:
+	OUT = errorReport</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="2ba279ab-b67b-4a79-8ce0-ba616237ba49" type="Dynamo.Nodes.Symbol" nickname="Input" x="205.134074280567" y="250.25303802958" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="ParameterNames" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="94d5e38c-4cc8-4ef1-a467-5c77ec7fc4bf" type="Dynamo.Nodes.Symbol" nickname="Input" x="205.842455622957" y="307.896487201683" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Elements" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="e2f83cd5-fb5c-4a55-8074-db8299a512ae" type="Dynamo.Nodes.Output" nickname="Output" x="664.898649331298" y="271.966805066569" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="4d3d9bd1-ef10-451d-8359-b125530014c3" start_index="0" end="e2f83cd5-fb5c-4a55-8074-db8299a512ae" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2ba279ab-b67b-4a79-8ce0-ba616237ba49" start_index="0" end="4d3d9bd1-ef10-451d-8359-b125530014c3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="94d5e38c-4cc8-4ef1-a467-5c77ec7fc4bf" start_index="0" end="4d3d9bd1-ef10-451d-8359-b125530014c3" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

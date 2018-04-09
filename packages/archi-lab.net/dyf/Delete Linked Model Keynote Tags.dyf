@@ -1,0 +1,78 @@
+<Workspace Version="0.7.2.24887" X="456.305995489341" Y="189.167044984507" zoom="1.19179377129296" Description="Deletes all Keynote Tags that are tagging elements in the linked model. if element in the linked model has a keynote assigned thus a keynote tag reads a proper value it will not be deleted. " Category="Archi-lab_Grimshaw.Modify" Name="Delete Linked Model Keynote Tags" ID="7e410e7e-31bd-420e-878b-39ef780c08d6">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="e53eff68-e69d-4b72-9777-9ff5201b3b02" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>#Copyright(c) 2014, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#unwrap elements
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+keyValues = []
+bip = BuiltInParameter.KEY_VALUE
+for i in elements:
+	keyValues.append(i.get_Parameter(bip).AsString())
+for i, j in zip(elements, keyValues):
+	if i.TaggedLocalElementId.IntegerValue == -1 and j == "":
+		# "Start" the transaction
+		TransactionManager.Instance.EnsureInTransaction(doc)
+		#delete keynotes that are tagging elements in a linked file
+		doc.Delete(i.Id)
+		# "End" the transaction
+		TransactionManager.Instance.TransactionTaskDone()
+		message = "Successfully deleted ALL keynotes \n that were tagging elements in a \n linked file."
+	else:
+		message = "There are no keynotes in this project\nthat are tagging elements in a \n linked file."
+		continue
+
+#Assign your output to the OUT variable
+OUT = '\n'.join('{:^35}'.format(s) for s in message.split('\n'))</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="bcf24f70-fb7b-4fef-9a23-faba97b0d471" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="3fe9e514-7c62-4b88-be18-5a331cba31a9" nickname="Input" x="-330.028913956501" y="3.63268859163472" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Keynote(s)" />
+    </Dynamo.Nodes.Symbol>
+    <DSCoreNodesUI.CreateList type="DSCoreNodesUI.CreateList" guid="3268f6a1-aa21-438c-bb0a-1af20124ac8b" nickname="List.Create" x="-89.2550381382541" y="2.90233968372996" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="2" />
+    <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="75895e19-d3ce-40d1-9a48-b1b4c30b1211" nickname="List.Empty" x="-199.928265685225" y="56.1894492433827" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.Empty" />
+    <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="2b01a039-acfe-4259-bd8c-7c63acaae7c8" nickname="Flatten" x="53.3904551445086" y="1.26273631266366" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="" function="Flatten@var[]..[]" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="e53eff68-e69d-4b72-9777-9ff5201b3b02" start_index="0" end="bcf24f70-fb7b-4fef-9a23-faba97b0d471" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3fe9e514-7c62-4b88-be18-5a331cba31a9" start_index="0" end="3268f6a1-aa21-438c-bb0a-1af20124ac8b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3268f6a1-aa21-438c-bb0a-1af20124ac8b" start_index="0" end="2b01a039-acfe-4259-bd8c-7c63acaae7c8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="75895e19-d3ce-40d1-9a48-b1b4c30b1211" start_index="0" end="3268f6a1-aa21-438c-bb0a-1af20124ac8b" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2b01a039-acfe-4259-bd8c-7c63acaae7c8" start_index="0" end="e53eff68-e69d-4b72-9777-9ff5201b3b02" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

@@ -1,0 +1,158 @@
+<Workspace Version="0.7.5.3566" X="140.660252594133" Y="54.8122793835365" zoom="1.44258909293313" Description="This node will add a parameter to shared parameter file and then add it to the project. " Category="Archi-lab_Grimshaw.Modify" Name="Add Shared Parameter to Project" ID="775343f3-67de-4f1a-b291-b51b0acc9243">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="4efee8fb-1df3-4305-a80a-ce1fd752b75f" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="7">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+import System
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+_paramName = IN[0]
+_groupName = IN[1]
+_paramType = IN[2]
+_visible = IN[3]
+_category = IN[4]
+_paramGroup = IN[5]
+_instance = IN[6]
+
+def ParamBindingExists(_doc, _paramName, _paramType):
+	map = doc.ParameterBindings
+	iterator = map.ForwardIterator()
+	iterator.Reset()
+	while iterator.MoveNext():
+		if iterator.Key != None and iterator.Key.Name == _paramName and iterator.Key.ParameterType == _paramType:
+			paramExists = True
+			break
+		else:
+			paramExists = False
+	return paramExists
+
+def RemoveParamBinding(_doc, _paramName, _paramType):
+	map = doc.ParameterBindings
+	iterator = map.ForwardIterator()
+	iterator.Reset()
+	while iterator.MoveNext():
+		if iterator.Key != None and iterator.Key.Name == _paramName and iterator.Key.ParameterType == _paramType:
+			definition = iterator.Key
+			break
+	message = None
+	if definition != None:
+		map.Remove(definition)
+		message = "Success"
+	return message
+
+def addParam(doc, _paramName, _visible, _instance, _groupName, _paramGroup):
+	message = None
+	if ParamBindingExists(doc, _paramName, _paramType):
+		if not RemoveParamBinding(doc, _paramName, _paramType) == "Success":
+			message = "Param Binding Not Removed Successfully"
+		else:
+			message = None
+			
+	group = file.Groups.get_Item(_groupName)
+	if group == None:
+		group = file.Groups.Create(_groupName)
+	if group.Definitions.Contains(group.Definitions.Item[_paramName]):
+		_def = group.Definitions.Item[_paramName]
+	else:
+		_def = group.Definitions.Create(_paramName, _paramType, _visible)
+	
+	param = doc.ParameterBindings.Insert(_def, bind, _paramGroup)
+	return message
+#"Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+try:
+	file = app.OpenSharedParameterFile()
+except:
+	message = "No Shared Parameter file found."
+	pass
+
+builtInCategory = System.Enum.ToObject(BuiltInCategory, _category.Id)
+cats = app.Create.NewCategorySet()
+cats.Insert(doc.Settings.Categories.get_Item(builtInCategory))
+if _instance:
+	bind = app.Create.NewInstanceBinding(cats)
+else:
+	bind = app.Create.NewTypeBinding(cats)
+
+
+if isinstance(_paramName, list):
+	for i, j, k in zip(_paramName, _visible, _instance):
+		message = addParam(doc, i, j, k, _groupName, _paramGroup)
+else:
+	message = addParam(doc, _paramName, _visible, _instance, _groupName, _paramGroup)
+
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+if message == None:
+	OUT = "Success"
+else:
+	OUT = message</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="3bb02234-f368-4e3d-8d01-68c93291da5d" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Parameter Name" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="fb7c1c25-2a2d-4863-991d-d686d8cac23c" nickname="Input" x="1" y="55" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Shared Parameter Group Name" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="4e4eb4e0-3eeb-45a4-bb6d-9d7222f1d009" nickname="Input" x="2" y="109" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Paramerter Type" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="113eaf9c-4233-4cee-bcbf-4bc30183f488" nickname="Input" x="2" y="162" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Visible?" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="77c6a5bb-0fbf-46f1-82bb-0fc436cfb63c" nickname="Input" x="2" y="216" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Element Category" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="dbf0b47e-18ed-415e-a7c6-4b07ef4bf658" nickname="Input" x="3" y="270" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Paramter Group" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="7c30ae7e-b073-41df-8681-6de9b17b021c" nickname="Input" x="3.36832381444128" y="324.01662773051" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Instance?" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="fbcd5200-dde4-470d-a0cc-10251b6a1b75" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="4efee8fb-1df3-4305-a80a-ce1fd752b75f" start_index="0" end="fbcd5200-dde4-470d-a0cc-10251b6a1b75" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3bb02234-f368-4e3d-8d01-68c93291da5d" start_index="0" end="4efee8fb-1df3-4305-a80a-ce1fd752b75f" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fb7c1c25-2a2d-4863-991d-d686d8cac23c" start_index="0" end="4efee8fb-1df3-4305-a80a-ce1fd752b75f" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4e4eb4e0-3eeb-45a4-bb6d-9d7222f1d009" start_index="0" end="4efee8fb-1df3-4305-a80a-ce1fd752b75f" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="113eaf9c-4233-4cee-bcbf-4bc30183f488" start_index="0" end="4efee8fb-1df3-4305-a80a-ce1fd752b75f" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="77c6a5bb-0fbf-46f1-82bb-0fc436cfb63c" start_index="0" end="4efee8fb-1df3-4305-a80a-ce1fd752b75f" end_index="4" portType="0" />
+    <Dynamo.Models.ConnectorModel start="dbf0b47e-18ed-415e-a7c6-4b07ef4bf658" start_index="0" end="4efee8fb-1df3-4305-a80a-ce1fd752b75f" end_index="5" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7c30ae7e-b073-41df-8681-6de9b17b021c" start_index="0" end="4efee8fb-1df3-4305-a80a-ce1fd752b75f" end_index="6" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

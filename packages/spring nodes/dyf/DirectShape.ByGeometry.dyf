@@ -1,0 +1,165 @@
+<Workspace Version="1.1.0.2094" X="-227.079143083895" Y="199.057723295161" zoom="1.46821119452095" Name="Springs.DirectShape.ByGeometry" Description="Convert the input geometry to DirectShape element inside the Revit document.  It supports solids or surfaces.It is based on an alternative process that uses a SAT import and can produce smooth surfaces. Each created DS will have a unique type. Make sure that each input geometry has a unique name. You can either feed a single category for all geometries or a unique category for each geometry - the node's lacing is set to longest by default." ID="2416ec21-d9a2-4c67-a742-20d5cf82446e" Category="Springs.Revit.DirectShape">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Material" resolvedName="Revit.Elements.Material" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Cuboid" resolvedName="Autodesk.DesignScript.Geometry.Cuboid" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Cylinder" resolvedName="Autodesk.DesignScript.Geometry.Cylinder" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Solid" resolvedName="Autodesk.DesignScript.Geometry.Solid" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Category" resolvedName="Revit.Elements.Category" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="Category.ByName" resolvedName="Revit.Elements.Category" assemblyName="RevitNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="378d0694-3f14-43b9-9ae6-930a6781aae0" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="359.821634187539" y="-21.9777851761107" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="DirectShape" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a5efe1ad-c89c-4254-b3be-cdc29be8caaa" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="2.81806812397618" y="-24.8802735669342" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="geometry:var[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="eb1ec0d2-0ad0-4b48-9629-b7474c15de33" type="PythonNodeModels.PythonNode" nickname="Python Script" x="185.355011488817" y="10.722447448263" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <Script>#Copyright(c) 2016, Dimitar Venkov
+# @5devene, dimitar.ven@gmail.com
+
+import clr
+import System
+from System.Collections.Generic import *
+
+from itertools import repeat
+
+pf_path = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ProgramFilesX86)
+import sys
+sys.path.append("%s\IronPython 2.7\Lib" %pf_path)
+import traceback
+
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitAPI")
+from Autodesk.Revit.DB import *
+
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+
+def output1(l1):
+	if len(l1) == 1: return l1[0]
+	else: return l1
+
+def PadLists(lists):
+	len1 = len(lists[0])
+	for i in xrange(1,len(lists)):
+		len2 = len(lists[i])
+		if len2 == len1 : continue
+		elif len2 &gt; len1: lists[i] = lists[i][:len1]
+		else : lists[i].extend(repeat(lists[i][-1],len1 - len2))
+	return lists
+
+def NewDS(s1,cat,name1):
+	message = None
+	temp_path = System.IO.Path.GetTempPath()
+	sat_path = "%s%s.sat"% (temp_path, name1)
+	try:
+		if factor != 1:
+			s1 = s1.Scale(factor)
+		sat1 = Geometry.ExportToSAT(s1, sat_path)
+		satId = doc.Import(sat1, satOpt, view1)
+		el1 = doc.GetElement(satId)
+		geom1 = el1.get_Geometry(opt1)
+		enum = geom1.GetEnumerator()
+		enum.MoveNext()
+		geom2 = enum.Current.GetInstanceGeometry()
+		enum2 = geom2.GetEnumerator()
+		enum2.MoveNext()
+		s1 = enum2.Current
+		doc.Delete(satId)
+		System.IO.File.Delete(sat_path)
+	except:
+		message = traceback.format_exc()
+		pass
+	if message == None:
+		try:
+			if name1 in dst_enum:
+				old_type = dst_enum[name1]
+				old_type.SetShape([s1])
+				fec1 = FilteredElementCollector(doc).OfClass(DirectShape).WhereElementIsNotElementType()
+				insts = [i for i in fec1 if i.GetTypeId().Equals(old_type.Id)]
+				return insts[0].ToDSType(False)
+			else:
+				dsType1 = DirectShapeType.Create(doc, name1, cat.Id)
+				dsType1.SetShape([s1])
+				dsLib.AddDefinitionType(name1, dsType1.Id)
+				tf1 = Transform.Identity
+				ds1 =  DirectShape.CreateElementInstance(doc, dsType1.Id, cat.Id, name1, tf1, "Dynamo","spring nodes")
+				ds1.SetTypeId(dsType1.Id)
+				return ds1.ToDSType(False)
+		except:
+			message = traceback.format_exc()
+			return message
+	else: return message
+
+solids = tolist(IN[0])
+cat = tolist(IN[1])
+cat = [UnwrapElement(c) for c in cat]
+names = tolist(IN[2])
+
+satOpt = SATImportOptions()
+satOpt.Placement = ImportPlacement.Origin
+satOpt.Unit = ImportUnit.Foot
+opt1 = Options()
+opt1.ComputeReferences = True
+acceptable_views = ("ThreeD", "FloorPlan", "EngineeringPlan", "CeilingPlan", "Elevation", "Section")
+view_fec = FilteredElementCollector(doc).OfClass(View)
+view1 = None
+for v in view_fec:
+	if str(v.ViewType) in acceptable_views and not v.IsTemplate:
+		view1 = v
+		break
+units = doc.GetUnits().GetFormatOptions(UnitType.UT_Length).DisplayUnits
+factor = UnitUtils.ConvertToInternalUnits(1,units)
+dsLib = DirectShapeLibrary.GetDirectShapeLibrary(doc)
+dst_fec = FilteredElementCollector(doc).OfClass(DirectShapeType)
+dst_enum = dict([(Element.Name.__get__(i), i) for i in dst_fec])
+if len(solids) == len(cat) == len(names):
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	OUT = output1(map(NewDS, solids, cat, names))
+	TransactionManager.Instance.TransactionTaskDone()
+elif len(solids) == len(names):
+	padded = PadLists([solids,cat])
+	p_cat = padded[1]
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	OUT = output1(map(NewDS, solids, p_cat, names))
+	TransactionManager.Instance.TransactionTaskDone()
+else : OUT = "Make sure that each geometry\nobject has a unique type name."
+satOpt.Dispose()
+opt1.Dispose()</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e97089f6-028f-4687-a3ab-c93d40734dac" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-309.844174686363" y="37.2941993010844" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="category:var[] = Category.ByName(&quot;OST_GenericModel&quot;)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="3ab7cee6-f39c-4d93-af65-8668f4a2a1bc" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="36.507473833428" y="95.2379162468539" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="name:var[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="a5efe1ad-c89c-4254-b3be-cdc29be8caaa" start_index="0" end="eb1ec0d2-0ad0-4b48-9629-b7474c15de33" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="eb1ec0d2-0ad0-4b48-9629-b7474c15de33" start_index="0" end="378d0694-3f14-43b9-9ae6-930a6781aae0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e97089f6-028f-4687-a3ab-c93d40734dac" start_index="0" end="eb1ec0d2-0ad0-4b48-9629-b7474c15de33" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3ab7cee6-f39c-4d93-af65-8668f4a2a1bc" start_index="0" end="eb1ec0d2-0ad0-4b48-9629-b7474c15de33" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-3101.45203389287" eyeY="3365.48970338394" eyeZ="14958.1848304822" lookX="3096.45203389287" lookY="-3354.48970338394" lookZ="-14966.1848304822" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

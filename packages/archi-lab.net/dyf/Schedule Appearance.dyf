@@ -1,0 +1,96 @@
+<Workspace Version="1.2.0.2690" X="223.040242103132" Y="131.311450823434" zoom="1.33823125" Name="Schedule Appearance" Description="This node allows you to control the appearance of the schedule. For now it supports only title, header and body text type. " ID="2b55e266-cc95-45fc-acea-43090f6c6180" Category="Archi-lab_Grimshaw.Views.Schedule">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="3232b193-250f-4ca6-9636-20efc36717dd" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="4">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+_keySchedule = UnwrapElement(IN[0])
+_titleTextTypeId = IN[1]
+_headerTextTypeId = IN[2]
+_bodyTextTypeId = IN[3]
+
+def toRvtId(_id):
+	if isinstance(_id, int) or isinstance(_id, str):
+		id = ElementId(int(_id))
+		return id
+	elif isinstance(_id, ElementId):
+		return _id
+
+#"Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+if _titleTextTypeId != None:
+	_keySchedule.TitleTextTypeId = toRvtId(_titleTextTypeId)
+if _headerTextTypeId != None:
+	_keySchedule.HeaderTextTypeId = toRvtId(_headerTextTypeId)
+if _bodyTextTypeId != None:
+	_keySchedule.BodyTextTypeId = toRvtId(_bodyTextTypeId)
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = 0</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ecb3f5ed-d7f1-477f-9920-11361e7bccc6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Schedule" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2d62fd74-fb22-40bd-8bfe-4696608d4f97" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-1.49451001088187" y="67.8019494014955" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Title Text Type Id" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2f855e18-00d1-4157-8b2d-292f47e3f9b7" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-0.747255005440934" y="132.614878781227" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Header Text Type Id" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6939b3dc-ccfc-4367-9366-f14a908384fa" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1b678e91-3079-40c3-b64c-be348a98b9bf" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-1.36233928179456" y="194.637044232826" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Body Text Type Id" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="3232b193-250f-4ca6-9636-20efc36717dd" start_index="0" end="6939b3dc-ccfc-4367-9366-f14a908384fa" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ecb3f5ed-d7f1-477f-9920-11361e7bccc6" start_index="0" end="3232b193-250f-4ca6-9636-20efc36717dd" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2d62fd74-fb22-40bd-8bfe-4696608d4f97" start_index="0" end="3232b193-250f-4ca6-9636-20efc36717dd" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2f855e18-00d1-4157-8b2d-292f47e3f9b7" start_index="0" end="3232b193-250f-4ca6-9636-20efc36717dd" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1b678e91-3079-40c3-b64c-be348a98b9bf" start_index="0" end="3232b193-250f-4ca6-9636-20efc36717dd" end_index="3" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

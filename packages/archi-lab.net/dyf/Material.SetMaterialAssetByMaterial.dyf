@@ -1,0 +1,100 @@
+<Workspace Version="0.9.0.2912" X="-296.371388948711" Y="-215.408852040975" zoom="1.78359936238281" Name="Material.SetMaterialAssetByMaterial" Description="This node will copy a material asset element from source Material to a list of target materials. It esentially makes all materials inherit its Rendering Appearance. Useful for &quot;clay&quot; renderings. " ID="fc21f065-cc91-48c9-a5fb-02d2f0af721e" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="8429ebfa-b488-482a-8f52-3db5c2c4c865" type="PythonNodeModels.PythonNode" nickname="Python Script" x="510.54993547727" y="335.827175168853" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variables.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+	return map(lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list)
+
+def ProcessListArg(_func, _list, _arg):
+    return map( lambda x: ProcessListArg(_func, x, _arg) if type(x)==list else _func(x, _arg), _list )
+
+def SetMaterialAsset(mat, assetId):
+	mat.AppearanceAssetId = assetId
+	return mat
+		
+def TryGetAsset(mat):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	appearanceId = mat.AppearanceAssetId
+	if appearanceId != ElementId.InvalidElementId:
+		return appearanceId
+	else:
+		return None
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+try:
+	errorReport = None
+	sourceMat = UnwrapElement(IN[1])
+	asset = TryGetAsset(sourceMat)
+	
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	output = ProcessListArg(SetMaterialAsset, elements, asset)
+	TransactionManager.Instance.TransactionTaskDone()
+	
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="444f39c8-944c-4c08-82d5-eb3b83422d1e" type="Dynamo.Nodes.Symbol" nickname="Input" x="311.937423102362" y="311.397763284111" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="TargetMaterial" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="fba78e90-03fb-4910-b93f-6e1eca70fa50" type="Dynamo.Nodes.Symbol" nickname="Input" x="309.913170957388" y="393.070806188233" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="SourceMaterial" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="32d019ea-e632-473e-a7d3-bcbc1523a69d" type="Dynamo.Nodes.Output" nickname="Output" x="698.795601319128" y="343.916276815376" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Material" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="8429ebfa-b488-482a-8f52-3db5c2c4c865" start_index="0" end="32d019ea-e632-473e-a7d3-bcbc1523a69d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="444f39c8-944c-4c08-82d5-eb3b83422d1e" start_index="0" end="8429ebfa-b488-482a-8f52-3db5c2c4c865" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fba78e90-03fb-4910-b93f-6e1eca70fa50" start_index="0" end="8429ebfa-b488-482a-8f52-3db5c2c4c865" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

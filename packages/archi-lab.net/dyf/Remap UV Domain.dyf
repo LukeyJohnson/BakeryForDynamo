@@ -1,0 +1,145 @@
+<Workspace Version="0.7.4.3090" X="117.025163309935" Y="270.290055089093" zoom="1.33823125" Description="This node takes an input of a reference face and a list of UVs that get remapped into that face's UV Domain. The output is a list of UV Coordinates in that surface's domain. " Category="Archi-lab_Grimshaw.Modify" Name="Remap UV Domain" ID="3f09d548-bd4c-48e4-8140-a3dc0f6ce9d5">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="564d506f-0a67-48db-ac26-f116f2e4f3be" nickname="Python Script" x="410.91643176732" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="3">
+      <Script>#Copyright(c) 2014, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+#special thanks to David Mans from http://neoarchaic.net/ 
+#for help with this node
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+surface = IN[0]
+rhptsU = IN[1]
+rhptsV = IN[2]
+
+def getFace(element):
+	#create geometry options/compute references
+	geoOptions = Options()
+	geoOptions.ComputeReferences = True
+	#extract geometry
+	geoElement = element.get_Geometry(geoOptions)
+	geoSet = List[GeometryInstance]()
+	elemIter = geoElement.GetEnumerator()
+	elemIter.Reset()
+	while elemIter.MoveNext():
+		curElem = elemIter.Current
+		geoSet.Add(curElem)
+	#extract faces from solids
+	for i in geoSet:
+		solids = i.SymbolGeometry
+		for i in solids:
+			faces = i.Faces
+	return faces[0]
+
+def getUVsFromPoints(face, ptsU, ptsV):
+	UVs = []
+	xval = []
+	yval = []
+	#get face UV domain min and max
+	bbox = face.GetBoundingBox()
+	minX = float(bbox.Min.U)
+	minY = float(bbox.Min.V)
+	maxX = float(bbox.Max.U)
+	maxY = float(bbox.Max.V)
+	# Check if the inputs are a list and find the total number of instances
+	if isinstance(ptsU, float):
+		xlen = 1
+	else:
+		xlen = len(ptsU)
+	if isinstance(ptsV, float):
+		ylen = 1
+	else:
+		ylen = len(ptsV)
+	# Set the loop limit to the longest list length
+	if xlen &gt; ylen:
+		cnt = xlen
+	else:
+		cnt = ylen
+	for i in range(0,cnt):
+		# If U or V is a single item, pass the item, 
+		# If i is greater than than the length of a list, pass the last value in the list
+		# Else pass the list item i
+		if isinstance(ptsU, float):
+			xval.append(minX+(maxX-minX)*ptsU)
+		else:
+			if i &gt;= len(ptsU):
+				xval.append(minX+(maxX-minX)*ptsU[(len(ptsU)-1)])
+			else:
+				xval.append(minX+(maxX-minX)*ptsU[i])
+		if isinstance(ptsV, float):
+			yval.append(minY+(maxY-minY)*ptsV)
+		else:
+			if i &gt;= len(ptsV):
+				yval.append(minY+(maxY-minY)*ptsV[(len(ptsV)-1)])
+			else:
+				yval.append(minY+(maxY-minY)*ptsV[i])			
+		UVs.append(Autodesk.Revit.DB.UV(xval[i],yval[i]))
+	del xval[:]
+	del yval[:]
+	return UVs
+
+#unwrap surfaces
+elements = []
+for i in surface:
+	elements.append(UnwrapElement(i))
+
+if not any(isinstance(item, list) for item in rhptsU):
+	UVList = []
+	element = elements[0]
+	face = getFace(element)
+	UVList = getUVsFromPoints(face, rhptsU, rhptsV)
+else:
+	UVList = []
+	for i, j, k in zip(elements, rhptsU, rhptsV):
+		face = getFace(i)
+		UVList.append(getUVsFromPoints(face, j, k))
+
+#Assign your output to the OUT variable
+OUT = UVList</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.CodeBlockNodeModel type="Dynamo.Nodes.CodeBlockNodeModel" guid="3c367ae8-229f-4b21-9612-196a3f46660e" nickname="Code Block" x="255.230785038087" y="55.3451104313526" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="pt.U;&#xA;pt.V;" ShouldFocus="false" />
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="692afc76-4ba4-4477-bdaa-b15c2af07250" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="RVT Surface" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="78be30e6-c209-43f0-a6be-d14ddb858a9d" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="UVs" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="acfa238c-a6b6-4110-bfec-f7b97b1a9f63" nickname="Output" x="609.91643176732" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="UVs" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="564d506f-0a67-48db-ac26-f116f2e4f3be" start_index="0" end="acfa238c-a6b6-4110-bfec-f7b97b1a9f63" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3c367ae8-229f-4b21-9612-196a3f46660e" start_index="0" end="564d506f-0a67-48db-ac26-f116f2e4f3be" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3c367ae8-229f-4b21-9612-196a3f46660e" start_index="1" end="564d506f-0a67-48db-ac26-f116f2e4f3be" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="692afc76-4ba4-4477-bdaa-b15c2af07250" start_index="0" end="564d506f-0a67-48db-ac26-f116f2e4f3be" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="78be30e6-c209-43f0-a6be-d14ddb858a9d" start_index="0" end="3c367ae8-229f-4b21-9612-196a3f46660e" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

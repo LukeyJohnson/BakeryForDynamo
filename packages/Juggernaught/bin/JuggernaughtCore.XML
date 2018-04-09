@@ -1,0 +1,62 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JuggernaughtCore</name>
+    </assembly>
+    <members>
+        <member name="T:Geometry.Point">
+            <summary>
+            Point Nodes
+            </summary>
+        </member>
+        <member name="M:Geometry.Point.MidPoint(Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            Get the mid-point between two points
+            </summary>
+            <param name="p1">First Point</param>
+            <param name="p2">Second Point</param>
+            <returns name="Mid-Point"> Mid-Point </returns>
+            <search>
+            point, juggernaught, geometry, points, mid,mid point
+            </search>
+        </member>
+        <member name="M:Geometry.Point.XYZ(Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            Get the X,Y,Z components of a point
+            </summary>
+            <param name="Point">Point</param>
+            <search>
+            point, juggernaught, geometry, points, X, Y, Z
+            </search>
+        </member>
+        <member name="T:Geometry.Vector">
+            <summary>
+            Vector Nodes
+            </summary>
+        </member>
+        <member name="M:Geometry.Vector.NegativeX">
+            <summary>
+            Get a negative X vector
+            </summary>
+            <search>
+            vector, juggernaught, geometry, vectors, X, negative
+            </search>
+        </member>
+        <member name="M:Geometry.Vector.NegativeY">
+            <summary>
+            Get a negative Y vector
+            </summary>
+            <search>
+            vector, juggernaught, geometry, vectors, Y, negative
+            </search>
+        </member>
+        <member name="M:Geometry.Vector.NegativeZ">
+            <summary>
+            Get a negative Z vector
+            </summary>
+            <search>
+            vector, juggernaught, geometry, vectors, Z, negative
+            </search>
+        </member>
+    </members>
+</doc>

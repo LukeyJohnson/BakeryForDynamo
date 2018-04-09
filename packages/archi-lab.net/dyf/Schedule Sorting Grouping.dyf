@@ -1,0 +1,177 @@
+<Workspace Version="1.2.0.2690" X="212.781297203423" Y="143.117222097385" zoom="1.1113575327695" Name="Schedule Sorting Grouping" Description="This node will allow you to specify sorting/grouping parameters in schedule as well parameters like sorting order, whether its a footer or header. Visit archi-lab.net for more information. " ID="c26c7c1f-2819-46bb-8e2b-bf2d252d4141" Category="Archi-lab_Grimshaw.Views.Schedule">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="cc1f6161-5ab3-4012-bdc1-242559b27691" type="PythonNodeModels.PythonNode" nickname="Python Script" x="232.418850614199" y="-0.879057469290046" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="7">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <PortInfo index="6" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+_keySchedule = UnwrapElement(IN[0])
+_paramName = IN[1]
+_showBlankLine = IN[2]
+_footerCount = IN[3]
+_footerTitle = IN[4]
+_header = IN[5]
+_sortOrder = IN[6]
+
+#"Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+def getFieldId(schedule, name):
+	definition = schedule.Definition
+	count = definition.GetFieldCount()
+	for i in range(0, count, 1):
+		if definition.GetField(i).GetName() == name:
+			fieldId = definition.GetField(i).FieldId
+	return fieldId
+
+def addSortingField(schedule, ssgf):
+	message = None
+	definition = schedule.Definition
+	try:
+		definition.AddSortGroupField(ssgf)
+	except:
+		message = "You can add Max of 4 sorting/grouping parameters."
+		pass
+	return message
+	
+def createSortingField(fieldId, blank, fCount, fTitle, header, sOrder):
+	message = None
+	ssgf = ScheduleSortGroupField()
+	ssgf.FieldId = fieldId
+
+	if blank != None:
+		ssgf.ShowBlankLine = blank
+
+	checkList = [fCount, fTitle]
+	if any(item == True for item in checkList):
+		ssgf.ShowFooter = True
+		if fCount != None:
+			ssgf.ShowFooterCount = fCount
+		if fTitle != None:
+			ssgf.ShowFooterTitle = fTitle
+	else:
+		ssgf.ShowFooter = False
+
+	if header != None:
+		ssgf.ShowHeader = header
+	if sOrder != None:
+		if sOrder == "Ascending":
+			sortO = ScheduleSortOrder.Ascending
+			ssgf.SortOrder = sortO
+		elif sOrder == "Descending":
+			sortO = ScheduleSortOrder.Descending
+			ssgf.SortOrder = sortO
+		else:
+			message = "Schedule Sort Order can only be \nset to Ascending or Descending.\nCheck your spelling please."
+	if message == None:
+		return ssgf
+	else:
+		return message
+
+if type(_paramName) == list:
+	definition = _keySchedule.Definition
+	if definition.GetSortGroupFieldCount() != 0:
+		definition.ClearSortGroupFields()
+	for i,j,k,l,m,n in zip(_paramName, _showBlankLine, _footerCount, _footerTitle, _header, _sortOrder):
+		fieldId = getFieldId(_keySchedule, i)
+		ssgf = createSortingField(fieldId, j, k, l, m, n)
+		if type(ssgf) == str:
+			message = "Schedule Sort Order can only be \nset to Ascending or Descending.\nCheck your spelling please."
+		else:
+			message = addSortingField(_keySchedule, ssgf)
+else:
+	definition = _keySchedule.Definition
+	if definition.GetSortGroupFieldCount() != 0:
+		definition.ClearSortGroupFields()
+	fieldId = getFieldId(_keySchedule, _paramName)
+	ssgf = createSortingField(fieldId, _showBlankLine, _footerCount, _footerTitle, _header, _sortOrder)
+	if type(ssgf) == str:
+		message = "Schedule Sort Order can only be \nset to Ascending or Descending.\nCheck your spelling please."
+	else:
+		message = addSortingField(_keySchedule, ssgf)
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+if message == None:
+	OUT = 0
+else:
+	OUT = '\n'.join('{:^35}'.format(s) for s in message.split('\n'))</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a2f0b847-415b-4478-bb4b-7a7c07e10ec2" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Schedule" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="82d0abc2-e715-4001-92d1-ea73b3b44483" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="2.09634173456675" y="56.7127928117783" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Parameter Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a08eaa0d-f6a4-4b92-af0d-9f6b734c127b" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="4.19268346913361" y="117.61826909269" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Blank Line" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c4145e80-06a1-43d0-a395-33259e1cec00" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="6.28902520370025" y="175.379232771752" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Footer Count" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a8ded840-74fa-4457-ab1a-4bcc813253b6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="7.33719607098374" y="233.140196450813" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Footer Title" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a4e1c4eb-2639-432e-b365-8d69c275a205" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="6.28902520370036" y="292.997501864442" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Header" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f09cef09-1f9d-4c8d-865e-550c44b432ba" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="2.17310490580667" y="354.550668642565" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Sort Order" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d409e93e-af68-48f6-9ae1-975b9eaf4d94" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="cc1f6161-5ab3-4012-bdc1-242559b27691" start_index="0" end="d409e93e-af68-48f6-9ae1-975b9eaf4d94" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a2f0b847-415b-4478-bb4b-7a7c07e10ec2" start_index="0" end="cc1f6161-5ab3-4012-bdc1-242559b27691" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="82d0abc2-e715-4001-92d1-ea73b3b44483" start_index="0" end="cc1f6161-5ab3-4012-bdc1-242559b27691" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a08eaa0d-f6a4-4b92-af0d-9f6b734c127b" start_index="0" end="cc1f6161-5ab3-4012-bdc1-242559b27691" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c4145e80-06a1-43d0-a395-33259e1cec00" start_index="0" end="cc1f6161-5ab3-4012-bdc1-242559b27691" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a8ded840-74fa-4457-ab1a-4bcc813253b6" start_index="0" end="cc1f6161-5ab3-4012-bdc1-242559b27691" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a4e1c4eb-2639-432e-b365-8d69c275a205" start_index="0" end="cc1f6161-5ab3-4012-bdc1-242559b27691" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f09cef09-1f9d-4c8d-865e-550c44b432ba" start_index="0" end="cc1f6161-5ab3-4012-bdc1-242559b27691" end_index="6" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

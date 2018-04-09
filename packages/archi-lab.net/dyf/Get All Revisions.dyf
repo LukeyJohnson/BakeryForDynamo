@@ -1,0 +1,67 @@
+<Workspace Version="1.2.0.2690" X="-349.76976702067" Y="-295.190878292152" zoom="1.74331992875497" Name="Get All Revisions" Description="This node will return all Revisions currently defined in the mode." ID="e4f67d90-ea21-4d85-acbf-a9388cf512c8" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="9f854747-25d6-40bf-a6fb-d846a9804cdb" type="PythonNodeModels.PythonNode" nickname="Python Script" x="530.999999999999" y="290" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+RunIt = IN[0]
+
+if RunIt:
+	try:
+		errorReport = None
+		revisions = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_Revisions).WhereElementIsNotElementType().ToElements()
+	except:
+		# if error accurs anywhere in the process catch it
+		import traceback
+		errorReport = traceback.format_exc()
+else:
+	errorReport = "RunIt set to False."
+
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = revisions
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6ce0da19-ea8c-4bb4-be4a-81d85ced1fd4" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="315.03449901019" y="289.891446864752" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="RunIt: bool=false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d3690502-a3ad-4c50-9a62-bc10ca2fca4f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="701.332013200555" y="289.891446864752" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Revision" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="9f854747-25d6-40bf-a6fb-d846a9804cdb" start_index="0" end="d3690502-a3ad-4c50-9a62-bc10ca2fca4f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6ce0da19-ea8c-4bb4-be4a-81d85ced1fd4" start_index="0" end="9f854747-25d6-40bf-a6fb-d846a9804cdb" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

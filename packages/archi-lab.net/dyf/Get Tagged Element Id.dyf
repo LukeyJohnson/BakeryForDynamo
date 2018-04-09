@@ -1,0 +1,61 @@
+<Workspace Version="0.8.0.950" X="80.4665998640616" Y="260.032103935579" zoom="1.22704736140834" Name="Get Tagged Element Id" ID="42d676dd-3909-4ff8-8eaf-4fa7128f1991" Description="Retrives an Element Id from input of element tags. For example if wall tags are inputted it will return tagged wall Ids." Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="4e32e1b6-1f12-48c6-bfef-cb88b8b431e7" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="375.955182544535" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+if isinstance(IN[0], list):
+	ids, tags = [], []
+	for i in IN[0]:
+		if i.TaggedLocalElementId.IntegerValue != -1:
+			ids.append(i.TaggedLocalElementId)
+			tags.append(i)
+		else:
+			continue
+else:
+	if IN[0].TaggedLocalElementId.IntegerValue != -1:
+		ids = IN[0].TaggedLocalElementId
+		tags = IN[0]
+
+#Assign your output to the OUT variable
+OUT = ids, tags</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="9d9ee670-047c-4254-9b4a-835620f038e4" type="Dynamo.Nodes.Symbol" nickname="Input" x="283.185113182933" y="5.43173164793386" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Tags" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="da9de46f-28ab-44ec-8287-b33ec6b509d3" type="Dynamo.Nodes.Output" nickname="Output" x="555.966019340273" y="-4.84168515465256" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="ElementId(s)" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="4e32e1b6-1f12-48c6-bfef-cb88b8b431e7" start_index="0" end="da9de46f-28ab-44ec-8287-b33ec6b509d3" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9d9ee670-047c-4254-9b4a-835620f038e4" start_index="0" end="4e32e1b6-1f12-48c6-bfef-cb88b8b431e7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

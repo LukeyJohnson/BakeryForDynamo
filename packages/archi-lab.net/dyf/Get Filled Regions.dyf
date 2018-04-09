@@ -1,0 +1,61 @@
+<Workspace Version="1.2.0.2690" X="87.9594792823291" Y="206.082078722901" zoom="1.24844365397223" Name="Get Filled Regions" Description="This node will query up all Filled Regions in the project as well as those in the active view only. " ID="6527ae09-feea-4558-b77e-47b926f4d284" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="e206e5b4-cb55-4e25-8c55-a80f92a7e661" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="362.291801373627" y="4.07649780686575" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="OUT[0];&#xA;OUT[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <PythonNodeModels.PythonNode guid="df14fd37-9c8c-4057-a8f6-fb38af123887" type="PythonNodeModels.PythonNode" nickname="Python Script" x="161.99537937232" y="1.3240487009507" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Analysis import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+inView = FilteredElementCollector(doc, doc.ActiveView.Id).OfClass(FilledRegion)
+inProject = FilteredElementCollector(doc).OfClass(FilledRegion)
+
+#Assign your output to the OUT variable
+OUT = [i.ToDSType(True) for i in inView],[j.ToDSType(True) for j in inProject]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c851ee12-77d5-4ec1-89d2-67516b0370f9" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="570.644811966471" y="3.88193644293494" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Active View Filled Regions" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f09f3ef2-023f-4356-8850-d6ec121f9491" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="570.204264998652" y="63.3140540767697" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="All Filled Regions" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="e206e5b4-cb55-4e25-8c55-a80f92a7e661" start_index="0" end="c851ee12-77d5-4ec1-89d2-67516b0370f9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e206e5b4-cb55-4e25-8c55-a80f92a7e661" start_index="1" end="f09f3ef2-023f-4356-8850-d6ec121f9491" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="df14fd37-9c8c-4057-a8f6-fb38af123887" start_index="0" end="e206e5b4-cb55-4e25-8c55-a80f92a7e661" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

@@ -1,0 +1,84 @@
+<Workspace Version="0.9.1.4062" X="846.618737799122" Y="294.102698950289" zoom="1.703916824555" Name="Color Settings" Description="This node creates color settings for the Analysis Visualization Framework. " ID="9c76de43-81ca-413c-897e-989607678a89" Category="Archi-lab_Grimshaw.Analysis">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="54ac6e44-e8fd-4fe0-bba2-f55639ac5d89" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Analysis import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+colors = IN[0]
+
+#design script color to RVT color function
+def dsColorToRvtColor(dsColor):
+	R = dsColor.Red
+	G = dsColor.Green
+	B = dsColor.Blue
+	return Autodesk.Revit.DB.Color(R,G,B)
+
+#define color settings
+colorSettings = AnalysisDisplayColorSettings()
+if len(colors) == 2:
+	colorSettings.MinColor = dsColorToRvtColor(colors[1])
+	colorSettings.MaxColor = dsColorToRvtColor(colors[0])
+elif len(colors) &gt; 2:
+	colorSettings.MaxColor = dsColorToRvtColor(colors[len(colors)-1])
+	colorSettings.MinColor = dsColorToRvtColor(colors[0])
+	colorList = List[AnalysisDisplayColorEntry]()
+	for i in range(1, len(colors)-1, 1):
+		tempColor = AnalysisDisplayColorEntry(dsColorToRvtColor(colors[i]))
+		colorList.Add(tempColor)
+	if colorSettings.AreIntermediateColorsValid(colorList):
+		colorSettings.SetIntermediateColors(colorList)
+
+#Assign your output to the OUT variable
+OUT = colorSettings</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="3bdc17ff-0c7f-4d26-be59-d84ecd742523" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-419.03453837101" y="0.586883106962205" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="_Colors: var[]..[]= {Color.ByARGB(0,0,0),Color.ByARGB(255,255,255)}" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="fa31d962-48fb-4fe0-af80-37e860f0fa6c" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <Symbol value="Color Settings" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="54ac6e44-e8fd-4fe0-bba2-f55639ac5d89" start_index="0" end="fa31d962-48fb-4fe0-af80-37e860f0fa6c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3bdc17ff-0c7f-4d26-be59-d84ecd742523" start_index="0" end="54ac6e44-e8fd-4fe0-bba2-f55639ac5d89" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

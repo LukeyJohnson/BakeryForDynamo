@@ -1,0 +1,11 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>JuggernaughtRevit</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Revit">
+      <category>Juggernaught.Revit</category>
+    </namespace>
+  </namespaces>
+</doc>

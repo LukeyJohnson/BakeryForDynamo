@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<doc>
+  <assembly>
+    <name>Archi-lab_Grimshaw</name>
+  </assembly>
+    <namespaces>
+      <namespace name="Archilab.Grimshaw.Elements">
+        <category>Archi-lab_Grimshaw.Elements</category>
+      </namespace>
+      <namespace name="Archilab.Grimshaw.CsvParsers">
+        <category>Archi-lab_Grimshaw.CSV</category>
+      </namespace>
+      <namespace name="Archilab.Grimshaw.List">
+        <category>Archi-lab_Grimshaw.List</category>
+      </namespace>
+      <namespace name="Archilab.Grimshaw.Selection">
+        <category>Archi-lab_Grimshaw.Selection</category>
+      </namespace>
+      <namespace name="Archilab.Grimshaw.Views">
+        <category>Archi-lab_Grimshaw.Views</category>
+      </namespace>
+    </namespaces>
+</doc>

@@ -1,0 +1,107 @@
+<Workspace Version="0.8.2.2311" X="-196.423329375" Y="-218.793764109375" zoom="1.545620359375" Name="Remove Revision from Sheet" Description="This node will remove specified Revisions from a sheet." ID="52961270-6b09-462b-8ba6-561422d5a5e0" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="bf56a1f1-26c1-485c-9c41-0d101c69f141" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="531" y="311" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+import System
+from System import Array
+from System.Collections.Generic import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+if isinstance(IN[0], list):
+	sheets = []
+	for i in IN[0]:
+		sheets.append(UnwrapElement(i))
+else:
+	sheets = [UnwrapElement(IN[0])]
+
+if isinstance(IN[1], list):
+	revs = []
+	for i in IN[1]:
+		revs.append(UnwrapElement(i))
+else:
+	revs = [UnwrapElement(IN[1])]
+	
+RunIt = IN[2]
+
+if RunIt:
+	try:
+		errorReport = None
+		for i in sheets:
+			revisionsOnSheet = i.GetAdditionalRevisionIds()
+			for r in revs:
+				if r.Id in revisionsOnSheet:
+					revisionsOnSheet.Remove(r.Id)
+				else:
+					continue
+			TransactionManager.Instance.EnsureInTransaction(doc)
+			i.SetAdditionalRevisionIds(revisionsOnSheet)
+			TransactionManager.Instance.TransactionTaskDone()
+			
+	except:
+		# if error accurs anywhere in the process catch it
+		import traceback
+		errorReport = traceback.format_exc()
+else:
+	errorReport = "Set RunIt to True."
+
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = IN[0]
+else:
+	OUT = errorReport
+</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="7d17aff0-cdf1-4ff5-a2c3-2f81d9b9a3ab" type="Dynamo.Nodes.Symbol" nickname="Input" x="268" y="316" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Sheet" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="318e32fd-41a8-4c91-8fee-13bff5c30793" type="Dynamo.Nodes.Symbol" nickname="Input" x="274.540726633601" y="378.945688534872" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Revision" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="77d58854-ef94-41ca-ab04-2f824c600449" type="Dynamo.Nodes.Symbol" nickname="Input" x="319.239667349183" y="487.69658055888" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="RunIt:bool=false" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="dda5d0a4-72df-4d93-9d57-8b4ab7bd5034" type="Dynamo.Nodes.Output" nickname="Output" x="714.55019512139" y="451.465173758154" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Sheet" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="bf56a1f1-26c1-485c-9c41-0d101c69f141" start_index="0" end="dda5d0a4-72df-4d93-9d57-8b4ab7bd5034" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7d17aff0-cdf1-4ff5-a2c3-2f81d9b9a3ab" start_index="0" end="bf56a1f1-26c1-485c-9c41-0d101c69f141" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="318e32fd-41a8-4c91-8fee-13bff5c30793" start_index="0" end="bf56a1f1-26c1-485c-9c41-0d101c69f141" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="77d58854-ef94-41ca-ab04-2f824c600449" start_index="0" end="bf56a1f1-26c1-485c-9c41-0d101c69f141" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="-75.9405288696289" eyeY="61.1463584899902" eyeZ="188.826797485352" lookX="-56.3442077636719" lookY="-56.3442077636719" lookZ="-56.3442077636719" />
+  </Cameras>
+</Workspace>

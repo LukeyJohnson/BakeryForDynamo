@@ -1,0 +1,52 @@
+<Workspace Version="1.2.0.2690" X="456.517988323434" Y="226.42694375" zoom="1.33823125" Name="Tool.WeightedAverage" Description="Calculate Weigted Average of 2 lists" ID="8a6c1341-5760-439e-ad76-9d2df714a9df" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="f131c107-42f0-49c9-a86c-0556f2fabbb1" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="-0.747255005440934" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+#dataEnteringNode = IN
+
+def moyenne_ponderee (poids, nombre) :
+	s = 0
+	w = 0
+	for p,n in zip (poids, nombre) :	
+		s += p*n
+		w += p
+	return s * 1.0 / w 
+	
+density = IN[0]
+coord = IN[1]
+resultat = moyenne_ponderee (density, coord)
+
+
+
+#Assign your output to the OUT variable.
+OUT = resultat</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6c90b034-9db8-4f5c-ac95-8acc0d969c41" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="447" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="WeightedAverage" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="40c2d33f-98dc-44e5-b458-af712d093655" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="27.2613658338691" y="-34.6927661045129" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Weights" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="625af09e-2ebb-4a20-9775-72d0360c1603" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="28.755875844751" y="84.8680347660392" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Numbers" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="f131c107-42f0-49c9-a86c-0556f2fabbb1" start_index="0" end="6c90b034-9db8-4f5c-ac95-8acc0d969c41" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="40c2d33f-98dc-44e5-b458-af712d093655" start_index="0" end="f131c107-42f0-49c9-a86c-0556f2fabbb1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="625af09e-2ebb-4a20-9775-72d0360c1603" start_index="0" end="f131c107-42f0-49c9-a86c-0556f2fabbb1" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-15247.4696361719" eyeY="43375.8917159244" eyeZ="23654.3125860732" lookX="15791.1003774708" lookY="-42823.451465797" lookZ="-36862.2880927152" upX="0.223034541913304" upY="0.824126172818496" upZ="-0.520645379263356" />
+  </Cameras>
+</Workspace>

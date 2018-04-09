@@ -1,0 +1,105 @@
+<Workspace Version="0.8.0.950" X="92.16300625" Y="108.0887125" zoom="1.33823125" Name="Elements in Room" ID="29b30d46-9dd4-42d2-adf3-eda1ad145f62" Description="This node will check if any of the elements are inside any of the supplied rooms. " Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="3347210c-eda5-455e-ad6f-96533661fde2" type="DSIronPythonNode.PythonNode" nickname="Family.InRoom" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="2">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# This code is based on Family.InRoom node originally created
+# by Peter Kompolschek and published on Dynamo blog. Big thanks 
+# to Peter for sharing his work so graciously.
+
+import clr
+import sys
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def TryGetRoom(room, phase):
+	try:
+		inRoom = room.Room[phase]
+	except:
+		inRoom = None
+		pass
+	return inRoom
+
+def FamiliesInRoom(_room, _families, _doc):
+	outList = []
+	for family in _families:
+		pt = family.Location.Point
+		if _room.IsPointInRoom(pt):
+			outList.append(family)
+		else:
+			for phase in _doc.Phases:
+				inRoom = TryGetRoom(family, phase)
+				if inRoom != None and inRoom.ToDSType(True).Name == _room.ToDSType(True).Name:
+					outList.append(family)
+	return outList
+
+try:
+	errorReport = None
+	families = []
+	for i in IN[0]:
+		families.append(UnwrapElement(i))
+	
+	rooms = []
+	for i in IN[1]:
+		if UnwrapElement(i).Area &gt; 0:
+			rooms.append(UnwrapElement(i))
+	
+	outData = [[] for i in range(len(rooms))]
+	for index, room in enumerate(rooms):
+		outData[index].extend(FamiliesInRoom(room, families, doc))
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = outData
+else:
+	OUT = errorReport</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="5ce9af80-cfa8-4f5f-bfd5-c4d4f03c14bc" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Elements" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="86ef0ff5-494b-49d4-88a3-d7500f4d91c1" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Rooms" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="aadcc600-3e44-4948-8135-40a03663b2ad" type="Dynamo.Nodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Elements" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="3347210c-eda5-455e-ad6f-96533661fde2" start_index="0" end="aadcc600-3e44-4948-8135-40a03663b2ad" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5ce9af80-cfa8-4f5f-bfd5-c4d4f03c14bc" start_index="0" end="3347210c-eda5-455e-ad6f-96533661fde2" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="86ef0ff5-494b-49d4-88a3-d7500f4d91c1" start_index="0" end="3347210c-eda5-455e-ad6f-96533661fde2" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

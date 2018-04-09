@@ -1,0 +1,93 @@
+<Workspace Version="1.2.0.2654" X="-393.17563509829" Y="-450.017441250937" zoom="2.05668026833428" Name="Get Host Element" Description="This node will retrieve a host element from hosted element. Ex. feed in door, get wall." ID="e543a156-98ea-4df2-ae54-3cf3e3d4bfe1" Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="d229a211-fd39-4f7b-b1b9-cb9dc63ce6f2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="446" y="301" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+import sys
+
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+if isinstance(IN[0], list):
+	elements = []
+	for i in IN[0]:
+		elements.append(UnwrapElement(i))
+else:
+	elements = IN[0]
+
+def GetHostElement(element):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	try:
+		host = element.Host
+		return host
+	except:
+		try:
+			hostIds = []
+			for i in element.GetHostIds():
+				hostIds.append(doc.GetElement(i))
+			return hostIds
+		except:
+			return None
+
+def ProcessList(_func, _list):
+	return map( lambda x: ProcessList(_func, x) if type(x) == list else _func(x), _list )
+
+try:
+	errorReport = None
+	if isinstance(elements, list):
+		output = ProcessList(GetHostElement, elements)
+	else:
+		output = GetHostElement(elements)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ca313b39-f3b5-44f6-9372-b7b5b5189f26" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="283.438974441255" y="300.20275718826" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="hostedElement" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="eb1f809b-b0b8-4ba7-b037-fcc11243aab3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="602.469795007208" y="302.449026525037" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="hostElement" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="d229a211-fd39-4f7b-b1b9-cb9dc63ce6f2" start_index="0" end="eb1f809b-b0b8-4ba7-b037-fcc11243aab3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ca313b39-f3b5-44f6-9372-b7b5b5189f26" start_index="0" end="d229a211-fd39-4f7b-b1b9-cb9dc63ce6f2" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

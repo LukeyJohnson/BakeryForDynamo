@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>WombatDynamo</name>
+</assembly>
+<namespaces>
+<namespace name="WombatDynamo">
+<category>WombatDynamo</category>
+</namespace>
+
+</namespaces>
+</doc>

@@ -1,0 +1,59 @@
+<Workspace Version="1.2.0.2690" X="-166.50836176452" Y="-156.325203539513" zoom="1.545620359375" Name="Get All Line Styles" Description="This node will return all available line styles." ID="24204ff5-7f1a-43a7-8adc-13f5f3cfe3f2" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="34bbb807-4781-4d2f-b4ad-2e0033267fb0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="369" y="246" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+try:
+	errorReport = None
+	cat = Category.GetCategory(doc, BuiltInCategory.OST_Lines)
+	gs = cat.GetGraphicsStyle(GraphicsStyleType.Projection)
+	gsCat = gs.GraphicsStyleCategory.SubCategories
+	dataOut = [i.GetGraphicsStyle(GraphicsStyleType.Projection) for i in gsCat]
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = dataOut
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="ecaba992-db8b-44f2-9739-d21dfaac1029" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="501.098705815254" y="246.713367371603" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="LineStyle" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="34bbb807-4781-4d2f-b4ad-2e0033267fb0" start_index="0" end="ecaba992-db8b-44f2-9739-d21dfaac1029" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

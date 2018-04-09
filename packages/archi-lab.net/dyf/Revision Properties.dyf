@@ -1,0 +1,113 @@
+<Workspace Version="0.8.2.2311" X="-487.84887187834" Y="-195.988794778219" zoom="1.51939327724693" Name="Revision Properties" Description="This node will return some most common Revision properties like Description or Issue Date." ID="a704bedc-ef2e-49be-8135-3bfe583d0cba" Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="f163def3-88d0-402c-b509-eb7eeea43f73" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="546.999999999996" y="291" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def UnwrapNestedList(e):
+	return UnwrapElement(e)
+def GetSequence(e):
+	return e.SequenceNumber
+def GetDate(e):
+	return e.RevisionDate
+def GetIssuedTo(e):
+	return e.IssuedTo
+def GetIssuedBy(e):
+	return e.IssuedBy
+def GetIssued(e):
+	return e.Issued
+def GetDescription(e):
+	return e.Description
+
+if isinstance(IN[0], list):
+	revs = ProcessList(UnwrapNestedList, IN[0])
+else:
+	revs = [UnwrapElement(IN[0])]
+
+try:
+	errorReport = None
+	sequence = ProcessList(GetSequence, revs)
+	date = ProcessList(GetDate, revs)
+	description = ProcessList(GetDescription, revs)
+	issued = ProcessList(GetIssued, revs)
+	issuedTo = ProcessList(GetIssuedTo, revs)
+	issuedBy = ProcessList(GetIssuedBy, revs)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = [sequence, date, description, issued, issuedTo, issuedBy]
+else:
+	OUT = errorReport</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="57e35366-f234-4195-8ec0-c0ef2aa74cbd" type="Dynamo.Nodes.Symbol" nickname="Input" x="365.959147194998" y="290.803178053169" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Revision" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="baed5a12-b32c-44fa-86e7-7c6a17b5b7e5" type="Dynamo.Nodes.Output" nickname="Output" x="979.333056105076" y="246.632989225473" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Sequence" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="b22b95fa-d554-4979-8705-fb132e053609" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="712.119489632634" y="295.025495433691" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="sequence = IN[0];&#xA;date = IN[1];&#xA;description = IN[2];&#xA;issued = IN[3];&#xA;issuedTo = IN[4];&#xA;issuedBy = IN[5];" ShouldFocus="false" />
+    <Dynamo.Nodes.Output guid="d77d0cb4-ad57-4d62-bb66-fd39d8e8349c" type="Dynamo.Nodes.Output" nickname="Output" x="980.251111787017" y="308.014368555605" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Date" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="8fd13cf8-34c2-4aea-a1d1-7c0fcec3e060" type="Dynamo.Nodes.Output" nickname="Output" x="984.004408238531" y="370.07023145966" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Description" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="e9553c54-f853-4c75-882e-c840fd559439" type="Dynamo.Nodes.Output" nickname="Output" x="980.990442512517" y="433.687770250837" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Issued" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="e68703ed-ec0e-4281-bacd-d58b9afd98f8" type="Dynamo.Nodes.Output" nickname="Output" x="985.649098561775" y="499.772344526879" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="issuedTo" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="77658d8e-c255-49ac-a1ab-e227c410b4ec" type="Dynamo.Nodes.Output" nickname="Output" x="1001.37524348122" y="564.431000576137" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="issuedBy" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="f163def3-88d0-402c-b509-eb7eeea43f73" start_index="0" end="b22b95fa-d554-4979-8705-fb132e053609" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="57e35366-f234-4195-8ec0-c0ef2aa74cbd" start_index="0" end="f163def3-88d0-402c-b509-eb7eeea43f73" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b22b95fa-d554-4979-8705-fb132e053609" start_index="0" end="baed5a12-b32c-44fa-86e7-7c6a17b5b7e5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b22b95fa-d554-4979-8705-fb132e053609" start_index="1" end="d77d0cb4-ad57-4d62-bb66-fd39d8e8349c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b22b95fa-d554-4979-8705-fb132e053609" start_index="2" end="8fd13cf8-34c2-4aea-a1d1-7c0fcec3e060" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b22b95fa-d554-4979-8705-fb132e053609" start_index="3" end="e9553c54-f853-4c75-882e-c840fd559439" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b22b95fa-d554-4979-8705-fb132e053609" start_index="4" end="e68703ed-ec0e-4281-bacd-d58b9afd98f8" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b22b95fa-d554-4979-8705-fb132e053609" start_index="5" end="77658d8e-c255-49ac-a1ab-e227c410b4ec" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="-178.816049317381" eyeY="135.757676098265" eyeZ="406.900476288944" lookX="-119.614034356609" lookY="-119.614034356609" lookZ="-119.614034356609" />
+  </Cameras>
+</Workspace>

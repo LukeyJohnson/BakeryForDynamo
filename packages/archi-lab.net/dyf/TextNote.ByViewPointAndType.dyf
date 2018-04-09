@@ -1,0 +1,128 @@
+<Workspace Version="0.9.0.2912" X="-3343.29433847463" Y="-1163.27586294161" zoom="1.7138791189045" Name="TextNote.ByViewPointAndType" Description="This node creates a unwrapped (single line) text note in a given view, at a given location with a given text note type style assigned. " ID="19786f2d-ba2e-414b-9b97-a2aed57ccac9" Category="Archi-lab_Grimshaw.Modify.Create">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="92cb2f3a-dadc-4c07-84da-2a4cdf3f8fa2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="2316.47138243992" y="741.962060910179" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="5">
+      <Script># Copyright(c) 2016, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def ProcessParallelLists(_func, *lists):
+	return map( lambda *xs: ProcessParallelLists(_func, *xs) if all(type(x) is list for x in xs) else _func(*xs), *lists )
+
+if isinstance(IN[0], list):
+	views = ProcessList(Unwrap, IN[0])
+else:
+	views = [Unwrap(IN[0])]
+
+if isinstance(IN[1], list):
+	points = ProcessList(Unwrap, IN[1])
+else:
+	points = [Unwrap(IN[1])]
+
+if isinstance(IN[2], list):
+	texts = IN[2]
+else:
+	texts = [IN[2]]
+
+ttType = Unwrap(IN[3])
+RunIt = IN[4]
+
+def CreateTextNote(v, pt, t, id = ttType.Id):
+	return TextNote.Create(doc, v.Id, pt.ToXyz(), t, id)
+
+if RunIt:
+	try:
+		errorReport = None
+		# run checks
+		checks = False
+		if len(views) == len(points) == len(texts):
+			checks = True
+		else:
+			errorReport = "Make sure that View, Point and Text lists match in length."
+		TransactionManager.Instance.EnsureInTransaction(doc)
+		if checks:
+			output = ProcessParallelLists(CreateTextNote, views, points, texts)
+		TransactionManager.Instance.TransactionTaskDone()
+	except:
+		# if error accurs anywhere in the process catch it
+		import traceback
+		errorReport = traceback.format_exc()
+else:
+	errorReport = "Please set RunIt to True."
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="61ecf9d8-b906-438e-b07d-7546004a4514" type="Dynamo.Nodes.Symbol" nickname="Input" x="2137.81365150755" y="732.40785607783" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="View" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="af8af222-c247-4fe9-814d-430c6985a2b5" type="Dynamo.Nodes.Output" nickname="Output" x="2517.49663787131" y="742.52236186211" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="TextNote" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="bc24173b-f253-4349-b0f7-851b917ea7ea" type="Dynamo.Nodes.Symbol" nickname="Input" x="2142.54413877194" y="789.166574534163" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Point" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="fbb05c68-2d97-4a74-bc89-fe308fc7fd7f" type="Dynamo.Nodes.Symbol" nickname="Input" x="2150.10436127658" y="850.674047496735" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Text" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="56959285-a0ca-491a-838f-e795f101ef3e" type="Dynamo.Nodes.Symbol" nickname="Input" x="2055.22314562751" y="909.928614307196" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="TextNoteType" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="b742f480-84c2-43c6-9719-ddd0105a7833" type="Dynamo.Nodes.Symbol" nickname="Input" x="2083.60313942229" y="971.598048737778" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="RunIt:bool = false" />
+    </Dynamo.Nodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="92cb2f3a-dadc-4c07-84da-2a4cdf3f8fa2" start_index="0" end="af8af222-c247-4fe9-814d-430c6985a2b5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="61ecf9d8-b906-438e-b07d-7546004a4514" start_index="0" end="92cb2f3a-dadc-4c07-84da-2a4cdf3f8fa2" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="bc24173b-f253-4349-b0f7-851b917ea7ea" start_index="0" end="92cb2f3a-dadc-4c07-84da-2a4cdf3f8fa2" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="fbb05c68-2d97-4a74-bc89-fe308fc7fd7f" start_index="0" end="92cb2f3a-dadc-4c07-84da-2a4cdf3f8fa2" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="56959285-a0ca-491a-838f-e795f101ef3e" start_index="0" end="92cb2f3a-dadc-4c07-84da-2a4cdf3f8fa2" end_index="3" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b742f480-84c2-43c6-9719-ddd0105a7833" start_index="0" end="92cb2f3a-dadc-4c07-84da-2a4cdf3f8fa2" end_index="4" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

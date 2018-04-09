@@ -1,0 +1,110 @@
+<Workspace Version="0.9.0.2912" X="1646.10090150168" Y="-287.49877730688" zoom="1.41803684721607" Name="Room.Boundaries" Description="This node returns all Room bounding curves and elements that generated them (walls, separation lines etc)." ID="126c83d3-d793-4b84-8ef8-a7f2147c4adf" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="38e8a71c-d8c3-4d47-b8b5-c7055f4b1f17" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="-678.365892602294" y="429.530599202588" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="IN[0];&#xA;IN[1];" ShouldFocus="false" />
+    <PythonNodeModels.PythonNode guid="a1bb242c-ed03-48a9-931c-d5549fb8b938" type="PythonNodeModels.PythonNode" nickname="Python Script" x="-825.703617114627" y="425.897078723539" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# This node was an update to Wall.Boundaries node
+# that can be found in Clockwork package. Thanks
+# to Andreas Dieckmann for making the original one.
+
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference('RevitNodes')
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def GetRoomBoundary(doc, item, options):
+	eList = []
+	cList = []
+	try:
+		for i in item.GetBoundarySegments(options):
+			for j in i:
+				eList.append(doc.GetElement(j.ElementId))
+				cList.append(j.Curve.ToProtoType())
+	except:
+		calculator = SpatialElementGeometryCalculator(doc)
+		try:
+			results = calculator.CalculateSpatialElementGeometry(item)
+			for face in results.GetGeometry().Faces:
+				for bface in results.GetBoundaryFaceInfo(face):
+					eList.append(doc.GetElement(bface.SpatialBoundaryElement.HostElementId))
+		except:
+			pass
+	return [eList, cList]
+
+if isinstance(IN[0], list):
+	items = ProcessList(Unwrap, IN[0])
+else:
+	items = [Unwrap(IN[0])]
+
+options = SpatialElementBoundaryOptions()
+
+boundloc = AreaVolumeSettings.GetAreaVolumeSettings(doc).GetSpatialElementBoundaryLocation(SpatialElementType.Room)
+options.SpatialElementBoundaryLocation = boundloc
+
+elementList = []
+curveList = []
+
+try:
+	errorReport = None
+	if isinstance(items, list):
+		for item in items:
+			elementList.append(GetRoomBoundary(doc, item, options)[0])
+			curveList.append(GetRoomBoundary(doc, item, options)[1])
+	else:
+		elementList = GetRoomBoundary(doc, items, options)[0]
+		curveList = GetRoomBoundary(doc, items, options)[1]
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = [elementList, curveList]
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="64d34d62-36d6-4316-a6bd-768c07feafe6" type="Dynamo.Nodes.Symbol" nickname="Input" x="-982.532610710633" y="423.826663671086" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Room" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="9533a5c1-39a3-46c9-9f35-37133e41c9fb" type="Dynamo.Nodes.Output" nickname="Output" x="-513.057661680776" y="395.496278815836" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="e7714485-c331-4966-a855-a65f96cfd87c" type="Dynamo.Nodes.Output" nickname="Output" x="-507.107813542107" y="459.897460425783" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Curve" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="38e8a71c-d8c3-4d47-b8b5-c7055f4b1f17" start_index="0" end="9533a5c1-39a3-46c9-9f35-37133e41c9fb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="38e8a71c-d8c3-4d47-b8b5-c7055f4b1f17" start_index="1" end="e7714485-c331-4966-a855-a65f96cfd87c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a1bb242c-ed03-48a9-931c-d5549fb8b938" start_index="0" end="38e8a71c-d8c3-4d47-b8b5-c7055f4b1f17" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="64d34d62-36d6-4316-a6bd-768c07feafe6" start_index="0" end="a1bb242c-ed03-48a9-931c-d5549fb8b938" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-31.971019744873" eyeY="257.492340087891" eyeZ="178.162948608398" lookX="46.7517127990723" lookY="-50.6476860046387" lookZ="-225.966613769531" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

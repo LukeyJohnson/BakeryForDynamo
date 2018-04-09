@@ -1,0 +1,78 @@
+<Workspace Version="0.9.0.2912" X="-2576.81785031518" Y="-259.009887861984" zoom="1.67511653632383" Name="FamilyInstance.TotalTransform" Description="This node returns a Total Transform of a family instance." ID="7b05d38e-ed26-469a-8d92-78bf00f7f7e0" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="3df77100-3fef-4eef-9d1e-4b74b9d08bc2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1871.23549396929" y="331.708235100068" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2016, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def GetTransform(e):
+	return e.GetTotalTransform()
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+try:
+	errorReport = None
+	output = ProcessList(GetTransform, elements)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="2f0f6a36-c869-402e-a007-56f0b5ce8d7a" type="Dynamo.Nodes.Symbol" nickname="Input" x="1674.49057255991" y="330.558165423766" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="FamilyInstance" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="49f6bc9a-52a3-4514-a607-781b15faa16c" type="Dynamo.Nodes.Output" nickname="Output" x="2028.67345696059" y="332.235459556614" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Transform" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="3df77100-3fef-4eef-9d1e-4b74b9d08bc2" start_index="0" end="49f6bc9a-52a3-4514-a607-781b15faa16c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2f0f6a36-c869-402e-a007-56f0b5ce8d7a" start_index="0" end="3df77100-3fef-4eef-9d1e-4b74b9d08bc2" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="198.5619106859" eyeY="443.054581386413" eyeZ="359.558601172634" lookX="-121.028299467054" lookY="-364.03642813622" lookZ="-365.728129752399" upX="-0.161808795941859" upY="0.857167300702117" upZ="-0.48896025622018" />
+  </Cameras>
+</Workspace>

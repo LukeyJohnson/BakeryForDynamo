@@ -1,0 +1,81 @@
+<Workspace Version="0.7.5.3566" X="-66.8042804313918" Y="139.6204455" zoom="1.545620359375" Description="This node will check what elements from a linked model are inside of any of the rooms in the current model. " Category="Archi-lab_Grimshaw.Element Properties" Name="Elements Fom Linked File in Room" ID="470bf74f-e4ab-486e-b5fe-120b4a327855">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="68c81450-61bb-4899-a2de-d693c8379e2c" nickname="Family.InRoom" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="3">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# This code is based on Family.InRoom node originally created
+# by Peter Kompolschek and published on Dynamo blog. Big thanks 
+# to Peter for sharing his work so graciously.
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+rvtLink = UnwrapElement(IN[2])
+transform = rvtLink.GetTotalTransform()
+
+def FamiliesInRoom(_room, _families, _transform):
+	outList = []
+	for family in _families:
+		pt = _transform.OfPoint(family.Location.Point)
+		if _room.IsPointInRoom(pt):
+			outList.append(family)
+	return outList
+
+families = []
+for i in IN[0]:
+	families.append(UnwrapElement(i))
+
+rooms = []
+for i in IN[1]:
+	if UnwrapElement(i).Area &gt; 0:
+		rooms.append(UnwrapElement(i))
+
+outData = [[] for i in range(len(rooms))]
+for index, room in enumerate(rooms):
+	outData[index].extend(FamiliesInRoom(room, families, transform))
+
+OUT = outData</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="69521073-b814-4c0e-8bd9-bbb506d5b873" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Elements" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="2caa155b-76d6-4e6c-8e50-06acb18a136e" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Rooms" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="e67c61ac-b20b-49de-8371-dee51792a636" nickname="Input" x="0" y="300" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Link Instance" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="a06f3b2c-efe1-4551-a6fd-938b123691ed" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Elements" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="68c81450-61bb-4899-a2de-d693c8379e2c" start_index="0" end="a06f3b2c-efe1-4551-a6fd-938b123691ed" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="69521073-b814-4c0e-8bd9-bbb506d5b873" start_index="0" end="68c81450-61bb-4899-a2de-d693c8379e2c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2caa155b-76d6-4e6c-8e50-06acb18a136e" start_index="0" end="68c81450-61bb-4899-a2de-d693c8379e2c" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e67c61ac-b20b-49de-8371-dee51792a636" start_index="0" end="68c81450-61bb-4899-a2de-d693c8379e2c" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

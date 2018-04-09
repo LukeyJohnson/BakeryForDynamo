@@ -1,0 +1,48 @@
+<Workspace Version="1.2.0.2690" X="-11" Y="143" zoom="1" Name="Get All Keynote Tags" Description="Selects all Keynote Tags instances in the model. " ID="e792abdd-2a75-45fd-a64b-7240bf720af1" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="28733d99-db4d-4024-b2dd-aea0546e3a90" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.BuiltInCategory import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+elementList = FilteredElementCollector(doc).OfCategory(OST_KeynoteTags).WhereElementIsNotElementType().ToElements()
+
+#Assign your output to the OUT variable
+OUT = elementList</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b9860d7a-d496-4538-b7bc-c4d1486df140" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="419" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Keynote(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="28733d99-db4d-4024-b2dd-aea0546e3a90" start_index="0" end="b9860d7a-d496-4538-b7bc-c4d1486df140" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

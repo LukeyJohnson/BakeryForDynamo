@@ -1,0 +1,84 @@
+<Workspace Version="0.9.0.2912" X="1323.61962194331" Y="-750.971446204372" zoom="2.08063918599988" Name="Element.IsOfType" Description="This nodes yields true or false, checking if input elements are of given Element Type." ID="a5ac2459-e944-4805-9a9f-edba5a8b4971" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="b65ac1ef-5748-47ff-b544-7658b5658120" type="PythonNodeModels.PythonNode" nickname="Python Script" x="-354.095779920858" y="498.685788705063" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+elemType = IN[1]
+
+def IsOfType(item, category = elemType):
+	if item != None:
+		if item.GetType() == category:
+			return True
+		else:
+			return False
+	else:
+		return False
+
+try:
+	errorReport = None
+	output = ProcessList(IsOfType, elements)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="6370fc20-e832-46e8-ad08-ff557d29ae80" type="Dynamo.Nodes.Symbol" nickname="Input" x="-504.950415724492" y="461.382950327854" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="7cf55ba2-d807-48ed-9d57-e65bf7a7a7cc" type="Dynamo.Nodes.Symbol" nickname="Input" x="-510.842181210068" y="534.638888505693" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="ElementType" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="cb5bbeef-c224-46eb-a700-59b268c38292" type="Dynamo.Nodes.Output" nickname="Output" x="-183.895230137866" y="506.561374646931" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="mask" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="b65ac1ef-5748-47ff-b544-7658b5658120" start_index="0" end="cb5bbeef-c224-46eb-a700-59b268c38292" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="6370fc20-e832-46e8-ad08-ff557d29ae80" start_index="0" end="b65ac1ef-5748-47ff-b544-7658b5658120" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7cf55ba2-d807-48ed-9d57-e65bf7a7a7cc" start_index="0" end="b65ac1ef-5748-47ff-b544-7658b5658120" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-31.9710189830507" eyeY="257.492349522106" eyeZ="178.162947465711" lookX="46.7517119105638" lookY="-50.6476879031108" lookZ="-225.966607567725" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

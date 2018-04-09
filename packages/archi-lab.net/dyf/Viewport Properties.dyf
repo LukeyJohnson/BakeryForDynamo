@@ -1,0 +1,63 @@
+<Workspace Version="0.8.2.2311" X="-693.182256027286" Y="-506.94951483821" zoom="2.05668026833428" Name="Viewport Properties" Description="This node will return certain properties from a Viewport input. " ID="861c92d5-870c-4d1f-8e34-84e24a27a978" Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="2ea2a085-b743-4312-bbb3-2306205fd18c" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="528" y="400" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variables.
+dataEnteringNode = IN
+
+viewports = IN[0]
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def GetLocation(v):
+	v = UnwrapElement(v)
+	outline = v.GetBoxOutline()
+	return outline.MinimumPoint.ToPoint()
+
+#Assign your output to the OUT variable.
+OUT = ProcessList(GetLocation, viewports)</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Output guid="4af8608f-c8dc-49a0-a92f-8996dc60cb6b" type="Dynamo.Nodes.Output" nickname="Output" x="707.053146965347" y="404.024644779231" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="MinPoint" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="3f9d8d0e-e9e7-4970-bad0-f6277e0ae410" type="Dynamo.Nodes.Symbol" nickname="Input" x="372.047258783211" y="403.052203884653" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Viewport" />
+    </Dynamo.Nodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="2ea2a085-b743-4312-bbb3-2306205fd18c" start_index="0" end="4af8608f-c8dc-49a0-a92f-8996dc60cb6b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3f9d8d0e-e9e7-4970-bad0-f6277e0ae410" start_index="0" end="2ea2a085-b743-4312-bbb3-2306205fd18c" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="5.6454005241394" eyeY="80.0830307006836" eyeZ="32.016658782959" lookX="-5.6454005241394" lookY="-77.5835342407227" lookZ="-32.016658782959" />
+  </Cameras>
+</Workspace>

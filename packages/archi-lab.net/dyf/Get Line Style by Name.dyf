@@ -1,0 +1,78 @@
+<Workspace Version="1.2.0.2690" X="204.711706700417" Y="133.809210410868" zoom="1.545620359375" Name="Get Line Style by Name" Description="This node will return a line style object by its name. Line styles can be either Drafting or Model Line Property. " ID="0cf65182-cbbc-422e-af1e-8a45325de525" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="37b3883c-c186-4922-b8b3-e1c531d6cb8c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="61b73ffd-13e9-4645-adbe-8cf422e56fe7" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="272.205431825582" y="0.0833022487384945" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Line Style" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="cf61b93b-2cd2-47fc-9025-8749dd71f9a1" type="PythonNodeModels.PythonNode" nickname="Python Script" x="116.292785484539" y="-0.228391671328708" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+name = IN[0]
+
+try:
+	errorReport = None
+	cat = Category.GetCategory(doc, BuiltInCategory.OST_Lines)
+	gs = cat.GetGraphicsStyle(GraphicsStyleType.Projection)
+	gsCat = gs.GraphicsStyleCategory.SubCategories
+	lineStyles = [i.GetGraphicsStyle(GraphicsStyleType.Projection) for i in gsCat]
+	
+	lStyle = []
+	try:
+		lStyle.append(next(i for i in lineStyles if name==i.Name))
+	except StopIteration:
+		pass
+	
+	if len(lStyle) != 0:
+		dataOut = lStyle[0]
+	else:
+		message = "No Line Style with specified \nname could be found."
+		dataOut = '\n'.join('{:^35}'.format(s) for s in message.split('\n'))
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = dataOut
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="37b3883c-c186-4922-b8b3-e1c531d6cb8c" start_index="0" end="cf61b93b-2cd2-47fc-9025-8749dd71f9a1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="cf61b93b-2cd2-47fc-9025-8749dd71f9a1" start_index="0" end="61b73ffd-13e9-4645-adbe-8cf422e56fe7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>
