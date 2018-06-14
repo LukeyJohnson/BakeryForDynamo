@@ -1,0 +1,440 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BimorphNodes</name>
+    </assembly>
+    <members>
+        <member name="T:CAD">
+            <summary>
+            DWG DGN class provides utilities for converting curves from CAD links or Imports using layer names as filters. 
+            There are methods for reporting all the CAD links or Imports in the Document and methods to convert curves to detail lines also using layer names as filters
+            </summary>
+        </member>
+        <member name="M:CAD.#ctor(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.ImportInstance,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String},Autodesk.Revit.DB.View,Autodesk.Revit.DB.Category,Autodesk.Revit.DB.GraphicsStyle,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            Default constructor
+        </member>
+        <member name="M:CAD.CurvesFromCADLayers(Revit.Elements.Element,System.Collections.Generic.List{System.String},System.Boolean,System.Collections.Generic.List{System.String})">
+            <summary>
+            Convert curves from a CAD link or import by layer name. Curves are organised into sublists by layer. Enter LineStyle names to map each sublist to that style during conversion.&#xD;&#xA;&#xD;&#xA;The node is optimised to convert curve types that typically fail when using Dynamo Element.Curves node or Revit Explode.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="importInstance">Input the ImportInstance to convert to curves</param>
+            <param name="layerNames">Enter the layer names for conversion. Leave unconnected to convert all layers. Names are case-sensitive</param>
+            <param name="createModelCurves">Set to True to convert into Revit Model Lines</param>
+            <param name="lineStyleMap">Enter the LineStyle name to map to each Model Line set. Longest lacing is used by default</param>
+            <returns name="Curve[][]">Curve[][]</returns>
+            <returns name="layerKeys[]">string[]</returns>
+            <search> curves, lines, from, CAD, DWG, DGN, layer, layers, modelCurves, model, create, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:CAD.DetailCurvesFromCADLayers(Revit.Elements.Element,Revit.Elements.Element,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Convert curves from a CAD link or import to Revit Detail curves by layer name. Detail Curves are organised into sublists by layer. Enter LineStyle names to map each sublist to that style during conversion.&#xD;&#xA;&#xD;&#xA;The node is optimised to convert curve types that typically fail when using Dynamo Element.Curves node or Revit Explode.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="importInstance">Input the ImportInstance to convert to curves</param>
+            <param name="view">Select the target View for the Detail Lines. The View should be related to the ImportInstance</param>
+            <param name="layerNames">Enter the layer names for conversion. Leave unconnected to convert all layers. Names are case-sensitive</param>
+            <param name="lineStyleMap">Enter the LineStyle name to map to each Detail Line set. Longest lacing is used by default</param>
+            <returns name="DetailCurve[][]">DetailCurve[][]</returns>
+            <returns name="layerKeys[]">string[]</returns>
+            <search> curves, lines, from, CAD, DWG, DGN, layer, layers, detaillines, detailcurves, curve, detail, create, importinstance, import, instance, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:CAD.SymbolicCurvesFromCADLayers(Revit.Elements.Element,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Convert curves from a CAD link or import to Revit Family Symbolic curves by layer name. Symbolic Curves are organised into sublists by layer. Enter LineStyle names to map each sublist to that style during conversion.&#xD;&#xA;&#xD;&#xA;The node is optimised to convert curve types that typically fail when using Dynamo Element.Curves node or Revit Explode.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="importInstance">Input the ImportInstance to convert to curves</param>
+            <param name="layerNames">Enter the layer names for conversion. Leave unconnected to convert all layers. Names are case-sensitive</param>
+            <param name="lineStyleMap">Enter the LineStyle name to map to each Model Line set. Longest lacing is used by default</param>
+            <returns name="SymbolicCurve[][]">SymbolicCurve[][]</returns>
+            <returns name="layerKeys[]">string[]</returns>
+            <search> curves, lines, from, CAD, DWG, DGN, layer, layers, symbolic, symboliclines, symbolicurves, curve, create, importinstance, import, instance, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:CAD.LayerNames(Revit.Elements.Element)">
+            <summary>
+            Get the full list of layer names from a CAD Link or Import.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="importInstance">Input the ImportInstance to extract the layers</param>
+            <returns name="layerNames[]">string[]</returns>
+            <search> get, layer, names, from, CAD, DWG, DGN, importinstance, import, instance, layers, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:CAD.LayerNamesInUse(Revit.Elements.Element)">
+            <summary>
+            Get the list of layer names from a CAD link or import that are in use and contain curves.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="importInstance">Input the ImportInstance to find layers that are in use</param>
+            <returns name="layerNames[]">string[]</returns>
+            <search> layer, names, from, CAD, DWG, DGN, importinstance, import, instance, layers, in, use, active, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:CAD.ReportInstances(System.String,System.Boolean,System.Boolean)">
+            <summary>
+            Generates a report of all CAD links and imports in the document with key metrics. Linked and Imported CAD links are output into lists to aid with CAD link management.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="filePath">Leave unconnected to report the active document or input a File Path to report an external Revit document or Family</param>
+            <param name="refresh">To refresh, switch a bool input to its opposing state</param>
+            <param name="close">Set to true to close any external files opened using the filePath input. Closing disposes all ouput objects</param>
+            <returns name="report[][]">string[][]</returns>
+            <returns name="CADLinks[]">ImportInstance[]</returns>
+            <returns name="CADImports[]">ImportInstance[]</returns>
+            <search> report, CAD, DWG, DGN, importinstance, import, instance, instances, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:CAD.SetObjectStyle(Revit.Elements.Element,System.String,System.Int32,DSCore.Color)">
+            <summary>
+            Set the weight and color of CAD link or import Object Styles (layers).&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="importInstance">Input the ImportInstance containing the target layers</param>
+            <param name="layerName">Input the layer name to update. Names are case-sensitive</param>
+            <param name="projectionWeight">Input the line projection weight</param>
+            <param name="color">Input a color to map to the CAD layer</param>
+            <returns name="report">string</returns>
+            <search> set, CAD, DWG, DGN, importinstance, import, instance, object, styles, objectstyles, layer, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="T:Curve">
+            <summary>
+            Curve class includes methods for interacting with Dynamo curves and Revit Model and Detail curves
+            </summary>
+        </member>
+        <member name="M:Curve.#ctor">
+            Default constructor
+        </member>
+        <member name="M:Curve.RemoveDuplicates(System.Collections.Generic.List{System.Object},System.Collections.Generic.List{System.String},System.Boolean)">
+            <summary>
+            Removes duplicates from a list of Curves. Dynamo Curves, Revit Model or Detail Lines are all supported. Revit Curves can be deleted from the Document. Input LineStyle names to retain curves of that style.&#xD;&#xA;&#xD;&#xA;LineStyle list are iterated until a match is found. If no matches are found, first-in first-out rules apply. To simplify model element selection in Revit, heterogeneous lists (any element type) can be input as the list is filtered before processing.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="curves">Enter a list of Curves to remove any duplicates. Dynamo Curves, Revit Model Lines or Revit Detail Lines can be input</param>
+            <param name="retainByLineStyles">Enter Line Style name(s) to retain the first curve from a set of duplicates that matches the styles. Matches are made in sequence and names are case-sensitive</param>
+            <param name="deleteRevitCurves">Set to True to delete the duplicate Revit Curves from the Document</param>
+            <returns name="cleanedCurves[]">Curve[]</returns>
+            <returns name="duplicateCurves[][]">Curve[][]</returns>
+            <returns name="report[]">string[]</returns>
+            <search> delete, duplicate, lines, curves, remove, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Curve.IntersectAll(System.Collections.Generic.Stack{Autodesk.DesignScript.Geometry.Curve})">
+            <summary>
+            Finds and returns all intersection points between a set of curves.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="curves">Input a list of Curves to intersect</param>
+            <returns name="Point[]">Point[]</returns>
+            <search> intersect, curve, curves, find, intersections, intersect, all, between, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Curve.SolidIntersection(Autodesk.DesignScript.Geometry.Solid,System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Curve},System.Boolean)">
+            <summary>
+            Finds and returns all intersecting curve segments between a solid and a list of curves. Setting invert to true has the reverse effect and trims curves that intersect the solid.&#xD;&#xA;&#xD;&#xA;The exceptions output returns indexes of any curves that fail the intersection function.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="solid">Input a solid or list of solids</param>
+            <param name="curves">Input a list of Curves to intersect the solid or solids</param>
+            <param name="invert">True to return curve segments outside the solid. False to return curve segments inside the solid</param>
+            <returns name="Curve[]">Curve[]</returns>
+            <returns name="exceptions[]">int[]&#xD;&#xA;&#xD;&#xA;Returns indexes of any curves that fail the intersection function</returns>
+            <search> intersect, curve, curves, intersections, intersect, between, solid, solids, trim, by, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.BiCurveUtils.GetStartMidEndPoints(Autodesk.Revit.DB.Curve)">
+            Return the start, mid and end points of the input curve
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.BiCurveUtils.ConvertToDynamoRevitElements(System.Collections.Generic.List{System.Object})">
+            Convert a 1D list of curve objects into Revit DB Elements and wrap into Dynamo Revit elements. Object is derived from a static object which cant be iterated without being cast to IEnumerable class
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.BiCurveUtils.ConvertToDynamoRevitElements2D(System.Collections.Generic.List{System.Collections.Generic.List{System.Object}})">
+            Convert a 2D list of curve objects into Revit DB Elements and wrap into Dynamo Revit elements. Object is derived from a static object which cant be iterated without being cast to IEnumerable class
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.BiCurveUtils.ConvertToRevitCurve(System.Object,System.Double,System.Boolean,System.Boolean)">
+            Converts generic curve object into Revit curve object
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.BiCurveUtils.CurveTypeConversion(Autodesk.Revit.DB.Document,System.Collections.Generic.List{System.Object},System.Boolean@)">
+            Attempts to casts elements into DynamoElement objects (Dynamo Revit elements) and is filtered to remove any objects that dont pass the CurveElement filter. If the try fails, input curves are assumed to be Dynamo curves and returned unchanged
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.BiCurveUtils.CoincidenceStartEndPoints(Autodesk.Revit.DB.XYZ,Autodesk.Revit.DB.XYZ[])">
+            Evaluates the start/end points of the compare curve against an input point from the test curve to test for coincidence
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.BiCurveUtils.VecNormalsTest(Autodesk.Revit.DB.Curve,Autodesk.Revit.DB.Curve,System.Int32)">
+            Evaluate the dot product of the normals of the test curve element and the compare curve element. Evaluated at the start, mid and end for dot product equality
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.DuplicateCurveProcessor.CleanRevitDuplicates(System.Collections.Generic.List{System.Object},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}},System.Collections.Generic.List{System.String})">
+            Cleans duplicate curve list comprised of Revit elements - removes one curve from each sub list and adds it to crvCleaned. Includes rule for retaining curves by line style name as input by the user, otherwise first in first out rules apply
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.DuplicateCurveProcessor.CleanProtoDuplicates(System.Collections.Generic.List{System.Object},System.Collections.Generic.List{System.Collections.Generic.List{System.Object}})">
+            Cleans the duplicate curve list comprised of Dynamo curves - removes one curve from each sub list and adds it to crvCleaned - first in first out rules apply
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.CADUtils.AddToDictionary(System.Collections.Generic.Dictionary{System.String,System.Collections.Generic.List{System.Object}},System.String,Autodesk.Revit.DB.GeometryObject)">
+            Add item to the curve dictionary dueing the initial curve extraction process. If the key doesnt exist then it gets added and the curve object is added to it
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.CADUtils.SupportPlaneFromCADImport(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.ImportInstance)">
+            Creates a new support plane from a CAD link or import
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.CADUtils.ExtractCurvesFromCADImports(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.ImportInstance,System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            Extract the curves from the CAD link or import by layer name and organise the curves into sublists based on their layer names. This function only outputs Autodesk.Revit.DB.Element unprocessed
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.CADUtils.CurveProcessor(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.ImportInstance,System.Collections.Generic.List{System.Collections.Generic.List{System.Object}},System.Collections.Generic.Dictionary{System.String,Autodesk.Revit.DB.GraphicsStyle},System.Collections.Generic.List{System.String},Autodesk.Revit.DB.View,System.Double,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean)">
+            Processes all curves and converts them to DS types or Revit Model types if specified by the user
+        </member>
+        <member name="M:BimorphNodes.Infrastructure.CADUtils.CurveConversion(Autodesk.Revit.DB.Document,Autodesk.Revit.DB.ImportInstance,System.Object,System.Collections.Generic.Dictionary{System.String,Autodesk.Revit.DB.GraphicsStyle},Autodesk.Revit.DB.View,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.String)">
+            Converts curves extracted from the CAD link or import. Based on the user inputs, the curves are converted to prototypes or Revit Model or Detail lines
+        </member>
+        <member name="T:BimorphNodes.Infrastructure.BiSolidUtils">
+            <summary>
+            Revit Solid and ProtoSolid help classes for BimorphNodes
+            </summary>
+        </member>
+        <member name="T:BimorphNodes.Infrastructure.Utils">
+            <summary>
+            Help classes for BimorphNodes
+            </summary>
+        </member>
+        <member name="T:BimorphNodes.Properties.Resources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:BimorphNodes.Properties.Resources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:BimorphNodes.Properties.Resources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="T:Revit.LinkElement">
+            <summary>
+             The LinkElement class is exclusive to BimorphNodes and provides a means of extracting elements by category from a Revit link instance. 
+             Its purpose is very important as it calculates the translations needed to locate the element in a host file as there is a limitation in Revit with link instance elements which always places them in Centre-to-Centre location, regardless of how the user may have transformed or translated the link instance
+            </summary>
+        </member>
+        <member name="P:Revit.LinkElement.InternalElement">
+            <summary>
+             Interface for inherited Element class
+            </summary>
+        </member>
+        <member name="P:Revit.LinkElement.LinkInstanceId">
+            <summary>
+            Get the RevitLinkInstance Id associated with this LinkElement.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <returns name="int">int</returns>
+            <search> link, instance, id, linkinstance, revitlink, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="P:Revit.LinkElement.Element">
+            <summary>
+            Get the Element stored in this LinkElement. Use the Element with any nodes that are incompatible with the LinkElement.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <returns name="Element">Element</returns>
+            <search> link, element, linkelement, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="P:Revit.LinkElement.TotalTransform">
+            <summary>
+            The total transform of the RevitLinkInstance from where this LinkElement derived.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <returns name="CoordinateSystem">CoordinateSystem</returns>
+            <search> link, element, total, transform, linkelement, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="P:Revit.LinkElement.BoundingBox">
+            <summary>
+            Get this LinkElement's bounding box at its host location.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <returns name="BoundingBox">BoundingBox</returns>
+            <search> link, element, boundingbox, box, bounding, linkelement, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="P:Revit.LinkElement.Solids">
+            <summary>
+            The Solids in this LinkElement at its host location.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <returns name="Solid[]">Solid[]</returns>
+            <search> link, element, solid, geometry, linkelement, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="P:Revit.LinkElement.Faces">
+            <summary>
+            The Faces in this LinkElement at its host location.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <returns name="Surface[]">Surface[]</returns>
+            <search> link, face, faces, surface, linkinstance, linkelement, element, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="P:Revit.LinkElement.Location">
+            <summary>
+            Get the location of this LinkElement at its host location.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <returns name="Geometry">Geometry</returns>
+            <search> link, linkelement, element, location, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Revit.LinkElement.OfCategory(Revit.Elements.Element,Revit.Elements.Category)">
+            <summary>
+            Get Elements from a Revit Link Instance by Category. Optimised for use with BimorphNodes Element and BoundingBox nodes.&#xD;&#xA;&#xD;&#xA;LinkElements are compatible with all nodes that accept Elements as inputs.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="linkInstance">Input the Revit link instance</param>
+            <param name="Category">Input the Element Category</param>
+            <returns name="LinkElement[]">LinkElement[]</returns>
+            <search> link, instance, revit, model, element, category, elements, revitlink, of, linkelement, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Revit.LinkElement.ToString">
+            <summary>
+            Overriding ToString controls what is displayed whenever the object's string representation is used. For example, ToString is called when the object is displayed in a Watch node.
+            </summary>
+            <returns>The string representation of the LinkElement object, displaying the RevitLinkInstance name and Element name and BoudningBox</returns>
+        </member>
+        <member name="T:Revit.BoundingBox">
+            <summary>
+            Containment testing nodes using Bounding Boxes. This class returns elements using Revit QuickFitlers
+            </summary>
+        </member>
+        <member name="M:Revit.BoundingBox.GetElementsInside(Autodesk.DesignScript.Geometry.BoundingBox,System.Collections.Generic.List{Revit.Elements.Element},System.Double)">
+            <summary>
+            Filter and return Revit elements inside a bounding box. Element Outlines (BoundingBox) are used to determine the result.&#xD;&#xA;&#xD;&#xA;Utilises the ElementQuickFilter class which operates only on the ElementRecord, a low-memory class, for rapid results.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="boundingBox">Input a Bounding Box</param>
+            <param name="elements">Input a list of Revit elements</param>
+            <param name="tolerance">Enter values in active document units. Use positive or negative values to increase or decrease the extents of the BoundingBox to control the match criteria in the geometry comparison</param>
+            <returns name="Element[]">Element[]</returns>
+            <search> elements, inside, find, get, boundingbox, bounding, box, collect, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Revit.BoundingBox.GetElementsIntersect(Autodesk.DesignScript.Geometry.BoundingBox,System.Collections.Generic.List{Revit.Elements.Element},System.Double)">
+            <summary>
+            Filter and return Revit elements intersecting or inside a bounding box. Element Outlines (BoundingBox) are used to determine the result.&#xD;&#xA;&#xD;&#xA;Utilises the ElementQuickFilter class which operates only on the ElementRecord, a low-memory class, for rapid results.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="boundingBox">Input a Bounding Box</param>
+            <param name="elements">Input a list of Revit elements</param>
+            <param name="tolerance">Enter values in active document units to control the match criteria in the geometry comparison. Use positive values to consider gaps, and negative values to consider overlaps</param>
+            <returns name="Element[]">Element[]</returns>
+            <search> elements, intersect, find, get, boundingbox, bounding, box, collect, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="T:Revit.Element">
+            <summary>
+            Tests for intersections between two sets of Revit elements. The node prevents self intersections if the element is in both inputs to preclude false flags.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+        </member>
+        <member name="M:Revit.Element.IntersectsElement(System.Collections.Generic.List{Revit.Elements.Element},System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            Finds intersections (clashes) between two sets of elements. Elements in set B that intersect set A are ouput into sublists (the clash result). Self-intersection is automatically prevented if an element is found in both lists.&#xD;&#xA;&#xD;&#xA;The node is optimsed to output rapid results up to 99.5% faster than any other intersection technique.&#xD;&#xA;&#xD;&#xA;Use IsElementSupported to check that elements are supported by the node.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="elementSetA">Input a list of Revit elements to perform the interference check</param>
+            <param name="elementSetB">Input a list of Revit elements to test for interference against elementSetA</param>
+            <returns name="Element[][]">Element[][]&#xD;&#xA;&#xD;&#xA;Each sublist store elements from elementSetB that clash with elementSetA</returns>
+            <search> intersect, intersecting, intersection, intersects, revit, elements, clash, detection, interference, checking, check, coordination, bim, surrounding, element, find, get, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Revit.Element.IntersectsSolid(System.Collections.Generic.List{Autodesk.DesignScript.Geometry.Solid},System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+            Finds intersections between Solids and Revit elements. Elements that intersect a Solid are ouput into sublists.&#xD;&#xA;&#xD;&#xA;The node is optimsed to output rapid results up to 99.5% faster than any other intersection technique.&#xD;&#xA;&#xD;&#xA;The exceptions output returns indexes of any solids that cant be processed by the intersection function.&#xD;&#xA;&#xD;&#xA;Use IsElementSupported to check that elements are supported by the node.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="solids">Input a list of solid objects to perform the interference check</param>
+            <param name="elements">Input a list of Revit elements to test for interference against each of the solid objects</param>
+            <returns name="Element[][]">Element[][]</returns>
+            <returns name="exceptions[]">int[]&#xD;&#xA;&#xD;&#xA;Returns indexes of any solids that cant be processed by the Revit API Shape Builder</returns>
+            <search>  find, intersecting, intersect, intersection, intersects, revit, element, elements, clash, detection, interference, checking, check, coordination, bim, surrounding, solid, with, bimorph, bi, bimorphNodes  </search>
+        </member>
+        <member name="M:Revit.Element.IsElementSupported(Revit.Elements.Element)">
+            <summary>
+            Returns true if the element is supported by the Element.Intersects nodes, false otherwise.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="element">Input a list of Revit elements to test for intersections against the queryElement</param>
+            <returns name="bool">bool</returns>
+            <search> elements, element, supported, bimorph, bi, bimorphNodes</search>
+        </member>
+        <member name="M:Revit.Element.IsCategorySupported(Revit.Elements.Element)">
+            <summary>
+            Returns true if the element Category is supported by the Element.Intersects nodes, false otherwise.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="element">Input a list of Revit elements to test for intersections against the queryElement</param>
+            <returns name="bool">bool</returns>
+            <search> bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="T:Revit.LineStyle">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Revit.LineStyle.AllAttributes(System.Boolean)">
+            <summary>
+            Gets all the Revit LineStyles in the active document and returns Name, Weight, Colour, and GraphicsStyle.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="refresh">To refresh, input a bool and switch its state to trigger the update</param>
+            <returns name="name[]">string[]</returns>
+            <returns name="weight[]">int[]</returns>
+            <returns name="Color[]">Color[]</returns>
+            <returns name="GraphicStyle[]">GraphicStyle[]</returns>
+            <search> line, linestyle, all, attributes, graphics, style, graphicstyle, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Revit.LineStyle.Create(System.String,System.Int32,Revit.Elements.Element,DSCore.Color)">
+            <summary>
+            Create a new LineStyle. The GraphicStyle output returns the new LineStyle or a LineStyle from the active document if it exists.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="name">Enter the name of the new Line Style as a string</param>
+            <param name="weight">Input the line wieght as an integer</param>
+            <param name="linePattern">Input the required line pattern. Only avaialable for Revit versions 2017 and above. No input defaults to Solid line pattern</param>
+            <param name="color">Input the required line Color</param>
+            <returns name="report">string</returns>
+            <returns name ="GraphicStyle">GraphicStyle</returns>
+            <search> linestyle, graphics, style, graphicstyle, new, create, bimorph, bi, bimorphNodes</search>
+        </member>
+        <member name="T:Revit.Schedule">
+            <summary>
+            Provides methods for interacting with Revit Schedule data
+            </summary>
+        </member>
+        <member name="M:Revit.Schedule.GetData(System.Object,System.Boolean,System.Boolean)">
+            <summary>
+            Gets all the table data from a given schedule as strings. Supports Periodic updating.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="scheduleView">Enter the Revit schedule view or the schedule name as a string. String inputs are case-sensitive</param>
+            <param name="removeHeading">Set to True to remove the headings from the schedule data. Has no effect on Electric Panel Schedules or if schedule headings are not visible</param>
+            <param name="refresh">Input a bool and switch states to refresh the data or set Dynamo to periodic updating</param>
+            <returns name="ScheduleData[][]">String[][]</returns>
+            <search> get, schedule, data, table, bimorph, bi, bimorphNodes</search>
+        </member>
+        <member name="M:Revit.Schedule.GetDataColumns(System.Object,System.Collections.Generic.List{System.Int32},System.Boolean,System.Boolean)">
+            <summary>
+            Gets all the table data from a given schedule as strings. Column indexes start at 0. Supports Periodic updating.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="scheduleView">Enter the Revit schedule view or the schedule name as a string. String inputs are case-sensitive</param>
+            <param name="columnIndex">Enter the index or indexes of the required columns. Indexes start from 0</param>
+            <param name="removeHeading">Set to True to remove the headings from the schedule data. Has no effect on Electric Panel Schedules or if schedule headings are not visible</param>
+            <param name="refresh">Input a bool and switch states to refresh the data or set Dynamo to periodic updating</param>
+            <returns name="ScheduleData[][]">String[][]</returns>
+            <search> get, schedule, data, table, column, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Revit.Schedule.GetDataRows(System.Object,System.Collections.Generic.List{System.Int32},System.Boolean)">
+            <summary>
+            Gets all the table data from a given schedule as strings. Row indexes start at 0. Supports Periodic updating.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="scheduleView">Enter the Revit schedule view or the schedule name as a string. String inputs are case-sensitive</param>
+            <param name="rowIndex">Enter the index or indexes of the required rows. Indexes start from 0</param>
+            <param name="refresh">Input a bool and switch states to refresh the data or set Dynamo to periodic updating</param>
+            <returns name="ScheduleData[][]">String[][]</returns>
+            <search> get, schedule, data, table, row, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="T:Revit.Sheet">
+            <summary>
+            Duplicate Sheets class. Includes methods that enable duplication of placed views and logic to maintain the existing view structure
+            </summary>
+        </member>
+        <member name="M:Revit.Sheet.FromSchedule(System.Object,System.Boolean)">
+            <summary>
+            Returns all Sheets from a Sheet Schedule. The Sheet Number field is required in the Schedule to run. Supports periodic updating.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="scheduleView">Input a Sheet Schedule View or the Schedule View name as a string. String inputs are case-sensitive</param>
+            <param name="refresh">Input a bool and switch states to refresh the data or set Dynamo to periodic updating</param>
+            <returns name="Sheet[]">Sheet[]</returns>
+            <search> sheet, from, schedule, sheetschedule, sheets, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Revit.Sheet.RenumberRename(System.Collections.Generic.List{Revit.Elements.Element},System.Collections.Generic.List{System.String},System.Collections.Generic.List{System.String})">
+            <summary>
+            Renumber and/or rename Revit sheets. To renumber or rename only, input an empty string or list to the unneeded input.&#xD;&#xA;&#xD;&#xA;The node utilises an algorithm to prevent failures if resequencing sheet numbers.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="sheets">Enter the Revit sheet to renumber and/or rename</param>
+            <param name="numbers">Enter the new sheet number. Input an empty string or list to rename only</param>
+            <param name="names">Enter the new sheet name. Input an empty string or list to renumber only</param>
+            <returns name="Sheet[]">Sheet[]</returns>
+            <search> renumber, rename, sheet, sheets, viewsheet, bimorph, bi, bimorphNodes </search>
+        </member>
+        <member name="M:Revit.Sheet.Duplicate(Revit.Elements.Views.Sheet[],System.Boolean,System.Boolean,System.Int32,System.String,System.String)">
+            <summary>
+            Duplicate selected Sheets with options to control if placed Views are duplicated and the method of duplication.&#xD;&#xA;&#xD;&#xA;The Sheet output returns successfully duplicated Sheets or Sheets from the active document and cant be duplicated. The report output logs any Sheets and/or Views that fail to duplicate or View names that were cleaned of illegal characters.&#xD;&#xA;&#xD;&#xA;Visit bimorph.com/bimorph-nodes for support
+            </summary>
+            <param name="sheets">Enter the Revit Sheets to duplicate</param>
+            <param name="run">Set to True to dupicate the input Sheets</param>
+            <param name="duplicateWithViews">Set to True to duplicate placed Views on the Sheets</param>
+            <param name="duplicateOption">Enter View Duplicate Option: 0 = Duplicate. 1 = WithDetailing. 2 = AsDependent</param>
+            <param name="suffix">Enter a suffix to the duplicated Sheet number and View names. Leave blank to add a prefix only</param>
+            <param name="prefix">Enter an optional prefix at the start of the duplicated Sheet number and View names. Leave blank to add a suffix only</param>
+            <returns name="report[]">string[]</returns>
+            <returns name="Sheet[]">Sheet[]</returns>
+            <search> duplicate, sheet, sheets, views, view, viewsheet, sheetview, bimorph, bi, bimorphNodes </search>
+        </member>
+    </members>
+</doc>
