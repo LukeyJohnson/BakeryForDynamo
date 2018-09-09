@@ -1,4 +1,4 @@
-<Workspace Version="1.2.1.3083" X="144.744362827055" Y="23.7421015805626" zoom="1.23432823230355" Name="Write SQL File From Data" Description="" ID="d84a8488-6ee8-480e-83e8-0dfb346193aa" Category="Bakery.Data.Database">
+<Workspace Version="1.3.3.4651" X="144.744362827055" Y="23.7421015805626" zoom="1.23432823230355" ScaleFactor="1" Name="Write SQL File From Data" Description="" ID="d84a8488-6ee8-480e-83e8-0dfb346193aa" Category="Bakery.Data.Database">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="9c288a6a-fe7e-41e2-ad1a-75f03155cbe6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="288.915779369871" y="65.4773430667668" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="8">
@@ -119,7 +119,7 @@ for mydatalist in mydatalists:
 		datastringlist.append("'%s'" % i)
 	datastringlistq = ', '.join(datastringlist)
 	joinlist = []
-	joinlist.append("INSERT INTO ")
+	joinlist.append("INSERT IGNORE INTO ")
 	joinlist.append(mydbname)
 	joinlist.append(".")
 	joinlist.append(mytablename)
