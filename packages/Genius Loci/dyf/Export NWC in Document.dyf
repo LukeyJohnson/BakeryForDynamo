@@ -1,0 +1,100 @@
+﻿<Workspace Version="1.3.3.4651" X="92.6537363834089" Y="-11.4155651482733" zoom="0.601227966203388" ScaleFactor="1" Name="Export NWC in Document" Description="!! This node needs Navisworks Exporters for Revit to export NWC.&#xD;&#xA;This node exports Views to NWC files from from document.&#xD;&#xA;Navisworks options are embedded inside the python script." ID="1e72957d-d079-4d4a-83ca-ea6ef8dd86c8" Category="GeniusLoci.Export">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e01c671e-add4-41bf-a075-44a02569192a" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="635.801633958414" y="469.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Result" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" type="PythonNodeModels.PythonNode" nickname="Export NWC from directory" x="356.601633958414" y="469.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="7">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <PortInfo index="6" default="False" />
+      <Script>#Based on a mostafa el ayoubi's script, 2016 elayoub.mostafa@gmail.com
+#http://revitapisearch.com.s3-website-us-east-1.amazonaws.com/html/8a8483f0-b8b8-219e-1bcd-e26833495ba8.htm
+
+import clr
+clr.AddReference('RevitAPI')
+import Autodesk
+from Autodesk.Revit.DB import*
+
+clr.AddReference('RevitServices')
+from RevitServices.Persistence import DocumentManager
+
+doc = IN[6]
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+folder=IN[0]
+
+if isinstance(IN[1],list):
+	views = UnwrapElement(IN[1])
+else: 
+	views = [UnwrapElement(IN[1])]
+
+names = IN[2]
+NWCExportScope = IN[3]
+Linksbool = IN[4]
+ChooseCoordinates = IN[5]
+
+for v in views:
+	options = NavisworksExportOptions()
+	options.ExportScope = NWCExportScope
+	options.ViewId = v.Id
+	#All,Elements, or None
+	options.ExportLinks=Linksbool
+	options.Coordinates=ChooseCoordinates
+	options.ExportParts = False
+	options.ExportElementIds = True
+	options.ConvertElementProperties = False
+	options.ExportRoomAsAttribute = True
+	options.ExportRoomGeometry = True
+	options.ExportUrls  = True
+	options.DivideFileIntoLevels = False
+	options.FindMissingMaterials = True
+	doc.Export(folder,names,options)
+
+OUT = "Success"</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="af490d04-1d0a-4dd7-a49c-b41ca5382cf5" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-144.998366041586" y="811.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Document" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bacb3263-77d9-444d-9088-df21bb502208" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-144.998366041586" y="292.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="DirectoryPath" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f95ca0c3-d6f5-4e8f-8825-87559740b394" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-144.998366041586" y="375.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Views" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="24eba48f-4162-46f4-8d15-31a93f5d1347" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-144.998366041586" y="458.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Filename : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2696ba76-72bb-478a-8eaa-3af08abf7b30" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-144.998366041586" y="541.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//ExportScope = View, Model, SelectedElements&#xD;&#xA;ExportScope" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="50519dae-d094-4f16-ad45-7f69d81a965e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-144.998366041586" y="718.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//ChooseCoordinates = Shared or Internal&#xD;&#xA;ChooseCoordinates" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e78b1947-1cba-475e-ad79-cb423babffbc" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-144.998366041586" y="634.125994195456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ExportLinks : bool = true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" start_index="0" end="e01c671e-add4-41bf-a075-44a02569192a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="af490d04-1d0a-4dd7-a49c-b41ca5382cf5" start_index="0" end="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" end_index="6" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bacb3263-77d9-444d-9088-df21bb502208" start_index="0" end="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f95ca0c3-d6f5-4e8f-8825-87559740b394" start_index="0" end="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="24eba48f-4162-46f4-8d15-31a93f5d1347" start_index="0" end="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2696ba76-72bb-478a-8eaa-3af08abf7b30" start_index="0" end="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="50519dae-d094-4f16-ad45-7f69d81a965e" start_index="0" end="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e78b1947-1cba-475e-ad79-cb423babffbc" start_index="0" end="e4f240a5-2e3b-4c6d-9007-d01ac9c1363a" end_index="4" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Aperçu en arrière-plan" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

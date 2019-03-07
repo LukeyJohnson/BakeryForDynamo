@@ -1,0 +1,75 @@
+<Workspace Version="1.3.4.6666" X="0" Y="0" zoom="1" ScaleFactor="1" Name="FamilyInstance Reference" Description="Works only in Revit 2018.1 and later.&#xD;&#xA;Gets family instance references corresponding to the reference planes or reference lines in the instance's family. " ID="27053731-def9-46b7-8a8f-d05ef3a8e51f" Category="GeniusLoci.Reference">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="38be3203-5e10-47a6-af50-d8935cb365f0" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="838" y="273.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Reference" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f5b3a585-0eb1-44e9-8bd8-c2d7a8cc5451" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="270.8" y="252" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="FamilyInstance" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1d7f7507-7038-4532-a0c4-24d8cac0d2af" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="170" y="326.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Default = Center (Left/Right)&#xD;&#xA;ReferenceType=null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="7d764139-a2fc-47d9-bf62-d29c5e6629ae" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="698.4" y="271" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];&#xA;x[2];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2351f917-5f81-4c8e-a937-6f262e53e7b8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="840.4" y="349.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="ReferenceName" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="797a7ebc-708b-4012-b1b0-7f4b5ac20679" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="841.6" y="438.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="SketchPlane" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="4d340dd1-eee3-4aab-a759-d4743361f4c8" type="PythonNodeModels.PythonNode" nickname="Python Script" x="528.8" y="263.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Structure import *
+
+elements = UnwrapElement(IN[0])
+reftype = UnwrapElement(IN[1])
+if not hasattr(elements, '__iter__'):
+	elements = [elements]
+ref=[]
+refname=[]
+sketch=[]
+TransactionManager.Instance.EnsureInTransaction(doc)
+#Get Reference Planes from Families
+for element in elements:
+	if reftype == None:
+		reference = element.GetReferences(FamilyInstanceReferenceType.CenterLeftRight)
+	else :
+		reference = element.GetReferences(reftype)
+	name = element.GetReferenceName(reference[0])
+	ref.append(reference[0])
+	refname.append(name)
+	sketch.append(SketchPlane.Create(doc,reference[0]))
+TransactionManager.Instance.TransactionTaskDone()
+OUT=ref,refname,sketch</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="f5b3a585-0eb1-44e9-8bd8-c2d7a8cc5451" start_index="0" end="4d340dd1-eee3-4aab-a759-d4743361f4c8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1d7f7507-7038-4532-a0c4-24d8cac0d2af" start_index="0" end="4d340dd1-eee3-4aab-a759-d4743361f4c8" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7d764139-a2fc-47d9-bf62-d29c5e6629ae" start_index="0" end="38be3203-5e10-47a6-af50-d8935cb365f0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7d764139-a2fc-47d9-bf62-d29c5e6629ae" start_index="1" end="2351f917-5f81-4c8e-a937-6f262e53e7b8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7d764139-a2fc-47d9-bf62-d29c5e6629ae" start_index="2" end="797a7ebc-708b-4012-b1b0-7f4b5ac20679" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4d340dd1-eee3-4aab-a759-d4743361f4c8" start_index="0" end="7d764139-a2fc-47d9-bf62-d29c5e6629ae" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,78 @@
+<Workspace Version="1.3.4.6666" X="-234.170713298855" Y="196.004637111921" zoom="1.07925372895183" ScaleFactor="1" Name="3DView by BoundingBox" Description="Use a boundingbox to create a new 3D View with a specified name and a section box.&#xD;&#xA;Inspired by archilab" ID="42548128-8606-41a0-920b-3cfa3a66d961" Category="GeniusLoci.View">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b1c0fd2b-e859-4e98-96ce-5259e15470dc" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="519.189304414776" y="96.0201583106317" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Viewname" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1f37198f-21bd-4b82-805e-fb8b8022b4ac" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="329.029994268288" y="19.0504451038575" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="BoundingBox" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="f266488c-d305-4241-ac3c-fc327ac0cb95" type="PythonNodeModels.PythonNode" nickname="Python Script" x="653.540652818991" y="36.1899109792284" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Based on the codes originally posted by Dimitar Venkov and Konrad Sobon
+
+import clr
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+bbox = IN[0]
+viewName = IN[1]
+
+#get ViewFamilyType for a 3D View
+collector = FilteredElementCollector(doc)
+viewTypeColl = collector.OfClass(ViewFamilyType)
+for i in viewTypeColl:
+	if i.ViewFamily == ViewFamily.ThreeDimensional:
+		viewType = i
+	else:
+		continue
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+newmax = UnwrapElement(bbox.MaxPoint).ToRevitType()
+newmin = UnwrapElement(bbox.MinPoint).ToRevitType()
+newbox = BoundingBoxXYZ()
+newbox.Max = newmax
+newbox.Min = newmin
+    
+#create 3d View
+view = View3D.CreateIsometric(doc, viewType.Id)
+view.Name = viewName
+view.SetSectionBox(newbox)
+
+OUT = view</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c965bdcc-3e5f-4590-8a09-6aba97526350" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="848.045103857567" y="33.7804154302671" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Views" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="88f6d756-3ad6-4259-9581-d464e9613aab" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="502.561424332344" y="22.8961424332344" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b1c0fd2b-e859-4e98-96ce-5259e15470dc" start_index="0" end="f266488c-d305-4241-ac3c-fc327ac0cb95" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1f37198f-21bd-4b82-805e-fb8b8022b4ac" start_index="0" end="88f6d756-3ad6-4259-9581-d464e9613aab" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f266488c-d305-4241-ac3c-fc327ac0cb95" start_index="0" end="c965bdcc-3e5f-4590-8a09-6aba97526350" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="88f6d756-3ad6-4259-9581-d464e9613aab" start_index="0" end="f266488c-d305-4241-ac3c-fc327ac0cb95" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

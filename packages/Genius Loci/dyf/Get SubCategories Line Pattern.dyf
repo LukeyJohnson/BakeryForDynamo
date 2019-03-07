@@ -1,0 +1,137 @@
+<Workspace Version="1.3.3.4651" X="-128.898103417737" Y="-45.2340768551577" zoom="0.597487094815787" ScaleFactor="1" Name="Get SubCategories Line Pattern" Description="Get the Line Patterns of the subcategories for a given category.&#xD;&#xA;From Forum DynamoBim" ID="dfe55ba6-3936-40ab-aedb-2bb0f0423549" Category="GeniusLoci.Graphics">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d82394bb-f654-4017-902c-342054f227ef" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1283.6" y="695.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Element list" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="db5790d2-e5a0-43b8-8917-51da767a778c" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1283.6" y="778.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Line Weight" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f914b20e-3150-4373-8c09-3ac32ce3f172" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1283.6" y="861.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Line Colors" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="0be774dc-1209-44d7-bae8-c16a2480f605" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1283.6" y="612.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Line Pattern Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="1e4b65bc-680e-4a35-889e-0ed760451d5d" type="PythonNodeModels.PythonNode" nickname="Element.ByID" x="1059.2" y="695.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#From Clockwork
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+items = UnwrapElement(IN[0])
+
+elementlist = list()
+for item in items:
+	try: 
+		elementlist.append(doc.GetElement(item).ToDSType(True))
+	except:
+		try:
+			elementlist.append(doc.GetElement(ElementId(item)).ToDSType(True))
+		except:
+			elementlist.append(None)
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2c10c624-e125-4187-bafd-5f5ba34ed0d0" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1283.6" y="529.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Line Pattern" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="6cbb264f-e693-4501-94d5-b6f628f90b3a" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="868" y="564.093333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];&#xA;x[2];&#xA;x[3];&#xA;x[4];&#xA;x[5];&#xA;x[6];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c6a5981b-4131-426f-ae66-f5bd9a89c0e4" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1283.6" y="446.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="SubCategory Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b1dfe39d-38cb-40ee-804a-4212ffe9fefd" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1283.6" y="363.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Graphic Style" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="aaac0089-b0e4-47df-9c58-f7d8a6c87204" type="PythonNodeModels.PythonNode" nickname="Python Script" x="643.600000000001" y="559.88" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#From jmmiller, Brendan_Cassidy and T_Pover
+#https://forum.dynamobim.com/t/help-retrieving-line-pattern-settings-from-object-styles/14076/13
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+cat = UnwrapElement(IN[0])
+subcat = cat.SubCategories
+
+listNames = []
+listPattern = []
+patname = []
+listout = []
+listpatid = []
+lineWeight = []
+listRGB = []
+
+for i in subcat:
+	name = i.Name
+	listNames.append(name)
+	id = i.GetLinePatternId(GraphicsStyleType.Projection)
+	pat = LinePatternElement.GetLinePattern(doc,id)
+	weight = i.GetLineWeight(GraphicsStyleType.Projection)
+	rgb = [i.LineColor.Red, i.LineColor.Green, i.LineColor.Blue]
+	listRGB.append(rgb)
+	lineWeight.append(weight)
+	listPattern.append(pat)
+	listpatid.append(id)
+	try:
+		patname.append(pat.Name)
+	except:
+		patname.append("Solid")
+		
+	style = i.GetGraphicsStyle(GraphicsStyleType.Projection)
+	listout.append(style)
+
+
+OUT = listout, listNames, listPattern, patname, listpatid, lineWeight, listRGB</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="94db49e2-f0e6-4ed8-a0af-eb76daa89661" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="447.2" y="559.88" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Category" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="1e4b65bc-680e-4a35-889e-0ed760451d5d" start_index="0" end="d82394bb-f654-4017-902c-342054f227ef" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cbb264f-e693-4501-94d5-b6f628f90b3a" start_index="0" end="b1dfe39d-38cb-40ee-804a-4212ffe9fefd" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cbb264f-e693-4501-94d5-b6f628f90b3a" start_index="1" end="c6a5981b-4131-426f-ae66-f5bd9a89c0e4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cbb264f-e693-4501-94d5-b6f628f90b3a" start_index="2" end="2c10c624-e125-4187-bafd-5f5ba34ed0d0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cbb264f-e693-4501-94d5-b6f628f90b3a" start_index="3" end="0be774dc-1209-44d7-bae8-c16a2480f605" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cbb264f-e693-4501-94d5-b6f628f90b3a" start_index="4" end="1e4b65bc-680e-4a35-889e-0ed760451d5d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cbb264f-e693-4501-94d5-b6f628f90b3a" start_index="5" end="db5790d2-e5a0-43b8-8917-51da767a778c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cbb264f-e693-4501-94d5-b6f628f90b3a" start_index="6" end="f914b20e-3150-4373-8c09-3ac32ce3f172" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="aaac0089-b0e4-47df-9c58-f7d8a6c87204" start_index="0" end="6cbb264f-e693-4501-94d5-b6f628f90b3a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="94db49e2-f0e6-4ed8-a0af-eb76daa89661" start_index="0" end="aaac0089-b0e4-47df-9c58-f7d8a6c87204" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

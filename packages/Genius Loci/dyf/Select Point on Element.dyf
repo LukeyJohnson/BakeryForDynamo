@@ -1,0 +1,62 @@
+<Workspace Version="1.3.4.6666" X="-95.1388921468223" Y="63.6938759531704" zoom="0.658674852158215" ScaleFactor="1" Name="Select Point on Element" Description="Select the point(s) on the face(s) and get the reference(s)." ID="bc5d370c-a0d0-4ff2-b079-e789c69e72e9" Category="GeniusLoci.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="df23dc6e-3229-4e7e-a308-6db4d20eca51" type="PythonNodeModels.PythonNode" nickname="Select Point (s) (PickObject)" x="522.633381202751" y="258.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+
+clr.AddReference('RevitAPI')
+import Autodesk
+from Autodesk.Revit.DB import *
+
+clr.AddReference('RevitAPIUI')
+from Autodesk.Revit.UI.Selection import ObjectType
+
+# Import ToDSType  (bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+# Adds ToProtoType, ToRevitType geometry conversion extension methods to objects
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import Element wrapper extension methods
+clr.ImportExtensions(Revit.Elements)
+
+pickedRef,coords=[],[]
+sel = uiapp.ActiveUIDocument.Selection
+pickedRef=sel.PickObjects(ObjectType.PointOnElement, "Select Points on Face")
+
+for ref in pickedRef :
+	coords.append(ref.GlobalPoint.ToPoint())
+
+OUT = coords,pickedRef</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="77994dfc-3f38-4fde-9d91-691d7786343b" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="739.874059238105" y="268.14747556343" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="72325975-6125-439c-8b86-e01cf2559be9" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="906" y="254.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Point" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e526db86-847e-4451-a513-daa4c8f7af26" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="898.8" y="324" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Reference" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b28b1692-7627-487c-9f66-4da875405c37" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="230.8" y="276" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Refresh  : bool = true;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="df23dc6e-3229-4e7e-a308-6db4d20eca51" start_index="0" end="77994dfc-3f38-4fde-9d91-691d7786343b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="77994dfc-3f38-4fde-9d91-691d7786343b" start_index="0" end="72325975-6125-439c-8b86-e01cf2559be9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="77994dfc-3f38-4fde-9d91-691d7786343b" start_index="1" end="e526db86-847e-4451-a513-daa4c8f7af26" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b28b1692-7627-487c-9f66-4da875405c37" start_index="0" end="df23dc6e-3229-4e7e-a308-6db4d20eca51" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

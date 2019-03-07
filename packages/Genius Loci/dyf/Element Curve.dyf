@@ -1,0 +1,56 @@
+<Workspace Version="1.3.4.6666" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Element Curve" Description="Get the curve from the element." ID="d2b0540c-a53c-4f36-a813-45dc77c6be37" Category="GeniusLoci.Geometry">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="23609509-9bcb-4887-8df6-661f8e716ed5" type="PythonNodeModels.PythonNode" nickname="Python Script" x="306.4" y="221.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+import math
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+items = UnwrapElement(IN[0])
+if not hasattr(items, '__iter__'):
+	items = [items]
+	
+curves = []
+
+for item in items:
+	loc = item.Location
+	if loc.ToString() == 'Autodesk.Revit.DB.LocationCurve':
+		# line-based elements (e.g. walls)
+		curves.append(loc.Curve.ToProtoType())
+	else:
+		try:
+			curves.append(item.ToProtoType())
+		except:
+			try:
+				curves.append(item.Curve.ToProtoType())
+			except:
+				curves.append(item.GeometryCurve.ToProtoType())
+
+if isinstance(IN[0], (list)): OUT = curves
+else: OUT = curves[0]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1a13a8ea-0f2b-4af9-9c00-0be1d33acdec" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="187.6" y="221.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2dcf4f79-cd44-4b58-bf71-24ee1d0e81dd" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="469.2" y="220" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Curve" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="23609509-9bcb-4887-8df6-661f8e716ed5" start_index="0" end="2dcf4f79-cd44-4b58-bf71-24ee1d0e81dd" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1a13a8ea-0f2b-4af9-9c00-0be1d33acdec" start_index="0" end="23609509-9bcb-4887-8df6-661f8e716ed5" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Aperçu en arrière-plan" eyeX="65.3233947753906" eyeY="63.6285743713379" eyeZ="-55.4333877563477" lookX="-16.6101150512695" lookY="-62.5071449279785" lookZ="60.7606430053711" upX="-0.141294360160828" upY="0.844327926635742" upZ="0.516861915588379" />
+  </Cameras>
+</Workspace>

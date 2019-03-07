@@ -1,0 +1,120 @@
+<Workspace Version="1.3.3.4651" X="-149.311476033103" Y="3.43834429053317" zoom="0.82770257044119" ScaleFactor="1" Name="View Get Color of Filter" Description="Note: This method is deprecated in Revit 2019.&#xD;&#xA;Get the view filter and its colors from the given view." ID="ef4d0342-8e68-45e2-8286-b90c7a79ddaa" Category="GeniusLoci.Graphics">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="83c09e48-6348-4a62-ba35-d59b2ac625e8" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="322.8" y="319.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="View" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="08d0bff7-1941-4358-9e50-1f954d9f4d16" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="687.2" y="319.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];&#xA;x[2];&#xA;x[3];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="87b89b6d-ff60-465c-be9b-62fab98c7c0c" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="844.8" y="313.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="SurfacePatternColor" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="602298fa-dc35-4bc5-a2b5-de8f6c052c13" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="858.8" y="384.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="CutPatternColor" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="3d9d4fac-5d4c-4460-8896-2ea44695ff1e" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="854.4" y="472.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="ViewFilter" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f3c0f915-a992-4666-95ae-fe99bd27e4f5" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="842.743294903219" y="563.687419899735" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="ViewFilter Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="9acbba63-5ecc-4722-8a0b-421eb604378a" type="PythonNodeModels.PythonNode" nickname="Get colors of filters" x="477.146822552223" y="317.39127778755" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Based on a Thomas Mahon'script
+#Alban de Chasteigner 2018
+#twitter : @geniusloci_bim
+#geniusloci.bim@gmail.com
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+clr.AddReference('DSCoreNodes')
+import DSCore
+from DSCore import Color
+
+#Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+def toRvtId(_id):
+	if isinstance(_id, int) or isinstance(_id, str):
+		id = ElementId(int(_id))
+		return id
+	elif isinstance(_id, ElementId):
+		return _id
+
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+
+views = tolist(UnwrapElement(IN[0]))
+
+colList,cutList,elements,elementName = [],[],[],[]
+
+for v in views:
+	filters = v.GetFilters() # Get all the filter ids
+	rgbList,rgbCutList = [],[]
+	for f in filters:
+		elements.append(doc.GetElement(toRvtId(f)).ToDSType(True))
+		filterObject = v.GetFilterOverrides(f)
+		col = filterObject.ProjectionFillColor
+		if col.IsValid:
+			rgb = DSCore.Color.ByARGB(255, col.Red, col.Green, col.Blue)
+		else:
+			rgb = None
+		rgbList.Add(rgb)
+		cut = filterObject.CutFillColor
+		if cut.IsValid:
+			rgbcut = DSCore.Color.ByARGB(255, cut.Red, cut.Green, cut.Blue)
+		else:
+			rgbcut = None
+		rgbCutList.Add(rgbcut)
+	colList.Add(rgbList)
+	cutList.Add(rgbCutList)
+	for element in elements:
+		elementName.append(element.Name)
+		
+OUT = colList[0],cutList[0],elements, elementName</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="83c09e48-6348-4a62-ba35-d59b2ac625e8" start_index="0" end="9acbba63-5ecc-4722-8a0b-421eb604378a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="08d0bff7-1941-4358-9e50-1f954d9f4d16" start_index="0" end="87b89b6d-ff60-465c-be9b-62fab98c7c0c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="08d0bff7-1941-4358-9e50-1f954d9f4d16" start_index="1" end="602298fa-dc35-4bc5-a2b5-de8f6c052c13" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="08d0bff7-1941-4358-9e50-1f954d9f4d16" start_index="2" end="3d9d4fac-5d4c-4460-8896-2ea44695ff1e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="08d0bff7-1941-4358-9e50-1f954d9f4d16" start_index="3" end="f3c0f915-a992-4666-95ae-fe99bd27e4f5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9acbba63-5ecc-4722-8a0b-421eb604378a" start_index="0" end="08d0bff7-1941-4358-9e50-1f954d9f4d16" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

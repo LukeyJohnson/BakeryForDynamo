@@ -1,0 +1,107 @@
+<Workspace Version="1.3.3.4651" X="560.576015615418" Y="35.0460971924829" zoom="0.695616441301115" ScaleFactor="1" Name="Override FillPattern in View" Description="Works only in Revit 2019 and later.&#xD;&#xA;Overrides Fill Pattern of given element in a given view to specified Fill Pattern and color." ID="8860c905-c75b-40e2-bdaf-6e8b0f553da8" Category="GeniusLoci.Graphics">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="DSCore.Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="FillPatternElement" resolvedName="Revit.Elements.FillPatternElement" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="Revit.Application.Document.Current" resolvedName="Revit.Application.Document" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="Revit.Application.Document" resolvedName="Revit.Application.Document" assemblyName="RevitNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="44755243-91c4-4397-a6c5-aa407c98ece4" type="PythonNodeModels.PythonNode" nickname="Python Script" x="213.546162386193" y="321.70500334646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="6">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <Script>import clr
+
+#Import the Revit API
+clr.AddReference('RevitAPI')
+import Autodesk
+from Autodesk.Revit.DB import *
+
+#Import DocumentManager and TransactionManager
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+#Reference the active Document and application
+doc = DocumentManager.Instance.CurrentDBDocument
+#Start scripting here:
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+	
+def ConvertColor(e):
+	return Autodesk.Revit.DB.Color(e.Red, e.Green, e.Blue)
+
+elems = tolist(UnwrapElement(IN[0]))
+views = tolist(UnwrapElement(IN[1]))
+surfaceForePatcolors = tolist(ConvertColor(IN[2]))
+surfaceForePats = tolist(UnwrapElement(IN[3]))
+cutForePatcolors = tolist(ConvertColor(IN[4]))
+cutForePats = tolist(UnwrapElement(IN[5]))
+output = []
+
+for surfaceForePatcolor, surfaceForePat,cutForePatcolor,cutForePat in zip(surfaceForePatcolors,surfaceForePats,cutForePatcolors,cutForePats):
+#Create the OverridesGraphicsSettings
+	ogs = OverrideGraphicSettings()
+	ogs.SetSurfaceForegroundPatternColor(surfaceForePatcolor)
+	ogs.SetSurfaceForegroundPatternId(surfaceForePat.Id)
+	ogs.SetSurfaceForegroundPatternVisible(True)
+	ogs.SetCutForegroundPatternColor(cutForePatcolor)
+	ogs.SetCutForegroundPatternId(cutForePat.Id)
+	ogs.SetCutForegroundPatternVisible(True)
+#Transaction start:
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for i in views:
+	for j in elems:
+		output.append(i.SetElementOverrides(j.Id, ogs))	
+
+#Transaction end:
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable.
+OUT = elems</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ee04af80-ae84-424e-8277-9d81c48a0f4b" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-584.053837613807" y="168.70500334646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0cc7db37-4c88-4567-bf75-98dd53d60923" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-584.053837613807" y="252.70500334646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="View:var[]..[] = Revit.Application.Document.Current.ActiveView" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="9e4a4b56-2c07-4055-8d92-36b8d326dedc" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-584.053837613807" y="428.70500334646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="SurfaceForegroundPattern:var[]..[]=FillPatternElement.GetByName(&quot;&lt;Solid fill&gt;&quot;, &quot;Drafting&quot;)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f8fa5e71-b526-42fd-936a-7628b34c3913" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-584.053837613807" y="335.70500334646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Dynamo Color&#xD;&#xA;SurfaceForegroundPatternColor:var[]..[] = DSCore.Color.ByARGB(255,255,255,255)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="46d30b73-d42e-4b4f-aeb5-676b140b1d7c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-584.053837613807" y="613.70500334646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="CutForegroundPattern:var[]..[]=FillPatternElement.GetByName(&quot;&lt;Solid fill&gt;&quot;, &quot;Drafting&quot;)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="eb4a7b71-80a6-49d2-bfed-26df3fab1fab" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-584.053837613807" y="520.70500334646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Dynamo Color&#xD;&#xA;CutForegroundPatternColor:var[]..[] = DSCore.Color.ByARGB(255,255,255,255)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="885fb2bd-4057-4a1d-92a8-23d5dffa01d3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="438.346162386193" y="321.70500334646" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="44755243-91c4-4397-a6c5-aa407c98ece4" start_index="0" end="885fb2bd-4057-4a1d-92a8-23d5dffa01d3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ee04af80-ae84-424e-8277-9d81c48a0f4b" start_index="0" end="44755243-91c4-4397-a6c5-aa407c98ece4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0cc7db37-4c88-4567-bf75-98dd53d60923" start_index="0" end="44755243-91c4-4397-a6c5-aa407c98ece4" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9e4a4b56-2c07-4055-8d92-36b8d326dedc" start_index="0" end="44755243-91c4-4397-a6c5-aa407c98ece4" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f8fa5e71-b526-42fd-936a-7628b34c3913" start_index="0" end="44755243-91c4-4397-a6c5-aa407c98ece4" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="46d30b73-d42e-4b4f-aeb5-676b140b1d7c" start_index="0" end="44755243-91c4-4397-a6c5-aa407c98ece4" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="eb4a7b71-80a6-49d2-bfed-26df3fab1fab" start_index="0" end="44755243-91c4-4397-a6c5-aa407c98ece4" end_index="4" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
