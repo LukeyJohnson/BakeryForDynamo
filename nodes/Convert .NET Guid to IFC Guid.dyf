@@ -1,7 +1,8 @@
-<Workspace Version="1.1.0.2094" X="45.038333333333" Y="366.333333333334" zoom="1.1575" Name="Convert .NET Guid to IFC Guid" Description="" ID="9d845363-1427-465c-bce3-3fa7c6cf4b92" Category="Bakery.BIM.IFC">
+<Workspace Version="1.3.4.6666" X="55.0326590101689" Y="383.918992342596" zoom="1.00600419002725" ScaleFactor="1" Name="Convert .NET Guid to IFC Guid" Description="" ID="9d845363-1427-465c-bce3-3fa7c6cf4b92" Category="Bakery.BIM.IFC">
   <NamespaceResolutionMap />
   <Elements>
     <PythonNodeModels.PythonNode guid="79118f72-ad46-44e9-96bb-64bebe5b27ac" type="PythonNodeModels.PythonNode" nickname="Python Script" x="449.558280267753" y="7.72642444567839" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
       <Script>import clr
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *
@@ -162,7 +163,8 @@ for x in listIn:
 #Assign your output to the OUT variable.
 OUT = listed</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="e87706fb-3cb3-4b7d-8662-c2c5770dd97c" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="250" y="50.9128274088249" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="e87706fb-3cb3-4b7d-8662-c2c5770dd97c" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="132.505399568034" y="117.43550559457" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
       <Name value="TurnIntoList" />
       <Description value="Turns an element (or a nested list) into a flat list" />
@@ -173,8 +175,11 @@ OUT = listed</Script>
         <Output value="seq" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <CoreNodeModels.Watch guid="e564ed55-9dd7-4ade-a811-047c1e3e9bf5" type="CoreNodeModels.Watch" nickname="Watch" x="716.515323084695" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="cc0d89c7-ad20-4ab9-9991-97ea1e7c9415" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Find Characters in Square Brackets and Merge to String" x="1051.92521191048" y="6.49384754644291" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <CoreNodeModels.Watch guid="e564ed55-9dd7-4ade-a811-047c1e3e9bf5" type="CoreNodeModels.Watch" nickname="Watch" x="716.515323084695" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="cc0d89c7-ad20-4ab9-9991-97ea1e7c9415" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Find Characters in Square Brackets and Merge to String" x="1051.92521191048" y="5.56728137096979" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <ID value="b7b8e610-3721-4183-97fa-723cefc71f7b" />
       <Name value="Find Characters in Square Brackets and Merge to String" />
       <Description value="" />
@@ -188,10 +193,12 @@ OUT = listed</Script>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="d9c5a385-324e-4b68-8023-bc2389b2c5c4" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="NET Guids" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="003d63ed-b35f-4ece-b1f4-002cea4e53ff" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1462.25854524382" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="003d63ed-b35f-4ece-b1f4-002cea4e53ff" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1463.18511141929" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <Symbol value="IFC Guids" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
     <PythonNodeModels.PythonNode guid="479dd9b7-8896-4d55-bba6-002c5189ff1c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="500.18286537077" y="204.75161987041" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
       <Script>#import clr
 import clr
 clr.AddReference('ProtoGeometry')
@@ -364,10 +371,15 @@ for x in listIn:
 #Assign your output to the OUT variable.
 OUT = listed</Script>
     </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f4c54b1f-d813-414a-b2fd-ed0725e54fa1" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1423.34276587395" y="163.075646883268" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="log" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
   <Connectors>
     <Dynamo.Graph.Connectors.ConnectorModel start="e87706fb-3cb3-4b7d-8662-c2c5770dd97c" start_index="0" end="479dd9b7-8896-4d55-bba6-002c5189ff1c" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="e564ed55-9dd7-4ade-a811-047c1e3e9bf5" start_index="0" end="cc0d89c7-ad20-4ab9-9991-97ea1e7c9415" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e564ed55-9dd7-4ade-a811-047c1e3e9bf5" start_index="0" end="f4c54b1f-d813-414a-b2fd-ed0725e54fa1" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="cc0d89c7-ad20-4ab9-9991-97ea1e7c9415" start_index="0" end="003d63ed-b35f-4ece-b1f4-002cea4e53ff" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="d9c5a385-324e-4b68-8023-bc2389b2c5c4" start_index="0" end="e87706fb-3cb3-4b7d-8662-c2c5770dd97c" end_index="0" portType="0" />
     <Dynamo.Graph.Connectors.ConnectorModel start="479dd9b7-8896-4d55-bba6-002c5189ff1c" start_index="0" end="e564ed55-9dd7-4ade-a811-047c1e3e9bf5" end_index="0" portType="0" />

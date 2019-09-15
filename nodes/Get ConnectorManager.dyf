@@ -1,7 +1,8 @@
-<Workspace Version="1.0.0.1180" X="249.24" Y="249.7375" zoom="0.8425" Name="Get ConnectorManager" Description="Get the connector manager object from Revit" ID="6d4982ef-8338-4385-b45f-064bc3b0ae55" Category="Bakery.Revit.API.MEP">
+<Workspace Version="1.3.4.6666" X="249.24" Y="249.7375" zoom="0.8425" ScaleFactor="1" Name="Get ConnectorManager" Description="Get the connector manager object from Revit" ID="6d4982ef-8338-4385-b45f-064bc3b0ae55" Category="Bakery.Revit.API.MEP">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="13deef45-81cc-4aee-9b6b-41cef59ddcb0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="467.902884187891" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+    <PythonNodeModels.PythonNode guid="13deef45-81cc-4aee-9b6b-41cef59ddcb0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="467.902884187891" y="1.186943620178" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
       <Script>#Created by Luke Johnson for Bakery
 import clr
 clr.AddReference('ProtoGeometry')
@@ -37,11 +38,18 @@ cnctmgr = []
 
 for y in ctrayelems:
 #	curvenrmls.append(y.CurveNormal)
-	cnctmgr.append(y.ConnectorManager)
+	try:
+		cnctmgr.append(y.ConnectorManager)
+	except:
+		try:
+			cnctmgr.append(y.MEPModel.ConnectorManager)
+		except:
+			cnctmgr.append(None)
 #Assign your output to the OUT variable
 OUT = cnctmgr</Script>
     </PythonNodeModels.PythonNode>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="56fe2454-a3ad-468e-bc1b-2ac708d7d987" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="250" y="35.972692230723" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
       <Name value="TurnIntoList" />
       <Description value="Turns an element (or a nested list) into a flat list" />
@@ -56,6 +64,7 @@ OUT = cnctmgr</Script>
       <Symbol value="elements" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="b70eab8e-6ffc-4e25-916b-5bc2d09ad98f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="664.902884187891" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <Symbol value="connectorManagers" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
