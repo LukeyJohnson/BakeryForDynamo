@@ -1,0 +1,35 @@
+<Workspace Version="1.3.4.6666" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Merge 1D List to String Pythonic" Description="" ID="973a2f96-582d-4f53-bb8f-959c2d7dc6fc" Category="Bakery.Core.List">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="acfa267a-1760-44a4-859e-d30017b3c982" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+x = IN[0]
+merged = []
+merged.append(''.join(x))
+
+#Assign your output to the OUT variable.
+OUT = merged[0]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="d3119bf2-dd45-46fd-b314-9dedcf8a4b99" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="99" y="77" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="aList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f82406d3-b69a-4b01-a0da-f677ef0e1fcc" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="aString" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="acfa267a-1760-44a4-859e-d30017b3c982" start_index="0" end="f82406d3-b69a-4b01-a0da-f677ef0e1fcc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d3119bf2-dd45-46fd-b314-9dedcf8a4b99" start_index="0" end="acfa267a-1760-44a4-859e-d30017b3c982" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
