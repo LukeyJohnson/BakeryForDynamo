@@ -1,13 +1,15 @@
-<Workspace Version="1.1.0.2094" X="158.105035409873" Y="498.852311755547" zoom="1.545620359375" Name="Convert IFC Guid to .NET Guid" Description="trying to adapt https://github.com/hakonhc/IfcGuid/blob/master/IfcGuid/IfcGuid.cs" ID="09f1120a-cd40-4f1f-afa3-f0f2af2475d4" Category="Bakery.BETA">
+<Workspace Version="1.3.4.6666" X="222.573600530517" Y="331.851212150652" zoom="0.784369328044827" ScaleFactor="1" Name="Convert IFC Guid to .NET Guid" Description="trying to adapt https://github.com/hakonhc/IfcGuid/blob/master/IfcGuid/IfcGuid.cs" ID="09f1120a-cd40-4f1f-afa3-f0f2af2475d4" Category="Bakery.BETA">
   <NamespaceResolutionMap />
   <Elements>
     <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="45b822f7-213e-4b4e-b3ac-d20d7406a43f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="GuidFromIFC" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
     <Dynamo.Graph.Nodes.CustomNodes.Output guid="f72d7a72-d2ab-4443-9671-f37208119e55" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="446.333333333333" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <Symbol value="OUT" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
     <PythonNodeModels.PythonNode guid="a62d64b2-63d9-4b74-9c7b-dc8a8c33e750" type="PythonNodeModels.PythonNode" nickname="Python Script" x="266.060352679197" y="181.468249869071" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
       <Script>import clr
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *
@@ -49,8 +51,8 @@ class IfcGuid(object):
 		 &lt;returns&gt;&lt;/returns&gt;
 		"""
 		Debug.Assert(len &lt;= 4)
-		act = number
-		nDigits = len
+		act = UInt32(number)
+		nDigits = Int32(len)
 		iDigit = 0
 		while iDigit &lt; nDigits:
 			result[start + len - iDigit - 1] = self._base64Chars[(act % 64)]
@@ -71,7 +73,7 @@ class IfcGuid(object):
 		 &lt;param name="len"&gt;The length to read&lt;/param&gt;
 		 &lt;returns&gt;The calculated nuber&lt;/returns&gt;
 		"""
-		res = 0
+		res = UInt32(0)
 		Debug.Assert(len &lt;= 4)
 		i = 0
 		while i &lt; len:
@@ -83,7 +85,7 @@ class IfcGuid(object):
 					break
 				j += 1
 			Debug.Assert(index &gt;= 0)
-			res = res * 64 + (index)
+			res = UInt32((res * 64) + index)
 			i += 1
 		return res
 
@@ -108,9 +110,9 @@ class IfcGuid(object):
 			pos += n
 			n = 4
 			i += 1
-		a = ((num[0] * 16777216 + num[1]))
-		b = (num[2] / 256)
-		c = ((num[2] % 256) * 256 + num[3] / 65536)
+		a = Int32((num[0] * 16777216) + num[1])
+		b = Int16((num[2] / 256))
+		c = Int16((((num[2] % 256) * 256) + (num[3] / 65536)))
 		d = Array.CreateInstance(Byte, 8)
 		d[0] = Convert.ToByte((num[3] / 256) % 256)
 		d[1] = Convert.ToByte(num[3] % 256)
@@ -120,7 +122,7 @@ class IfcGuid(object):
 		d[5] = Convert.ToByte(num[5] / 65536)
 		d[6] = Convert.ToByte((num[5] / 256) % 256)
 		d[7] = Convert.ToByte(num[5] % 256)
-		return Guid(a, b, c, d)
+		return Guid(a,b,c,d)
 
 	FromIfcGUID = staticmethod(FromIfcGUID)
 
@@ -169,6 +171,7 @@ for x in listIn:
 OUT = listed</Script>
     </PythonNodeModels.PythonNode>
     <Dynamo.Graph.Nodes.CustomNodes.Function guid="81a2835d-328d-42d4-9125-b145f778b37b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="-19.477639012239" y="210.367110055365" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
       <Name value="TurnIntoList" />
       <Description value="Turns an element (or a nested list) into a flat list" />
