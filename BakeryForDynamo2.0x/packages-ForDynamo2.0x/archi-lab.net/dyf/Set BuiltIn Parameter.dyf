@@ -1,0 +1,109 @@
+<Workspace Version="0.8.2.2166" X="62.087984821494" Y="-156.278568720335" zoom="1.44258909293313" Name="Set BuiltIn Parameter" ID="21f3e406-c566-444b-87fe-d7745f85d5a3" Description="This node will take an input of a built in parameter name and set that parameter to given value for given elements. " Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="6daef1e0-e2cd-45a5-843f-1814e2c8776a" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="376" y="268" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+import sys
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+import System
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+paramName = IN[0]
+paramValues = IN[2]
+
+if isinstance(IN[1], list):
+	elements = []
+	for i in IN[1]:
+		elements.append(UnwrapElement(i))
+else:
+	elements = IN[1]
+
+def GetBuiltInParam(paramName):
+	builtInParams = System.Enum.GetValues(BuiltInParameter)
+	test = []
+	for i in builtInParams:
+		if i.ToString() == paramName:
+			test.append(i)
+			break
+		else:
+			continue
+	return test[0]
+
+try:
+	errorReport = None
+	# "Start" the transaction
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	
+	bipName = GetBuiltInParam(paramName)
+	for i, j in zip(elements, paramValues):
+		param = i.get_Parameter(bipName)
+		param.Set(j)
+	
+	# "End" the transaction
+	TransactionManager.Instance.TransactionTaskDone()
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = 0
+else:
+	OUT = errorReport</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="a7a345a4-f40e-4c16-9b5f-79683ba20a6d" type="Dynamo.Nodes.Symbol" nickname="Input" x="132.600656342387" y="247.370403077534" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="ParameterName" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="c70b4b5f-99d5-4afe-851d-a9430d019835" type="Dynamo.Nodes.Symbol" nickname="Input" x="134.282648421591" y="303.997469744046" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Elements" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="90131775-0e6d-4aba-a725-cd9cedce3978" type="Dynamo.Nodes.Symbol" nickname="Input" x="132.600656342387" y="359.503208357756" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="ParameterValues" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="ed81b2e9-91fd-4edd-87ef-6e2488af3cda" type="Dynamo.Nodes.Output" nickname="Output" x="527.762710635893" y="269.513760762382" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="6daef1e0-e2cd-45a5-843f-1814e2c8776a" start_index="0" end="ed81b2e9-91fd-4edd-87ef-6e2488af3cda" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="a7a345a4-f40e-4c16-9b5f-79683ba20a6d" start_index="0" end="6daef1e0-e2cd-45a5-843f-1814e2c8776a" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c70b4b5f-99d5-4afe-851d-a9430d019835" start_index="0" end="6daef1e0-e2cd-45a5-843f-1814e2c8776a" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="90131775-0e6d-4aba-a725-cd9cedce3978" start_index="0" end="6daef1e0-e2cd-45a5-843f-1814e2c8776a" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="-62.4690411373842" eyeY="31.7424003190134" eyeZ="-32.2776192563353" lookX="-0.313934196025592" lookY="-33.4290348435953" lookZ="11.9886632668677" />
+  </Cameras>
+</Workspace>

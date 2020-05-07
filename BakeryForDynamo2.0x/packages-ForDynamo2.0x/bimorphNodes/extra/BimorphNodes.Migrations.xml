@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<migrations>
+  <priorNameHint>
+    <oldName>Revit.Sheets.DuplicateSheets</oldName>
+    <newName>Revit.Sheet.Duplicate</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>Curve.RemoveDuplicateCurves</oldName>
+    <newName>Curve.RemoveDuplicates</newName>
+  </priorNameHint>
+  <priorNameHint>
+    <oldName>CAD.DetailLinesFromCADLayers</oldName>
+    <newName>CAD.DetailCurvesFromCADLayers</newName>
+  </priorNameHint>
+</migrations>

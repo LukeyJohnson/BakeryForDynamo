@@ -1,0 +1,94 @@
+<Workspace Version="0.9.0.2912" X="-607.214445452217" Y="-1515.13468457595" zoom="2.72962159758084" Name="Wall.ExteriorDirection" Description="This node returns exterior direction of the wall as a vector." ID="1cf06a87-2841-4645-ad52-e9585d0ad0e5" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="4d223db9-17ce-4885-b8aa-c9198ff5b54d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="373.710176428674" y="670.607238155122" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def GetExteriorWallDirection(item):
+	if type(item) == Autodesk.Revit.DB.Wall:
+		locationCurve = item.Location
+		if locationCurve != None:
+			curve = locationCurve.Curve
+			direction = XYZ.BasisX
+			if type(curve) == Autodesk.Revit.DB.Line:
+				direction = curve.ComputeDerivatives(0, True).BasisX.Normalize()
+			else:
+				direction = (curve.GetEndPoint(1) - curve.GetEndPoint(0)).Normalize()
+			exteriorDirection = XYZ.BasisZ.CrossProduct(direction)
+			
+			if item.Flipped:
+				exteriorDirection = -exteriorDirection
+			return exteriorDirection.ToVector()
+	else:
+		return "Not a Wall"
+
+if isinstance(IN[0], list):
+	walls = ProcessList(Unwrap, IN[0])
+else:
+	walls = [UnwrapElement(IN[0])]
+
+try:
+	errorReport = None
+	output = ProcessList(GetExteriorWallDirection, walls)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="ccc1186c-1700-474b-a7a3-8de802676b36" type="Dynamo.Nodes.Symbol" nickname="Input" x="235.275997970337" y="659.11505322586" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Wall" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="9d1fc6fc-757c-4c95-89c1-22b87d14a951" type="Dynamo.Nodes.Output" nickname="Output" x="562.79392235675" y="665.70937385109" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="vector" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="4d223db9-17ce-4885-b8aa-c9198ff5b54d" start_index="0" end="9d1fc6fc-757c-4c95-89c1-22b87d14a951" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ccc1186c-1700-474b-a7a3-8de802676b36" start_index="0" end="4d223db9-17ce-4885-b8aa-c9198ff5b54d" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-31.971019744873" eyeY="257.492340087891" eyeZ="178.162948608398" lookX="46.7517127990723" lookY="-50.6476860046387" lookZ="-225.966613769531" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

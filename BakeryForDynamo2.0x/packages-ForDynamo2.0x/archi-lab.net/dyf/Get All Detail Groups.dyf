@@ -1,0 +1,61 @@
+<Workspace Version="1.2.0.2690" X="-436.315129987951" Y="184.944942973594" zoom="1.78359936238281" Name="Get All Detail Groups" Description="This node will retrieve all instances of Detail Groups in the model." ID="e3d72832-1c0a-48c8-94bd-cb2882b152fc" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="a07414a6-df4f-4a2a-bf53-037ebc764a2b" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="383.988750467818" y="4.09637906310485" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="OUT[0];&#xA;OUT[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <PythonNodeModels.PythonNode guid="dfc96910-270f-41e4-94e4-2c3f79bae962" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+collector = FilteredElementCollector(doc)
+groups = collector.OfCategory(BuiltInCategory.OST_IOSDetailGroups).WhereElementIsNotElementType().ToElements()
+
+groupNames = []
+for i in groups:
+	groupNames.append(i.Name)
+
+OUT = groupNames, groups</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="05a60e98-922e-4029-b956-fc5463a34e3a" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="646.251832975924" y="16.2592567656322" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Groups" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="96de5558-07f4-43db-8d66-eaed039f0bfe" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="646.420501187762" y="-45.8650529581864" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Group Names" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="a07414a6-df4f-4a2a-bf53-037ebc764a2b" start_index="0" end="96de5558-07f4-43db-8d66-eaed039f0bfe" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a07414a6-df4f-4a2a-bf53-037ebc764a2b" start_index="1" end="05a60e98-922e-4029-b956-fc5463a34e3a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="dfc96910-270f-41e4-94e4-2c3f79bae962" start_index="0" end="a07414a6-df4f-4a2a-bf53-037ebc764a2b" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

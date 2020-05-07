@@ -1,0 +1,67 @@
+<Workspace Version="1.0.0.1180" X="8.41316019040619" Y="353.633438061997" zoom="1.25584483561315" Name="Parts.IsFromLinkedElement" Description="Check if Parts are derived from linked elements" ID="db38998f-a546-43ce-a33c-50e2cce4d8e5" Category="SteamNodes.Parts">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="f9432daf-158d-4f31-be4c-4fbbaf4df8b8" type="PythonNodeModels.PythonNode" nickname="Python Script" x="664.819179050448" y="1.17374876360033" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+elt = []
+for i in IN[0]:
+	elt.append(UnwrapElement(i))
+bool=[]
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+for p  in elt:
+	bool.append(PartUtils.IsPartDerivedFromLink(p))
+		
+
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT=bool</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="846b0f24-d998-4183-b93f-6a90cdb5fc2b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="886.819179050448" y="1.17374876360033" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="Booleans" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="53298c6c-45d5-41f5-b9b9-325dc371dd31" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="179.819179050448" y="1.17374876360033" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Parts" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="29086f90-0984-497b-adb1-234b3a7a55b4" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="357.819179050448" y="5.38708209693366" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="f9432daf-158d-4f31-be4c-4fbbaf4df8b8" start_index="0" end="846b0f24-d998-4183-b93f-6a90cdb5fc2b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="53298c6c-45d5-41f5-b9b9-325dc371dd31" start_index="0" end="29086f90-0984-497b-adb1-234b3a7a55b4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="29086f90-0984-497b-adb1-234b3a7a55b4" start_index="0" end="f9432daf-158d-4f31-be4c-4fbbaf4df8b8" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

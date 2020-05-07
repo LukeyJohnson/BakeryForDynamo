@@ -1,0 +1,90 @@
+<Workspace Version="0.9.0.2912" X="-833.895958586079" Y="-431.753104609002" zoom="2.21436265193601" Name="Material.ImportAllFromProject" Description="This node will import (copy) all materials from specified project into current model. By default it will not override existing materials. " ID="0a3887d5-56fe-4fda-9b1b-b7d08bf71751" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="4a071b6d-b757-411a-82a7-2fcff3078173" type="PythonNodeModels.PythonNode" nickname="Python Script" x="715.782635983008" y="336.611536106617" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+RunIt = IN[1]
+
+class CustomCopyHandler(IDuplicateTypeNamesHandler):
+	def OnDuplicateTypeNamesFound(self, args):
+		return DuplicateTypeAction.UseDestinationTypes
+
+try:
+	if RunIt:
+		TransactionManager.Instance.EnsureInTransaction(doc)
+		errorReport = None
+		fileDoc = app.OpenDocumentFile(IN[0])
+		filter = ElementClassFilter(Material)
+		allMat = FilteredElementCollector(fileDoc).WherePasses(filter).ToElementIds()
+		trans = Autodesk.Revit.DB.Transform.Identity
+		co = CopyPasteOptions()
+		co.SetDuplicateTypeNamesHandler(CustomCopyHandler())
+		newIds = ElementTransformUtils.CopyElements(fileDoc, allMat, doc, trans, co)
+		output = []
+		if newIds != None:
+			for i in newIds:
+				output.append(doc.GetElement(i).ToDSType(False))
+		TransactionManager.Instance.TransactionTaskDone()
+	else:
+		errorReport = "Set Run it to true!"
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="34163261-56a2-4902-8592-4b8c8b21c74a" type="Dynamo.Nodes.Symbol" nickname="Input" x="540.259114076696" y="310.287315264142" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="FilePath" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="1d8b76e0-67e3-4bc2-bf87-e5661c238849" type="Dynamo.Nodes.Symbol" nickname="Input" x="499.03691911408" y="397.770392592139" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="RunIt:bool=false" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="3d8039ae-e659-430c-aea9-d0d6820ddd48" type="Dynamo.Nodes.Output" nickname="Output" x="885.385118514683" y="337.531876771945" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Material" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="4a071b6d-b757-411a-82a7-2fcff3078173" start_index="0" end="3d8039ae-e659-430c-aea9-d0d6820ddd48" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="34163261-56a2-4902-8592-4b8c8b21c74a" start_index="0" end="4a071b6d-b757-411a-82a7-2fcff3078173" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1d8b76e0-67e3-4bc2-bf87-e5661c238849" start_index="0" end="4a071b6d-b757-411a-82a7-2fcff3078173" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

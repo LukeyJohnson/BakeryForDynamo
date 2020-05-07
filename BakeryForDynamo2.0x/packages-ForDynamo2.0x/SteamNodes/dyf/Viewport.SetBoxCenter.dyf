@@ -1,0 +1,76 @@
+<Workspace Version="1.2.0.2690" X="-64" Y="123" zoom="1" Name="Viewport.SetBoxCenter" Description="API class" ID="ad18d18c-3f19-4122-9d00-80361ab3184f" Category="SteamNodes.View">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="eb895aee-8c18-4acf-aa46-300717fd0fec" type="PythonNodeModels.PythonNode" nickname="Python Script" x="326.200858117283" y="63" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#python nodes in dynamo 1.2
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+vport = []
+for i in IN[0]:
+	vport.append(UnwrapElement(i))
+pts=[]
+for i in IN[1]:
+	pts.append(UnwrapElement(i).ToXyz())
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for v,p in zip(vport,pts):
+	v.SetBoxCenter(p)
+			
+doc.Regenerate()
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT=IN[0]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2b1c2d62-6cb8-41f0-88a1-44a3cae8cebe" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="82.2008581172825" y="117" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Points" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0586d165-e995-45f4-b6e2-517b561f4099" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="82.2008581172825" y="33" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Viewport list" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4eba08bb-1f6a-4936-9ff1-bb2b595442aa" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="548.200858117282" y="62" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="eb895aee-8c18-4acf-aa46-300717fd0fec" start_index="0" end="4eba08bb-1f6a-4936-9ff1-bb2b595442aa" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2b1c2d62-6cb8-41f0-88a1-44a3cae8cebe" start_index="0" end="eb895aee-8c18-4acf-aa46-300717fd0fec" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0586d165-e995-45f4-b6e2-517b561f4099" start_index="0" end="eb895aee-8c18-4acf-aa46-300717fd0fec" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

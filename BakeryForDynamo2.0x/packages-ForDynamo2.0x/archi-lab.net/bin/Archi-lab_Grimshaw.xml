@@ -1,0 +1,829 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Archi-lab_Grimshaw</name>
+    </assembly>
+    <members>
+        <member name="T:Archilab.Grimshaw.Utilities.FilePathUtilities">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.FilePathUtilities.VerifyFilePath(System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Utilities.ListUtilities">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.ListUtilities.DropdownToList(System.Collections.Generic.List{System.Object})">
+            <summary>
+            
+            </summary>
+            <param name="inputList"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Utilities.ElementSelector">
+            <summary>
+                Utilities for retrieving elements
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.ElementSelector.GetWorksetById(System.Int32)">
+            <summary>
+                Workset selector.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Utilities.ScheduleType">
+            <summary>
+                View Schedule Types
+            </summary>
+        </member>
+        <member name="T:Archilab.Grimshaw.Utilities.FilterNumericValueRule">
+            <summary>
+                Parameter Filter Numeric Rules.
+            </summary>
+        </member>
+        <member name="T:Archilab.Grimshaw.Utilities.al_FilterStringRuleEvaluator">
+            <summary>
+                Parameter Filter String Rules.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Utilities.al_FilterStringRuleEvaluator.Rules">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.al_FilterStringRuleEvaluator.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.al_FilterStringRuleEvaluator.byName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Utilities.al_FilterNumericRuleEvaluator">
+            <summary>
+                Parameter Filter Numeric Rule Evaluator options.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Utilities.al_FilterNumericRuleEvaluator.Rules">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.al_FilterNumericRuleEvaluator.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.al_FilterNumericRuleEvaluator.byName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Utilities.al_WarningTypes">
+            <summary>
+                Enumeration of all Warning Types produced by a Warning Report.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Utilities.al_WarningTypes.Types">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.al_WarningTypes.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.al_WarningTypes.byName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Utilities.al_ViewTypes">
+            <summary>
+                View Types enumeration for View.ByType node.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Utilities.al_ViewTypes.Types">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.al_ViewTypes.#ctor">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Utilities.al_ViewTypes.byName(System.String)">
+            <summary>
+            
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.CsvParsers.Csv">
+            <summary>
+            CSV Parsing library.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.CsvParsers.Csv.ValuesByHeaderName(System.String)">
+            <summary>
+            Get values by header name. Use Headers component to get all the names.
+            </summary>
+            <param name="header">Name of the header.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.CsvParsers.Csv.ValuesByHeaderNumber(System.Int32)">
+            <summary>
+            Get values by header index. You can use ColumnCount to see how many are available or simply grab one row and inspect it.
+            </summary>
+            <param name="header">Index of the header to be retrieved.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.CsvParsers.Csv.ValuesByRowNumber(System.Int32)">
+            <summary>
+            Get values by row index. You can use RowCount to see how many are available or simply grab one column and inspect it.
+            </summary>
+            <param name="row">Index of the row to be  retrieved.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.CsvParsers.Csv.ValueByRowAndColumn(System.Int32,System.Int32)">
+            <summary>
+            Get single value by its row and column index.
+            </summary>
+            <param name="row">Row index.</param>
+            <param name="column">Column index.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.CsvParsers.Csv.RowNumberByHeaderAndString(System.String,System.String)">
+            <summary>
+            Get row number based on column and matching string.
+            </summary>
+            <param name="searchFor">Search string.</param>
+            <param name="header">Header name.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.CsvParsers.Csv.ByFilePath(System.Object)">
+            <summary>
+            Create CSV file to be parsed.
+            </summary>
+            <param name="filePath"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Archilab.Grimshaw.CsvParsers.Csv.Headers">
+            <summary>
+            Get Headers.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.CsvParsers.Csv.ColumnCount">
+            <summary>
+            Get Column count.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.CsvParsers.Csv.RowCount">
+            <summary>
+            Get Row count.
+            </summary>
+        </member>
+        <member name="T:Archilab.Grimshaw.Elements.Element">
+            <summary>
+                Methods and properties typically associated with Elements in Revit
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Element.GetWorksharingTooltipInfo(Revit.Elements.Element)">
+            <summary>
+            Returns worksharing information about element.
+            </summary>
+            <param name="element">Element to analyze.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Element.PhaseDemolished(Revit.Elements.Element)">
+            <summary>
+                Demolished Phase assigned to Element.
+            </summary>
+            <param name="element"></param>
+            <returns name="Phase"></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Element.Type(Revit.Elements.Element)">
+            <summary>
+                Get Element Type.
+            </summary>
+            <param name="element"></param>
+            <returns name="Type"></returns>
+            <search>element, type</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Element.Delete(Revit.Elements.Element)">
+            <summary>
+                Delete element from Revit DB.
+            </summary>
+            <param name="element">Element to delete.</param>
+            <returns></returns>
+            <search>delete, remove, element</search>
+        </member>
+        <member name="T:Archilab.Grimshaw.Elements.FamilyInstance">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.FamilyInstance.ByLine(Revit.Elements.FamilyType,Autodesk.DesignScript.Geometry.Line,Revit.Elements.Level)">
+            <summary>
+                New Family Instance by Curve
+            </summary>
+            <param name="familyType"></param>
+            <param name="point"></param>
+            <param name="level"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Elements.Parameter">
+            <summary>
+            Parameter related utilities.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Parameter.GetBuiltInParamterName(Revit.Elements.Element,System.String)">
+            <summary>
+            Returns name of the BuiltInParameter if such exists. 
+            </summary>
+            <param name="element">Element to query.</param>
+            <param name="name">Name of the parameter. In case that multiple parameters have the same name, first encountered name will be returned.</param>
+            <returns name="bipName">Name of the Bip.</returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Elements.Room">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Room.Name(Revit.Elements.Element)">
+            <summary>
+                Room Name
+            </summary>
+            <param name="room"></param>
+            <returns name="name">Name of the room.</returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Elements.Warning">
+            <summary>
+                Warning class used for parsing HTML Revit warnings.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.Warning.AssignedErrorMessage">
+            <summary>
+                Custom Error Message
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.Warning.ErrorMessage">
+            <summary>
+                Error Message
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.Warning.Elements">
+            <summary>
+                List of Elements
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.Warning.Rating">
+            <summary>
+                Rating of severity of warning where 1 is ignorable and 3 is severe.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Warning.AssignRating(Archilab.Grimshaw.Elements.WarningLibrary)">
+            <summary>
+                Assigns a rating to warning based on custom library of ratings.
+            </summary>
+            <param name="library">Custom library of Warnings and ratings.</param>
+            <returns name="Warning">Warning</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Warning.AssignErrorMessage(System.String)">
+            <summary>
+            Assign a custom error message to warning.
+            </summary>
+            <param name="message">Custom warning message.</param>
+            <returns name="Warning">Warning that custom message was assigned to.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Warning.WarningLibraryFromCSV(System.Object)">
+            <summary>
+                Creates a custom warning library that stores all ratings for warnings.
+            </summary>
+            <param name="filePath">File path to CSV file that contains all warnings/ratings.</param>
+            <returns name="WarningLibrary">Warning Library</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Warning.ParseHtml(System.Object)">
+            <summary>
+                Parse HTML Warning Report.
+            </summary>
+            <param name="filePath">File Path to HTML report.</param>
+            <returns name="Warnings">List of Warning objects.</returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Elements.WarningElement">
+            <summary>
+                Element Wrapper class for elements associated with Warnings.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningElement.Workset">
+            <summary>
+                Workset Name
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningElement.Category">
+            <summary>
+                Category Name
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningElement.Family">
+            <summary>
+                Family Name
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningElement.Type">
+            <summary>
+                Type Name
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningElement.Id">
+            <summary>
+                Revit Id
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningElement.DesignOptionSet">
+            <summary>
+                Design Option Set Name
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningElement.DesignOption">
+            <summary>
+                Design Option Name
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningElement.Rating">
+            <summary>
+                Warning rating on scale from 1-3 where 1 is ignorable and 3 is severe.
+            </summary>
+        </member>
+        <member name="T:Archilab.Grimshaw.Elements.WarningLibrary">
+            <summary>
+                Library of custom warnings and ratings.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.WarningLibrary.Ratings">
+            <summary>
+                Dictionary of stored Warning - Rating relationships.
+            </summary>
+        </member>
+        <member name="T:Archilab.Grimshaw.Elements.Workset">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.Workset.InternalWorksetId">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Workset.#ctor(Autodesk.Revit.DB.Workset)">
+            <summary>
+            
+            </summary>
+            <param name="workset"></param>
+        </member>
+        <member name="M:Archilab.Grimshaw.Elements.Workset.ByName(System.String)">
+            <summary>
+                Create Workset by Name.
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.Workset.Name">
+            <summary>
+                Workset Name
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Elements.Workset.Id">
+            <summary>
+                Workset Id
+            </summary>
+        </member>
+        <member name="T:Archilab.Grimshaw.List.List">
+            <summary>
+            List related utilities.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.List.List.ReplaceItemAtIndex(System.Collections.Generic.List{System.Object},System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Object})">
+            <summary>
+            Replace items in a list based on list of index numbers.
+            </summary>
+            <param name="list">List to operate on.</param>
+            <param name="index">List of index values.</param>
+            <param name="item">List of items to be used as replacements.</param>
+            <returns name="list">Modified list.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.List.List.SortListByAnother(System.Object[],System.Double[],System.Boolean)">
+            <summary>
+            Sort list by another list.
+            </summary>
+            <param name="list">List to be sorted.</param>
+            <param name="sortBy">List of numbers that will be used to sort by.</param>
+            <param name="reversed">If true order will be set to descending.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.List.List.ReverseComparer">
+            <summary>
+            Comparer class that reverses the order of sorting.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.List.List.ReverseComparer.Compare(System.Object,System.Object)">
+            <summary>
+            
+            </summary>
+            <param name="x"></param>
+            <param name="y"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Views.SchedulableField">
+            <summary>
+                Schedulable Field wrapper.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Views.SchedulableField.Name">
+            <summary>
+                Schedulable Field Name.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.SchedulableField.ToString">
+            <summary>
+                String override.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Views.ScheduleField">
+            <summary>
+                Schedule Field wrapper.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Views.ScheduleField.Name">
+            <summary>
+                Schedule Field Name.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.ScheduleField.ToString">
+            <summary>
+                String override.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Views.Sheet">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Views.Sheet.InternalElement">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Sheet.Revisions(Revit.Elements.Views.Sheet)">
+            <summary>
+                Revisions on Sheet.
+            </summary>
+            <param name="sheet">View Sheet.</param>
+            <returns name="Element">Revisions on Sheet.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Sheet.Viewports(Revit.Elements.Views.Sheet)">
+            <summary>
+                Viewports on sheet.
+            </summary>
+            <param name="sheet">View Sheet.</param>
+            <returns name="Element">Viewports on Sheet.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Sheet.CreatePlaceholder(System.String,System.String)">
+            <summary>
+                Create Placeholder sheet.
+            </summary>
+            <param name="name"></param>
+            <param name="number"></param>
+            <returns name="Sheet">View sheet</returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Views.View">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.GetNull">
+            <summary>
+                Get Null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.Filters(Revit.Elements.Views.View)">
+            <summary>
+                All View Filters applied to View.
+            </summary>
+            <param name="view">View to get Filters for.</param>
+            <returns name="viewFilter">List of View Filters applied to this View.</returns>
+            <search>filters, view</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.RemoveFilter(Revit.Elements.Views.View,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+                Remove view filter from view.
+            </summary>
+            <param name="view">View to remove view filter from.</param>
+            <param name="viewFilter">View filter to be removed.</param>
+            <returns name="view">View that filter was removed from.</returns>
+            <search>view, filter, remove, delete</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.AddFilter(Revit.Elements.Views.View,System.Collections.Generic.List{Revit.Elements.Element})">
+            <summary>
+                Add View Filter to given view.
+            </summary>
+            <param name="view">View to add Filter to.</param>
+            <param name="viewFilter">View Filter to add to View.</param>
+            <returns name="view">View with view filters applied to it.</returns>
+            <search>add, filter, view</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.SetFilterOverrides(Revit.Elements.Views.View,Revit.Elements.Element,Autodesk.Revit.DB.OverrideGraphicSettings)">
+            <summary>
+                Sets Filter Override Graphics.
+            </summary>
+            <param name="view">View to set the Overrides for.</param>
+            <param name="viewFilter">View Filter that Overrides will be applied to.</param>
+            <param name="graphicSettings">Override Graphics Settings.</param>
+            <returns name="view"></returns>
+            <search>override, graphics, settings, view, filter, override</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.SetCategoryOverrides(Revit.Elements.Views.View,System.Collections.Generic.List{Revit.Elements.Category},Autodesk.Revit.DB.OverrideGraphicSettings,System.Boolean)">
+            <summary>
+                Sets Graphics Settings for a Category Override in View.
+            </summary>
+            <param name="view">View to set the Overrides for.</param>
+            <param name="category">Category of elements that will be affected.</param>
+            <param name="graphicsSettings">Override Graphics Settings.</param>
+            <param name="hide">Turn Category visibility on or off.</param>
+            <returns name="view"></returns>
+            <search>category, override, graphics</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.SetFilterVisibility(Revit.Elements.Views.View,System.Collections.Generic.List{Revit.Elements.Element},System.Boolean)">
+            <summary>
+                Set View Filter Elements to be visible/hidden.
+            </summary>
+            <param name="view">View to set the Visibility for.</param>
+            <param name="viewFilter">View Filter that Visibility settings will be applied to.</param>
+            <param name="visible">Boolean toggle: True=Visible, False=Hidden</param>
+            <returns name="view"></returns>
+            <search>visibility, view, filter</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.IsViewTemplate(Revit.Elements.Views.View)">
+            <summary>
+                Checks if View is a View Template.
+            </summary>
+            <param name="view">View to check.</param>
+            <returns name="bool">Boolean value. True=View is View Template, False=View is not View Template.</returns>
+            <search>is template, view template, template</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.OverrideGraphicsSetting(DSCore.Color,System.Nullable{System.Int32},Revit.Elements.Element,DSCore.Color,Revit.Elements.Element,DSCore.Color,System.Nullable{System.Int32},Revit.Elements.Element,DSCore.Color,Revit.Elements.Element,System.Nullable{System.Int32},System.String,System.Boolean)">
+            <summary>
+                Override Graphics Setttings for the View Filter.
+            </summary>
+            <param name="projectionLineColor">Color of the Projection Lines.</param>
+            <param name="projectionLineWeight">Line Weight as integer between 1-16.</param>
+            <param name="projectionLinePattern">Line Pattern Element.</param>
+            <param name="projectionFillColor">Color of the Projection Fill.</param>
+            <param name="projectionFillPattern">Fill Pattern Element.</param>
+            <param name="cutLineColor">Color of the Cut Lines.</param>
+            <param name="cutLineWeight">Line Weight as integer between 1-16.</param>
+            <param name="cutLinePattern">Line Pattern Element.</param>
+            <param name="cutFillColor">Color of the Cut Fill.</param>
+            <param name="cutFillPattern">Fill Pattern Element.</param>
+            <param name="transparency">Transparency as integer between 1-100.</param>
+            <param name="detailLevel">Detail Level setting, ex: Coarse, Fine etc.</param>
+            <param name="halftone">Halftone settings as a boolean value True/False.</param>
+            <returns name="graphicsSettings">Graphics Settings used by the View Filter Override.</returns>
+            <search>graphics, settings, override</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.ViewTemplate(Revit.Elements.Views.View)">
+            <summary>
+                Get View Template applied to view.
+            </summary>
+            <param name="view">View to retrieve View Template from.</param>
+            <returns name="view">View Template applied to view.</returns>
+            <search>view, template</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.SetViewTemplate(Revit.Elements.Views.View,Revit.Elements.Views.View)">
+            <summary>
+                Set View Template for a View.
+            </summary>
+            <param name="view">View that template will be applied to.</param>
+            <param name="viewTemplate">View Template that will be applied to View.</param>
+            <returns name="view"></returns>
+            <search>set, view, template</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.RemoveViewTemplate(Revit.Elements.Views.View)">
+            <summary>
+                Removes View Template from given view.
+            </summary>
+            <param name="view">View to remove View Template from.</param>
+            <returns name="view">View that template was removed from.</returns>
+            <search>view, template, remove, delete</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.GetByType(System.String)">
+            <summary>
+                Get all views by type.
+            </summary>
+            <param name="viewType">View type to retrieve all views for. If View Template selected, 
+            3D View Templates will be excluded from returned View Templates (currently a Dynamo limitation).</param>
+            <returns name="view">Views that match view type.</returns>
+            <search>view, get all views, view type</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.View.IsTitleblockSchedule(Revit.Elements.Element)">
+            <summary>
+                Check if Schedule is Titleblock Schedule.
+            </summary>
+            <param name="view"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Archilab.Grimshaw.Views.ViewFilter">
+            <summary>
+                View Filters class.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.ViewFilter.CreateRule(System.Collections.Generic.List{Revit.Elements.Category},System.String,System.Object,System.String)">
+            <summary>
+                Parameter Rule for View Filters.
+            </summary>
+            <param name="category">Category that Filter will be applied to (used for filtering).</param>
+            <param name="parameterName">Parameter/BuiltInParameter name ex. ROOM_NAME.</param>
+            <param name="parameterValue">Parameter value to test against.</param>
+            <param name="ruleType">Filter Rule Type ex: Less Than.</param>
+            <returns name="rule">Filter Rule.</returns>
+            <search>rule, filter rule, filter</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.ViewFilter.CreateFilter(System.String,System.Collections.Generic.List{Revit.Elements.Category},System.Collections.Generic.List{Autodesk.Revit.DB.FilterRule})">
+            <summary>
+                Create View Filter by Category and Rules.
+            </summary>
+            <param name="name">Name of the View Filter to be created.</param>
+            <param name="category">List of Categories that Filter will be applied to.</param>
+            <param name="rule">List of Rules that will be applied to Filter.</param>
+            <returns name="viewFilter">New View Filter.</returns>
+            <search>view, filter, create</search>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.ViewFilter.OwnerViews(Revit.Elements.Element)">
+            <summary>
+                Returns Views that View Filter is applied to.
+            </summary>
+            <param name="viewFilter">View Filter Element.</param>
+            <returns name="view">Views.</returns>
+            <search>view, filter, owner</search>
+        </member>
+        <member name="T:Archilab.Grimshaw.Views.Schedule">
+            <summary>
+                Revit View Schedule.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Views.Schedule.InternalViewSchedule">
+            <summary>
+                An internal handle on Revit Element.
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Views.Schedule.InternalElement">
+            <summary>
+                Reference to the Element.
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Schedule.#ctor(Revit.Elements.Category,System.String,Archilab.Grimshaw.Utilities.ScheduleType)">
+            <summary>
+                Private constructor.
+            </summary>
+            <param name="category"></param>
+            <param name="name"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Schedule.InitViewSchedule(Revit.Elements.Category,System.String,Archilab.Grimshaw.Utilities.ScheduleType)">
+            <summary>
+                Initialize a ViewSchedule Element.
+            </summary>
+            <param name="category"></param>
+            <param name="name"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Schedule.InternalSetViewSchedule(Autodesk.Revit.DB.ViewSchedule)">
+            <summary>
+                Set the InternalViewSchedule, ElementId and UniqueId properties.
+            </summary>
+            <param name="view"></param>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Schedule.CreateKeySchedule(Revit.Elements.Category,System.String,System.String)">
+            <summary>
+                Create KeySchedule by Category and Name.
+            </summary>
+            <param name="category"></param>
+            <param name="name"></param>
+            <param name="type"></param>
+            <returns name="KeySchedule"></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Schedule.RemoveField(Archilab.Grimshaw.Views.ScheduleField)">
+            <summary>
+                Remove Field from Schedule.
+            </summary>
+            <param name="field"></param>
+            <returns name="Schedule"></returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Views.Schedule.AddField(System.Collections.Generic.IList{Archilab.Grimshaw.Views.SchedulableField})">
+            <summary>
+                Adds Parameter to Schedule
+            </summary>
+            <param name="field"></param>
+            <returns name="KeySchedule"></returns>
+        </member>
+        <member name="P:Archilab.Grimshaw.Views.Schedule.ScheduleFields">
+            <summary>
+                Get Schedule Fields
+            </summary>
+        </member>
+        <member name="P:Archilab.Grimshaw.Views.Schedule.SchedulableFields">
+            <summary>
+                Get Schedulable Fields
+            </summary>
+        </member>
+        <member name="T:Archilab.Grimshaw.Selection.Select">
+            <summary>
+                Collection of various selection nodes. 
+            </summary>
+        </member>
+        <member name="M:Archilab.Grimshaw.Selection.Select.GetAllWorksetsByKind(System.String)">
+            <summary>
+            Select all Worksets in the model.
+            </summary>
+            <param name="kind">Kind of a workset. By default "User Worksets" will be collected.</param>
+            <returns name="Workset">List of worksets that passed the filter.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Selection.Select.ByWorkset(Archilab.Grimshaw.Elements.Workset)">
+            <summary>
+            Returns all elements at a given workset.
+            </summary>
+            <param name="workset">Workset that we are filtering for.</param>
+            <returns name="Element">Elements that passed the workset filter.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Selection.Select.ByElementId(System.Object)">
+            <summary>
+                Select Element by Id
+            </summary>
+            <param name="id">ElementId, String, Guid or Integer id of the element.</param>
+            <returns name="Element">Found element or null.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Selection.Select.ByCategoryAndLevel(Revit.Elements.Category,Revit.Elements.Element)">
+            <summary>
+                Select Elements by Level and Category.
+            </summary>
+            <param name="category">Category to filter for.</param>
+            <param name="level">Level to filter for.</param>
+            <returns name="Element">Elements.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Selection.Select.ByCategoryAndDesignOption(Revit.Elements.Category,Revit.Elements.Element)">
+            <summary>
+                Select all elements by design option and category.
+            </summary>
+            <param name="category">Category to filter for.</param>
+            <param name="designOption">Design Option to filter for.</param>
+            <returns name="Element">Elements.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Selection.Select.ByCategoryAndView(Revit.Elements.Category,Revit.Elements.Views.View)">
+            <summary>
+                Select Elements by Category and View.
+            </summary>
+            <param name="category">Category to filter for.</param>
+            <param name="view">View to filter for.</param>
+            <returns name="Element">Element.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Selection.Select.ByParamterValue(System.Type,System.String,System.Object,System.Object,System.String)">
+            <summary>
+                Parameter value filter.
+            </summary>
+            <param name="elementType"></param>
+            <param name="parameterName"></param>
+            <param name="evaluator"></param>
+            <param name="value"></param>
+            <param name="rule"></param>
+            <returns name="Element">Element.</returns>
+        </member>
+        <member name="M:Archilab.Grimshaw.Selection.Select.GetNull">
+            <summary>
+                Get Null
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,71 @@
+<Workspace Version="1.2.0.2831" X="430.711649946943" Y="307.975053397906" zoom="2.05668026833428" Name="Shape Edit Floor With Points" Description="" ID="8a38e656-94da-418d-abe4-4d3e6e117b0a" Category="Bakery.Construction.Civil">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Curve" resolvedName="Autodesk.DesignScript.Geometry.Curve" assemblyName="ProtoGeometry.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="0b383179-4426-4bda-b5e4-a7b57eed5999" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0.871521697360095" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+xyzs = IN[0]
+slabshape = UnwrapElement(IN[1])
+successlist = list()
+faillist = list()
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+slabshape.SlabShapeEditor.ResetSlabShape()
+for item in xyzs:
+	try:
+		slabshape.SlabShapeEditor.DrawPoint(item.ToXyz())
+	except:
+		faillist.append(item)
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = slabshape, faillist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="bef775eb-aa92-4316-8dbe-4183683f7613" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FirstItem" x="423.747627069941" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e9963a85-b703-485e-9024-1fec79aa3438" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="points" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b1cc4569-f198-4f0c-a825-cfbdceb9704e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="floorElement" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4ecbfeca-2411-4036-8918-c22ea43af09b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="658.747627069941" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="item" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="0b383179-4426-4bda-b5e4-a7b57eed5999" start_index="0" end="bef775eb-aa92-4316-8dbe-4183683f7613" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bef775eb-aa92-4316-8dbe-4183683f7613" start_index="0" end="4ecbfeca-2411-4036-8918-c22ea43af09b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e9963a85-b703-485e-9024-1fec79aa3438" start_index="0" end="0b383179-4426-4bda-b5e4-a7b57eed5999" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b1cc4569-f198-4f0c-a825-cfbdceb9704e" start_index="0" end="0b383179-4426-4bda-b5e4-a7b57eed5999" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="dc84daf1-fbff-4a11-bed4-2dabb7b1e67f" annotationText="slab shape" left="240" top="-95.5284783026399" width="142.4" height="189.8" fontSize="36" InitialTop="0.871521697360095" InitialHeight="148.2" TextblockHeight="86.4" backgrouund="#FFA4E1FF">
+      <Models ModelGuid="0b383179-4426-4bda-b5e4-a7b57eed5999" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="70713768" eyeY="28056.734375" eyeZ="-149831808" lookX="-5228.28515625" lookY="-9429.4130859375" lookZ="-17713.998046875" upX="-0.0716738477349281" upY="0.9674152135849" upZ="-0.242838725447655" />
+  </Cameras>
+</Workspace>

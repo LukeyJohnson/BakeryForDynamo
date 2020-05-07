@@ -1,0 +1,114 @@
+<Workspace Version="0.9.0.2912" X="-510.263209068787" Y="-207.813794865263" zoom="2.05668026833428" Name="Elements in Space" Description="This node will take an input of Spaces and Elements and attempt to group all elements by Room that it is located in. For elements that are placed by Line and not a Point, a mid point of line will be used to determine location. " ID="1d764a3b-6501-419f-a78f-8a8ccc8a6946" Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="41c688b3-e571-411d-938b-e93a074f6078" type="PythonNodeModels.PythonNode" nickname="Python Script" x="534.613871214953" y="204.283394111887" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# This code is based on Family.InRoom node originally created
+# by Peter Kompolschek and published on Dynamo blog. Big thanks 
+# to Peter for sharing his work so graciously.
+
+import clr
+import sys
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def TryGetSpace(family, phase):
+	try:
+		inSpace = family.Space[phase]
+	except:
+		inSpace = None
+		pass
+	return inSpace
+
+def FamiliesInSpace(_space, _families, _doc):
+	outList = []
+	for family in _families:
+		location = family.Location
+		if type(location) == LocationPoint:
+			pt = location.Point
+		else:
+			pt = location.Curve.Evaluate(0.5, True)
+		if _space.IsPointInSpace(pt):
+			outList.append(family)
+		else:
+			for phase in _doc.Phases:
+				inSpace = TryGetSpace(family, phase)
+				if inSpace != None and inSpace.ToDSType(True).Name == _space.ToDSType(True).Name:
+					outList.append(family)
+	return outList
+
+try:
+	errorReport = None
+	families = []
+	for i in IN[0]:
+		families.append(UnwrapElement(i))
+	
+	spaces = []
+	for i in IN[1]:
+		if UnwrapElement(i).Area &gt; 0:
+			spaces.append(UnwrapElement(i))
+	
+	outData = [[] for i in range(len(spaces))]
+	for index, space in enumerate(spaces):
+		outData[index].extend(FamiliesInSpace(space, families, doc))
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = outData
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="3dd89257-0be2-4f88-bba4-1f36f5ab7320" type="Dynamo.Nodes.Symbol" nickname="Input" x="357.013785941299" y="171.545281149126" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="e9f6303f-91aa-4197-979b-3493749b1aa6" type="Dynamo.Nodes.Symbol" nickname="Input" x="361.779539933801" y="245.029530350918" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Space" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="67983f25-5946-4ee4-b50a-4e1cb4b1bf60" type="Dynamo.Nodes.Output" nickname="Output" x="705.14762620024" y="204.12205111749" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="41c688b3-e571-411d-938b-e93a074f6078" start_index="0" end="67983f25-5946-4ee4-b50a-4e1cb4b1bf60" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3dd89257-0be2-4f88-bba4-1f36f5ab7320" start_index="0" end="41c688b3-e571-411d-938b-e93a074f6078" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e9f6303f-91aa-4197-979b-3493749b1aa6" start_index="0" end="41c688b3-e571-411d-938b-e93a074f6078" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

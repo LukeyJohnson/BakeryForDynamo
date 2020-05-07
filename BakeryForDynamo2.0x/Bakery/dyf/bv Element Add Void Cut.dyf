@@ -1,0 +1,68 @@
+<Workspace Version="1.1.0.2094" X="-1147.1005950629" Y="-600.191420042839" zoom="1.78359936238281" Name="bv Element Add Void Cut" Description="" ID="f26dc5bd-00ca-477e-a6a6-2780b0a239fe" Category="Bakery.Dynamo.ForkedNodes">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bb767fc2-97ef-4a78-b15e-d13ce6834527" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="741" y="496.195608008706" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element(s)ToBeCut" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="50687b26-4ea0-40cb-903b-2958a5bc5410" type="PythonNodeModels.PythonNode" nickname="Python Script" x="952.740543721423" y="495" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script>import clr
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+clr.AddReference("RevitAPI")
+from Autodesk.Revit.DB import *
+
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+
+def output1(l1):
+	if len(l1) == 1: return l1[0]
+	else: return l1
+
+ToBeCut = UnwrapElement(tolist(IN[0]))
+Cuts = UnwrapElement(tolist(IN[1]))
+out1 = []
+
+cutU = InstanceVoidCutUtils
+TransactionManager.Instance.EnsureInTransaction(doc)
+for i in xrange(len(ToBeCut)):
+	if cutU.CanBeCutWithVoid(ToBeCut[i]):
+		count = 0
+		for j in xrange(len(Cuts)):
+			if cutU.IsVoidInstanceCuttingElement(Cuts[j]) and \
+			not cutU.InstanceVoidCutExists(ToBeCut[i],Cuts[j]):
+				try: 
+					cutU.AddInstanceVoidCut(doc,ToBeCut[i],Cuts[j])
+					count += 1
+				except: pass
+		out1.append("%s out of %s cuts created." %(count, len(Cuts)) )
+	else:
+		out1.append("Element could not be cut")
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = output1(out1)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="695b1b81-ee3c-4c3e-8717-bcc9af87647d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="741.597804004353" y="552.340379325322" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="cuttingElements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b88293b3-1fc6-4448-83d6-1b96fb1d0f5d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1122.05253949943" y="496.793412013058" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="result" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="bb767fc2-97ef-4a78-b15e-d13ce6834527" start_index="0" end="50687b26-4ea0-40cb-903b-2958a5bc5410" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="50687b26-4ea0-40cb-903b-2958a5bc5410" start_index="0" end="b88293b3-1fc6-4448-83d6-1b96fb1d0f5d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="695b1b81-ee3c-4c3e-8717-bcc9af87647d" start_index="0" end="50687b26-4ea0-40cb-903b-2958a5bc5410" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

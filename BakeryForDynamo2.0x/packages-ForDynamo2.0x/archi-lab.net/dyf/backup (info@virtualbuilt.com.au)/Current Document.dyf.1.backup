@@ -1,0 +1,46 @@
+<Workspace Version="1.2.0.2690" X="-233.899770805061" Y="237.499569308239" zoom="1.703916824555" Name="Current Document" Description="Retrieves Current Document" ID="5b9b1cd5-c248-4799-b689-6b31fe525bd2" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="bc4e2620-c495-4b40-ab1d-00c8d53d10f6" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="573.129112121219" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="c72ac746-cf87-49fa-8df3-4b6cebb7871a" type="PythonNodeModels.PythonNode" nickname="Python Script" x="349.746496109775" y="-5.55214956877997" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import DocumentManager
+import clr
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+try:
+	errorReport = None
+	doc = DocumentManager.Instance.CurrentDBDocument
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = doc
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="c72ac746-cf87-49fa-8df3-4b6cebb7871a" start_index="0" end="bc4e2620-c495-4b40-ab1d-00c8d53d10f6" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

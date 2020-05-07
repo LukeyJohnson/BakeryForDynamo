@@ -1,0 +1,34 @@
+<Workspace Version="1.0.0.1180" X="-195.931240235894" Y="326.341119355759" zoom="1.78359936238281" Name="Tool.Toggle" Description="Offers 2 ways for output" ID="b3af2bbc-7fec-4d95-bbb2-a8cc5846b70b" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Logic.If guid="73cf8e98-29ab-472d-847b-d07a84adcfc9" type="CoreNodeModels.Logic.If" nickname="If" x="673.165013669305" y="27.1012949306427" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8f8a8c8f-2f44-4e4e-b788-64236aba5863" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="==" x="454.165013669305" y="-63.8987050693573" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Operators" function="==@var[]..[],var[]..[]" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="7e6131e8-02d6-4eee-a950-a6d0b9168756" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="259.165013669305" y="-6.68537173602394" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="746ead27-d4dc-4c3f-957f-aac71387999f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="454.165013669305" y="70.1012949306427" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Function#1" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8cb88912-4a8d-48b9-a6b1-5fb7fcb9deec" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="895.165013669305" y="27.1012949306427" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f1615ebc-3a03-49e9-92d8-9b599d8e583d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="259.165013669305" y="-90.8987050693573" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Boolean:bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="fc08c5dd-84e0-4346-8c12-9309d597e1fa" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="454.165013669305" y="153.101294930643" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Function#2" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="73cf8e98-29ab-472d-847b-d07a84adcfc9" start_index="0" end="8cb88912-4a8d-48b9-a6b1-5fb7fcb9deec" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8f8a8c8f-2f44-4e4e-b788-64236aba5863" start_index="0" end="73cf8e98-29ab-472d-847b-d07a84adcfc9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7e6131e8-02d6-4eee-a950-a6d0b9168756" start_index="0" end="8f8a8c8f-2f44-4e4e-b788-64236aba5863" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="746ead27-d4dc-4c3f-957f-aac71387999f" start_index="0" end="73cf8e98-29ab-472d-847b-d07a84adcfc9" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f1615ebc-3a03-49e9-92d8-9b599d8e583d" start_index="0" end="8f8a8c8f-2f44-4e4e-b788-64236aba5863" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fc08c5dd-84e0-4346-8c12-9309d597e1fa" start_index="0" end="73cf8e98-29ab-472d-847b-d07a84adcfc9" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

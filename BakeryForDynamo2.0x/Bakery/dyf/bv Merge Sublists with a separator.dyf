@@ -1,0 +1,30 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="bv Merge Sublists with a separator" Description="forked from Rhythm, has problems with string like }---{" ID="fe6d3641-95d2-4a4a-bbd1-b526ab64d474" Category="Bakery.ZZ">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="ae29a289-1149-404e-a272-12fa26a9f98b" type="PythonNodeModels.PythonNode" nickname="Python Script" x="354.365010799136" y="80.6414686825054" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>initial = IN[0]
+result = map(IN[1].join, initial)
+OUT=result</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4b32f2fc-a4f8-4308-9571-9ff3f22fcc94" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="553.365010799136" y="80.6414686825054" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6f244dcb-e6c6-4eec-b718-b95b4df5bb81" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="106.911447084233" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="List" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="81105beb-2201-4236-804b-857ed870db87" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="10" y="170.539956803456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Character" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ae29a289-1149-404e-a272-12fa26a9f98b" start_index="0" end="4b32f2fc-a4f8-4308-9571-9ff3f22fcc94" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6f244dcb-e6c6-4eec-b718-b95b4df5bb81" start_index="0" end="ae29a289-1149-404e-a272-12fa26a9f98b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="81105beb-2201-4236-804b-857ed870db87" start_index="0" end="ae29a289-1149-404e-a272-12fa26a9f98b" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

@@ -1,0 +1,151 @@
+<Workspace Version="1.2.0.2690" X="221.270070634529" Y="76.9656893698061" zoom="1.2198072017255" Name="Schedule Formatting" Description="This node will allow you to control schedule formatiing options like column width, whether a column is hidden, column heading etc. " ID="70da809f-7851-40e0-9f6a-f32d74700bdc" Category="Archi-lab_Grimshaw.Views.Schedule">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="ccf076ed-2b16-4ccf-9910-396107f5c926" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="-0.819801685533093" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="7">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <PortInfo index="6" default="False" />
+      <Script>#Copyright(c) 2014, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+_keySchedule = UnwrapElement(IN[0])
+_paramName = IN[1]
+_columnHeading = IN[2]
+_hidden = IN[3]
+_headingOrientation = IN[4]
+_horizontalAlignment = IN[5]
+_sheetColumnWidth = IN[6]
+
+def getField(schedule, name):
+	definition = schedule.Definition
+	count = definition.GetFieldCount()
+	for i in range(0, count, 1):
+		if definition.GetField(i).GetName() == name:
+			field = definition.GetField(i)
+	return field
+
+def formatColumn(field, heading, hidden, hOrientation, hAlign, sWidth):
+	message = None
+	if heading != None:
+		field.ColumnHeading = heading
+	if hidden != None:
+		field.IsHidden = hidden
+	if hOrientation != None:
+		if hOrientation == "Horizontal":
+			ho = ScheduleHeadingOrientation.Horizontal
+			field.HeadingOrientation = ho
+		elif hOrientation == "Vertical":
+			ho = ScheduleHeadingOrientation.Vertical
+			field.HeadingOrientation = ho
+		else:
+			message = "Schedule Heading Orientation can only \nbe set to Horizontal or Vertical. \nPlease check your spelling."
+	if hAlign != None:
+		if hAlign == "Left":
+			ha = ScheduleHorizontalAlignment.Left
+			field.HorizontalAlignment = ha
+		elif hAlign == "Center":
+			ha = ScheduleHorizontalAlignment.Center
+			field.HorizontalAlignment = ha
+		elif hAlign == "Right":
+			ha = ScheduleHorizontalAlignment.Right
+			field.HorizontalAlignment = ha
+		else:
+			message = "Schedule Horizontal Alignment can only \nbe set to Left, Center or Right. \nPlease check your spelling."
+	if sWidth != None:
+		field.SheetColumnWidth = sWidth
+	return message
+
+#"Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+message = None
+if type(_paramName) == list:
+	for i, j, k, l, m, n in zip(_paramName, _columnHeading, _hidden, _headingOrientation, _horizontalAlignment, _sheetColumnWidth):
+		scheduleField = getField(_keySchedule, i)
+		message = formatColumn(scheduleField, j, k, l, m , n)
+else:
+	scheduleField = getField(_keySchedule, _paramName)
+	message = formatColumn(scheduleField, _columnHeading, _hidden, _headingOrientation, _horizontalAlignment, _sheetColumnWidth)
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+if message == None:
+	OUT = 0
+else:
+	OUT = '\n'.join('{:^35}'.format(s) for s in message.split('\n'))</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ee37549b-0d21-43b8-8434-9c350e27c6d3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Schedule" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5e44d755-5a9b-4dcf-be82-f785d2887d55" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-2" y="60" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Parameter Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0d8eb2aa-e9a4-489a-ad4f-bde4af13b067" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-2" y="118" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Column Heading" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b34f8d9f-082a-4b43-9393-b8ec304b41d5" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="177.924876164864" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Hidden" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4fb23fcd-11bf-484b-805b-7324c873cf72" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-3.82472885251389" y="237.406293322035" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Heading Orientation" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="883fe7c9-7aed-46e4-b0df-cc0f4c763c03" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-2.5498192350093" y="293.062981626692" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Horizontal Align" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="fdc8eb67-2cdf-4620-8219-72908b37a1f2" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-1.27490961750459" y="348.719669931348" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Column Width" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8497f469-62dc-4014-a6c2-0742ad00c368" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ccf076ed-2b16-4ccf-9910-396107f5c926" start_index="0" end="8497f469-62dc-4014-a6c2-0742ad00c368" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ee37549b-0d21-43b8-8434-9c350e27c6d3" start_index="0" end="ccf076ed-2b16-4ccf-9910-396107f5c926" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5e44d755-5a9b-4dcf-be82-f785d2887d55" start_index="0" end="ccf076ed-2b16-4ccf-9910-396107f5c926" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0d8eb2aa-e9a4-489a-ad4f-bde4af13b067" start_index="0" end="ccf076ed-2b16-4ccf-9910-396107f5c926" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b34f8d9f-082a-4b43-9393-b8ec304b41d5" start_index="0" end="ccf076ed-2b16-4ccf-9910-396107f5c926" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4fb23fcd-11bf-484b-805b-7324c873cf72" start_index="0" end="ccf076ed-2b16-4ccf-9910-396107f5c926" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="883fe7c9-7aed-46e4-b0df-cc0f4c763c03" start_index="0" end="ccf076ed-2b16-4ccf-9910-396107f5c926" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fdc8eb67-2cdf-4620-8219-72908b37a1f2" start_index="0" end="ccf076ed-2b16-4ccf-9910-396107f5c926" end_index="6" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

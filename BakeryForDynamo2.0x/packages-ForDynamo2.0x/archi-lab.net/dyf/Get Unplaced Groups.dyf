@@ -1,0 +1,58 @@
+<Workspace Version="1.2.0.2690" X="-100.08" Y="205.3925" zoom="1.1575" Name="Get Unplaced Groups" Description="This node will retrieve all unplaced groups in the model." ID="7c228465-9393-4ed3-8b9b-8d8dd1278aca" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="377090d1-9152-429c-aeab-f81bef768a97" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.Name" x="362.884026948831" y="99.1513703974628" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.Name">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <PythonNodeModels.PythonNode guid="becfc883-7b73-4f58-a2c1-fcd819ca4fd9" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+groups = FilteredElementCollector(doc).OfClass(GroupType)
+unplacedGroups = []
+for i in groups:
+	gInstances = i.Groups
+	if gInstances.IsEmpty == 1:
+		unplacedGroups.append(i)
+OUT = unplacedGroups</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="5f052b6d-c926-4479-97aa-a80c1e7586ca" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="585.884026948831" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Group Names" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="22ff13af-a88f-41c0-bfb3-ce72e80bc475" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="588.622030237581" y="-62.7580993520518" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Groups" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="377090d1-9152-429c-aeab-f81bef768a97" start_index="0" end="5f052b6d-c926-4479-97aa-a80c1e7586ca" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="becfc883-7b73-4f58-a2c1-fcd819ca4fd9" start_index="0" end="377090d1-9152-429c-aeab-f81bef768a97" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="becfc883-7b73-4f58-a2c1-fcd819ca4fd9" start_index="0" end="22ff13af-a88f-41c0-bfb3-ce72e80bc475" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

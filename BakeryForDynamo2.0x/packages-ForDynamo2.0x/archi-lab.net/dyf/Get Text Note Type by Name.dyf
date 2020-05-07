@@ -1,0 +1,72 @@
+<Workspace Version="1.2.0.2690" X="23" Y="79" zoom="1" Name="Get Text Note Type by Name" Description="This node will select a text note type by name. " ID="1faeccaf-2596-4bfd-bfe0-b5af61981a86" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="f132b970-dc67-44cc-8d0b-2bbafb4263e4" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Analysis import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+typeName = IN[0]
+
+#get text note types
+textNoteTypes = FilteredElementCollector(doc).OfClass(TextNoteType).ToElements()
+bip = BuiltInParameter.ALL_MODEL_TYPE_NAME
+textType = []
+for i in textNoteTypes:
+	if i.get_Parameter(bip).AsString() == typeName:
+		textType.append(i)
+	else:
+		message = "Text Type with specified name \ndoes not exists. Please specify a \ndifferent name."
+		
+#Assign your output to the OUT variable
+if len(textType) != 0:
+	OUT = textType[0]
+else:
+	OUT = '\n'.join('{:^35}'.format(s) for s in message.split('\n'))</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e7bb394b-dfed-4021-99da-c9c62fe948f3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="dcfaa347-8853-4f21-ba49-f426db40f7a1" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Text Note Type" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="f132b970-dc67-44cc-8d0b-2bbafb4263e4" start_index="0" end="dcfaa347-8853-4f21-ba49-f426db40f7a1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e7bb394b-dfed-4021-99da-c9c62fe948f3" start_index="0" end="f132b970-dc67-44cc-8d0b-2bbafb4263e4" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

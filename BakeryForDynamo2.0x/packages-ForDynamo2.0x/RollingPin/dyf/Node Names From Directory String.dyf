@@ -1,0 +1,51 @@
+<Workspace Version="1.2.1.3083" X="30.0000000000001" Y="314.35646636593" zoom="0.781662344109518" Name="Node Names From Directory String" Description="" ID="8c20a187-e3e4-4b1f-b4aa-7fce09229f25" Category="RollingPin.General">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Input.StringInput guid="61a2361a-129a-4112-bb4f-13bc28a52bf2" type="CoreNodeModels.Input.StringInput" nickname="String" x="332.242133901212" y="297.709835526597" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>.</System.String>
+      <System.String value="." />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="34e20506-12d6-490c-b454-32daaf5c6b7a" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Summary and Node Search for a Folder of DYFs" x="431.627625370034" y="-8.19801685533122" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="e59d15d7-0550-4052-8fb6-a95798a420c1" />
+      <Name value="Summary and Node Search for a Folder of DYFs" />
+      <Description value="can search for a node and tell you what file it is in" />
+      <Inputs>
+        <Input value="Directory Path" />
+        <Input value="node name to search for" />
+      </Inputs>
+      <Outputs>
+        <Output value="all node names" />
+        <Output value="all file names" />
+        <Output value="does directory contain ref to search term" />
+        <Output value="which file contains the reference" />
+        <Output value="unique nodes referenced" />
+        <Output value="clean source node names from files" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Watch guid="0cc2b456-2162-41db-96ea-b7abd4d7702c" type="CoreNodeModels.Watch" nickname="Watch" x="781.561341810374" y="378.941597356617" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ef79a831-ee96-481a-a829-f18ccecbb843" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dir string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="eb718c58-5fa7-496a-a397-4cbbe93f437e" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1146.56134181037" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="node names" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="61a2361a-129a-4112-bb4f-13bc28a52bf2" start_index="0" end="34e20506-12d6-490c-b454-32daaf5c6b7a" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="34e20506-12d6-490c-b454-32daaf5c6b7a" start_index="5" end="0cc2b456-2162-41db-96ea-b7abd4d7702c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0cc2b456-2162-41db-96ea-b7abd4d7702c" start_index="0" end="eb718c58-5fa7-496a-a397-4cbbe93f437e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ef79a831-ee96-481a-a829-f18ccecbb843" start_index="0" end="34e20506-12d6-490c-b454-32daaf5c6b7a" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="fa219b0f-8dc8-4be0-9f2b-13df99d9cd79" annotationText="use . for wildcard" left="322.242133901212" top="244.509835526597" width="80.8" height="121" fontSize="18" InitialTop="297.709835526597" InitialHeight="98" TextblockHeight="43.2" backgrouund="#FFC1D676">
+      <Models ModelGuid="61a2361a-129a-4112-bb4f-13bc28a52bf2" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+</Workspace>

@@ -1,0 +1,94 @@
+<Workspace Version="1.2.1.3083" X="-382.880181755198" Y="195.547074842756" zoom="1.00600419002725" Name="Compare Two IFCs by GUIDs" Description="this version makes Guids 'unique' so only reports completely new or deleted, not when items are 'split'." ID="44c92135-3c00-4cb0-8f47-88495e76b32b" Category="Bakery.BIM.IFC">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="3e23a357-3a14-4821-ae71-a71e666894a1" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Unique GUIDs from IFC File" x="291.155047050852" y="248.1300162136" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="bba0904e-330e-4e5e-8150-7ace2ffa57fa" />
+      <Name value="Get Unique GUIDs from IFC File" />
+      <Description value="input is File Path to IFC" />
+      <Inputs>
+        <Input value="path" />
+      </Inputs>
+      <Outputs>
+        <Output value="unique list matching .NET" />
+        <Output value="total list matching .NET" />
+        <Output value="total list matching IFC format" />
+        <Output value="unique list matching IFC format" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="1b84d33e-deb7-4f43-b10f-864c383c13ae" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Unique GUIDs from IFC File" x="291.187349274343" y="566.922416843829" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="bba0904e-330e-4e5e-8150-7ace2ffa57fa" />
+      <Name value="Get Unique GUIDs from IFC File" />
+      <Description value="input is File Path to IFC" />
+      <Inputs>
+        <Input value="path" />
+      </Inputs>
+      <Outputs>
+        <Output value="unique list matching .NET" />
+        <Output value="total list matching .NET" />
+        <Output value="total list matching IFC format" />
+        <Output value="unique list matching IFC format" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="91b66cba-750b-497d-826b-f2f126317c9c" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Compare Two Lists by Item and Return Item Differences" x="1065.35343838933" y="396.381827537559" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="93ec3e03-cf0d-474f-8090-014a4d811114" />
+      <Name value="Compare Two Lists by Item and Return Item Differences" />
+      <Description value="" />
+      <Inputs>
+        <Input value="listONE" />
+        <Input value="listTWO" />
+      </Inputs>
+      <Outputs>
+        <Output value="inListTWObutNotInListOne" />
+        <Output value="inListONEbutNotInListTwo" />
+        <Output value="same?" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Watch guid="8c024d0f-f623-47ca-9646-fef6dad49178" type="CoreNodeModels.Watch" nickname="Watch" x="1687.07364942392" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <CoreNodeModels.Watch guid="b6da753a-1ec9-4b4a-a330-42bf547b9eb4" type="CoreNodeModels.Watch" nickname="Watch" x="1682.24325624046" y="528.122988057812" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="12319450-7367-475f-bf1f-b695de33d085" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-0.666666666666742" y="486.666666666667" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="newerIFCfile" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="57be89d1-30d5-468e-a964-22501d8ea974" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="2052.07364942392" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="addedToNewFile" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e1ecd444-df11-44a9-9955-9f71ce89276d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="2193.15454934698" y="350.002922832109" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="removedFromNewFile" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1ade76f9-9dd7-4d99-ac4e-1736534c07ae" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="34.7547741883395" y="261.696785425921" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="oldIFCfile" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="3e23a357-3a14-4821-ae71-a71e666894a1" start_index="3" end="91b66cba-750b-497d-826b-f2f126317c9c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1b84d33e-deb7-4f43-b10f-864c383c13ae" start_index="3" end="91b66cba-750b-497d-826b-f2f126317c9c" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="91b66cba-750b-497d-826b-f2f126317c9c" start_index="0" end="8c024d0f-f623-47ca-9646-fef6dad49178" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="91b66cba-750b-497d-826b-f2f126317c9c" start_index="1" end="b6da753a-1ec9-4b4a-a330-42bf547b9eb4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8c024d0f-f623-47ca-9646-fef6dad49178" start_index="0" end="57be89d1-30d5-468e-a964-22501d8ea974" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b6da753a-1ec9-4b4a-a330-42bf547b9eb4" start_index="0" end="e1ecd444-df11-44a9-9955-9f71ce89276d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="12319450-7367-475f-bf1f-b695de33d085" start_index="0" end="1b84d33e-deb7-4f43-b10f-864c383c13ae" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1ade76f9-9dd7-4d99-ac4e-1736534c07ae" start_index="0" end="3e23a357-3a14-4821-ae71-a71e666894a1" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="377702e0-c786-4031-a232-c2cf03bc8d11" annotationText="new items" left="1677.07364942392" top="-30" width="269.333333333333" height="407.666666666667" fontSize="14" InitialTop="0" InitialHeight="407.666666666667" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="8c024d0f-f623-47ca-9646-fef6dad49178" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="32cf935f-315c-436b-aa5f-96b5be1fe022" annotationText="items removed from new file" left="1672.24325624046" top="484.789654724479" width="128" height="156.333333333333" fontSize="14" InitialTop="528.122988057812" InitialHeight="407.666666666667" TextblockHeight="33.3333333333333" backgrouund="#FFC1D676">
+      <Models ModelGuid="b6da753a-1ec9-4b4a-a330-42bf547b9eb4" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

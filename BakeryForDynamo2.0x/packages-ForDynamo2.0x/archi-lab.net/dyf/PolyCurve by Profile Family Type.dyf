@@ -1,0 +1,98 @@
+<Workspace Version="1.2.0.2690" X="58.64" Y="71.4475" zoom="1.1575" Name="PolyCurve by Profile Family Type" Description="It takes an input of a profile family type and extract curves from it converting them to polycurves and curve segments for use in Dynamo (sweeps)." ID="ef877af9-cc74-41b9-9d2d-acac6a601186" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="64dcc65d-5ce3-433e-bd39-63fdf6fba304" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+#name = str(IN[0].Name)
+type = UnwrapElement(IN[0].Family.Name)
+name = UnwrapElement(IN[0].Name)
+
+#select family instance by name
+families = FilteredElementCollector(doc).OfClass(Family)
+
+allTypeNames = []
+for i in families:
+	familyTypeSet = i.Symbols
+	elemIter = familyTypeSet.ForwardIterator()
+	elemIter.Reset()
+	while elemIter.MoveNext():
+		curElem = elemIter.Current
+		if curElem.ToDSType(True).Name == name and i.Name == type:
+			family = curElem.Family
+
+#extract profile curves from family(sketch)
+message = None
+try:
+	famDoc = doc.EditFamily(family)
+	famCollector = FilteredElementCollector(famDoc)
+	sketch = famCollector.OfClass(Sketch)
+	#convert revit geometry to DS Geometry (lines, arc etc)
+	for i in sketch:
+		cArray = list(i.Profile)
+	cArray[:] = [[Revit.GeometryConversion.RevitToProtoCurve.ToProtoType(y, True ) for y in x] for x in cArray]
+except:
+	message = "Could not obtain this family. \nPossible reasons: System Family, \nFamily does not contain sketch loops \n(simple profile family)"
+	pass
+
+#Assign your output to the OUT variable
+if message == None:
+	OUT = cArray
+else:
+	OUT = '\n'.join('{:^35}'.format(s) for s in message.split('\n'))</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="2fb411d6-9315-47d7-92bb-c21beadac5bc" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="PolyCurve.ByJoinedCurves" x="412.566925046641" y="0.372977835140659" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.PolyCurve.ByJoinedCurves@Autodesk.DesignScript.Geometry.Curve[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e432f056-8e94-41c3-afd8-82bc530dcdda" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Family Type" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="1e27f696-ad4b-42eb-be12-45e9ba4dc3fb" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="650.43085593217" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Poly Curve(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="65f0902f-0ea4-4bc8-84c0-e0c23ee1da66" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="643.43085593217" y="73" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Curve Segments" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="64dcc65d-5ce3-433e-bd39-63fdf6fba304" start_index="0" end="2fb411d6-9315-47d7-92bb-c21beadac5bc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="64dcc65d-5ce3-433e-bd39-63fdf6fba304" start_index="0" end="65f0902f-0ea4-4bc8-84c0-e0c23ee1da66" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2fb411d6-9315-47d7-92bb-c21beadac5bc" start_index="0" end="1e27f696-ad4b-42eb-be12-45e9ba4dc3fb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e432f056-8e94-41c3-afd8-82bc530dcdda" start_index="0" end="64dcc65d-5ce3-433e-bd39-63fdf6fba304" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

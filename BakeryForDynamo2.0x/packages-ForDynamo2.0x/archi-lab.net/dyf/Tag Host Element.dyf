@@ -1,0 +1,83 @@
+<Workspace Version="0.8.2.2311" X="-175.54201875" Y="-97.4106" zoom="1.33823125" Name="Tag Host Element" Description="This node will retrieve an element that is hosting a given tag. " ID="21eedbe3-a425-4f41-9af8-68768501bec6" Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="43a77323-c502-4f5e-b101-bbb251a8c59b" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="571" y="290" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import Element wrapper extension methods
+clr.AddReference('RevitNodes')
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference('RevitAPI')
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+if isinstance(IN[0], list):
+	elem = [UnwrapElement(i) for i in IN[0]]
+else:
+	elem = [UnwrapElement(IN[0])]
+
+def ProcessList(_func, _list):
+    return map( lambda x:
+    process_list(_func, x) if type(x)==list else _func(x), _list )
+
+def GetHostElement(tag):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	hostElemId = tag.TaggedLocalElementId
+	hostElem = doc.GetElement(hostElemId)
+	return hostElem
+
+try:
+	errorReport = None
+	output = ProcessList(GetHostElement, elem)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="7ef86a3d-8bd3-4d88-a9f8-ed0b24889487" type="Dynamo.Nodes.Symbol" nickname="Input" x="441.285479434141" y="284.263724972795" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Tag" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="8175a4cd-e5b2-4d3d-813f-f700f8352200" type="Dynamo.Nodes.Output" nickname="Output" x="742.429246626844" y="296.967060065291" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="43a77323-c502-4f5e-b101-bbb251a8c59b" start_index="0" end="8175a4cd-e5b2-4d3d-813f-f700f8352200" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7ef86a3d-8bd3-4d88-a9f8-ed0b24889487" start_index="0" end="43a77323-c502-4f5e-b101-bbb251a8c59b" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

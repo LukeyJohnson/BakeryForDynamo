@@ -1,0 +1,52 @@
+<Workspace Version="1.2.1.3083" X="103.079123566221" Y="198.285904365378" zoom="0.888789228297156" Name="bv Collector for Sheets" Description="forked from spring nodes" ID="02693d10-43a0-4a61-8bde-32409f0b6232" Category="Bakery.Dynamo.ForkedNodes">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="d88fc1f8-82ac-4c1e-aa1e-63621ea461a0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-48.8453176252402" y="-74.539949201694" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="value" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="314a75d8-adcd-4dde-a6aa-2a959b297fc5" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="549.923647837994" y="12.2202469817898" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="exact match" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="5318d51b-d021-43c7-b55b-5c34193ad0b0" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="552.120625783504" y="73.2559467877923" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="partial match" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="13d71004-e4d6-4d77-b571-7a8a804b3fc9" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-71.009082589745" y="227.409926510926" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="NameOrNumber:bool = true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="4943bd2a-e24b-47bc-9320-d2b944816e4b" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Springs.Collector.Sheets" x="328.35320820478" y="243.581816041169" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="True" />
+      <PortInfo index="2" default="True" />
+      <ID value="a652302d-7105-4008-bcad-1ad0c483e40d" />
+      <Name value="Springs.Collector.Sheets" />
+      <Description value="Search for sheets by either their name or their number. Use a false boolean switch to search by number." />
+      <Inputs>
+        <Input value="searchFor" />
+        <Input value="NameOrNumber" />
+        <Input value="refresh" />
+      </Inputs>
+      <Outputs>
+        <Output value="exact match" />
+        <Output value="partial match" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Input.BoolSelector guid="6a4d1218-c19a-4949-986e-3a5ad46f5096" type="CoreNodeModels.Input.BoolSelector" nickname="Boolean" x="75.2944278611405" y="343.216838431312" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Boolean>True</System.Boolean>
+    </CoreNodeModels.Input.BoolSelector>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="d88fc1f8-82ac-4c1e-aa1e-63621ea461a0" start_index="0" end="4943bd2a-e24b-47bc-9320-d2b944816e4b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="13d71004-e4d6-4d77-b571-7a8a804b3fc9" start_index="0" end="4943bd2a-e24b-47bc-9320-d2b944816e4b" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4943bd2a-e24b-47bc-9320-d2b944816e4b" start_index="0" end="314a75d8-adcd-4dde-a6aa-2a959b297fc5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4943bd2a-e24b-47bc-9320-d2b944816e4b" start_index="1" end="5318d51b-d021-43c7-b55b-5c34193ad0b0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6a4d1218-c19a-4949-986e-3a5ad46f5096" start_index="0" end="4943bd2a-e24b-47bc-9320-d2b944816e4b" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

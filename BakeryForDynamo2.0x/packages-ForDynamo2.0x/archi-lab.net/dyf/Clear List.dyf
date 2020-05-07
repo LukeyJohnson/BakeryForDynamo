@@ -1,0 +1,45 @@
+<Workspace Version="1.2.0.2690" X="-505.648983707154" Y="-242.356385171471" zoom="1.78359936238281" Name="Clear List" Description="This node will remove all Null and Empty Lists from any list. " ID="8d999e76-78ae-4cc6-a4a3-b50679a618e8" Category="Archi-lab_Grimshaw.List.List">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="80b4e424-71bf-41ce-8ec1-072a2a9a04a1" type="PythonNodeModels.PythonNode" nickname="Python Script" x="602.000000000001" y="273.999999999999" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ClearList(_list):
+    out = []
+    for _list1 in _list:
+        if _list1 is None:
+            continue
+        if isinstance(_list1, list):
+             _list1 = ClearList(_list1)
+             if not _list1:
+                 continue
+        out.append(_list1)
+    return out
+
+#Assign your output to the OUT variable
+OUT = ClearList(IN[0])</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="efb0e91b-77cc-45af-86f2-b0d8f050edec" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="355.227146521263" y="243.209445752671" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Input : var[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="ccba85c1-0e0b-4a92-a4c8-fc8017e01a12" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="807.675887112706" y="244.884309117622" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="80b4e424-71bf-41ce-8ec1-072a2a9a04a1" start_index="0" end="ccba85c1-0e0b-4a92-a4c8-fc8017e01a12" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="efb0e91b-77cc-45af-86f2-b0d8f050edec" start_index="0" end="80b4e424-71bf-41ce-8ec1-072a2a9a04a1" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

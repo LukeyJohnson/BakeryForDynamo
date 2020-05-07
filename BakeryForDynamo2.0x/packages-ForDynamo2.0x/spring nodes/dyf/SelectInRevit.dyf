@@ -1,0 +1,62 @@
+<Workspace Version="1.0.0.1180" X="-291.909871710612" Y="93.6786594330484" zoom="2.06862614151419" Name="Springs.SelectInRevit" Description="Selects the input elements inside the Revit UI." ID="8fe565e9-1f46-4933-b75c-2ee2947e342e" Category="Springs.Revit.Selection">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="8a4d2e89-8dcf-44a3-b861-2590a0033f8e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script>#Copyright(c) 2016, Dimitar Venkov
+# @5devene, dimitar.ven@gmail.com
+#inspired by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+
+import clr
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+uidoc = DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitAPI")
+from Autodesk.Revit.DB import ElementId
+clr.AddReference("RevitAPIUI")
+from Autodesk.Revit.UI.Selection import *
+
+clr.AddReference("System")
+from System.Collections.Generic import List as cList
+
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+
+elements = UnwrapElement(tolist(IN[0]) )
+ids1 = []
+for i in xrange(len(elements)):
+	try:(ids1.append(elements[i].Id))
+	except: pass
+ids2 = cList[ElementId](ids1)
+uidoc.Selection.SetElementIds(ids2)
+OUT = "%s elements selected in Revit." %ids2.Count</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="86d0140e-e8ac-414a-a132-476259f6293c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="70.4570544632575" y="1.41805732742414" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element:var[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8bbb9a23-f1c9-4b37-8c0f-c17ab06bef42" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="398.388855625663" y="-1.19560800870553" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="success?" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="73406a5d-afb0-46e1-b125-e13964dc62e3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="35.6581311442392" y="67.0939820951629" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="reset:bool = true;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="8a4d2e89-8dcf-44a3-b861-2590a0033f8e" start_index="0" end="8bbb9a23-f1c9-4b37-8c0f-c17ab06bef42" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="86d0140e-e8ac-414a-a132-476259f6293c" start_index="0" end="8a4d2e89-8dcf-44a3-b861-2590a0033f8e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="73406a5d-afb0-46e1-b125-e13964dc62e3" start_index="0" end="8a4d2e89-8dcf-44a3-b861-2590a0033f8e" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

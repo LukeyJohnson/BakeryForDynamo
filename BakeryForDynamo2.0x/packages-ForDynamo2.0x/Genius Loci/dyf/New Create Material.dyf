@@ -1,0 +1,151 @@
+<Workspace Version="1.3.3.4651" X="451.879887559396" Y="-98.7890647701963" zoom="0.521806476424935" ScaleFactor="1" Name="New Create Material" Description="Works only in Revit 2019 and later.&#xD;&#xA;Create new materials or overwrite properties of existing materials.&#xD;&#xA;Inspired by Dynamo Forum." ID="110b8437-0107-4aba-9012-636603ab28ed" Category="GeniusLoci.Material">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="DSCore.List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="DSCore.Color" resolvedName="DSCore.Color" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="8c538668-b893-49dc-9aee-4f81c2bcd012" type="PythonNodeModels.PythonNode" nickname="Create material" x="237.871081706938" y="562.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="8">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <PortInfo index="6" default="False" />
+      <PortInfo index="7" default="False" />
+      <Script># by GregX, David Dória, archilab and Alban de Chasteigner
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+def toList(obj):
+    if hasattr(obj, '__iter__'): return obj
+    else: return [obj]
+
+names = toList(IN[0])
+colors = toList(IN[1])
+surfPat = toList(IN[2])
+targets = toList(IN[3])
+surfPatCl = toList(IN[4])
+cutPat = toList(IN[5])
+cutPatCl = toList(IN[6])
+transparency = toList(IN[7])
+fillPatTargets=[]
+
+for target in targets :
+	if target == "Drafting":
+		fillPatTarget = FillPatternTarget.Drafting
+	else:
+		fillPatTarget = FillPatternTarget.Model
+	fillPatTargets.append(fillPatTarget)
+
+#New materials OUT list
+newMaterials = []
+#Overwritten materials OUT list
+ovwMaterials = []
+
+def ToRevitColor(dynamoColor):
+	return Color(dynamoColor.Red, dynamoColor.Green, dynamoColor.Blue)
+
+#Iterate through the input names list
+for n, cl, sp, tar, spC, cp, cpC, trans in zip(names,colors,surfPat,fillPatTargets,surfPatCl,cutPat,cutPatCl,transparency):
+	#Check if the material with the specified name already exists
+	if Material.IsNameUnique(doc,n):
+		#If name is unique, create material
+		TransactionManager.Instance.EnsureInTransaction(doc)
+		new_mat_id = Material.Create(doc, n)
+		new_mat = doc.GetElement(new_mat_id)
+
+		new_mat.SurfaceForegroundPatternId = FillPatternElement.GetFillPatternElementByName(doc,tar,sp).Id
+		
+		new_mat.SurfaceForegroundPatternColor = ToRevitColor(spC)
+		
+		new_mat.CutForegroundPatternId = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting,cp).Id
+		
+		new_mat.CutForegroundPatternColor = ToRevitColor(cpC)
+		new_mat.Color = ToRevitColor(cl)
+		new_mat.Transparency = trans
+
+		TransactionManager.Instance.TransactionTaskDone()
+		newMaterials.append(new_mat)
+	else:
+		#If it already exists, collect it and modify it
+		TransactionManager.Instance.EnsureInTransaction(doc)
+		namePar = ParameterValueProvider(ElementId(BuiltInParameter.MATERIAL_NAME))
+		fRule = FilterStringRule(namePar,FilterStringEquals(),n, True)
+		filter = ElementParameterFilter(fRule)
+		exist_mat = FilteredElementCollector(doc).OfClass(Material).WherePasses(filter).ToElements()
+		#Iteration is necessary because the output of exist_mat is invariably a list
+		for em in exist_mat:
+			#Modify the Material Properties and Parameters
+			em.SurfaceForegroundPatternId = FillPatternElement.GetFillPatternElementByName(doc,tar,sp).Id
+			
+			em.SurfaceForegroundPatternColor = ToRevitColor(spC)
+			
+			em.CutForegroundPatternId = FillPatternElement.GetFillPatternElementByName(doc, FillPatternTarget.Drafting,cp).Id
+			
+			em.CutForegroundPatternColor = ToRevitColor(cpC)
+			em.Color = ToRevitColor(cl)
+			em.Transparency = trans
+			
+			ovwMaterials.append(em)
+		TransactionManager.Instance.TransactionTaskDone()
+		
+OUT = newMaterials, ovwMaterials</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="02b063a9-7ca5-45ac-a0cc-2399f3e5638e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-478.128918293062" y="327.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Name:string[]..[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="dbecd9c4-369c-4497-8c96-71b5ac9ba87f" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="462.671081706938" y="567.083735491217" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="DSCore.List.Flatten(item,-1);" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="bebea840-06cb-49fd-86db-6f79ce89a706" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="872.271081706938" y="562.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Material" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a69c50cc-e49c-4a3d-a68c-7bbf5d210fcd" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-478.128918293062" y="420.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Dynamo Color&#xD;&#xA;color:var[]..[]= DSCore.Color.ByARGB(255,255,255,255)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="410925b9-a266-4452-85c1-a35922d13d46" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-478.128918293062" y="513.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//String&#xD;&#xA;SurfaceForegroundPattern:var[]..[]=&quot;&lt;Solid fill&gt;&quot;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6ddc074d-5b90-4c80-8962-3556e0f457cb" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-478.128918293062" y="606.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//String = Drafting or Model&#xD;&#xA;SurfacePatternTarget:var[]..[]=&quot;Drafting&quot;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="411097ac-dc1e-4697-8d0c-b30ef7a7dd69" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-478.128918293062" y="700.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Dynamo Color&#xD;&#xA;SurfaceForegroundPatternColor:var[]..[] = DSCore.Color.ByARGB(255,255,255,255);" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c9b6cc0d-0b0a-49b2-8f7b-2e33e7a2191c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-478.128918293062" y="793.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//String&#xD;&#xA;CutForegroundPattern:var[]..[]=&quot;&lt;Solid fill&gt;&quot;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="37667aed-f213-412e-bc2c-3aab76c39af4" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-478.128918293062" y="886.870402157884" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Dynamo Color&#xD;&#xA;CutForegroundPatternColor:var[]..[] = DSCore.Color.ByARGB(255,255,255,255)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5571012e-da03-4022-b8f5-8fd16c0c8693" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-478.128918293062" y="979.870402157883" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Integer&#xD;&#xA;Transparency:var[]..[]=0" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="8c538668-b893-49dc-9aee-4f81c2bcd012" start_index="0" end="dbecd9c4-369c-4497-8c96-71b5ac9ba87f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="02b063a9-7ca5-45ac-a0cc-2399f3e5638e" start_index="0" end="8c538668-b893-49dc-9aee-4f81c2bcd012" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="dbecd9c4-369c-4497-8c96-71b5ac9ba87f" start_index="0" end="bebea840-06cb-49fd-86db-6f79ce89a706" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a69c50cc-e49c-4a3d-a68c-7bbf5d210fcd" start_index="0" end="8c538668-b893-49dc-9aee-4f81c2bcd012" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="410925b9-a266-4452-85c1-a35922d13d46" start_index="0" end="8c538668-b893-49dc-9aee-4f81c2bcd012" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6ddc074d-5b90-4c80-8962-3556e0f457cb" start_index="0" end="8c538668-b893-49dc-9aee-4f81c2bcd012" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="411097ac-dc1e-4697-8d0c-b30ef7a7dd69" start_index="0" end="8c538668-b893-49dc-9aee-4f81c2bcd012" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c9b6cc0d-0b0a-49b2-8f7b-2e33e7a2191c" start_index="0" end="8c538668-b893-49dc-9aee-4f81c2bcd012" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="37667aed-f213-412e-bc2c-3aab76c39af4" start_index="0" end="8c538668-b893-49dc-9aee-4f81c2bcd012" end_index="6" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5571012e-da03-4022-b8f5-8fd16c0c8693" start_index="0" end="8c538668-b893-49dc-9aee-4f81c2bcd012" end_index="7" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

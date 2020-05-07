@@ -1,0 +1,63 @@
+<Workspace Version="1.2.1.3083" X="-247.858560029698" Y="281.88245" zoom="1.33823125" Name="Get Connectors from ConnectorManager" Description="" ID="4753d5a0-f88d-4382-b2da-54fda7a86aa5" Category="Bakery.Revit.API.MEP">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="09fbeca9-4c5f-40ed-a400-d4fa562efb5c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="467.902884187891" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Created by Luke Johnson for Bakery
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+ctrayelems = UnwrapElement(IN[0])
+
+#curvenrmls = []
+cncters = []
+
+for y in ctrayelems:
+#	curvenrmls.append(y.CurveNormal)
+	cncters.append(y.Connectors)
+#Assign your output to the OUT variable
+OUT = cncters</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="32184188-263a-4a65-ab92-4a582ef66a3e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="connectorManagerObject" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="540a466a-2cb5-4c22-a862-ab8f41808bd6" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="758.30975986801" y="222.681991621403" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="connectors" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="09fbeca9-4c5f-40ed-a400-d4fa562efb5c" start_index="0" end="540a466a-2cb5-4c22-a862-ab8f41808bd6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="32184188-263a-4a65-ab92-4a582ef66a3e" start_index="0" end="09fbeca9-4c5f-40ed-a400-d4fa562efb5c" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="8.48541736602783" eyeY="185.192474365234" eyeZ="-5.47070693969727" lookX="-8.48541736602783" lookY="-185.192474365234" lookZ="5.47070693969727" upX="-0.809898734092712" upY="0.26723837852478" upZ="0.522156834602356" />
+  </Cameras>
+</Workspace>

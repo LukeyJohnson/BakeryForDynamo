@@ -1,0 +1,46 @@
+<Workspace Version="1.3.4.6666" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Element Reference" Description="Gets a reference of a geometric object." ID="c74cdf50-fd7b-436a-8e2d-6b6e50879034" Category="GeniusLoci.Reference">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="3fbf0dba-c80b-43cb-8863-3e3c7037f052" type="PythonNodeModels.PythonNode" nickname="Python Script" x="446.4" y="422.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Structure import *
+
+elements = UnwrapElement(IN[0])
+if not hasattr(elements, '__iter__'):
+	elements = [elements]
+
+ref=[]
+
+for element in elements:
+	ref.append(Reference(element))
+	
+OUT=ref</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b82cca69-ec4e-46b9-8b78-5e65cbffe87e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="330" y="424.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="500e9125-9143-4ac5-b0bb-89ac50ae93bb" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="620.4" y="423.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Reference" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="3fbf0dba-c80b-43cb-8863-3e3c7037f052" start_index="0" end="500e9125-9143-4ac5-b0bb-89ac50ae93bb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b82cca69-ec4e-46b9-8b78-5e65cbffe87e" start_index="0" end="3fbf0dba-c80b-43cb-8863-3e3c7037f052" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,93 @@
+<Workspace Version="1.2.0.2690" X="-3560.59044367352" Y="-371.74588463788" zoom="2.11614042156077" Name="Transform.ToPoint" Description="This node takes a Transform and an input point that will be translated by the Transform. " ID="a657b96f-f8ad-4ae1-88ff-a86544c2c42c" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="315d13e4-b209-47a0-a062-ae15ff347c9f" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1993.2731823072" y="286.086744252558" isVisible="false" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script># Copyright(c) 2016, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+trans = IN[0][0]
+
+if isinstance(IN[1], list):
+	pts = ProcessList(Unwrap, IN[1])
+else:
+	pts = [Unwrap(IN[1])]
+
+def GetTransformedPoint(pt, t=trans):
+	xyz = pt.ToXyz()
+	return t.OfPoint(xyz).ToPoint()
+
+try:
+	errorReport = None
+	output = ProcessList(GetTransformedPoint, pts)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="8df953a8-60b1-42ee-98d7-35dd2e74a0ee" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1830.97038561165" y="275.854040067594" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Transform" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5ad363da-f539-40ff-81a5-37b81bd4cdc9" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1830.9070504762" y="336.021506807494" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Point" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a28900dc-8fe9-416f-80d1-3542aea6344c" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="2169.32222309128" y="289.558234602383" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Point" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="315d13e4-b209-47a0-a062-ae15ff347c9f" start_index="0" end="a28900dc-8fe9-416f-80d1-3542aea6344c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8df953a8-60b1-42ee-98d7-35dd2e74a0ee" start_index="0" end="315d13e4-b209-47a0-a062-ae15ff347c9f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5ad363da-f539-40ff-81a5-37b81bd4cdc9" start_index="0" end="315d13e4-b209-47a0-a062-ae15ff347c9f" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="14.4864185144923" eyeY="132.732525181253" eyeZ="39.8933290958612" lookX="0.83547678931407" lookY="-126.728473467393" lookZ="-40.241851638497" upX="0.0179760177083716" upY="0.500000000000002" upZ="-0.865838820328212" />
+  </Cameras>
+</Workspace>

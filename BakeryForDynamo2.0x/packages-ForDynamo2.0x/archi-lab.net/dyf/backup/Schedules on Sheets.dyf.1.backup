@@ -1,0 +1,151 @@
+<Workspace Version="1.2.0.2690" X="-192.27891998146" Y="316.314406100507" zoom="1.05429821501133" Name="Schedules on Sheets" Description="Queries all schedules and produces two lists: one with all schedules that are placed on sheets and one with schedules that are not placed on sheets." ID="a035a79c-12a1-43f4-8c5c-b3993a37a026" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="605aa04c-af4a-4c6a-8dd0-c9c4ba121fbb" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="1179.46359544846" y="115.775755094558" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.DoubleInput guid="e9a5d4bf-62da-4046-b6c0-273e270dee81" type="CoreNodeModels.Input.DoubleInput" nickname="Number" x="1041.19516961147" y="138.393881648471" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Double value="1" />
+    </CoreNodeModels.Input.DoubleInput>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="2ea304a4-ae98-47a6-af3a-6527af09feab" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="1175.73387267588" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.DoubleInput guid="51657e33-e32e-451c-838c-b0b2bfeabd8c" type="CoreNodeModels.Input.DoubleInput" nickname="Number" x="1037.46544683889" y="22.6181265539123" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Double value="0" />
+    </CoreNodeModels.Input.DoubleInput>
+    <DSRevitNodesUI.ElementsOfCategory guid="44db72e4-be98-49e0-9f90-a2b845ded072" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="471.54043546102" y="48.2532403361169" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </DSRevitNodesUI.ElementsOfCategory>
+    <DSRevitNodesUI.Categories guid="efd6bb34-e0c5-4f98-afd3-2537a4fb7b53" type="DSRevitNodesUI.Categories" nickname="Categories" x="250" y="46.9049057375129" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="422:Sheets" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="15c2f47b-a0ac-446c-90d2-a8b122d946ce" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1367.46359544846" y="115" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Not on Sheets" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d93717ec-7568-4e77-afed-a96414e77c08" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1356.46359544846" y="2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="On Sheets" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="20afe297-b7e9-49a7-bfd1-d5772a89769d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="856.853671150517" y="47.8327763627873" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+elements = []
+for i in IN[0]:
+	elements.append(UnwrapElement(i))
+
+try:
+	errorReport = None
+	# "Start" the transaction
+	trans = Transaction(doc, "Temp Transaction")
+	trans.Start()
+	
+	schName, schId, ids = [], [], []
+	for i in elements:
+		ids.append(doc.Delete(i.Id))
+	trans.RollBack()
+	
+	elementsOnSheet = []
+	for i in ids:
+		for id in i:
+			if doc.GetElement(id) != None:
+				elementsOnSheet.append(doc.GetElement(id))
+				
+	schedules = []
+	for i in elementsOnSheet:
+		try:
+			schedules.append(doc.GetElement(i.ScheduleId))
+		except:
+			pass
+			
+	uniqueSchedules = set()
+	for i in schedules:
+		if i.Id.ToString() not in uniqueSchedules:
+			uniqueSchedules.add(i.Id.ToString())
+			
+	schedulesSheet = []
+	for i in uniqueSchedules:
+		idInt = int(i)
+		elemId = ElementId(idInt)
+		schedulesSheet.append(doc.GetElement(elemId).ToDSType(True))
+	
+	viewSchedules = FilteredElementCollector(doc).OfClass(ViewSchedule).ToElements()
+	
+	notOnSheet = set()
+	for i in viewSchedules:
+		if i.Id.ToString() in uniqueSchedules:
+			continue
+		else:
+			notOnSheet.add(i.Id.ToString())
+	
+	schedulesNotSheet = []
+	for i in notOnSheet:	
+		idInt = int(i)
+		elemId = ElementId(idInt)
+		schedulesNotSheet.append(doc.GetElement(elemId).ToDSType(True))
+		
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = schedulesSheet, schedulesNotSheet
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="5aeb44b1-a4f2-421f-91c0-f6c4965ff8a3" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Transaction.End" x="692.836450540615" y="49.2844098564223" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Transaction.Transaction.End@var">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="605aa04c-af4a-4c6a-8dd0-c9c4ba121fbb" start_index="0" end="15c2f47b-a0ac-446c-90d2-a8b122d946ce" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e9a5d4bf-62da-4046-b6c0-273e270dee81" start_index="0" end="605aa04c-af4a-4c6a-8dd0-c9c4ba121fbb" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2ea304a4-ae98-47a6-af3a-6527af09feab" start_index="0" end="d93717ec-7568-4e77-afed-a96414e77c08" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="51657e33-e32e-451c-838c-b0b2bfeabd8c" start_index="0" end="2ea304a4-ae98-47a6-af3a-6527af09feab" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="44db72e4-be98-49e0-9f90-a2b845ded072" start_index="0" end="5aeb44b1-a4f2-421f-91c0-f6c4965ff8a3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="efd6bb34-e0c5-4f98-afd3-2537a4fb7b53" start_index="0" end="44db72e4-be98-49e0-9f90-a2b845ded072" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="20afe297-b7e9-49a7-bfd1-d5772a89769d" start_index="0" end="2ea304a4-ae98-47a6-af3a-6527af09feab" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="20afe297-b7e9-49a7-bfd1-d5772a89769d" start_index="0" end="605aa04c-af4a-4c6a-8dd0-c9c4ba121fbb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5aeb44b1-a4f2-421f-91c0-f6c4965ff8a3" start_index="0" end="20afe297-b7e9-49a7-bfd1-d5772a89769d" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

@@ -1,0 +1,65 @@
+<Workspace Version="0.9.0.2912" X="-254.759835577874" Y="-180.706270958732" zoom="1.545620359375" Name="Curve.Level" Description="This node will return a level that a given curve is located on. " ID="1c9c9624-0896-42ed-b98f-8e2d82b55962" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="e394647d-6513-4e56-a524-cff3ee6a3e19" type="PythonNodeModels.PythonNode" nickname="Python Script" x="436" y="326" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def GetLevel(e):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	return doc.GetElement(UnwrapElement(e).LevelId)
+
+if isinstance(IN[0], list):
+	lines = IN[0]
+else:
+	lines = [IN[0]]
+
+try:
+	errorReport = None
+	output = ProcessList(GetLevel, lines)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="c3b68977-2c19-47c4-9c91-96c846192066" type="Dynamo.Nodes.Symbol" nickname="Input" x="340.161044326872" y="326.539611035416" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Curve" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="7a9eb7fe-6a01-403f-9084-bb769d75dd80" type="Dynamo.Nodes.Output" nickname="Output" x="598.9568071892" y="324.598642813948" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Level" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="e394647d-6513-4e56-a524-cff3ee6a3e19" start_index="0" end="7a9eb7fe-6a01-403f-9084-bb769d75dd80" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c3b68977-2c19-47c4-9c91-96c846192066" start_index="0" end="e394647d-6513-4e56-a524-cff3ee6a3e19" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

@@ -1,0 +1,39 @@
+<Workspace Version="1.3.0.875" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Single String Containing Annotation Type Names" Description="" ID="8473628f-2937-4009-991d-6d4dde50adf2" Category="Bakery.Revit.API.Helpers">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Input.StringInput guid="0123b6cd-db4f-48f4-a414-87fea19a922a" type="CoreNodeModels.Input.StringInput" nickname="String" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>Callout Heads
+Casework Tags
+Ceiling Tags
+Curtain Panels
+Door Tags
+Elevation Marks
+Generic Annotations
+Generic Model Tags
+Grid Heads
+Keynote Tags
+Level Heads
+Multi-Category Tags
+Revision Cloud Tags
+Room Tags
+Section Marks
+Structural Column Tags
+Structural Framing Tags
+Title Blocks
+View Titles
+Wall Tags
+Window Tags</System.String>
+      <System.String value="Callout Heads&#xD;&#xA;Casework Tags&#xD;&#xA;Ceiling Tags&#xD;&#xA;Curtain Panels&#xD;&#xA;Door Tags&#xD;&#xA;Elevation Marks&#xD;&#xA;Generic Annotations&#xD;&#xA;Generic Model Tags&#xD;&#xA;Grid Heads&#xD;&#xA;Keynote Tags&#xD;&#xA;Level Heads&#xD;&#xA;Multi-Category Tags&#xD;&#xA;Revision Cloud Tags&#xD;&#xA;Room Tags&#xD;&#xA;Section Marks&#xD;&#xA;Structural Column Tags&#xD;&#xA;Structural Framing Tags&#xD;&#xA;Title Blocks&#xD;&#xA;View Titles&#xD;&#xA;Wall Tags&#xD;&#xA;Window Tags" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d8c010b4-b7b0-4e63-a743-8215c2550c22" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="482" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="0123b6cd-db4f-48f4-a414-87fea19a922a" start_index="0" end="d8c010b4-b7b0-4e63-a743-8215c2550c22" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

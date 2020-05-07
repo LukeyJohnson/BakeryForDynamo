@@ -1,0 +1,46 @@
+<Workspace Version="1.3.3.4651" X="161.142901631686" Y="90.3344207868325" zoom="1.27771698410772" ScaleFactor="1" Name="Index Of Pythonic" Description="" ID="d5dcfc74-25e9-48a8-815f-af5cff6a25f4" Category="Bakery.Core.List">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="34ce00f4-02bf-4cb9-9a6b-c0e0fc13ea45" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+thisModel = IN[0]
+referenceList = IN[1]
+locations = []
+for z in thisModel:
+	try:
+		location=referenceList.index(z)
+	except:
+		location="NotLocated"
+	locations.append(location)
+
+#Assign your output to the OUT variable.
+OUT = locations</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e989c10a-3cb3-41b6-b82a-04f981f6820a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="lookForList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="77c4a90b-901f-4895-ab1a-b62240f13d48" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="membershipList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="9478904b-45fe-4fe9-9dcb-1d3e1ab6cbcb" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="locations" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="34ce00f4-02bf-4cb9-9a6b-c0e0fc13ea45" start_index="0" end="9478904b-45fe-4fe9-9dcb-1d3e1ab6cbcb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e989c10a-3cb3-41b6-b82a-04f981f6820a" start_index="0" end="34ce00f4-02bf-4cb9-9a6b-c0e0fc13ea45" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="77c4a90b-901f-4895-ab1a-b62240f13d48" start_index="0" end="34ce00f4-02bf-4cb9-9a6b-c0e0fc13ea45" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

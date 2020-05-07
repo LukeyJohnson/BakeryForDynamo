@@ -1,0 +1,42 @@
+<Workspace Version="1.1.0.2094" X="0" Y="0" zoom="1" Name="Send Element ID to Clipboard" Description="for single element" ID="fbf98ecc-a0c1-4f44-a3b5-aa1d38d2088f" Category="Bakery.Revit.Clipboard">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e9306450-3f37-4532-9d97-d82db1769d80" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.Id" x="250" y="5.43749692720894" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.Id" />
+    <CoreNodeModels.FromObject guid="7b4f6275-c63e-46ce-b6a2-f9f56a15572f" type="CoreNodeModels.FromObject" nickname="String from Object" x="410.017766715003" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="bf57fd27-c328-40ff-b575-6b8031ae8e61" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Clipboard.SendTo" x="574.696245081899" y="2.27373675443232E-13" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="ef128413-8fd0-410f-9447-dfd84dfe29e3" />
+      <Name value="Clipboard.SendTo" />
+      <Description value="Copies a string to the clipboard. " />
+      <Inputs>
+        <Input value="str" />
+      </Inputs>
+      <Outputs>
+        <Output value="str" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="d2d8ca8b-887a-45dd-964c-356b9d222dd3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element : Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6e46368b-1c84-4334-9f0c-56cb774fce24" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="763.296245081899" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="str" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="e9306450-3f37-4532-9d97-d82db1769d80" start_index="0" end="7b4f6275-c63e-46ce-b6a2-f9f56a15572f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7b4f6275-c63e-46ce-b6a2-f9f56a15572f" start_index="0" end="bf57fd27-c328-40ff-b575-6b8031ae8e61" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bf57fd27-c328-40ff-b575-6b8031ae8e61" start_index="0" end="6e46368b-1c84-4334-9f0c-56cb774fce24" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d2d8ca8b-887a-45dd-964c-356b9d222dd3" start_index="0" end="e9306450-3f37-4532-9d97-d82db1769d80" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="9cfece8a-9e45-4ffd-ba13-2c85d23e2cea" annotationText="&lt;Click here to edit the group title&gt;" left="240" top="-30" width="458.296245081899" height="128.037496927209" fontSize="14" InitialTop="0" InitialHeight="128.037496927209" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="e9306450-3f37-4532-9d97-d82db1769d80" />
+      <Models ModelGuid="7b4f6275-c63e-46ce-b6a2-f9f56a15572f" />
+      <Models ModelGuid="bf57fd27-c328-40ff-b575-6b8031ae8e61" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

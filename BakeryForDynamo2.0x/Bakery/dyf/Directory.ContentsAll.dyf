@@ -1,0 +1,37 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Directory.ContentsAll" Description="" ID="d4ffafa4-27e9-455a-a3ae-e3bd4b5caf34" Category="Bakery.Core.Directory">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5ddbfafb-03f4-458f-84a0-554d1d70a70e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="673.666666666667" y="49" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dir : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="b10d5391-f866-4868-a2fa-07b84cc6f1b2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1030.66666666667" y="78" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>from System.IO import Directory, SearchOption
+dir = IN[0]
+searchstring = IN[1]
+if Directory.Exists(dir):
+	OUT = Directory.GetFiles(dir, searchstring, SearchOption.AllDirectories)
+else:
+	OUT = list()</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="983be3f9-713f-4aa5-a94e-848cc037a5c3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="673.666666666667" y="133" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="searchString : string = &quot;*&quot;" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="10984845-e7fa-4401-9a91-ad551831b34e" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1254.66666666667" y="78" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="files" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="5ddbfafb-03f4-458f-84a0-554d1d70a70e" start_index="0" end="b10d5391-f866-4868-a2fa-07b84cc6f1b2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b10d5391-f866-4868-a2fa-07b84cc6f1b2" start_index="0" end="10984845-e7fa-4401-9a91-ad551831b34e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="983be3f9-713f-4aa5-a94e-848cc037a5c3" start_index="0" end="b10d5391-f866-4868-a2fa-07b84cc6f1b2" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

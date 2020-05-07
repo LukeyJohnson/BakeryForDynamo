@@ -1,0 +1,52 @@
+<Workspace Version="1.2.0.2690" X="-132.273" Y="-35.3420291666666" zoom="1.33823125" Name="Survey Point" Description="This node will retrieve a Survey Point from a Revit model. " ID="c1c84794-125d-4335-b3fe-421e8957411c" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="8c88c847-45f4-4e93-824b-c3702fedf857" type="PythonNodeModels.PythonNode" nickname="Python Script" x="291.098846238501" y="208.16027982988" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script># Copyright(c) 2016, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+inPoints = IN[0]
+
+surveyPoints = FilteredElementCollector(doc).OfCategory(BuiltInCategory.OST_SharedBasePoint).ToElements()
+
+bipEW = BuiltInParameter.BASEPOINT_EASTWEST_PARAM
+bipNS = BuiltInParameter.BASEPOINT_NORTHSOUTH_PARAM
+bipElev = BuiltInParameter.BASEPOINT_ELEVATION_PARAM
+
+eastWest = surveyPoints[0].get_Parameter(bipEW).AsDouble()
+northSouth = surveyPoints[0].get_Parameter(bipNS).AsDouble()
+elev = surveyPoints[0].get_Parameter(bipElev).AsDouble()
+
+OUT = Autodesk.DesignScript.Geometry.Point.ByCoordinates(eastWest, northSouth, elev)
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f13fedd4-43ad-4eb2-9be5-274952200d68" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="491.897794196631" y="208.241559521196" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Point" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="8c88c847-45f4-4e93-824b-c3702fedf857" start_index="0" end="f13fedd4-43ad-4eb2-9be5-274952200d68" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

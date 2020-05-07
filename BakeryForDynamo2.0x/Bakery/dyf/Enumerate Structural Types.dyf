@@ -1,0 +1,33 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Enumerate Structural Types" Description="" ID="0ee3e125-b032-406d-9002-bd0eaf5dde18" Category="Bakery.Revit.Application.Enums">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="740eb0f7-b6a9-4aed-850a-a5a00a704c7c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="396" y="249.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="0">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB import Structure
+import System
+
+#Assign your output to the OUT variable
+OUT = System.Enum.GetValues(Autodesk.Revit.DB.Structure.StructuralType)</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors />
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="23.0919036865234" eyeY="12.2534189224243" eyeZ="-26.1171703338623" lookX="-32.8016319274902" lookY="-13.1470985412598" lookZ="17.9166965484619" upX="-0.106954418122768" upY="0.992546141147614" upZ="0.0584199503064156" />
+  </Cameras>
+</Workspace>

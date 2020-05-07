@@ -1,0 +1,78 @@
+<Workspace Version="1.2.1.3083" X="-184.039979891651" Y="22.7597319151109" zoom="0.822695359375" Name="Get BuiltinParameterGroup by Name" Description="" ID="4c736445-af17-4510-b3db-839bcd22b418" Category="Bakery.Revit.Parameters">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b9521790-394d-41b0-8565-b00c123475ef" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="398.788336933045" y="553.580993520518" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="searchFor : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="3ee6d302-5ccf-47f7-8c4b-622951576451" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Enumerate Parameter Groups" x="648.788336933045" y="553.580993520518" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <ID value="92612a7b-e100-4f0f-970f-5a02d955e777" />
+      <Name value="Enumerate Parameter Groups" />
+      <Description value="" />
+      <Inputs />
+      <Outputs>
+        <Output value="OUT" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="d0ca3da2-4143-4bb4-8b95-61c901e694fc" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Flat List to List of Strings" x="692.894266601869" y="700.933047254179" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="82b8a446-c4a1-4d64-8736-01c0b01ae798" />
+      <Name value="Flat List to List of Strings" />
+      <Description value="using python methods" />
+      <Inputs>
+        <Input value="Original List" />
+      </Inputs>
+      <Outputs>
+        <Output value="List of Strings" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="70405f1a-05cb-47ae-aef9-4ff570f887bb" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Filter One List by String Search in Another List" x="889.305520261598" y="568.604768334124" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <ID value="d7f34c30-3d50-4c23-a6fa-075dc33b6bb1" />
+      <Name value="Filter One List by String Search in Another List" />
+      <Description value="" />
+      <Inputs>
+        <Input value="SearchThisList" />
+        <Input value="searchFor" />
+        <Input value="FilterThisList" />
+      </Inputs>
+      <Outputs>
+        <Output value="Matching" />
+        <Output value="unMatched" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="b52d41c0-fe76-4a7d-ab1f-0919a4d5ada3" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FirstItem" x="1193.05105504769" y="563.003603653796" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="3e324e85-c5b2-42e3-bd6a-c7004d5e339b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1429.0510550477" y="553.580993520518" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="item" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b9521790-394d-41b0-8565-b00c123475ef" start_index="0" end="70405f1a-05cb-47ae-aef9-4ff570f887bb" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3ee6d302-5ccf-47f7-8c4b-622951576451" start_index="0" end="70405f1a-05cb-47ae-aef9-4ff570f887bb" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3ee6d302-5ccf-47f7-8c4b-622951576451" start_index="0" end="d0ca3da2-4143-4bb4-8b95-61c901e694fc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d0ca3da2-4143-4bb4-8b95-61c901e694fc" start_index="0" end="70405f1a-05cb-47ae-aef9-4ff570f887bb" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="70405f1a-05cb-47ae-aef9-4ff570f887bb" start_index="0" end="b52d41c0-fe76-4a7d-ab1f-0919a4d5ada3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b52d41c0-fe76-4a7d-ab1f-0919a4d5ada3" start_index="0" end="3e324e85-c5b2-42e3-bd6a-c7004d5e339b" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations>
+    <Dynamo.Graph.Annotations.AnnotationModel guid="31fb882d-0688-4c6a-9315-d8ab47f3eda5" annotationText="&lt;Click here to edit the group title&gt;" left="638.788336933045" top="523.580993520518" width="725.262718114648" height="270.352053733661" fontSize="14" InitialTop="553.580993520518" InitialHeight="270.352053733661" TextblockHeight="20" backgrouund="#FFC1D676">
+      <Models ModelGuid="3ee6d302-5ccf-47f7-8c4b-622951576451" />
+      <Models ModelGuid="d0ca3da2-4143-4bb4-8b95-61c901e694fc" />
+      <Models ModelGuid="70405f1a-05cb-47ae-aef9-4ff570f887bb" />
+      <Models ModelGuid="b52d41c0-fe76-4a7d-ab1f-0919a4d5ada3" />
+      <Models ModelGuid="3ee6d302-5ccf-47f7-8c4b-622951576451" />
+      <Models ModelGuid="d0ca3da2-4143-4bb4-8b95-61c901e694fc" />
+      <Models ModelGuid="70405f1a-05cb-47ae-aef9-4ff570f887bb" />
+      <Models ModelGuid="b52d41c0-fe76-4a7d-ab1f-0919a4d5ada3" />
+    </Dynamo.Graph.Annotations.AnnotationModel>
+  </Annotations>
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

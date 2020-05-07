@@ -1,0 +1,67 @@
+<Workspace Version="1.2.0.2690" X="0" Y="0" zoom="1" Name="Dynamo Curves to Revit Curves" Description="" ID="9ed9c7ab-028f-4fa0-a38e-6080baa46095" Category="Bakery.Geometry">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Curve" resolvedName="Autodesk.DesignScript.Geometry.Curve" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Level" resolvedName="Revit.Elements.Level" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="FloorType" resolvedName="Revit.Elements.FloorType" assemblyName="RevitNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="2018f1f4-cbc8-43f8-a487-f60a562396e0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="330.812092342882" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+curves = UnwrapElement(IN[0])
+revitcurves = []
+for c in curves:
+	try:
+		revitcurves.append(c.ToRevitType())
+	except:
+		pass
+
+OUT = revitcurves</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="69535cd7-d12a-40ab-b560-d03a7a909072" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="250" y="93.8073859912743" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="TurnIntoList" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="cd7f22d6-9ff3-41f6-aa4f-3499e07bc14b" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="curves" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e0a95bbd-db4c-47a4-a001-f67a72dd585e" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="543" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="revitCurves" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="2018f1f4-cbc8-43f8-a487-f60a562396e0" start_index="0" end="e0a95bbd-db4c-47a4-a001-f67a72dd585e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="69535cd7-d12a-40ab-b560-d03a7a909072" start_index="0" end="2018f1f4-cbc8-43f8-a487-f60a562396e0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="cd7f22d6-9ff3-41f6-aa4f-3499e07bc14b" start_index="0" end="69535cd7-d12a-40ab-b560-d03a7a909072" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="69990560" eyeY="36503.4296875" eyeZ="-150594656" lookX="9480.333984375" lookY="-26277.060546875" lookZ="-40559.5546875" upX="0.0773471742868423" upY="0.940486013889313" upZ="-0.330913156270981" />
+  </Cameras>
+</Workspace>

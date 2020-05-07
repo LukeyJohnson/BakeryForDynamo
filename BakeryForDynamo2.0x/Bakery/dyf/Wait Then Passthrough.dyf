@@ -1,0 +1,44 @@
+<Workspace Version="1.2.1.3083" X="77.9625" Y="50.085" zoom="0.8425" Name="Wait Then Passthrough" Description="" ID="43fbb704-a454-4470-910a-f3daac166d4a" Category="Bakery.Dynamo.Flow">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="bcff1255-f29b-4448-b799-a13e3d60ac8f" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variable.
+import time
+
+dataEnteringNode = IN
+data = IN[0]
+sec = IN[1]
+
+time.sleep(sec)
+
+#Assign your output to the OUT variable
+OUT = data</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="59827935-6c64-4f4d-9542-92091be065d6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="anyData" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="9795e8e6-c250-4c71-97e4-f1c055552099" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="secondsToWait" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="afa53944-206e-4f72-b6b9-8b0fb843e6db" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="447" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="anyData" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="bcff1255-f29b-4448-b799-a13e3d60ac8f" start_index="0" end="afa53944-206e-4f72-b6b9-8b0fb843e6db" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="59827935-6c64-4f4d-9542-92091be065d6" start_index="0" end="bcff1255-f29b-4448-b799-a13e3d60ac8f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9795e8e6-c250-4c71-97e4-f1c055552099" start_index="0" end="bcff1255-f29b-4448-b799-a13e3d60ac8f" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,79 @@
+<Workspace Version="1.0.0.1180" X="385.979463278539" Y="332.874449671532" zoom="1.20189267309854" Name="ViewSchedule.SetColumnWidth" Description="ViewSchedule.SetColumnWidth" ID="dbbe98c0-0adb-4b3e-a24f-72145fdb1851" Category="SteamNodes.Schedule">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="24306e75-0401-4f98-aa0e-a7cda168185f" type="PythonNodeModels.PythonNode" nickname="Python Script" x="274" y="29" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+elt = []
+#for i in IN[0]:
+#	elt.append(UnwrapElement(i))
+widthlist = UnwrapElement(IN[0])
+viewsch = UnwrapElement(IN[1])
+#elementlist = list()
+#viewlist = []
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+for i,v in enumerate(viewsch):
+	wl=widthlist[i]
+	a=v.GetTableData()
+	b=a.GetSectionData(SectionType.Body)
+	c=b.NumberOfColumns
+	n=0
+	while n &lt;= c-1:
+		d=b.SetColumnWidth(n,wl[n])
+		n=n+1
+doc.Regenerate()
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = viewsch</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="02a93a1a-f738-4b6e-b37f-24677670adf1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="84" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ViewSchedule List" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a9bdff69-a6da-4728-9fd6-61252bf28c45" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Width list" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="7291d95d-117d-4cde-bcd2-542c58355ade" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="580" y="29" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="ViewSchedule List" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="24306e75-0401-4f98-aa0e-a7cda168185f" start_index="0" end="7291d95d-117d-4cde-bcd2-542c58355ade" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="02a93a1a-f738-4b6e-b37f-24677670adf1" start_index="0" end="24306e75-0401-4f98-aa0e-a7cda168185f" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a9bdff69-a6da-4728-9fd6-61252bf28c45" start_index="0" end="24306e75-0401-4f98-aa0e-a7cda168185f" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

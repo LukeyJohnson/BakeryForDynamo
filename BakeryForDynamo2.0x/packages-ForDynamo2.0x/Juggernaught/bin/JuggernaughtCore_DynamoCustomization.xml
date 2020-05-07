@@ -1,0 +1,12 @@
+﻿<?xml version="1.0"?>
+<doc>
+  <assembly>
+    <name>JuggernaughtCore</name>
+  </assembly>
+  <namespaces>
+    <namespace name="Geometry">
+      <category>Juggernaught.Geometry</category>
+    </namespace>
+  </namespaces>
+</doc>
+

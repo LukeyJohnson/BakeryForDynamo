@@ -1,0 +1,55 @@
+<Workspace Version="0.9.0.2912" X="663.788554521157" Y="-517.636993177237" zoom="1.66537098414077" Name="RoomBoundaries.CleanNulls" Description="This node will take a set of room boundary curves and elements and remove nulls from element list while joining curves to mainatain matching list structure. " ID="9c1aec49-e88a-4ed1-a8d2-22f7f3ee7cb4" Category="Archi-lab_Grimshaw.Element Properties.Actions">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="7c29a4c6-9210-479a-82f2-cf782cf8178e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="13.612073488762" y="476.705259213601" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>import clr
+import sys
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+from System import Array
+from System.Collections.Generic import *
+
+walls = IN[0]
+curves = IN[1]
+
+
+for i, (wList, cList) in enumerate(zip(walls, curves)):
+	for j, (wall, curve) in enumerate(zip(wList, cList)):
+		if wall == None:
+			del walls[i][j]
+			# take corresponding curve and join it to next one in order
+			# if there is no next one, then use previous
+			curveList = [curves[i][j], curves[i][j+1]]
+			curveArray = List[Curve](curveList)
+			newPolyCurve = PolyCurve.ByJoinedCurves(curveArray)
+			curves[i][j+1] = newPolyCurve
+			del curves[i][j]
+
+OUT = [walls, curves]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="8df0beb1-ae7d-4268-80ef-a6f7e7e6a2b4" type="Dynamo.Nodes.Symbol" nickname="Input" x="-157.195337864148" y="421.309726096398" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="c263bf05-060c-4c33-89b5-a9e9e3a721ce" type="Dynamo.Nodes.Symbol" nickname="Input" x="-154.059757452436" y="507.361075043583" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Curve" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="03b07d91-85a3-4840-b601-7d1d3572bef9" type="Dynamo.Nodes.Output" nickname="Output" x="333.386044770858" y="436.921863120278" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Output guid="f5155a46-50ae-498d-9aff-b6abe8a382f2" type="Dynamo.Nodes.Output" nickname="Output" x="338.299685177863" y="504.150805254146" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Curve" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.CodeBlockNodeModel guid="c89c2d3e-9a0d-4146-b9f1-7a3138f94637" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="165.091448076996" y="484.213169250459" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="IN[0];&#xA;IN[1];" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="7c29a4c6-9210-479a-82f2-cf782cf8178e" start_index="0" end="c89c2d3e-9a0d-4146-b9f1-7a3138f94637" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="8df0beb1-ae7d-4268-80ef-a6f7e7e6a2b4" start_index="0" end="7c29a4c6-9210-479a-82f2-cf782cf8178e" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c263bf05-060c-4c33-89b5-a9e9e3a721ce" start_index="0" end="7c29a4c6-9210-479a-82f2-cf782cf8178e" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c89c2d3e-9a0d-4146-b9f1-7a3138f94637" start_index="0" end="03b07d91-85a3-4840-b601-7d1d3572bef9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="c89c2d3e-9a0d-4146-b9f1-7a3138f94637" start_index="1" end="f5155a46-50ae-498d-9aff-b6abe8a382f2" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

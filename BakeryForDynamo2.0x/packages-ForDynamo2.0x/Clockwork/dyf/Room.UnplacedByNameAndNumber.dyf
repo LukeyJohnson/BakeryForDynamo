@@ -1,0 +1,96 @@
+<Workspace Version="1.0.0.1180" X="558.933543771086" Y="402.260617289467" zoom="1.20098538894469" Name="Room.UnplacedByNameAndNumber" Description="Creates an unplaced room" ID="38c9ff3a-849f-4bd4-b12a-e9d69939f3e3" Category="Clockwork.Revit.Elements.Room.Create">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="83bf634f-8d69-41da-a870-922b592b21f0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="753.373143798528" y="77.1047296494056" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+doccreation = doc.Create
+names = IN[0]
+numbers = IN[1]
+phase = UnwrapElement(IN[2])
+counter = 0
+elementlist = list()
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+for name in names:
+	newroom = doccreation.NewRoom(phase)
+	newroom.Name = name
+	newroom.Number = numbers[counter]
+	elementlist.append(newroom)
+	counter += 1
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="0e316848-b9db-4b7e-b291-7d23f4b94e99" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="ReturnListOrSingleValue" x="975.373143798528" y="51.1047296494057" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="44ac4888-4aa4-49a9-9344-23b729c11df9" />
+      <Name value="ReturnListOrSingleValue" />
+      <Description value="If the item in input #1 is not a list, only the first item of the list in input #2 will be returned." />
+      <Inputs>
+        <Input value="unknownItem" />
+        <Input value="seq" />
+      </Inputs>
+      <Outputs>
+        <Output value="" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="48811f50-acc5-4275-8a49-4f38ca65a4c2" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="490.373143798528" y="20.1047296494056" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="Turn Into List" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="a167cf70-2d1f-479d-8628-32fe696c27b5" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="490.373143798528" y="103.104729649406" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="Turn Into List" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c7cec23c-c29f-4c74-a6a5-fe05ed87ad97" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="229.373143798528" y="27.6047296494057" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="name : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4f293407-ad5b-4ced-959b-b3d46f875f92" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1232.37314379853" y="51.1047296494057" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="room" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c52612cc-90f8-493e-a4aa-32b9fa844626" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="229.373143798528" y="111.104729649406" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="number : string" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4bc7a51c-50b5-4771-b4b6-d0c23545eb14" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="490.373143798528" y="186.104729649406" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="phase" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="83bf634f-8d69-41da-a870-922b592b21f0" start_index="0" end="0e316848-b9db-4b7e-b291-7d23f4b94e99" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0e316848-b9db-4b7e-b291-7d23f4b94e99" start_index="0" end="4f293407-ad5b-4ced-959b-b3d46f875f92" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="48811f50-acc5-4275-8a49-4f38ca65a4c2" start_index="0" end="83bf634f-8d69-41da-a870-922b592b21f0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a167cf70-2d1f-479d-8628-32fe696c27b5" start_index="0" end="83bf634f-8d69-41da-a870-922b592b21f0" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c7cec23c-c29f-4c74-a6a5-fe05ed87ad97" start_index="0" end="48811f50-acc5-4275-8a49-4f38ca65a4c2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c7cec23c-c29f-4c74-a6a5-fe05ed87ad97" start_index="0" end="0e316848-b9db-4b7e-b291-7d23f4b94e99" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c52612cc-90f8-493e-a4aa-32b9fa844626" start_index="0" end="a167cf70-2d1f-479d-8628-32fe696c27b5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4bc7a51c-50b5-4771-b4b6-d0c23545eb14" start_index="0" end="83bf634f-8d69-41da-a870-922b592b21f0" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Hintergrundvorschau" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

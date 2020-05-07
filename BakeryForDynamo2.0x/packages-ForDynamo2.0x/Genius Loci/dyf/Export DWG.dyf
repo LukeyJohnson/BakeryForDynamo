@@ -1,0 +1,126 @@
+<Workspace Version="1.3.3.4651" X="53.365400566877" Y="-89.0340694859113" zoom="0.82770257044119" ScaleFactor="1" Name="Export DWG" Description="Export views to DWG file with export setup.&#xD;&#xA;From archilab" ID="d33593eb-806f-493d-a56c-7ba6b3430fdb" Category="GeniusLoci.Export">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="216fbe47-0967-409e-856b-d19a34fd118b" type="PythonNodeModels.PythonNode" nickname="Export DWG" x="497.857636923431" y="361.628486699606" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="5">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <Script># Copyright(c) 2016, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import System
+from System.Collections.Generic import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def ProcessParallelLists(_func, *lists):
+	return map( lambda *xs: ProcessParallelLists(_func, *xs) if all(type(x) is list for x in xs) else _func(*xs), *lists )
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+folderPath = IN[0]
+
+if isinstance(IN[1], list):
+	views = ProcessList(Unwrap, IN[1])
+else:
+	views = list(Unwrap(IN[1]))
+
+if isinstance(IN[2], list):
+	names = IN[2]
+else:
+	names = list(IN[2])
+
+RunIt = IN[3]
+
+Predef = IN[4]
+
+def ExportDwg(name, view, folder = folderPath):
+	options = DWGExportOptions()
+	options = options.GetPredefinedOptions(doc, Predef[0])
+	views = List[ElementId]()
+	views.Add(view.Id)
+	result = doc.Export(folder, name, views, options)
+	return result
+
+if RunIt:
+	try:
+		errorReport = None
+		# run export
+		ProcessParallelLists(ExportDwg, names, views)
+		
+	except:
+		# if error accurs anywhere in the process catch it
+		import traceback
+		errorReport = traceback.format_exc()
+else:
+	errorReport = "Please set the RunIt to True!"
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = "Success"
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b9c52f3d-dd80-4abb-8031-07719764b7c5" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="701.932031744408" y="341.293263742132" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Succeed" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6b133606-14d1-4e8e-abfd-1888b90fe7fe" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="280.983242102453" y="248" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="DirectoryPath" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="d2e0df86-e96a-4012-8c96-75a5fd9d9a34" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="279.580150497376" y="332.905765473545" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//As list&#xD;&#xA;views" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="fca8ebb2-3bab-42cc-b0ea-3041dfdecc9a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="276.032601126721" y="427.405971292219" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//As list&#xD;&#xA;Filenames" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f5542492-e034-40ec-90e1-01b855de69b0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="29.6884478106052" y="600.004400808775" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//ExportDWGSetting's name as list&#xD;&#xA;Exportsetup" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="04c61559-2137-4eaa-8a1f-eb85ce6d8459" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="170.038097247175" y="517.738649845816" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="RunIt:bool=false" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="216fbe47-0967-409e-856b-d19a34fd118b" start_index="0" end="b9c52f3d-dd80-4abb-8031-07719764b7c5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6b133606-14d1-4e8e-abfd-1888b90fe7fe" start_index="0" end="216fbe47-0967-409e-856b-d19a34fd118b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d2e0df86-e96a-4012-8c96-75a5fd9d9a34" start_index="0" end="216fbe47-0967-409e-856b-d19a34fd118b" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fca8ebb2-3bab-42cc-b0ea-3041dfdecc9a" start_index="0" end="216fbe47-0967-409e-856b-d19a34fd118b" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f5542492-e034-40ec-90e1-01b855de69b0" start_index="0" end="216fbe47-0967-409e-856b-d19a34fd118b" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="04c61559-2137-4eaa-8a1f-eb85ce6d8459" start_index="0" end="216fbe47-0967-409e-856b-d19a34fd118b" end_index="3" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Aperçu en arrière-plan" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

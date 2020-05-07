@@ -1,0 +1,80 @@
+<Workspace Version="1.2.0.2690" X="344.645929926146" Y="145.80140541921" zoom="0.782073247203571" Name="Element.SelectInView" Description="Select the input elements in active view. Disconnect / Connect to refresh." ID="3aad227f-68ab-471c-856a-f835c5293c37" Category="SteamNodes.Element">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2088ce20-7afe-4b97-8259-5199b816ddbb" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-90.7845827698014" y="54.7154483500224" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="39108650-f2b5-4d76-a98f-92d033f27cce" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1105.62659671668" y="10.7652329130819" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Element(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="69f11f1f-c25d-442c-b073-f932f70b1f7b" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="128.215417230199" y="58.9287816833557" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <PythonNodeModels.PythonNode guid="17c90d9b-45d9-4b96-aea7-d215785c2501" type="PythonNodeModels.PythonNode" nickname="Python Script" x="446.190474016925" y="56.6011907478844" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+import System.Object
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+input = UnwrapElement(IN[0])
+elt=[]
+for i in input:
+	elt.append(i.Id)
+
+collection = List[ElementId](elt)
+
+uidoc.Selection.SetElementIds(collection)
+
+OUT = input,collection</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="2e53fa07-216c-4eeb-a494-8e93fcb5fbb6" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="901.626596716678" y="56.9785662464152" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="a[0];&#xA;a[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="42b7daa8-a55b-4831-b695-0cef564badf7" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1105.62659671668" y="94.7652329130819" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Id(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5750a574-8601-4800-b830-c5e0b323d521" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="288.149570234813" y="181.822604326698" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Refresh(Boolean)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="2088ce20-7afe-4b97-8259-5199b816ddbb" start_index="0" end="69f11f1f-c25d-442c-b073-f932f70b1f7b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="69f11f1f-c25d-442c-b073-f932f70b1f7b" start_index="0" end="17c90d9b-45d9-4b96-aea7-d215785c2501" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="17c90d9b-45d9-4b96-aea7-d215785c2501" start_index="0" end="2e53fa07-216c-4eeb-a494-8e93fcb5fbb6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2e53fa07-216c-4eeb-a494-8e93fcb5fbb6" start_index="0" end="39108650-f2b5-4d76-a98f-92d033f27cce" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2e53fa07-216c-4eeb-a494-8e93fcb5fbb6" start_index="1" end="42b7daa8-a55b-4831-b695-0cef564badf7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-15247.4696361719" eyeY="43375.8917159244" eyeZ="23654.3125860732" lookX="15791.1003774708" lookY="-42823.451465797" lookZ="-36862.2880927152" upX="0.223034541913304" upY="0.824126172818496" upZ="-0.520645379263356" />
+  </Cameras>
+</Workspace>

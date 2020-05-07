@@ -1,0 +1,159 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProvingGround.ExcelInterop</name>
+    </assembly>
+    <members>
+        <member name="T:ProvingGround.ExcelInterop.ExcelReadEntry">
+            <summary>
+            Read an Excel File
+            </summary>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelReadEntry.#ctor(System.String,System.Boolean)">
+            <summary>
+            Path to the Excel file
+            </summary>
+            <param name="Path">Path String</param>
+            <param name="IsVisible">Make Excel Visible?</param>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelReadEntry.Open">
+            <summary>
+            Open the Workbook.
+            </summary>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelReadEntry.Close">
+            <summary>
+            Close the Workbook
+            </summary>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelReadEntry.GetDataByRangeFromWorksheet(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Get data from Excel worksheet using a range
+            </summary>
+            <param name="name">Name of the Excel worksheet</param>
+            <param name="startrow">start row index</param>
+            <param name="startcolumn">start column index</param>
+            <param name="endrow">end row index</param>
+            <param name="endcolumn">end column index</param>
+            <param name="useheaders">use headers in the file</param>
+            <returns></returns>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelReadEntry.GetExcelWorksheetByName(System.String)">
+            <summary>
+            Get an Excel Worksheet by Name
+            </summary>
+            <param name="name">name of the worksheet</param>
+            <returns>Worksheet object</returns>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelReadEntry.GetAllDataFromWorksheet(System.String,System.Boolean)">
+            <summary>
+            Get all data from an excel worksheet
+            </summary>
+            <param name="name"></param>
+            <param name="useheaders"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelReadEntry.OpenExcelWorkbook">
+            <summary>
+            Opens an existing Excel workbook
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelReadEntry.GetExcelWorksheetNames">
+            <summary>
+            Get a list of Excel Worksheet Names
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="P:ProvingGround.ExcelInterop.ExcelReadEntry.WorksheetNames">
+            <summary>
+            Worksheet names
+            </summary>
+        </member>
+        <member name="P:ProvingGround.ExcelInterop.ExcelReadEntry.WorkbookName">
+            <summary>
+            Workbook Name
+            </summary>
+        </member>
+        <member name="P:ProvingGround.ExcelInterop.ExcelReadEntry.ExcelApp">
+            <summary>
+            Excel Application
+            </summary>
+        </member>
+        <member name="P:ProvingGround.ExcelInterop.ExcelReadEntry.ExcelWorkbook">
+            <summary>
+            Excel Workbook
+            </summary>
+        </member>
+        <member name="P:ProvingGround.ExcelInterop.ExcelReadEntry.ExcelWorksheets">
+            <summary>
+            List of Excel Worksheets
+            </summary>
+        </member>
+        <member name="T:ProvingGround.ExcelInterop.ExcelWriteEntry">
+            <summary>
+            Write an Excel File
+            </summary>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.#ctor(System.String,System.Boolean)">
+            <summary>
+            Path to the Excel file
+            </summary>
+            <param name="Path">Path String</param>
+            <param name="IsVisible">Make Excel Visible?</param>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.Open">
+            <summary>
+            Open the Workbook.
+            </summary>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.Close">
+            <summary>
+            Close the Workbook, Quit the app
+            </summary>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.WriteDataSetToExcel(System.Data.DataSet,System.Boolean)">
+            <summary>
+            Write a DataSet to an Excel Workbook
+            </summary>
+            <param name="dataset">The DataSet to write</param>
+            <param name="clear">Clear the worksheet before writing?</param>
+            <returns>True if successful</returns>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.WriteExcelWorksheet(System.String,System.Data.DataTable,System.Boolean)">
+            <summary>
+            Write the Excel worksheet
+            </summary>
+            <param name="worksheetname">Name of the Worksheet</param>
+            <param name="datatable">The DataTable to write.</param>
+            <param name="clear">Clear the Worksheet before writing?</param>
+            <returns>True of successful</returns>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.OpenExcelWorkbook">
+            <summary>
+            Opens an existing Excel workbook
+            </summary>
+            <remarks></remarks>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.GetExcelWorksheetByName(System.String)">
+            <summary>
+            Get an Excel Worksheet by Name
+            </summary>
+            <param name="name">name of the worksheet</param>
+            <returns>Worksheet object</returns>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.CreateExcelWorkbook">
+            <summary>
+            Create Excel Workbook
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:ProvingGround.ExcelInterop.ExcelWriteEntry.ExcelColumnName(System.Int32)">
+            <summary>
+            Excel Column Name
+            </summary>
+            <param name="Col"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

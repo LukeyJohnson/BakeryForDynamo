@@ -1,0 +1,60 @@
+﻿<Workspace Version="1.3.3.4651" X="28.2630353673428" Y="101.975344240467" zoom="0.658674852158215" ScaleFactor="1" Name="FilledRegionType Pattern Change" Description="Change the pattern of a Filled Region Type to another given pattern." ID="c16642ae-6d3d-4d0e-a402-2fc6da0ccb95" Category="GeniusLoci.Graphics">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="d4bdf8bc-01a2-4cec-b6ec-d5a3b5d18500" type="PythonNodeModels.PythonNode" nickname="Python Script" x="496" y="233.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Alban de Chasteigner, 2018
+#geniusloci.bim@gmail.com
+
+import clr
+clr.AddReference('RevitAPI')
+import Autodesk
+from Autodesk.Revit.DB import *
+
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+
+Filledregion = tolist(UnwrapElement(IN[0]))
+
+fillPatid = tolist(IN[1])
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for i,j in zip(Filledregion,fillPatid):
+	i.FillPatternId=j
+
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = Filledregion</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="71c81518-1e3b-454d-a6f9-9a82d23bfa47" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="273.6" y="228.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="FilledRegionType" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0c8c51fa-63ac-45c9-95cf-dc0f0c9ce5b3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="68.8180900067793" y="303.473115560608" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//As many FillPatternId as FilledRegionType&#xD;&#xA;FillPatternId" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b42280bb-17e8-4cc8-8b89-e53c4924aac6" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="714.4" y="251.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="FilledRegionType" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="d4bdf8bc-01a2-4cec-b6ec-d5a3b5d18500" start_index="0" end="b42280bb-17e8-4cc8-8b89-e53c4924aac6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="71c81518-1e3b-454d-a6f9-9a82d23bfa47" start_index="0" end="d4bdf8bc-01a2-4cec-b6ec-d5a3b5d18500" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0c8c51fa-63ac-45c9-95cf-dc0f0c9ce5b3" start_index="0" end="d4bdf8bc-01a2-4cec-b6ec-d5a3b5d18500" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Aperçu en arrière-plan" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

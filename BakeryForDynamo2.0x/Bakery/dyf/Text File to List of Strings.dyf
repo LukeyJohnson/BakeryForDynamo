@@ -1,0 +1,46 @@
+<Workspace Version="1.2.1.3083" X="282.666666666666" Y="250" zoom="1" Name="Text File to List of Strings" Description="" ID="f653e33f-7818-4350-a6a9-377747101c79" Category="Bakery.Core">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Input.FileObject guid="ce5517c6-15b0-47fb-b2a2-d43e54fcfcd3" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="250" y="8.68666051588121" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Input.FileObject>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="2a922a19-1431-4b70-bab0-0cdf00fa79af" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="File.ReadText" x="418.080737553742" y="0" isVisible="false" isUpstreamVisible="false" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.IO.File.ReadText@var">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="3c1b3150-19ad-406a-abd3-6aa9c4087d28" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="544.692066149403" y="145.622170560639" isVisible="false" isUpstreamVisible="false" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Flatten@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="3be58ddd-07ae-483e-94f2-c9ccb692fc56" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Convert String with Line Breaks into List of Strings" x="610.201569786184" y="32.0940733666015" isVisible="false" isUpstreamVisible="false" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="70035512-1675-4888-bf5b-24f20c6512ba" />
+      <Name value="Convert String with Line Breaks into List of Strings" />
+      <Description value="" />
+      <Inputs>
+        <Input value="string" />
+      </Inputs>
+      <Outputs>
+        <Output value="ListOfStrings" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a420b30a-bdeb-44ed-b915-13cd8c486c38" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="path" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c704cfa7-7e4a-41e8-87ea-ba393697004f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="998.534903119518" y="295.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="var[]..[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ce5517c6-15b0-47fb-b2a2-d43e54fcfcd3" start_index="0" end="2a922a19-1431-4b70-bab0-0cdf00fa79af" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2a922a19-1431-4b70-bab0-0cdf00fa79af" start_index="0" end="3be58ddd-07ae-483e-94f2-c9ccb692fc56" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3c1b3150-19ad-406a-abd3-6aa9c4087d28" start_index="0" end="c704cfa7-7e4a-41e8-87ea-ba393697004f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3be58ddd-07ae-483e-94f2-c9ccb692fc56" start_index="0" end="3c1b3150-19ad-406a-abd3-6aa9c4087d28" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a420b30a-bdeb-44ed-b915-13cd8c486c38" start_index="0" end="ce5517c6-15b0-47fb-b2a2-d43e54fcfcd3" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="23.0919036865234" eyeY="12.2534189224243" eyeZ="-26.1171703338623" lookX="-32.8016319274902" lookY="-13.1470985412598" lookZ="17.9166965484619" upX="-0.106954418122768" upY="0.992546141147614" upZ="0.0584199503064156" />
+  </Cameras>
+</Workspace>

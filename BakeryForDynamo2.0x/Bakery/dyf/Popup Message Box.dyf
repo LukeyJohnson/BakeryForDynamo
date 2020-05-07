@@ -1,0 +1,42 @@
+<Workspace Version="1.3.0.875" X="194" Y="183" zoom="1" ScaleFactor="1" Name="Popup Message Box" Description="from Dynamo Player samples" ID="b0a5cffa-e658-4887-88c2-d7f62f57caf3" Category="Bakery.Dynamo.UI">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="ad00e546-6388-4eb4-b4b1-5f5c5b9dd4d0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#This script pops up a dialog box with a message from the previous node.
+import clr
+clr.AddReference('RevitAPIUI')
+
+from Autodesk.Revit.UI import TaskDialog
+
+mainText = IN[0]
+footerText = IN[1]
+
+messagePop = TaskDialog("Dynamo Player")
+messagePop.MainContent = mainText + "\n\n" + "&lt;a href=\"http://dynamobim.org/ \"&gt;" + footerText + "&lt;/a&gt;";
+
+OUT = "Success!"
+
+messagePop.Show()</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0450e600-35ca-4ceb-a7ae-e402c610894f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="message" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c0c59567-e5c6-4a4a-a5da-8f4685803617" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="hyperlink" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="158dd88d-a26c-47cc-96b9-2de7a631ddac" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="447" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ad00e546-6388-4eb4-b4b1-5f5c5b9dd4d0" start_index="0" end="158dd88d-a26c-47cc-96b9-2de7a631ddac" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0450e600-35ca-4ceb-a7ae-e402c610894f" start_index="0" end="ad00e546-6388-4eb4-b4b1-5f5c5b9dd4d0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c0c59567-e5c6-4a4a-a5da-8f4685803617" start_index="0" end="ad00e546-6388-4eb4-b4b1-5f5c5b9dd4d0" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

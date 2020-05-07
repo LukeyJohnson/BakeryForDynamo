@@ -1,0 +1,143 @@
+<Workspace Version="1.3.0.875" X="77" Y="129" zoom="1" ScaleFactor="1" Name="Dimension.References" Description="" ID="36939287-e796-4b7a-aebe-5e1150875850" Category="Bakery.Revit.Elements.Dimension">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="d898ba83-cfe1-4c1a-8c32-f497a1db258e" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Created by Luke Johnson for Bakery
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+elem = UnwrapElement(IN[0])
+
+#curvenrmls = []
+#cnctcs = []
+
+#for y in ctrayelems:
+#	curvenrmls.append(y.CurveNormal)
+#	cnctcs.append(y.References)
+#Assign your output to the OUT variable
+
+refTemp = []
+try:
+	refTemp = elem.References
+except:
+	pass
+
+OUT = refTemp</Script>
+    </PythonNodeModels.PythonNode>
+    <PythonNodeModels.PythonNode guid="41ff0bd5-96e7-42bd-bb21-f4d6309c9027" type="PythonNodeModels.PythonNode" nickname="Python Script" x="334.691743862742" y="161.756679754855" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#Created by Luke Johnson for Bakery
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+#The inputs to this node will be stored as a list in the IN variable.
+refTemp = IN[0]
+#curvenrmls = []
+#cnctcs = []
+
+#for y in ctrayelems:
+#	curvenrmls.append(y.CurveNormal)
+#	cnctcs.append(y.References)
+#Assign your output to the OUT variable
+
+refIds = []
+for x in refTemp:
+	try:
+		refIds.append(x.ElementId)
+	except:
+		pass
+
+OUT = refIds</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="f6a0d845-3842-495a-bd29-13dfa667e9ba" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Element.ByID" x="409.771981007826" y="486.715910579117" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
+      <PortInfo index="0" default="False" />
+      <ID value="a4dd8f6e-689f-4998-b8ef-4a04146d12c2" />
+      <Name value="Element.ByID" />
+      <Description value="Gets the Revit element(s) for a list of IDs (or a single ID)" />
+      <Inputs>
+        <Input value="ID/UniqueId" />
+      </Inputs>
+      <Outputs>
+        <Output value="element" />
+        <Output value="unmatched" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="454fc612-4fff-402a-b6d8-cc8ec5250c92" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="dimension" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a28dc67b-d9e6-4acc-829e-cb4ec5591cfc" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="745.771981007826" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="references" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="9233cca3-fb51-4203-9bfb-3f97a46f9c9b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="745.771981007826" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="referenceIds" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e4b40c62-f8dc-4b8e-b621-d0ad0682cdb5" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="745.771981007826" y="300" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="referenceElements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="d898ba83-cfe1-4c1a-8c32-f497a1db258e" start_index="0" end="41ff0bd5-96e7-42bd-bb21-f4d6309c9027" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d898ba83-cfe1-4c1a-8c32-f497a1db258e" start_index="0" end="a28dc67b-d9e6-4acc-829e-cb4ec5591cfc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="41ff0bd5-96e7-42bd-bb21-f4d6309c9027" start_index="0" end="f6a0d845-3842-495a-bd29-13dfa667e9ba" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="41ff0bd5-96e7-42bd-bb21-f4d6309c9027" start_index="0" end="9233cca3-fb51-4203-9bfb-3f97a46f9c9b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f6a0d845-3842-495a-bd29-13dfa667e9ba" start_index="0" end="e4b40c62-f8dc-4b8e-b621-d0ad0682cdb5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="454fc612-4fff-402a-b6d8-cc8ec5250c92" start_index="0" end="d898ba83-cfe1-4c1a-8c32-f497a1db258e" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

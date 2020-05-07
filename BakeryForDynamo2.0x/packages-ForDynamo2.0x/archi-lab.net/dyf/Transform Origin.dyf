@@ -1,0 +1,44 @@
+<Workspace Version="0.9.0.2912" X="-276.629522203125" Y="-158.985835771733" zoom="1.545620359375" Name="Transform Origin" Description="This node will query an element for its Transform (Coordinate System) and then return its Origin point. " ID="87364ae6-955e-4fdc-b35a-3942a6cbb8ee" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="d6a1f19d-aa58-48e3-8646-fa0e2cc65603" type="PythonNodeModels.PythonNode" nickname="Python Script" x="542" y="270" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.GeometryConversion)
+
+elements = UnwrapElement(IN[0])
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def GetTransformOrigin(element):
+	try:
+		return element.GetTransform().Origin.ToPoint()
+	except:
+		return None
+		pass
+
+OUT = ProcessList(GetTransformOrigin, elements)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="696071fa-2634-45ce-8912-f3f167cc4665" type="Dynamo.Nodes.Symbol" nickname="Input" x="395.070832562043" y="283.372196228601" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="e1d7780d-9fc1-42e0-bf53-c69c76217cd1" type="Dynamo.Nodes.Output" nickname="Output" x="701.096822146746" y="284.019185635757" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Origin" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="d6a1f19d-aa58-48e3-8646-fa0e2cc65603" start_index="0" end="e1d7780d-9fc1-42e0-bf53-c69c76217cd1" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="696071fa-2634-45ce-8912-f3f167cc4665" start_index="0" end="d6a1f19d-aa58-48e3-8646-fa0e2cc65603" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

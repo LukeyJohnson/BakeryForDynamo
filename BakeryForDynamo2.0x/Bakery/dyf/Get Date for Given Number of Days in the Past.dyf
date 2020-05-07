@@ -1,0 +1,50 @@
+<Workspace Version="1.3.0.875" X="152.630043588013" Y="278.160528455724" zoom="1.33823125" ScaleFactor="1" Name="Get Date for Given Number of Days in the Past" Description="" ID="91499984-1dd8-4033-bd7c-49d7a68bedfe" Category="Bakery.Core.DateTime">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="9f57f87e-9c0a-43eb-9fd3-adedc0f3ae30" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="DateTime.FromString" x="250" y="210.551188741455" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.DateTime.FromString@string">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.FromObject guid="ac7b44be-46a1-4425-a4b0-c838b7112352" type="CoreNodeModels.FromObject" nickname="String from Object" x="269.979749351534" y="103.285999881226" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.FromObject>
+    <PythonNodeModels.PythonNode guid="ec0da77e-2d7a-4efa-8fd3-e151a375c254" type="PythonNodeModels.PythonNode" nickname="Python Script" x="304.328105404927" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+from datetime import date, datetime, timedelta
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+minusDays = IN[0]
+d = datetime.today() - timedelta(days=minusDays)
+#dx = datetime.datetime.combine(d, datetime.time())
+#Assign your output to the OUT variable.
+OUT = d</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e99d93c0-11e1-4b18-a421-0f18ddce70d6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Number of days ago" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="08fb4d2c-5de7-458b-be15-5993ed551e18" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="503.328105404927" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="dateTime dynamo friendly" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a24b9564-a5bd-400f-9ee1-e903590b2044" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="503.328105404927" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="as String" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="df09dd8a-86c0-409d-9e17-7b0e8fdbf33f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="503.328105404927" y="300" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="from Python" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="9f57f87e-9c0a-43eb-9fd3-adedc0f3ae30" start_index="0" end="08fb4d2c-5de7-458b-be15-5993ed551e18" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ac7b44be-46a1-4425-a4b0-c838b7112352" start_index="0" end="9f57f87e-9c0a-43eb-9fd3-adedc0f3ae30" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ac7b44be-46a1-4425-a4b0-c838b7112352" start_index="0" end="a24b9564-a5bd-400f-9ee1-e903590b2044" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ec0da77e-2d7a-4efa-8fd3-e151a375c254" start_index="0" end="ac7b44be-46a1-4425-a4b0-c838b7112352" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ec0da77e-2d7a-4efa-8fd3-e151a375c254" start_index="0" end="df09dd8a-86c0-409d-9e17-7b0e8fdbf33f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e99d93c0-11e1-4b18-a421-0f18ddce70d6" start_index="0" end="ec0da77e-2d7a-4efa-8fd3-e151a375c254" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

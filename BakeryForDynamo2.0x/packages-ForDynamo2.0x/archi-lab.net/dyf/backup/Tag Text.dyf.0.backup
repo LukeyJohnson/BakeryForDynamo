@@ -1,0 +1,78 @@
+<Workspace Version="0.9.0.2912" X="-712.421116115063" Y="-530.528204589335" zoom="2.37004060791358" Name="Tag Text" Description="This node will retireve a text content of a tag. " ID="37972c10-8c74-4a0d-a8c0-8a017adecca6" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="7e11d7dd-6791-46b0-b684-68157b70fef2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="525" y="354" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import Element wrapper extension methods
+clr.AddReference('RevitNodes')
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference('RevitAPI')
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+if isinstance(IN[0], list):
+	elem = [UnwrapElement(i) for i in IN[0]]
+else:
+	elem = [UnwrapElement(IN[0])]
+
+def ProcessList(_func, _list):
+    return map( lambda x:
+    process_list(_func, x) if type(x)==list else _func(x), _list )
+
+def GetTagText(tag):
+	tagText = tag.TagText
+	return tagText
+
+try:
+	errorReport = None
+	output = ProcessList(GetTagText, elem)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="5a381090-9e83-4539-ae52-65501b30eaf8" type="Dynamo.Nodes.Symbol" nickname="Input" x="424.642984071503" y="368.992920066128" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Tag" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="f9d9ddfa-4fd9-4a6d-a094-1c63c32e2b80" type="Dynamo.Nodes.Output" nickname="Output" x="692.148949109853" y="369.414853764927" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="String" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="7e11d7dd-6791-46b0-b684-68157b70fef2" start_index="0" end="f9d9ddfa-4fd9-4a6d-a094-1c63c32e2b80" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5a381090-9e83-4539-ae52-65501b30eaf8" start_index="0" end="7e11d7dd-6791-46b0-b684-68157b70fef2" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

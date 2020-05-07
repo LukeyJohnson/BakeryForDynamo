@@ -1,0 +1,124 @@
+<Workspace Version="1.2.0.2690" X="166.955" Y="123.72" zoom="1.1575" Name="Get Rooms by Level" Description="Filters Rooms by level." ID="5ad0f3de-f4e2-444a-8bf3-0b601bb03f24" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6c1afa59-a32f-4c45-b90f-be69e5b92500" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="493.911793024101" y="275.771189199715" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.DoubleInput guid="12a6a84a-a825-4f2b-926c-0fb3e40261dc" type="CoreNodeModels.Input.DoubleInput" nickname="Number" x="381.495512076447" y="309.144772606049" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Double value="1" />
+    </CoreNodeModels.Input.DoubleInput>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="f12be8b9-dac0-4177-8faf-926d4c9aabff" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="489.399781830579" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Input.DoubleInput guid="eaf21312-516d-488b-ae27-760e9c2e24c2" type="CoreNodeModels.Input.DoubleInput" nickname="Number" x="376.983500882924" y="33.3735834063348" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.Double value="0" />
+    </CoreNodeModels.Input.DoubleInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="171bc5b2-9b37-458e-b27a-16c800aae339" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Level" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="eb5929f0-a347-40da-aefc-db78a9d15951" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Exclude Unplaced?" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f3e65add-accd-4879-ade5-bc51bf750231" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="689.911793024101" y="279" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Room Name(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="09d9ea1d-504a-4459-9708-6dfff381380d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="682.911793024101" y="-22" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Room(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="0a2f487f-6c1e-4ee0-8a2c-f747634ebd2c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="184.552915766739" y="92.3153347732182" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Copyright(c) 2014, Konrad K Sobon
+# Grimshaw Architects, http://grimshaw-architects.com/
+# Archi-lab, http://wwww.archi-lab.net
+
+# Default imports
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+#Import Collections
+from System.Collections.Generic import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+doc =  DocumentManager.Instance.CurrentDBDocument
+app =  DocumentManager.Instance.CurrentUIApplication.Application
+levelInput = IN[0]
+filterToggle = IN[1]
+roomNames, validRooms = [], []
+
+collector = FilteredElementCollector(doc)
+levelFilter = ElementLevelFilter(UnwrapElement(levelInput).Id)
+
+areaFilter = AreaFilter()
+areaExcludes = collector.WherePasses(areaFilter).ToElements()
+areaExcludes = list(areaExcludes)
+
+element_set = ElementSet()
+excludes = List[ElementId]()
+if len(areaExcludes) == 0:
+	logicalFilter = levelFilter
+else:
+	for i in areaExcludes:
+		element_set.Insert(i)
+		elemIter = element_set.ForwardIterator()
+		elemIter.Reset()
+		while elemIter.MoveNext():
+			curElem = elemIter.Current
+			excludes.Add(curElem.Id)
+	filter = ExclusionFilter(excludes)
+	logicalFilter = LogicalAndFilter(levelFilter, filter)
+
+bip = BuiltInParameter.ROOM_NAME
+if filterToggle == False:
+	allRoomsOnLevel = FilteredElementCollector(doc).OfClass(Autodesk.Revit.DB.SpatialElement).WherePasses(logicalFilter).ToElements()
+	for i in allRoomsOnLevel:
+		roomNames.append(i.get_Parameter(bip).AsString())
+	OUT = allRoomsOnLevel, roomNames
+else:
+	allRoomsOnLevel = FilteredElementCollector(doc).OfClass(Autodesk.Revit.DB.SpatialElement).WherePasses(logicalFilter).ToElements()
+	for i in allRoomsOnLevel:
+		if i.Area != 0:
+			validRooms.append(i)
+	for i in validRooms:
+		roomNames.append(i.get_Parameter(bip).AsString())
+	OUT = validRooms, roomNames</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="6c1afa59-a32f-4c45-b90f-be69e5b92500" start_index="0" end="f3e65add-accd-4879-ade5-bc51bf750231" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="12a6a84a-a825-4f2b-926c-0fb3e40261dc" start_index="0" end="6c1afa59-a32f-4c45-b90f-be69e5b92500" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f12be8b9-dac0-4177-8faf-926d4c9aabff" start_index="0" end="09d9ea1d-504a-4459-9708-6dfff381380d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="eaf21312-516d-488b-ae27-760e9c2e24c2" start_index="0" end="f12be8b9-dac0-4177-8faf-926d4c9aabff" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="171bc5b2-9b37-458e-b27a-16c800aae339" start_index="0" end="0a2f487f-6c1e-4ee0-8a2c-f747634ebd2c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="eb5929f0-a347-40da-aefc-db78a9d15951" start_index="0" end="0a2f487f-6c1e-4ee0-8a2c-f747634ebd2c" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0a2f487f-6c1e-4ee0-8a2c-f747634ebd2c" start_index="0" end="f12be8b9-dac0-4177-8faf-926d4c9aabff" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0a2f487f-6c1e-4ee0-8a2c-f747634ebd2c" start_index="0" end="6c1afa59-a32f-4c45-b90f-be69e5b92500" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

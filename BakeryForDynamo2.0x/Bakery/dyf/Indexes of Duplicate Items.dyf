@@ -1,0 +1,49 @@
+<Workspace Version="1.3.4.6666" X="394.506476972262" Y="642.496144659848" zoom="1.42639164656832" ScaleFactor="1" Name="Indexes of Duplicate Items" Description="lists the indexes of any item that has a duplicate or multiple occurrence in a list (pythonic)" ID="4b04c4de-127a-4a84-8c29-6abc6ef598fa" Category="Bakery.Core.List">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="fc9e2c2e-ec53-41d5-ac87-1449e1e9714c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="list" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="7802f656-ec33-4937-a686-959923e3c150" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="indexesWhenMultiple" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="e1a8b0f3-128c-4dc3-bfc0-f2cf37df3ba2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="230.637500640929" y="-357.789769195956" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variables.
+listWithDups = IN[0]
+def list_duplicates(seq):
+    seen = set()
+    seen_add = seen.add
+    return [idx for idx,item in enumerate(seq) if item in seen or seen_add(item)]
+
+latterdups = list_duplicates(listWithDups)
+dupvals = []
+for z in latterdups:
+	dupvals.append(listWithDups[z])
+	
+unqdupvals=set(dupvals)
+firstones = []
+for i in unqdupvals:
+	firstones.append(listWithDups.index(i))
+
+allduplicated = firstones + latterdups
+
+#Assign your output to the OUT variable.
+OUT = allduplicated</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="fc9e2c2e-ec53-41d5-ac87-1449e1e9714c" start_index="0" end="e1a8b0f3-128c-4dc3-bfc0-f2cf37df3ba2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e1a8b0f3-128c-4dc3-bfc0-f2cf37df3ba2" start_index="0" end="7802f656-ec33-4937-a686-959923e3c150" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

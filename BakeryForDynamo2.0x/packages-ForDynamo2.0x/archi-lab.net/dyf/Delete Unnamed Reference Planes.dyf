@@ -1,0 +1,68 @@
+<Workspace Version="0.7.5.3566" X="-295.493958085275" Y="193.217318480395" zoom="2.05668026833428" Description="Does just what the name says. " Category="Archi-lab_Grimshaw.Modify" Name="Delete Unnamed Reference Planes" ID="e5692264-872d-4496-ac4c-249ba168f11e">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="eae38ac7-8abc-492e-a663-a3363159f5fc" nickname="Python Script" x="361.282323315064" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+#define filter rule (name parameter is empty string)
+bip = BuiltInParameter.DATUM_TEXT
+provider = ParameterValueProvider(ElementId(bip))
+evaluator = FilterStringEquals()
+rule = FilterStringRule(provider, evaluator, "", False)
+filter = ElementParameterFilter(rule)
+
+#collect all unnamed refernce planes
+refPlanes = FilteredElementCollector(doc).OfClass(ReferencePlane).WherePasses(filter).ToElementIds()
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+nDeleted = 0
+for i in refPlanes:
+	try:
+		doc.Delete(i)
+		nDeleted += 1
+	except:
+		pass
+		
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+	
+#Assign your output to the OUT variable
+OUT = "Successfully Deleted " + str(nDeleted) + " Unnamed Reference Planes"</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.DSFunction type="Dynamo.Nodes.DSFunction" guid="58f03f87-f410-4e58-a3a9-ae89cb73d4f3" nickname="List.Empty" x="228.120079871994" y="-0.940800334193597" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.List.Empty" />
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="b38a16ca-eebb-4269-9c04-708034a66311" nickname="Output" x="560.282323315064" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Deleted?" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="eae38ac7-8abc-492e-a663-a3363159f5fc" start_index="0" end="b38a16ca-eebb-4269-9c04-708034a66311" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="58f03f87-f410-4e58-a3a9-ae89cb73d4f3" start_index="0" end="eae38ac7-8abc-492e-a663-a3363159f5fc" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

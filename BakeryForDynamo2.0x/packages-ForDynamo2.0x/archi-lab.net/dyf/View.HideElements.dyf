@@ -1,0 +1,108 @@
+<Workspace Version="0.9.0.2912" X="-259.56731881082" Y="-244.909168781777" zoom="1.78359936238281" Name="View.HideElements" Description="This node will hide elements in specified view." ID="263032bc-6da5-4609-8053-d9637f0b73c0" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="e22c15b9-11f7-4c73-97d7-00a89083187d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="545.095850731685" y="289.001154540751" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import System
+from System.Collections.Generic import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def ProcessListArg(_func, _list, _arg):
+    return map( lambda x: ProcessListArg(_func, x, _arg) if type(x)==list else _func(x, _arg), _list )
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def HideElements(v, elements):
+	ids = List[ElementId]()
+	for i in elements:
+		if not i.IsHidden(v) and i.CanBeHidden(v):
+			ids.Add(i.Id)
+	v.HideElements(ids)
+	return None
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+if isinstance(IN[1], list):
+	views = ProcessList(Unwrap, IN[1])
+else:
+	views = [Unwrap(IN[1])]
+
+if IN[2]:
+	try:
+		errorReport = None
+		TransactionManager.Instance.EnsureInTransaction(doc)
+		ProcessListArg(HideElements, views, elements)
+		TransactionManager.Instance.TransactionTaskDone()
+	except:
+		# if error accurs anywhere in the process catch it
+		import traceback
+		errorReport = traceback.format_exc()
+else:
+	errorReport = "Set RunIt to True."
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = 0
+else:
+	OUT = errorReport
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="29629eba-7003-4d7e-b528-97cfa9a1228b" type="Dynamo.Nodes.Symbol" nickname="Input" x="338.959147194998" y="254.490542189572" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Element" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="404497d2-e040-4f99-9ed2-d5d8632f8c73" type="Dynamo.Nodes.Symbol" nickname="Input" x="338.616887129227" y="315.979680143254" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="View" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="9c8135b9-bcf0-4d40-b601-f163d8f64774" type="Dynamo.Nodes.Symbol" nickname="Input" x="340.20692673321" y="380.924754730563" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="RunIt:bool=false" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="df6bbdd5-bab3-46f6-a182-e2017960e477" type="Dynamo.Nodes.Output" nickname="Output" x="736.469941913385" y="289.251711826441" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="OUT" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="e22c15b9-11f7-4c73-97d7-00a89083187d" start_index="0" end="df6bbdd5-bab3-46f6-a182-e2017960e477" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="29629eba-7003-4d7e-b528-97cfa9a1228b" start_index="0" end="e22c15b9-11f7-4c73-97d7-00a89083187d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="404497d2-e040-4f99-9ed2-d5d8632f8c73" start_index="0" end="e22c15b9-11f7-4c73-97d7-00a89083187d" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9c8135b9-bcf0-4d40-b601-f163d8f64774" start_index="0" end="e22c15b9-11f7-4c73-97d7-00a89083187d" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-22.145601272583" eyeY="253.026000976563" eyeZ="178.361511230469" lookX="46.2150230407715" lookY="-50.0662727355957" lookZ="-223.372604370117" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

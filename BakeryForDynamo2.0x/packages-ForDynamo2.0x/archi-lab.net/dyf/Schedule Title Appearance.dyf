@@ -1,0 +1,78 @@
+<Workspace Version="1.2.0.2690" X="291.262705426566" Y="309.696243911987" zoom="1.33823125" Name="Schedule Title Appearance" Description="This node will override the appearance of the title. " ID="afc485a9-5c30-4eb8-a91f-7fb634056fa3" Category="Archi-lab_Grimshaw.Views.Schedule">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="a6242afc-85cd-46f2-8de7-8bd8fdf1b37b" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+keySchedule = UnwrapElement(IN[0])
+_tcs = IN[1]
+
+#"Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+if _tcs != None:
+	tableData = keySchedule.GetTableData()
+	hsd = tableData.GetSectionData(SectionType.Header)
+	hsd.SetCellText(hsd.FirstRowNumber, hsd.FirstColumnNumber, _tcs[1])
+	if _tcs[0] != None:
+		if hsd.AllowOverrideCellStyle(hsd.FirstRowNumber, hsd.FirstColumnNumber):
+			hsd.SetCellStyle(hsd.FirstRowNumber, hsd.FirstColumnNumber, _tcs[0])
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = 0</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ab8bedc9-2b1a-4edc-a31e-e3f5c256995b" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Schedule" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0514795d-6e42-42d2-8a57-9965338cf3b6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-88.9233456474731" y="61.8239093579679" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Cell Style Settings" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d719c2ef-0690-46b2-b3c5-32ac67c010bd" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="a6242afc-85cd-46f2-8de7-8bd8fdf1b37b" start_index="0" end="d719c2ef-0690-46b2-b3c5-32ac67c010bd" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ab8bedc9-2b1a-4edc-a31e-e3f5c256995b" start_index="0" end="a6242afc-85cd-46f2-8de7-8bd8fdf1b37b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0514795d-6e42-42d2-8a57-9965338cf3b6" start_index="0" end="a6242afc-85cd-46f2-8de7-8bd8fdf1b37b" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

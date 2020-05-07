@@ -1,0 +1,52 @@
+<Workspace Version="0.7.5.3566" X="188.308002200324" Y="137.02648887689" zoom="1.33823125" Description="This node will take any input of flat list of curves and group them into sublists containing &quot;joinable&quot; curves that is continous curves. They might form closed curves or open curves. Use PolyCurve.ByJoinedCurves to convert output groups of curves into single PolyCurves" Category="Archi-lab_Grimshaw.Modify" Name="Group Curves" ID="c84855d4-eb7e-4574-86a5-04867486df63">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="8bd818ae-5c8d-454c-b525-909022ed8790" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+inputCurves = IN[0]
+
+#join/group curves function
+def groupCurves(Line_List): 
+	ignore_distance = 0.1 # Assume points this close or closer to each other are touching 
+	Grouped_Lines = [] 
+	Queue = set() 
+	while Line_List: 
+		Shape = [] 
+		Queue.add(Line_List.pop()) # Move a line from the Line_List to our queue 
+		while Queue: 
+			Current_Line = Queue.pop() 
+			Shape.append(Current_Line) 
+			for Potential_Match in Line_List: 
+				Points = (Potential_Match.StartPoint, Potential_Match.EndPoint)
+				for P1 in Points: 
+					for P2 in (Current_Line.StartPoint, Current_Line.EndPoint): 
+						distance = P1.DistanceTo(P2) 
+						if distance &lt;= ignore_distance: 
+							Queue.add(Potential_Match) 
+			Line_List = [item for item in Line_List if item not in Queue]
+		Grouped_Lines.append(Shape) 
+	return Grouped_Lines
+
+OUT = groupCurves(inputCurves)</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="7decf583-c6c2-40e3-857c-47132ad58b2c" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Curves" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="72ed8dbf-18e7-496a-aae3-7d59e4724642" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Grouped Curves" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="8bd818ae-5c8d-454c-b525-909022ed8790" start_index="0" end="72ed8dbf-18e7-496a-aae3-7d59e4724642" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7decf583-c6c2-40e3-857c-47132ad58b2c" start_index="0" end="8bd818ae-5c8d-454c-b525-909022ed8790" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

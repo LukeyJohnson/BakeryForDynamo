@@ -1,0 +1,57 @@
+<Workspace Version="1.2.0.2690" X="-512.69215750591" Y="-182.225013004656" zoom="1.87774416077545" Name="Mass Addition" Description="This node will attempt to sum all elements contained within it. " ID="a5b05205-fae4-42bf-96ad-e15977ceda1f" Category="Archi-lab_Grimshaw.List.List">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="c9a9d839-3d11-4d04-ba88-1860b2e6ea3d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="473.444063470299" y="195.425720878624" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script># Copyright(c) 2016, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+input = IN[0]
+
+def ProcessList(_func, _list):
+	return map(lambda x: ProcessList(_func, x) if type(x) == list else _func(x), _list)
+
+def ConvertToInteger(item):
+	if item == None:
+		return 0
+	elif type(item) == str:
+		if item == "":
+			return 0
+		else:
+			return int(item)
+	else:
+		return item
+
+input = ProcessList(ConvertToInteger, input)
+
+if any(isinstance(item,list) for item in input):
+	output = map(sum,input)
+else:
+	output = sum(input)
+
+#Assign your output to the OUT variable
+OUT = output</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bebdc028-7f37-46b6-b168-11f5ec923919" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="352.719578156234" y="198.871891846461" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="List" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="252e01d5-b718-4ea8-b9d8-c3173e1e66af" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="657.221329700613" y="198.964563633813" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Total" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="c9a9d839-3d11-4d04-ba88-1860b2e6ea3d" start_index="0" end="252e01d5-b718-4ea8-b9d8-c3173e1e66af" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bebdc028-7f37-46b6-b168-11f5ec923919" start_index="0" end="c9a9d839-3d11-4d04-ba88-1860b2e6ea3d" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

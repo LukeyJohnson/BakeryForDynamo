@@ -1,0 +1,90 @@
+<Workspace Version="1.3.3.4651" X="0" Y="0" zoom="1" ScaleFactor="1" Name="SetParameterByName in Document" Description="Set the element value by name from a specific document." ID="ae2231ae-7035-4735-bcdc-6ad955597535" Category="GeniusLoci.Parameter">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="b1b6ea45-1c6c-4b12-a231-83cf294524d2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="579.6" y="468.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="4">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <Script>import clr
+
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.ExternalService import *
+from Autodesk.Revit.DB.ExtensibleStorage import *
+from System.Collections.Generic import *
+
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+
+elements=IN[0]
+parameter_names = IN[1]
+values = IN[2]
+docs = tolist(IN[3])
+
+for doc in docs:
+	t = Transaction(doc,'set')
+	t.Start()
+
+for e, v in zip(elements, values):
+	e.SetParameterByName(parameter_names,v)
+t.Commit()
+#Assign your output to the OUT variable.
+OUT = elements, doc</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="3852f31c-1a4d-4632-bea6-74f0acc93e2c" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="290.8" y="419.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element : var[]..[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="742d3458-1031-46da-8c59-c2bf429bf40e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="298.595230185065" y="492.672556247521" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="parameterName : string[]..[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4bf75d97-95ab-4ee5-b01c-fd4f1295a923" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="277.652334720758" y="564.355055381691" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="value : var[]..[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="35e24dca-fa39-4604-bc25-8c3f2f722276" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="332.8" y="655.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Document" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="6cabac40-751a-4167-8394-2c955730ecaf" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="763.6" y="484.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="15cbaabc-746c-4c19-9073-71993c1cff17" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="924.4" y="474" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a27ab45b-365e-4489-9759-2a42488b1d98" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="924.8" y="542.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Document" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b1b6ea45-1c6c-4b12-a231-83cf294524d2" start_index="0" end="6cabac40-751a-4167-8394-2c955730ecaf" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3852f31c-1a4d-4632-bea6-74f0acc93e2c" start_index="0" end="b1b6ea45-1c6c-4b12-a231-83cf294524d2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="742d3458-1031-46da-8c59-c2bf429bf40e" start_index="0" end="b1b6ea45-1c6c-4b12-a231-83cf294524d2" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4bf75d97-95ab-4ee5-b01c-fd4f1295a923" start_index="0" end="b1b6ea45-1c6c-4b12-a231-83cf294524d2" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="35e24dca-fa39-4604-bc25-8c3f2f722276" start_index="0" end="b1b6ea45-1c6c-4b12-a231-83cf294524d2" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cabac40-751a-4167-8394-2c955730ecaf" start_index="0" end="15cbaabc-746c-4c19-9073-71993c1cff17" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6cabac40-751a-4167-8394-2c955730ecaf" start_index="1" end="a27ab45b-365e-4489-9759-2a42488b1d98" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

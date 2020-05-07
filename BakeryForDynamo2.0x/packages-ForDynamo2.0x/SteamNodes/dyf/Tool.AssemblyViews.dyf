@@ -1,0 +1,180 @@
+<Workspace Version="1.0.0.1180" X="-151.695576270852" Y="-119.035038980169" zoom="0.708566939123009" Name="Tool.AssemblyViews" Description="Create Sheet and Views for Assembly instances" ID="e7253961-2e39-4c26-809c-d05b35750182" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="caec4424-ec9a-44e1-970f-e0937a20ad33" type="PythonNodeModels.PythonNode" nickname="Python Script" x="564.905536831091" y="356.701078642232" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="14">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+elt = []
+for i in IN[0]:
+	elt.append(UnwrapElement(i).Id)
+	
+tb=UnwrapElement(IN[13]).Id
+	
+catid=doc.GetElement(elt[0]).Category.Id
+	
+collection=List[ElementId](elt)
+viewlist=[]
+schedlist=[]
+sheetlist=[]
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+for a in elt:
+	views=[]
+	if IN[1] == 1:
+		v=AssemblyViewUtils.Create3DOrthographic(doc,a)
+		views.append(v)
+	if IN[2] == 1:	
+		ds2=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.HorizontalDetail)
+		views.append(ds2)
+	if IN[3] == 1:	
+		ds3=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.ElevationTop)
+		views.append(ds3)
+	if IN[4] == 1:	
+		ds4=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.ElevationBottom)
+		views.append(ds4)
+	if IN[5] == 1:	
+		ds5=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.ElevationLeft)
+		views.append(ds5)
+	if IN[6] == 1:	
+		ds6=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.ElevationRight)
+		views.append(ds6)
+	if IN[7] == 1:	
+		ds7=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.ElevationFront)
+		views.append(ds7)
+	if IN[8] == 1:	
+		ds8=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.ElevationBack)
+		views.append(ds8)
+	if IN[9] == 1:	
+		ds9=AssemblyViewUtils.CreatePartList(doc,a)
+		views.append(ds9)
+	if IN[10] == 1:	
+		ds10=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.DetailSectionA)
+		views.append(ds10)
+	if IN[11] == 1:	
+		ds11=AssemblyViewUtils.CreateDetailSection(doc,a,AssemblyDetailViewOrientation.DetailSectionB)
+		views.append(ds11)
+	viewlist.append(views)
+	if IN[12] == 1:
+		sh=AssemblyViewUtils.CreateSheet(doc,a,tb)
+		for v in views:
+			if Viewport.CanAddViewToSheet(doc,sh.Id,v.Id) == 1:
+				Viewport.Create(doc,sh.Id,v.Id,XYZ(0,0,0))
+			else:
+				ScheduleSheetInstance.Create(doc,sh.Id,v.Id,XYZ(0,0,0))
+		sheetlist.append(sh)
+doc.Regenerate()
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT=viewlist,sheetlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="5e0d2015-8287-427f-9c76-5a8951a00e9b" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="759.259598093687" y="361.36512247872" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="a[0];&#xA;a[1];" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="93b3e616-878b-43a0-ac0a-dc8490902b04" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="243.385250543685" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Assembly List" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6fdd6dee-166f-426e-b4df-2f187e16069d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="1046.85392662661" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="TitleBlockType" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a508438d-7c58-4731-b955-3a961329bcc8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1042.33018262639" y="412.238243223136" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="List of View(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b7e82e48-f86a-4ccb-9f0b-18ffe83129f1" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1044.8177471283" y="474.372674516199" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="Sheet(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6453706c-da19-4aba-aedc-21d76392e5b6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="985.048643850998" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="CreateSheet : bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="dbe80ea9-fe53-474a-9de9-36ac9e68ae55" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="490.606381646123" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ElevationRight  : bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="24eaa3cf-7ba6-4769-9a32-2ee798e83003" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="614.216947197342" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ElevationFront: bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ae61f106-f20d-4d04-ad29-595d375e6a8d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="737.82751274856" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ElevationBack: bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="613a78d4-1c4a-4130-b2de-f10f689c69d3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="861.438078299779" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="PartList : bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="8763fa48-3c0d-43ab-bc9a-0b51b8984681" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="676.022229972951" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ElevationLeft: bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ced48b28-f3d7-40b9-ad2f-60807bb3e9cf" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="428.801098870513" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ElevationTop: bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4684862b-6255-40ac-9040-eb0e2b9d2e6b" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="552.411664421732" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ElevationBottom: bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ae488364-161a-4950-922e-4a0a8698020f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="305.190533319295" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Ortho3D: bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="cbce42cc-b346-40b8-849d-591a118cb106" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="366.995816094904" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="PlanView : bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4507c0d4-29e4-4015-a030-377ee8ecc5e8" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="799.63279552417" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="DetailSectionA : bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ec48ea62-b783-48c2-9984-2984c5c19f68" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="923.243361075389" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="DetailSectionB : bool=true" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="5a244130-cc65-4e06-b762-5fa60adac809" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="268" y="217" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="caec4424-ec9a-44e1-970f-e0937a20ad33" start_index="0" end="5e0d2015-8287-427f-9c76-5a8951a00e9b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5e0d2015-8287-427f-9c76-5a8951a00e9b" start_index="0" end="a508438d-7c58-4731-b955-3a961329bcc8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5e0d2015-8287-427f-9c76-5a8951a00e9b" start_index="1" end="b7e82e48-f86a-4ccb-9f0b-18ffe83129f1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="93b3e616-878b-43a0-ac0a-dc8490902b04" start_index="0" end="5a244130-cc65-4e06-b762-5fa60adac809" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6fdd6dee-166f-426e-b4df-2f187e16069d" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="13" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6453706c-da19-4aba-aedc-21d76392e5b6" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="12" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="dbe80ea9-fe53-474a-9de9-36ac9e68ae55" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="6" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="24eaa3cf-7ba6-4769-9a32-2ee798e83003" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="7" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ae61f106-f20d-4d04-ad29-595d375e6a8d" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="8" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="613a78d4-1c4a-4130-b2de-f10f689c69d3" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="9" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8763fa48-3c0d-43ab-bc9a-0b51b8984681" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ced48b28-f3d7-40b9-ad2f-60807bb3e9cf" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4684862b-6255-40ac-9040-eb0e2b9d2e6b" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ae488364-161a-4950-922e-4a0a8698020f" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="cbce42cc-b346-40b8-849d-591a118cb106" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4507c0d4-29e4-4015-a030-377ee8ecc5e8" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="10" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ec48ea62-b783-48c2-9984-2984c5c19f68" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="11" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5a244130-cc65-4e06-b762-5fa60adac809" start_index="0" end="caec4424-ec9a-44e1-970f-e0937a20ad33" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets>
+    <Dynamo.Graph.Presets.PresetModel Name="19/08/2015 12:08:34" Description="test" guid="c4f32bca-7d05-47b7-871c-7c02cc917afe">
+      <Dynamo.Nodes.Symbol guid="cbce42cc-b346-40b8-849d-591a118cb106" type="Dynamo.Nodes.Symbol" nickname="Input" x="264.156070376241" y="367.806203654313" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+        <Symbol value="Plan View" />
+      </Dynamo.Nodes.Symbol>
+    </Dynamo.Graph.Presets.PresetModel>
+  </Presets>
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

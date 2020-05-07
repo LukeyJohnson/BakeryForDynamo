@@ -1,0 +1,86 @@
+<Workspace Version="1.3.0.875" X="-776.388928988843" Y="-172.752044308026" zoom="1.10476425630303" ScaleFactor="1" Name="Export Views to Navisworks NWC" Description="this node needs work - need to define view scope and set up the list cycling http://www.revitapidocs.com/2016/3a7ffc07-bd02-39c2-1846-865973db8d7f.htm" ID="a5064dc0-aa5a-42fc-83c9-4b7beb4c66b3" Category="Bakery.BETA">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5cecb636-d7f1-4aa0-8450-8ecb2248186e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="769" y="453.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ViewsAsList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="0485c14b-5160-4454-a6d7-28367d0fafee" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1043" y="515.718333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="66e36245-955c-4011-83e0-ea3399280ebe" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="769" y="537.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="PathAsString" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a87e5ecd-ca70-4f53-8431-49070c60c6f3" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="769" y="621.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Filename" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="eee5df04-4eba-4eee-988f-89059f8dbb06" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1351" y="511.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+views = []
+for i in IN[0]:
+	views.append(UnwrapElement(i))
+	
+folder=IN[1]
+name=IN[2]
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+a=ViewSet()
+for v in views:
+	b= a.Insert(v)
+	
+x=NavisworksExportOptions()
+
+c=doc.Export(folder,name,a,x)
+
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT=c</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="7dd968d9-ad36-4de1-9a0c-866837153a3e" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1575" y="511.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Succeed" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="5cecb636-d7f1-4aa0-8450-8ecb2248186e" start_index="0" end="0485c14b-5160-4454-a6d7-28367d0fafee" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0485c14b-5160-4454-a6d7-28367d0fafee" start_index="0" end="eee5df04-4eba-4eee-988f-89059f8dbb06" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="66e36245-955c-4011-83e0-ea3399280ebe" start_index="0" end="eee5df04-4eba-4eee-988f-89059f8dbb06" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a87e5ecd-ca70-4f53-8431-49070c60c6f3" start_index="0" end="eee5df04-4eba-4eee-988f-89059f8dbb06" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="eee5df04-4eba-4eee-988f-89059f8dbb06" start_index="0" end="7dd968d9-ad36-4de1-9a0c-866837153a3e" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

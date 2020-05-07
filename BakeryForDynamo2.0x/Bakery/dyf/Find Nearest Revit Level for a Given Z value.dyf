@@ -1,0 +1,52 @@
+<Workspace Version="1.3.2.2480" X="-246.524925496125" Y="256.047081269851" zoom="1.07925372895183" ScaleFactor="1" Name="Find Nearest Revit Level for a Given Z value" Description="" ID="db1c5431-bfdd-4333-8221-846326574966" Category="Bakery.Geometry">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSRevitNodesUI.Categories guid="5943d71d-fca3-4eb1-bc32-c067a2b5dddc" type="DSRevitNodesUI.Categories" nickname="Categories" x="-0.695195411336613" y="-9.25760433041239" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" index="234:Levels" />
+    <DSRevitNodesUI.ElementsOfCategory guid="a545d1eb-2967-4773-ad0f-90aa7ea5189e" type="DSRevitNodesUI.ElementsOfCategory" nickname="All Elements of Category" x="182.360669190463" y="-16.4823033136006" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </DSRevitNodesUI.ElementsOfCategory>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="952f8c50-4e2a-4f8e-abad-2da88fccb00f" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="1613.44936604459" y="-158.442816005903" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="116d0d64-1c43-452d-8be6-724ad8252742" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Level.Elevation" x="478.204138009631" y="311.354849044077" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Level.Elevation">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="7011d3d2-ec7a-4b55-938b-25c480baa9d7" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="2065.28313784308" y="-10.1922279302042" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="nearestLevel" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="32a9175d-8807-4238-8bd2-4b8137d88a18" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="596.436176829678" y="179.464389617107" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="z value" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="af981b45-58d5-47c5-b02a-b143f61baf11" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Closest Value" x="1146.74028424614" y="263.0552109712" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="bdc0845a-efce-45c1-be5e-e81f1631196c" />
+      <Name value="Closest Value" />
+      <Description value="uses double to int reduction" />
+      <Inputs>
+        <Input value="value" />
+        <Input value="listOfDoubles" />
+      </Inputs>
+      <Outputs>
+        <Output value="indices" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="5943d71d-fca3-4eb1-bc32-c067a2b5dddc" start_index="0" end="a545d1eb-2967-4773-ad0f-90aa7ea5189e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a545d1eb-2967-4773-ad0f-90aa7ea5189e" start_index="0" end="116d0d64-1c43-452d-8be6-724ad8252742" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a545d1eb-2967-4773-ad0f-90aa7ea5189e" start_index="0" end="952f8c50-4e2a-4f8e-abad-2da88fccb00f" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="952f8c50-4e2a-4f8e-abad-2da88fccb00f" start_index="0" end="7011d3d2-ec7a-4b55-938b-25c480baa9d7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="116d0d64-1c43-452d-8be6-724ad8252742" start_index="0" end="af981b45-58d5-47c5-b02a-b143f61baf11" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="32a9175d-8807-4238-8bd2-4b8137d88a18" start_index="0" end="af981b45-58d5-47c5-b02a-b143f61baf11" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="af981b45-58d5-47c5-b02a-b143f61baf11" start_index="0" end="952f8c50-4e2a-4f8e-abad-2da88fccb00f" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-57135.14453125" eyeY="31928.802734375" eyeZ="5514.82080078125" lookX="-45.1421318054199" lookY="-108.30534362793" lookZ="357.870788574219" upX="-0.00945612508803606" upY="0.997141301631927" upZ="0.0749648064374924" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,60 @@
+<Workspace Version="0.8.2.2371" X="-329.934078640937" Y="-269.931764081641" zoom="1.78359936238281" Name="Get Views from View Set" Description="This node will take a name of a view set and return views/sheet elements contained in it. " ID="018628e6-7bd7-40b6-9255-e49d2291097c" Category="Archi-lab_Grimshaw.Printing">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="c35307b3-685b-49ef-ae84-116cffa68342" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="447" y="295" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+viewSet = UnwrapElement(IN[0])
+
+viewSets = FilteredElementCollector(doc).OfClass(ViewSheetSet)
+
+for i in viewSets:
+	if i.Name == viewSet.Name:
+		vs = i
+	else:
+		continue
+
+#Assign your output to the OUT variable
+OUT = [i.ToDSType(True) for i in vs.Views]</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="3196ed1f-5a33-419d-9f9a-d6ad0884cbb8" type="Dynamo.Nodes.Symbol" nickname="Input" x="338.682640924271" y="294.949549174849" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="ViewSet" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="1fa44a54-fcb1-4997-b003-a73df63a08fd" type="Dynamo.Nodes.Output" nickname="Output" x="613.408013860815" y="295.51021320125" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Views" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="c35307b3-685b-49ef-ae84-116cffa68342" start_index="0" end="1fa44a54-fcb1-4997-b003-a73df63a08fd" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3196ed1f-5a33-419d-9f9a-d6ad0884cbb8" start_index="0" end="c35307b3-685b-49ef-ae84-116cffa68342" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

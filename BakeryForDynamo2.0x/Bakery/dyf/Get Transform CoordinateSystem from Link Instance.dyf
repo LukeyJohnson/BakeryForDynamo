@@ -1,0 +1,75 @@
+<Workspace Version="1.1.0.2094" X="210.307407870295" Y="324.037233915738" zoom="1.70391682455499" Name="Get Transform CoordinateSystem from Link Instance" Description="" ID="bc498a2b-60fb-4eba-a74a-98079d8dd6f0" Category="Bakery.Revit.Document.Links">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="e3dfffc2-dae1-4a67-8156-95e5ce4fd9f9" type="PythonNodeModels.PythonNode" nickname="Python Script" x="23.4631207125909" y="-21.9103026599221" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>#Copyright(c) 2016, Dimitar Venkov
+# @5devene, dimitar.ven@gmail.com
+#original design by Julien Benoit, @jbenoit44
+# http://aecuandme.wordpress.com/
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import FilteredElementCollector, ElementCategoryFilter, XYZ
+
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+def output1(l1):
+	if len(l1) == 1: return l1[0]
+	else: return l1
+
+Link1 = UnwrapElement(tolist(IN[0]))
+#Cat1 = UnwrapElement(IN[1])
+elements, transforms, revittf = [], [], []
+
+for i in xrange(len(Link1)):
+	LinkDoc = Link1[i].GetLinkDocument()
+#	fec = FilteredElementCollector(LinkDoc).OfCategoryId(Cat1.Id).WhereElementIsNotElementType()
+#	fec1 = [e.ToDSType(True) for e in fec]
+#	elements.append(fec1)
+	tf1 = Link1[i].GetTransform()
+	revittf.append(tf1)
+	cs1 = CoordinateSystem.ByOriginVectors(tf1.Origin.ToPoint(True),
+	tf1.BasisX.ToVector(True), tf1.BasisY.ToVector(True), tf1.BasisZ.ToVector(True))
+	transforms.append(cs1)
+OUT = output1(transforms), output1(revittf)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="d70d47a8-1da0-46d2-bc19-0ece396dfff0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-226.536879287409" y="-21.9103026599221" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="linkInstance" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="691245e0-e8ef-40be-843b-da4988ceb52a" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="585.571453936891" y="-1.12515653012974" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="transformCS" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="7caebfc6-14b4-4181-b3d2-7059699e9623" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="424.051933118621" y="95.5967661625136" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="1b838c2c-a370-49f5-9674-94b49e5cc0a7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="264" y="134" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="cd530fd6-754f-451a-a2af-60964f8bbf70" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="467.835498448717" y="350.670802712087" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="11ec0ad9-9dd8-4df9-a453-d507a44ae916" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="307.783565330096" y="389.074036549574" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8a1b0c5a-bced-4cf1-86e4-b67c87aac1d3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="629.355019266987" y="253.948880019444" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="revitTransform" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="e3dfffc2-dae1-4a67-8156-95e5ce4fd9f9" start_index="0" end="7caebfc6-14b4-4181-b3d2-7059699e9623" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e3dfffc2-dae1-4a67-8156-95e5ce4fd9f9" start_index="0" end="cd530fd6-754f-451a-a2af-60964f8bbf70" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d70d47a8-1da0-46d2-bc19-0ece396dfff0" start_index="0" end="e3dfffc2-dae1-4a67-8156-95e5ce4fd9f9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7caebfc6-14b4-4181-b3d2-7059699e9623" start_index="0" end="691245e0-e8ef-40be-843b-da4988ceb52a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1b838c2c-a370-49f5-9674-94b49e5cc0a7" start_index="0" end="7caebfc6-14b4-4181-b3d2-7059699e9623" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="cd530fd6-754f-451a-a2af-60964f8bbf70" start_index="0" end="8a1b0c5a-bced-4cf1-86e4-b67c87aac1d3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="11ec0ad9-9dd8-4df9-a453-d507a44ae916" start_index="0" end="cd530fd6-754f-451a-a2af-60964f8bbf70" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="56347.71484375" eyeY="14269.6201171875" eyeZ="194319.46875" lookX="-4624.29833984375" lookY="6132.66748046875" lookZ="-79941.8984375" upX="0.00803708843886852" upY="-0.990268051624298" upZ="0.138940811157227" />
+  </Cameras>
+</Workspace>

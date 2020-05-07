@@ -1,0 +1,88 @@
+<Workspace Version="1.1.0.2094" X="152.529535553214" Y="142.685742017925" zoom="0.910063803931435" Name="Get Unique GUIDs from IFC File" Description="input is File Path to IFC" ID="bba0904e-330e-4e5e-8150-7ace2ffa57fa" Category="Bakery.BIM.IFC">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Input.FileObject guid="355a998f-ca0d-48ee-9b0e-47ccdeda5fd0" type="CoreNodeModels.Input.FileObject" nickname="File.FromPath" x="292.004333288115" y="450.928872063585" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c650196d-92de-45bd-923d-8da14f29897a" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="File.ReadText" x="453.141503412789" y="420.034196524509" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.IO.File.ReadText@var" />
+    <CoreNodeModels.Input.StringInput guid="ce378f7b-a577-4e89-ad8a-a243ecaa4226" type="CoreNodeModels.Input.StringInput" nickname="String" x="630.166411519881" y="63.9382784423921" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>,'ID(.*?)'</System.String>
+      <System.String value=",'ID(.*?)'" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="String.FindRegularExpression" x="783.444199437272" y="147.653236575847" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="1e3782ea-739f-4011-b8a3-0df1ade1e5a1" />
+      <Name value="String.FindRegularExpression" />
+      <Description value="Returns all occurences of a regular expression within a string (or list of strings). The syntax for regular expressions is explained at&#xD;&#xA;http://ironpython-test.readthedocs.org/en/latest/howto/regex.html" />
+      <Inputs>
+        <Input value="RegEx" />
+        <Input value="str" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e1b31d38-9e99-44ca-80b9-41ef47706bc7" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="1179.03302410159" y="96.2446588883457" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c9958ca9-b7a3-43e8-9435-f9e4b6fcb30d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="path" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c760ad1b-86b8-4ed5-8ff0-5152b8975510" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1362.03302410159" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="unique list matching .NET" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d8142926-3a64-4566-9de5-6b4e66f278cd" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1302.69969076826" y="300" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="total list matching .NET" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <CoreNodeModels.Input.StringInput guid="4b8c3c15-5155-4321-b2ac-b1ec7801d597" type="CoreNodeModels.Input.StringInput" nickname="String" x="630" y="527.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>\('[a-zA-Z0-9]{22}'</System.String>
+      <System.String value="\('[a-zA-Z0-9]{22}'" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="e28173b3-9174-4d45-8602-5c34c7ed0847" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="String.FindRegularExpression" x="848.777532770605" y="486.319903242514" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="1e3782ea-739f-4011-b8a3-0df1ade1e5a1" />
+      <Name value="String.FindRegularExpression" />
+      <Description value="Returns all occurences of a regular expression within a string (or list of strings). The syntax for regular expressions is explained at&#xD;&#xA;http://ironpython-test.readthedocs.org/en/latest/howto/regex.html" />
+      <Inputs>
+        <Input value="RegEx" />
+        <Input value="str" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="0fb14dcf-b113-4834-8358-21727e90bfc3" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.Remove" x="1193.33333333333" y="568.666666666667" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.String.Remove@string,int,int" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="e6e0fc32-2ce6-4183-90cd-dea6528a180e" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1102.66666666667" y="623" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="10fc3567-943b-4dcf-ba17-20b25406f773" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1091.66666666667" y="715.666666666667" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="2;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="38832956-4a9a-4baa-b971-127b0b9f8702" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1621.36635743492" y="487.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="total list matching IFC format" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="dff78420-80a8-4145-8295-d13a31085e47" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1238.66666666667" y="791.666666666666" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="22;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="b8142f1d-475b-42b4-b291-5164820465e0" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1227.66666666667" y="884.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="1;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="86a335ec-fd30-4da5-b628-d3981d8f4467" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.Remove" x="1329.33333333333" y="737.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.String.Remove@string,int,int" />
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6e8e7d94-0dd8-45c4-b671-27e19337c58f" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1904.1765909136" y="824.436648883846" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="unique list matching IFC format" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="7680a9f3-2e62-4c65-a271-f68542e6584d" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.UniqueItems" x="1609.32595813362" y="835.278850672163" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.UniqueItems@var[]..[]" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="355a998f-ca0d-48ee-9b0e-47ccdeda5fd0" start_index="0" end="c650196d-92de-45bd-923d-8da14f29897a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c650196d-92de-45bd-923d-8da14f29897a" start_index="0" end="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c650196d-92de-45bd-923d-8da14f29897a" start_index="0" end="e28173b3-9174-4d45-8602-5c34c7ed0847" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ce378f7b-a577-4e89-ad8a-a243ecaa4226" start_index="0" end="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" start_index="0" end="e1b31d38-9e99-44ca-80b9-41ef47706bc7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4e7eb97a-2de3-4c4b-9d1a-e5af46787ef0" start_index="0" end="d8142926-3a64-4566-9de5-6b4e66f278cd" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e1b31d38-9e99-44ca-80b9-41ef47706bc7" start_index="0" end="c760ad1b-86b8-4ed5-8ff0-5152b8975510" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c9958ca9-b7a3-43e8-9435-f9e4b6fcb30d" start_index="0" end="355a998f-ca0d-48ee-9b0e-47ccdeda5fd0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4b8c3c15-5155-4321-b2ac-b1ec7801d597" start_index="0" end="e28173b3-9174-4d45-8602-5c34c7ed0847" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e28173b3-9174-4d45-8602-5c34c7ed0847" start_index="0" end="0fb14dcf-b113-4834-8358-21727e90bfc3" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0fb14dcf-b113-4834-8358-21727e90bfc3" start_index="0" end="86a335ec-fd30-4da5-b628-d3981d8f4467" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e6e0fc32-2ce6-4183-90cd-dea6528a180e" start_index="0" end="0fb14dcf-b113-4834-8358-21727e90bfc3" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="10fc3567-943b-4dcf-ba17-20b25406f773" start_index="0" end="0fb14dcf-b113-4834-8358-21727e90bfc3" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="dff78420-80a8-4145-8295-d13a31085e47" start_index="0" end="86a335ec-fd30-4da5-b628-d3981d8f4467" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b8142f1d-475b-42b4-b291-5164820465e0" start_index="0" end="86a335ec-fd30-4da5-b628-d3981d8f4467" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="86a335ec-fd30-4da5-b628-d3981d8f4467" start_index="0" end="38832956-4a9a-4baa-b971-127b0b9f8702" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="86a335ec-fd30-4da5-b628-d3981d8f4467" start_index="0" end="7680a9f3-2e62-4c65-a271-f68542e6584d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7680a9f3-2e62-4c65-a271-f68542e6584d" start_index="0" end="6e8e7d94-0dd8-45c4-b671-27e19337c58f" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,75 @@
+<Workspace Version="1.2.0.2690" X="115.187134477053" Y="199.917080848764" zoom="1.83541648937757" Name="Fill Pattern" Description="Get Fill Pattern by Name" ID="2cbe2067-61b2-4bba-8763-615b0e25464c" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0317cef7-303a-4e3b-8437-322d6a3435d6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="26027c28-011f-48ca-9a08-1d4735775990" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Fill Pattern" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="99dd0cd1-1aab-435e-a96c-b4f715c3efbd" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="3.80665475424217" y="67.0949473536488" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Drafting/Modeling?" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="1c722301-de2d-4a9d-96ed-6c9525c4e259" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250.715318882625" y="-1.39636751103701" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import ToDSType(bool) extension method
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+name = str(IN[0])
+drafting = IN[1]
+
+try:
+	errorReport = None
+	if drafting:
+		fillPatTarget = FillPatternTarget.Drafting
+	else:
+		fillPatTarget = FillPatternTarget.Model
+	fillPat = FillPatternElement.GetFillPatternElementByName(doc, fillPatTarget, name)
+	fillPat = fillPat.ToDSType(True)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = fillPat
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="0317cef7-303a-4e3b-8437-322d6a3435d6" start_index="0" end="1c722301-de2d-4a9d-96ed-6c9525c4e259" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="99dd0cd1-1aab-435e-a96c-b4f715c3efbd" start_index="0" end="1c722301-de2d-4a9d-96ed-6c9525c4e259" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1c722301-de2d-4a9d-96ed-6c9525c4e259" start_index="0" end="26027c28-011f-48ca-9a08-1d4735775990" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

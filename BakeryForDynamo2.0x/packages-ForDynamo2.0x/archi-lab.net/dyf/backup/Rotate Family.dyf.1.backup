@@ -1,0 +1,92 @@
+<Workspace Version="0.7.5.3566" X="506.413277985756" Y="159.68524069438" zoom="1.1113575327695" Description="This node will rotate a family in Revit around a given axis by supplied angle (in radians). Please remember that every time you run your definition it will rotate family by given angle every time. " Category="Archi-lab_Grimshaw.Modify" Name="Rotate Family" ID="369d0d18-cc8b-4e68-9794-adb7c19f2c91">
+  <Elements>
+    <DSIronPythonNode.PythonNode type="DSIronPythonNode.PythonNode" guid="73d59967-a10a-4655-9012-127a22d5be39" nickname="Python Script" x="236.502993359284" y="0.747255005440962" isVisible="true" isUpstreamVisible="true" lacing="Disabled" inputcount="3">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def toRvtId(_id):
+	if isinstance(_id, int) or isinstance(_id, str):
+		id = ElementId(int(_id))
+		return id
+	elif isinstance(_id, ElementId):
+		return _id
+
+lmntIds, axises, angles = [], [], []
+for i, j in zip(IN[0], IN[1]):
+	lmntIds.append(toRvtId(UnwrapElement(i)))
+	axises.append(j.ToRevitType())
+angles = IN[2]
+
+# "Start" the transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+elements = []
+for axis_, angle_, lmntId_ in zip(axises, angles, lmntIds):
+	Autodesk.Revit.DB.ElementTransformUtils.RotateElement(doc, lmntId_, axis_, angle_)
+	elements.append(doc.GetElement(lmntId_))
+
+# "End" the transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+#Assign your output to the OUT variable
+OUT = elements</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="e6965959-7b13-48d4-ac19-86a867fdde00" nickname="Input" x="-344.988197717711" y="5.08832150026123" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="ElementId" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="43244aab-ce5e-4d46-b2e3-43636fa41226" nickname="Input" x="-344.109140248421" y="71.5778619177061" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Axis" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol type="Dynamo.Nodes.Symbol" guid="dcb09e9d-5cf0-4143-aa54-4660019b01b8" nickname="Input" x="-345.867255187001" y="137.188344865861" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Angle" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output type="Dynamo.Nodes.Output" guid="13ef1293-9d5b-4331-b153-7eadec345ddb" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
+      <Symbol value="Family" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.CodeBlockNodeModel type="Dynamo.Nodes.CodeBlockNodeModel" guid="90bdabb5-2a2a-43f9-be82-2770d625fe36" nickname="Code Block" x="-132.39922759082" y="126.122655962299" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="List.Flatten({deg},10);" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel type="Dynamo.Nodes.CodeBlockNodeModel" guid="ee3f42d7-9b1b-46ab-a69d-50dc50330d49" nickname="Code Block" x="-140.489768634061" y="64.8920961885143" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="List.Flatten({lines},10);" ShouldFocus="false" />
+    <Dynamo.Nodes.CodeBlockNodeModel type="Dynamo.Nodes.CodeBlockNodeModel" guid="4f842a55-6f12-43bb-852b-769052777695" nickname="Code Block" x="-125.03810761423" y="3.2151303395851" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="List.Flatten({ids},10);" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="73d59967-a10a-4655-9012-127a22d5be39" start_index="0" end="13ef1293-9d5b-4331-b153-7eadec345ddb" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="e6965959-7b13-48d4-ac19-86a867fdde00" start_index="0" end="4f842a55-6f12-43bb-852b-769052777695" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="43244aab-ce5e-4d46-b2e3-43636fa41226" start_index="0" end="ee3f42d7-9b1b-46ab-a69d-50dc50330d49" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="dcb09e9d-5cf0-4143-aa54-4660019b01b8" start_index="0" end="90bdabb5-2a2a-43f9-be82-2770d625fe36" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="90bdabb5-2a2a-43f9-be82-2770d625fe36" start_index="0" end="73d59967-a10a-4655-9012-127a22d5be39" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="ee3f42d7-9b1b-46ab-a69d-50dc50330d49" start_index="0" end="73d59967-a10a-4655-9012-127a22d5be39" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="4f842a55-6f12-43bb-852b-769052777695" start_index="0" end="73d59967-a10a-4655-9012-127a22d5be39" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+</Workspace>

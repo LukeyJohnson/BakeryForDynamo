@@ -1,0 +1,82 @@
+<Workspace Version="1.1.0.2094" X="222.064854430481" Y="210.789464578543" zoom="1.24844365397223" Name="Springs.HostedInstance.ByPoints" Description="Creates hosted family instances(doors/windows) at the specified points. You can feed either a single family type or a unique type for each instance." ID="2b432cef-fa0a-44ef-92c2-89b586bfc8ba" Category="Springs.Revit.FamilyInstance">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="01b001a1-0f4b-46c2-b40b-9a76321397df" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-40.645443153968" y="12.8710569987566" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="host: var[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="21d9da14-52e4-40f9-a262-6d4531da35be" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-44.5633712265382" y="74.4282041967319" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="type: var[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="62c7092e-74eb-459c-a699-0df7ef89b809" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-48.0416473981198" y="131.317782250332" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="point: var[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c8c50cf6-8557-4116-b38f-3eb1e2c12614" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="276.256866595635" y="10.8387848410581" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="FamilyInstance" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="17a1d35a-8c92-487b-8080-cb584c9d61d6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="118.171987670717" y="11.7451279954348" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <Script>#Copyright(c) 2016, Dimitar Venkov
+# @5devene, dimitar.ven@gmail.com
+
+import clr
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+clr.AddReference("RevitAPI")
+import Autodesk
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+def tolist(obj1):
+	if hasattr(obj1,"__iter__"): return obj1
+	else: return [obj1]
+def output1(l1):
+	if len(l1) == 1: return l1[0]
+	else: return l1
+
+host = UnwrapElement(tolist(IN[0]))
+ftype = UnwrapElement(tolist(IN[1]))
+fpts = UnwrapElement(tolist(IN[2]))
+
+Rpts =[p.ToXyz(True) for p in fpts]
+
+nfl = []
+strt = Autodesk.Revit.DB.Structure.StructuralType.NonStructural
+ftp_len = len(ftype) == 1
+hst_len = len(host) == 1
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+for i in xrange(len(Rpts) ):
+	j = 0 if ftp_len else i
+	k = 0 if hst_len else i
+	try:
+		if not ftype[j].IsActive : ft.Activate()
+		level = doc.GetElement(host[k].LevelId)
+		nf = doc.Create.NewFamilyInstance(Rpts[i],ftype[j],host[k],level,strt)
+		nfl.append(nf.ToDSType(False))
+	except:
+		nfl.append(None)
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = output1(nfl)</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="01b001a1-0f4b-46c2-b40b-9a76321397df" start_index="0" end="17a1d35a-8c92-487b-8080-cb584c9d61d6" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="21d9da14-52e4-40f9-a262-6d4531da35be" start_index="0" end="17a1d35a-8c92-487b-8080-cb584c9d61d6" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="62c7092e-74eb-459c-a699-0df7ef89b809" start_index="0" end="17a1d35a-8c92-487b-8080-cb584c9d61d6" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="17a1d35a-8c92-487b-8080-cb584c9d61d6" start_index="0" end="c8c50cf6-8557-4116-b38f-3eb1e2c12614" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="110.594947814941" eyeY="205.909820556641" eyeZ="-176.049072265625" lookX="-6.42372941970825" lookY="-238.832733154297" lookZ="64.4785232543945" upX="0.0990167707204819" upY="-0.0488497689366341" upZ="-0.99388599395752" />
+  </Cameras>
+</Workspace>

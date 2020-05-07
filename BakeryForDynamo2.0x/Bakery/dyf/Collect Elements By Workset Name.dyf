@@ -1,0 +1,60 @@
+<Workspace Version="1.3.2.2480" X="-7.9385274143292" Y="260.8368108504" zoom="0.905016698856708" ScaleFactor="1" Name="Collect Elements By Workset Name" Description="" ID="65c54169-f791-4eaa-9e49-9f6c18a52137" Category="Bakery.Revit.Document.Worksets">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="b6443e86-f2ff-4f34-98c2-e5888c2cb376" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="IndexOf" x="562.451509047984" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="IndexOf@var[]..[],var[]..[]">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="a6d7ec70-33fa-45e3-8c1f-6c9fe2c0129d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Worksets with all Properties" x="250" y="96.0935773109836" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <ID value="72368624-3e40-4a97-83a4-59bc2a299c83" />
+      <Name value="Get Worksets with all Properties" />
+      <Description value="based on Konrad's, added some more properties of Worksets" />
+      <Inputs />
+      <Outputs>
+        <Output value="Worksets" />
+        <Output value="Ids" />
+        <Output value="Names" />
+        <Output value="IsOpen" />
+        <Output value="VisibleByDefault" />
+        <Output value="IsDefaultWorkset" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e89da06f-d5ed-40fb-b961-54f45d3d8acf" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.GetItemAtIndex" x="706.752630900433" y="155.306396249327" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.GetItemAtIndex@var[]..[],int">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="e290decf-69a8-4869-ac5b-416c51a6449d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Elements By Workset Id" x="933.864262563099" y="162.615713803164" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="14ed8d38-7bfb-4958-833c-f2ed0ba5e3ae" />
+      <Name value="Get Elements By Workset Id" />
+      <Description value="" />
+      <Inputs>
+        <Input value="WORKSETID" />
+      </Inputs>
+      <Outputs>
+        <Output value="elements" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7c4a16ef-82ce-4820-8abb-ab85f87d59f8" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="nameString" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="0f2713db-0383-452b-8592-120e02f8bc86" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1250.19759589643" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="elementz" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b6443e86-f2ff-4f34-98c2-e5888c2cb376" start_index="0" end="e89da06f-d5ed-40fb-b961-54f45d3d8acf" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a6d7ec70-33fa-45e3-8c1f-6c9fe2c0129d" start_index="1" end="e89da06f-d5ed-40fb-b961-54f45d3d8acf" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a6d7ec70-33fa-45e3-8c1f-6c9fe2c0129d" start_index="2" end="b6443e86-f2ff-4f34-98c2-e5888c2cb376" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e89da06f-d5ed-40fb-b961-54f45d3d8acf" start_index="0" end="e290decf-69a8-4869-ac5b-416c51a6449d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e290decf-69a8-4869-ac5b-416c51a6449d" start_index="0" end="0f2713db-0383-452b-8592-120e02f8bc86" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7c4a16ef-82ce-4820-8abb-ab85f87d59f8" start_index="0" end="b6443e86-f2ff-4f34-98c2-e5888c2cb376" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

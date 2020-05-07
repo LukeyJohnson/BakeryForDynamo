@@ -1,0 +1,68 @@
+<Workspace Version="1.3.2.2480" X="240" Y="166" zoom="1" ScaleFactor="1" Name="Closest Value" Description="uses double to int reduction" ID="bdc0845a-efce-45c1-be5e-e81f1631196c" Category="Bakery.Core.Math">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="35d54ff2-f275-4f11-ba9b-6971a84f598e" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="-" x="453.164673748814" y="54.2568508974803" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="Operators" function="-@var[]..[],var[]..[]">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <CoreNodeModels.Formula guid="9936894f-08df-48aa-a40b-9eaa3fb0c991" type="CoreNodeModels.Formula" nickname="Formula" x="641.768481252128" y="71.0939365832425" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <FormulaText>abs(x)</FormulaText>
+    </CoreNodeModels.Formula>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="9640fc1a-ed0c-42ba-af4d-cc6de8a08abf" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="List of float double to list of Int" x="250" y="190.036721074297" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="07886f46-cd5b-4530-8833-28ca7956cdbc" />
+      <Name value="List of float double to list of Int" />
+      <Description value="no decimals" />
+      <Inputs>
+        <Input value="double" />
+      </Inputs>
+      <Outputs>
+        <Output value="int" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="336e8e6b-fc24-4ab8-827a-d97f389e0c56" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.MinimumItem" x="739.99949878758" y="223.160025524486" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.MinimumItem@var[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="f0f859a7-c212-436a-8e8b-f9bbf058c92d" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="If Equal Return Index using IndexOf" x="919.314866567575" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="ca92b390-30de-4023-886c-cb172a3025bf" />
+      <Name value="If Equal Return Index using IndexOf" />
+      <Description value="" />
+      <Inputs>
+        <Input value="searchForThese" />
+        <Input value="inThisList" />
+      </Inputs>
+      <Outputs>
+        <Output value="indices" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="2558a992-ebd1-4078-8542-074602aec6a5" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="value" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="aadb0dcd-eaf9-4437-ba82-bcaf90335093" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="listOfDoubles" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c5a36152-f268-4c9a-8f2b-57dca3965b3b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1251.31486656758" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="indices" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="35d54ff2-f275-4f11-ba9b-6971a84f598e" start_index="0" end="9936894f-08df-48aa-a40b-9eaa3fb0c991" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9936894f-08df-48aa-a40b-9eaa3fb0c991" start_index="0" end="336e8e6b-fc24-4ab8-827a-d97f389e0c56" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9936894f-08df-48aa-a40b-9eaa3fb0c991" start_index="0" end="f0f859a7-c212-436a-8e8b-f9bbf058c92d" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9640fc1a-ed0c-42ba-af4d-cc6de8a08abf" start_index="0" end="35d54ff2-f275-4f11-ba9b-6971a84f598e" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="336e8e6b-fc24-4ab8-827a-d97f389e0c56" start_index="0" end="f0f859a7-c212-436a-8e8b-f9bbf058c92d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f0f859a7-c212-436a-8e8b-f9bbf058c92d" start_index="0" end="c5a36152-f268-4c9a-8f2b-57dca3965b3b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2558a992-ebd1-4078-8542-074602aec6a5" start_index="0" end="35d54ff2-f275-4f11-ba9b-6971a84f598e" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="aadb0dcd-eaf9-4437-ba82-bcaf90335093" start_index="0" end="9640fc1a-ed0c-42ba-af4d-cc6de8a08abf" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-57135.14453125" eyeY="31928.802734375" eyeZ="5514.82080078125" lookX="-45.1421318054199" lookY="-108.30534362793" lookZ="357.870788574219" upX="-0.00945612508803606" upY="0.997141301631927" upZ="0.0749648064374924" />
+  </Cameras>
+</Workspace>

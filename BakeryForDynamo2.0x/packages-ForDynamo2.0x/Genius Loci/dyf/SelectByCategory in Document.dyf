@@ -1,0 +1,85 @@
+<Workspace Version="1.3.3.4651" X="157.347241325252" Y="-17.8537142647172" zoom="0.8131456821731" ScaleFactor="1" Name="SelectByCategory in Document" Description="Collect elements by category in a linked or open document in the background." ID="a2133ea9-fc86-425c-958c-f7d8334a0739" Category="GeniusLoci.Select">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="DSCore.List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c86e85be-e5f0-4aba-83e9-25e3a256a873" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="301.244025868253" y="384.687013005687" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Category" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d091d0c1-f27a-4b5f-846c-7711b6d88a33" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="640.302070084406" y="393.603253153993" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="ed16b2bd-4dca-475b-8bf3-b5872a7d2d76" type="PythonNodeModels.PythonNode" nickname="SelectByCategory" x="462.56489618565" y="388.622796700203" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script># Default imports
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+#Import Collections
+from System.Collections.Generic import *
+import System
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def tolist(x):
+    if hasattr(x,'__iter__'): return x
+    else : return [x]
+
+cats = tolist(IN[0])
+inputdocs = tolist(UnwrapElement(IN[1]))
+catlist = []
+
+#Part of script from Clockwork
+for inputdoc in inputdocs :
+	if inputdoc == None:
+		doc = DocumentManager.Instance.CurrentDBDocument
+	elif inputdoc.GetType().ToString() == "Autodesk.Revit.DB.Document":
+		doc = inputdoc
+	elif inputdoc.GetType().ToString() == "Autodesk.Revit.DB.RevitLinkInstance":
+		doc = inputdoc.GetLinkDocument()
+	else: doc = None
+
+
+for cat in cats:
+	bic = System.Enum.ToObject(BuiltInCategory, cat.Id)
+	catlist.append(FilteredElementCollector(doc).WhereElementIsNotElementType().OfCategory(bic).ToElements())
+	
+OUT=catlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="db90481d-c255-4d4a-a0e9-aed081568afe" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-39.961907676819" y="461.945081693852" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="// Use only if you want to query a linked model&#xD;&#xA;docOrRevitLinkInstance : var[]..[] = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="c86e85be-e5f0-4aba-83e9-25e3a256a873" start_index="0" end="ed16b2bd-4dca-475b-8bf3-b5872a7d2d76" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ed16b2bd-4dca-475b-8bf3-b5872a7d2d76" start_index="0" end="d091d0c1-f27a-4b5f-846c-7711b6d88a33" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="db90481d-c255-4d4a-a0e9-aed081568afe" start_index="0" end="ed16b2bd-4dca-475b-8bf3-b5872a7d2d76" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

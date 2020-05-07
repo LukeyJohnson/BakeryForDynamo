@@ -1,0 +1,122 @@
+<Workspace Version="0.9.1.3872" X="-401.055008108355" Y="-283.706992688401" zoom="1.545620359375" Name="Isolate in View" Description="This node will take input of elements and a view to isolate selected elements in a view." ID="dfc2063c-a98c-4afa-8872-83cf333a7439" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="e9af01dc-07a2-4051-b7d6-d2c5c3321d6b" type="PythonNodeModels.PythonNode" nickname="Python Script" x="603" y="311" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="2">
+      <Script># Copyright(c) 2016, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import System
+from System import Array
+from System.Collections.Generic import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+view = UnwrapElement(IN[1])
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def Unwrap(item):
+	try:
+		e = doc.GetElement(ElementId(int(item.Id)))
+		return e
+	except:
+		return None
+
+def ClearList(_list):
+    out = []
+    for _list1 in _list:
+        if _list1 is None:
+            continue
+        if not _list1:
+        	continue
+        if isinstance(_list1, list):
+             _list1 = ClearList(_list1)
+             if not _list1:
+                 continue
+        out.append(_list1)
+    return out
+
+if isinstance(IN[0], list):
+	lmnts = ProcessList(Unwrap, IN[0])
+	lmnts = ClearList(lmnts)
+else:
+	lmnts = [Unwrap(elem)]
+	lmnts = ClearList(lmnts)
+
+try:
+	errorReport = None
+	elemSet = ElementSet()
+	for i in lmnts:
+		elemSet.Insert(i)
+	
+	excludes = List[ElementId]()
+	elemIter = elemSet.ForwardIterator()
+	elemIter.Reset()
+	while elemIter.MoveNext():
+		curElem = elemIter.Current
+		excludes.Add(curElem.Id)
+	
+	filter = ExclusionFilter(excludes)
+	
+	new_collector = FilteredElementCollector(doc, view.Id).WhereElementIsNotElementType().WherePasses(filter).ToElementIds()
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	view.HideElementsTemporary(new_collector)
+	TransactionManager.Instance.TransactionTaskDone()
+
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()	
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = lmnts
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b1ff6a0b-f481-463f-9d16-82cbcd4cc134" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="421.975444968147" y="273.542338622251" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a32583e8-f920-4b55-9f9f-e4198a0e79f6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="418.558914662587" y="343.2356113253" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="View" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="270d35ae-245f-48ed-aaff-c2f0d3d97e9a" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="770.98655829273" y="305.528642440482" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <Symbol value="Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="e9af01dc-07a2-4051-b7d6-d2c5c3321d6b" start_index="0" end="270d35ae-245f-48ed-aaff-c2f0d3d97e9a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b1ff6a0b-f481-463f-9d16-82cbcd4cc134" start_index="0" end="e9af01dc-07a2-4051-b7d6-d2c5c3321d6b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a32583e8-f920-4b55-9f9f-e4198a0e79f6" start_index="0" end="e9af01dc-07a2-4051-b7d6-d2c5c3321d6b" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-13.566082719432" eyeY="230.263978024036" eyeZ="116.885963520667" lookX="33.2769450894023" lookY="-36.0500238468525" lookZ="-160.838567932111" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

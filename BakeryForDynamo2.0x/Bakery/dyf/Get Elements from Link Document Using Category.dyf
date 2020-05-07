@@ -1,0 +1,69 @@
+<Workspace Version="1.3.3.4651" X="644.303260372838" Y="840.657676102191" zoom="1.40972876398001" ScaleFactor="1" Name="Get Elements from Link Document Using Category" Description="" ID="18f8bc05-fab8-4a62-a118-8d76c9d9b53e" Category="Bakery.Revit.Selection">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5e1c6181-ecbd-4cd9-9dbd-c257adde606a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-448.47760364371" y="-407.937905199385" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Link_Document" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="4ea71cfc-2e1e-4a82-a58d-0f1e7fb74cc9" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-291.165771289564" y="-294.197359779198" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="builtInName" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="258e08da-9fcf-41b1-a022-3363ca8a73bf" type="PythonNodeModels.PythonNode" nickname="Python Script" x="129.616874642547" y="-320.980005711308" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#python nodes in dynamo 0.7
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import System
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+LinkDoc=IN[0]
+BuiltIn = IN[1]
+#BuiltIn = System.Enum.ToObject(BuiltInCategory, cat.Id)
+
+collector = FilteredElementCollector(LinkDoc)
+filter = ElementCategoryFilter(BuiltIn)
+list=collector.WherePasses(filter).WhereElementIsNotElementType().ToElements()
+
+
+OUT = list</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="cdbb2967-b1eb-4364-a16d-ba526abd95fd" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="352.834228710436" y="-320.197359779198" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Elementz" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="5e1c6181-ecbd-4cd9-9dbd-c257adde606a" start_index="0" end="258e08da-9fcf-41b1-a022-3363ca8a73bf" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4ea71cfc-2e1e-4a82-a58d-0f1e7fb74cc9" start_index="0" end="258e08da-9fcf-41b1-a022-3363ca8a73bf" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="258e08da-9fcf-41b1-a022-3363ca8a73bf" start_index="0" end="cdbb2967-b1eb-4364-a16d-ba526abd95fd" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="47753.70703125" eyeY="43744.51953125" eyeZ="-180723.46875" lookX="-10347.6689453125" lookY="-444.518218994141" lookZ="-2712.60815429688" upX="0.167972460389137" upY="0.984807729721069" upZ="0.0440334416925907" />
+  </Cameras>
+</Workspace>

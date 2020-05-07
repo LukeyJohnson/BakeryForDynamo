@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JuggernaughtRevit</name>
+    </assembly>
+    <members>
+        <member name="T:Revit.Room">
+            <summary>
+            Interact with Revit Room Elements
+            </summary>
+        </member>
+        <member name="M:Revit.Room.NameByPoint(Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            Retrieve room name by point
+            </summary>
+            <param name="Point">A Dynamo Point</param>
+            <returns name="Rooms"> Room name </returns>
+            <search>
+            room, juggernaught, get, revit, points, room name, roomnumberbypoint, roomname, namebypoint, NameByPoint
+            </search>
+        </member>
+        <member name="M:Revit.Room.NumberByPoint(Autodesk.DesignScript.Geometry.Point)">
+            <summary>
+            Retrieve room by point
+            </summary>
+            <param name="Point">A Dynamo Point</param>
+            <returns name="Rooms"> Room number </returns>
+            <search>
+            room, juggernaught, get, revit, points, room number, roomnumberbypoints, roomnumber, numberbypoint, NumberByPoint
+            </search>
+        </member>
+        <member name="T:Revit.Sheet">
+            <summary>
+            Interact with Revit Sheet Elements
+            </summary>
+        </member>
+        <member name="M:Revit.Sheet.ByNumbers(System.Collections.Generic.List{System.String})">
+            <summary>
+            Retrieve project sheets as elements with number as string
+            </summary>
+            <param name="Numbers">A list of sheet numbers as strings</param>
+            <returns name="Rooms"> List of sheet elements </returns>
+            <search>
+            sheet, juggernaught, get, revit, numbers, sheet number, sheetbynumber, sheetnumber, bynumbers, ByNumbers
+            </search>
+        </member>
+        <member name="M:Revit.Sheet.ByName(System.Collections.Generic.List{System.String})">
+            <summary>
+            Retrieve project sheets as elements with number as string
+            </summary>
+            <param name="Names">A list of sheet numbers</param>
+            <returns name="Rooms"> List of sheet elements </returns>
+            <search>
+            sheet, juggernaught, get, revit, names, sheet name, sheetbyname, sheetname, byname, ByName
+            </search>
+        </member>
+        <member name="T:Revit.Detailcurve">
+            <summary>
+            Create elements in Revit
+            </summary>
+        </member>
+        <member name="M:Revit.Detailcurve.ByPointsAndView(Autodesk.DesignScript.Geometry.Point,Autodesk.DesignScript.Geometry.Point,Revit.Elements.Views.View)">
+            <summary>
+            Create detail line between point A and point B in a specified view
+            </summary>
+            <param name="PointA">A Dynamo point</param>
+            <param name="PointB">A Dynamo point</param>
+            <param name="View">A Revit view</param>
+            <returns name="Line"> A line</returns>
+            <search>
+            room, juggernaught, get, revit, points, room name, roomnumberbypoints, roomname, bypointsandview, detailcurve, detail
+            </search>
+        </member>
+        <member name="T:Revit.View">
+            <summary>
+            Create elements in Revit
+            </summary>
+        </member>
+        <member name="M:Revit.View.ElevationByCurve(Autodesk.DesignScript.Geometry.Curve,Revit.Elements.Element,Revit.Elements.Element,System.Boolean)">
+            <summary>
+            Create an elevation from a curve. The Elevation view will always be positioned at the midpoint of 
+            the input curve directed in the normal direction of the curve.
+            </summary>
+            <param name="Curve">A straight curve which will be used to position the Elevation Markers.</param>
+            <param name="ViewFamilyType">A Revit ViewFamilyType which will be used to create the elevations.</param>
+            <param name="ViewPlan">A ViewPlan in which the view is to be created. The view will inherit settings
+            from the ViewPlan</param>
+            <param name="RevitOwned">When the Elevation is output, set RevitOwned to true to mark the Elevation as Revit Owned. The default is not Revit owned which means the view will be updated each time the Dynamo graph is run.</param>
+            <search>
+            elevation, juggernaught, get, revit, curve, room name, elevationbycurves, ele, view, elevation, elevationbycurve
+            </search>
+        </member>
+    </members>
+</doc>

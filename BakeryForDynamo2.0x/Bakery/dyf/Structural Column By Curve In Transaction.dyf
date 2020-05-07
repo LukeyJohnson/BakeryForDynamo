@@ -1,0 +1,135 @@
+<Workspace Version="1.2.0.2690" X="8.42333333333323" Y="230.28" zoom="0.8425" Name="Structural Column By Curve In Transaction" Description="" ID="0892cac6-b61d-491c-a8bd-202cf0338b75" Category="Bakery.Revit.Elements">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Curve" resolvedName="Autodesk.DesignScript.Geometry.Curve" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Level" resolvedName="Revit.Elements.Level" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="FloorType" resolvedName="Revit.Elements.FloorType" assemblyName="RevitNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="af616ed6-db1e-4780-a640-6bd5edab7206" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="514.004025658062" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="TurnIntoList" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="95f3b4e0-9963-433f-98e5-c1b37a33c223" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Dynamo Curves to Revit Curves" x="250" y="5.03790788315678" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="9ed9c7ab-028f-4fa0-a38e-6080baa46095" />
+      <Name value="Dynamo Curves to Revit Curves" />
+      <Description value="" />
+      <Inputs>
+        <Input value="curves" />
+      </Inputs>
+      <Outputs>
+        <Output value="revitCurves" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <PythonNodeModels.PythonNode guid="11c45ae4-4c8e-4836-8a7b-c259dfada87d" type="PythonNodeModels.PythonNode" nickname="Python Script" x="663.770759330929" y="115.398195551064" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <Script>import clr
+from System.Collections.Generic import *
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+import Autodesk
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+#from System.Linq import *
+from Autodesk.Revit.Creation import *
+from Autodesk.Revit.DB import *
+#from DynamoServices import *
+from Revit.GeometryConversion import *
+from RevitServices.Persistence import *
+from RevitServices.Transactions import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+locations = UnwrapElement(IN[0])
+famtypeIn = UnwrapElement(IN[1])
+levelIn = UnwrapElement(IN[2])
+
+elementlist = []
+
+failures = []
+#itemlist = List[FamilyInstanceCreationData](templist)
+def GetCreationData(curve, level, structuralType, symbol):
+	return FamilyInstanceCreationData(curve, symbol, level, structuralType)
+	
+
+		
+TransactionManager.Instance.EnsureInTransaction(doc)
+for l in locations:
+	creationData = GetCreationData(l,levelIn,Autodesk.Revit.DB.Structure.StructuralType.Column,famtypeIn)
+	creationdatas = List[FamilyInstanceCreationData]()
+	creationdatas.Add(creationData)
+#	listed = List[FamilyInstanceCreationData].append((creationData))
+#	creationData = templist
+	newobj = doc.Create.NewFamilyInstances2(creationdatas)
+	elementlist.append(newobj)
+#	except:
+#		failures.append(l)
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT = elementlist#, failures</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="5e47f7c7-81f8-4ab6-b146-1a345d176a5a" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="847.868108750944" y="161.147700290453" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Flatten@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="efb0e9b5-fc74-4952-8f0f-3d3fc0c26493" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="curves : var[]..[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="cbbd1ede-ffa6-4a91-8e6f-779083e91916" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="columnType" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0412b401-4239-445a-bbb0-9abe717fea7f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="123.333333333333" y="301.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="level" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="353d7891-c651-4b24-842d-51f06ff9b2b1" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1096.86810875094" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="columns" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="fe520f41-2687-4191-8da2-6316a6734ea0" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="bv IDs to Elements" x="1075.65974282888" y="562.278931750742" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="b2a2941e-7151-4158-81ce-522d451de0ff" />
+      <Name value="bv IDs to Elements" />
+      <Description value="forked from CAAD_RWTH" />
+      <Inputs>
+        <Input value="ID(s)" />
+      </Inputs>
+      <Outputs>
+        <Output value="Element(s)" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="af616ed6-db1e-4780-a640-6bd5edab7206" start_index="0" end="11c45ae4-4c8e-4836-8a7b-c259dfada87d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="95f3b4e0-9963-433f-98e5-c1b37a33c223" start_index="0" end="af616ed6-db1e-4780-a640-6bd5edab7206" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="11c45ae4-4c8e-4836-8a7b-c259dfada87d" start_index="0" end="5e47f7c7-81f8-4ab6-b146-1a345d176a5a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5e47f7c7-81f8-4ab6-b146-1a345d176a5a" start_index="0" end="fe520f41-2687-4191-8da2-6316a6734ea0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="efb0e9b5-fc74-4952-8f0f-3d3fc0c26493" start_index="0" end="95f3b4e0-9963-433f-98e5-c1b37a33c223" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="cbbd1ede-ffa6-4a91-8e6f-779083e91916" start_index="0" end="11c45ae4-4c8e-4836-8a7b-c259dfada87d" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0412b401-4239-445a-bbb0-9abe717fea7f" start_index="0" end="11c45ae4-4c8e-4836-8a7b-c259dfada87d" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fe520f41-2687-4191-8da2-6316a6734ea0" start_index="0" end="353d7891-c651-4b24-842d-51f06ff9b2b1" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-228.505096435547" eyeY="1271.94482421875" eyeZ="1191.52368164063" lookX="278.505096435547" lookY="-771.944885253906" lookZ="-1191.52368164063" upX="0.0773471742868423" upY="0.940486013889313" upZ="-0.330913156270981" />
+  </Cameras>
+</Workspace>

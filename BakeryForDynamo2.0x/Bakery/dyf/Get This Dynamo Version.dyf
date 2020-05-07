@@ -1,0 +1,23 @@
+<Workspace Version="1.3.0.875" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Get This Dynamo Version" Description="" ID="9cf3d64c-524a-49a3-9842-2bffdddbdc6d" Category="Bakery.Dynamo.UI">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="ddecd5db-72d0-4557-a5fb-4fe2b89ccfb5" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+import System
+
+OUT = System.Diagnostics.Process.GetCurrentProcess().MainModule.FileVersionInfo.FileVersion</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="337426eb-dc3a-4410-9bae-e62abcae82d7" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="419" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="version" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ddecd5db-72d0-4557-a5fb-4fe2b89ccfb5" start_index="0" end="337426eb-dc3a-4410-9bae-e62abcae82d7" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

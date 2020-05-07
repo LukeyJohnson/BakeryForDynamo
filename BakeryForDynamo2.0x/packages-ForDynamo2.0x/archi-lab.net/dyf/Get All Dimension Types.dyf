@@ -1,0 +1,58 @@
+<Workspace Version="1.2.0.2690" X="-560.726816154453" Y="-220.856584485391" zoom="1.78359936238281" Name="Get All Dimension Styles" Description="This node will query all of the available dimension styles (this includes linear as well as arc, circle etc). " ID="c3c91fa6-0324-46af-908c-68621516624a" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="9fc694a8-1b28-44b7-a458-797f42fa11f2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="482.799494389532" y="304.121328052802" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script>#Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+dTypes = FilteredElementCollector(doc).OfClass(DimensionType)
+sTypes = FilteredElementCollector(doc).OfClass(SpotDimensionType)
+
+sTypesName = []
+for i in sTypes:
+	sTypesName.append(i.ToDSType(True).Name)
+
+dimensionTypes = []
+for i in dTypes:
+	if i.ToDSType(True).Name not in sTypesName:
+		dimensionTypes.append(i.ToDSType(True))
+
+#Assign your output to the OUT variable
+OUT = dimensionTypes</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8b60f417-433b-4753-84aa-768b2ef908f3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="653.6596191415" y="306.681343234136" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Dimension Types" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="9fc694a8-1b28-44b7-a458-797f42fa11f2" start_index="0" end="8b60f417-433b-4753-84aa-768b2ef908f3" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

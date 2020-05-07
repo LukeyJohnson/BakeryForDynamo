@@ -1,0 +1,70 @@
+<Workspace Version="1.1.0.2094" X="-260.444863432791" Y="137.129336620111" zoom="0.691347793867188" Name="List of Categories Used in a Linked Revit File" Description="this will take a link Name (without extension) and query it for categories containing elements" ID="1a4cbd5e-2ac7-4abc-a76c-e6ff0b7b9306" Category="Bakery.Revit.Document.Links">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="b537b0ad-8c97-476a-9609-ca51ff4fbf59" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Built In Name Lister" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="True" IsFrozen="false" isPinned="true">
+      <ID value="de6f2c56-8759-4865-a0dd-403b908d7b43" />
+      <Name value="Built In Name Lister" />
+      <Description value="lists BuiltInNames (Built In Category Names)" />
+      <Inputs />
+      <Outputs>
+        <Output value="builtins" />
+        <Output value="builtins views removed" />
+        <Output value="full enumeration" />
+        <Output value="full enumeration as categories" />
+        <Output value="category Ids" />
+        <Output value="doc categories" />
+        <Output value="nonNegativeNames" />
+        <Output value="builtins as Strings" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="27b2776c-7f08-4a3b-9c1a-2f0963063e26" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Get Link Document from Link Name" x="352.180793890362" y="546.971315567137" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="5d605a51-f1f4-48c1-bf58-63d53719a140" />
+      <Name value="Get Link Document from Link Name" />
+      <Description value="" />
+      <Inputs>
+        <Input value="searchFor" />
+      </Inputs>
+      <Outputs>
+        <Output value="item" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Watch guid="577322d2-734b-4ca5-b583-c94cc70612b7" type="CoreNodeModels.Watch" nickname="Watch" x="530.043521266073" y="130.379821958457" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="7a4c5a12-0477-4b6a-8346-a472042a1a29" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Super Collect Elements from Document" x="664.019782393669" y="636.660731948566" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <ID value="a88715b8-a5c1-4a4f-894e-07c95cba3552" />
+      <Name value="Super Collect Elements from Document" />
+      <Description value="tries to collect elements from all builtin categories" />
+      <Inputs>
+        <Input value="builtInNameList" />
+        <Input value="DOC" />
+      </Inputs>
+      <Outputs>
+        <Output value="all category element counts" />
+        <Output value="all category elements" />
+        <Output value="found elements only" />
+        <Output value="found builtInNames" />
+        <Output value="true if elements found" />
+        <Output value="found Category Names" />
+        <Output value="elements flat list" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="7de93bcd-bfc7-420e-af86-39c0974ff424" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="linkName" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2f4e2f54-cb43-4b53-bb56-ff34f3081ac4" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1051.01978239367" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="found Category Names" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="b537b0ad-8c97-476a-9609-ca51ff4fbf59" start_index="7" end="577322d2-734b-4ca5-b583-c94cc70612b7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="27b2776c-7f08-4a3b-9c1a-2f0963063e26" start_index="0" end="7a4c5a12-0477-4b6a-8346-a472042a1a29" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="577322d2-734b-4ca5-b583-c94cc70612b7" start_index="0" end="7a4c5a12-0477-4b6a-8346-a472042a1a29" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7a4c5a12-0477-4b6a-8346-a472042a1a29" start_index="5" end="2f4e2f54-cb43-4b53-bb56-ff34f3081ac4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="7de93bcd-bfc7-420e-af86-39c0974ff424" start_index="0" end="27b2776c-7f08-4a3b-9c1a-2f0963063e26" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

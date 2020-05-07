@@ -1,0 +1,48 @@
+<Workspace Version="0.9.2.4472" X="-275.758436015567" Y="-230.491011517091" zoom="1.78359936238281" Name="String From List" Description="This node will take an input of a list or nested list and then join each element in a list with a given seperator while adding a suffix." ID="790ee8a6-39cc-49bb-9170-2e27d33327f6" Category="Archi-lab_Grimshaw.Strings">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="8aeb380e-590a-4603-ae0f-ecd1b2cda0d9" type="PythonNodeModels.PythonNode" nickname="Python Script" x="458" y="246.999999999998" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="3">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+fileExtension = IN[1]
+underscore = IN[2]
+
+newString = []
+for i in IN[0]:
+	newString.append(underscore.join(i) + fileExtension)
+	
+#Assign your output to the OUT variable
+OUT = newString</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="fa01c958-4f2e-42d1-9902-e52c0d2562cc" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="313.365964357574" y="229.832080528486" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="List" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b407b2ee-6258-4dec-ae54-5860fba05d65" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="312.696747195925" y="285.789930033349" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="Suffix" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="f0c12309-d8ae-48ce-b191-db9bb55c0730" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="312.588194060678" y="341.747779538212" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+      <Symbol value="Seperator" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="63e3a57f-c356-4adb-84eb-dec1dd0bc179" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="632.372114256905" y="247.606656849669" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="8aeb380e-590a-4603-ae0f-ecd1b2cda0d9" start_index="0" end="63e3a57f-c356-4adb-84eb-dec1dd0bc179" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fa01c958-4f2e-42d1-9902-e52c0d2562cc" start_index="0" end="8aeb380e-590a-4603-ae0f-ecd1b2cda0d9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b407b2ee-6258-4dec-ae54-5860fba05d65" start_index="0" end="8aeb380e-590a-4603-ae0f-ecd1b2cda0d9" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f0c12309-d8ae-48ce-b191-db9bb55c0730" start_index="0" end="8aeb380e-590a-4603-ae0f-ecd1b2cda0d9" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

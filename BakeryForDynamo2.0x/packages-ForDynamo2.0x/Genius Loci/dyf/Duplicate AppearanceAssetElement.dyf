@@ -1,0 +1,53 @@
+<Workspace Version="1.3.3.4651" X="-381.762842544634" Y="105.744235310067" zoom="0.867977507649016" ScaleFactor="1" Name="Duplicate AppearanceAssetElement" Description="Works only in Revit 2018.1 and later.&#xD;&#xA;Duplicate an Appearance Asset Element." ID="0786311b-e3e5-48ff-83b6-4bde6f742b71" Category="GeniusLoci.Material">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="61d729e4-3baf-4d7f-b3c1-28c5261059e1" type="PythonNodeModels.PythonNode" nickname="duplicateAssetElements" x="742.657969910002" y="249.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Alban de Chasteigner 2018
+#twitter : @geniusloci_bim
+#geniusloci.bim@gmail.com
+
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+def toList(obj):
+    if hasattr(obj, '__iter__'): return obj
+    else: return [obj]
+    
+assetElems = toList(UnwrapElement(IN[0]))
+assetElemNames = toList(IN[1])
+duplicateAssetElements=[]
+TransactionManager.Instance.EnsureInTransaction(doc)
+for assetElem,assetElemName in zip(assetElems,assetElemNames):
+	duplicateAssetElement = assetElem.Duplicate(assetElemName)
+	duplicateAssetElements.append(duplicateAssetElement)
+TransactionManager.Instance.TransactionTaskDone()
+OUT = duplicateAssetElements</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bd86c9db-7ca0-4639-a913-c96e2565d4aa" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="480.849684142216" y="223.601790372154" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="AppearanceAssetElement" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="38eb3f2b-b554-42db-a558-4a8d8495b77b" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="550.944111991948" y="301.171653028542" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//String&#xD;&#xA;Name" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="72b33fa5-7b0b-47fb-98b2-509a10ba2f64" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="949.520967169925" y="251.453249383265" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="AppearanceAsset" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="61d729e4-3baf-4d7f-b3c1-28c5261059e1" start_index="0" end="72b33fa5-7b0b-47fb-98b2-509a10ba2f64" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bd86c9db-7ca0-4639-a913-c96e2565d4aa" start_index="0" end="61d729e4-3baf-4d7f-b3c1-28c5261059e1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="38eb3f2b-b554-42db-a558-4a8d8495b77b" start_index="0" end="61d729e4-3baf-4d7f-b3c1-28c5261059e1" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

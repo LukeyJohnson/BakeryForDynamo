@@ -1,0 +1,97 @@
+<Workspace Version="1.3.4.6666" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Element Top and Bottom References" Description="Retrieves Top and Bottom Surfaces, Materials, and references of a roof, floor or ceiling." ID="ee4938d9-87d6-499e-855a-9466eae9f88a" Category="GeniusLoci.Reference">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="c2cf8935-a6a7-4df5-b0be-651307e6c724" type="PythonNodeModels.PythonNode" nickname="surface ref" x="485.6" y="216" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Structure import *
+
+# Import ToDSType  (bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+# Adds ToProtoType, ToRevitType geometry conversion extension methods to objects
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import Element wrapper extension methods
+clr.ImportExtensions(Revit.Elements)
+from Revit.Elements import *
+
+elements = UnwrapElement(IN[0])
+if not hasattr(elements, '__iter__'):
+	elements = [elements]
+	
+resArr,topFaces,bottomFaces,topMats,bottomMats=[],[],[],[],[]
+elementsRef=ReferenceArray()
+
+for element in elements:
+	top = HostObjectUtils.GetTopFaces(element)
+	bottom = HostObjectUtils.GetBottomFaces(element)
+	for t in top:
+		elementsRef.Append(t)
+		topFace = element.GetGeometryObjectFromReference(t)
+		topFaces.append(topFace.ToProtoType()[0])
+		#Check for model surfacepattern
+		topmat=doc.GetElement(topFace.MaterialElementId)
+		topMats.append(topmat)
+
+	for b in bottom:
+		elementsRef.Append(b)
+		bottomFace = element.GetGeometryObjectFromReference(b)
+		bottomFaces.append(bottomFace.ToProtoType()[0])
+		#Check for model surfacepattern
+		bottommat=doc.GetElement(bottomFace.MaterialElementId)
+		bottomMats.append(bottommat)
+
+if isinstance(IN[0], (list)): OUT = topFaces,bottomFaces,topMats,bottomMats,elementsRef
+else: OUT = topFaces[0],bottomFaces[0],topMats[0],bottomMats[0],elementsRef</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="c8112c41-2f85-46d3-87d7-e2eb5a0cbff7" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="651.8" y="229.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];&#xA;x[2];&#xA;x[3];&#xA;x[4];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="909cf58c-99f3-45cf-b2ca-776555713bbd" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="785.6" y="226.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Top Surface" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="bd75fddd-ed75-40b9-8f7e-9ebdaca75629" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="217.6" y="209.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//Roof, floor or ceiling&#xD;&#xA;Element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="673df8a4-7bb5-44eb-97bc-c45228156c9c" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="788.4" y="290.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Bottom Surface" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="197c0d5d-eef0-480d-bd05-0d0da1ebfa65" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="781.6" y="357.2" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Top Material" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="48675836-b5ef-45cb-9520-90fe5143296b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="784.4" y="432.8" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Bottom Material" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="269b6534-6b66-4256-b434-5a384e4b38ff" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="799.2" y="503.6" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="References" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="c2cf8935-a6a7-4df5-b0be-651307e6c724" start_index="0" end="c8112c41-2f85-46d3-87d7-e2eb5a0cbff7" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c8112c41-2f85-46d3-87d7-e2eb5a0cbff7" start_index="0" end="909cf58c-99f3-45cf-b2ca-776555713bbd" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c8112c41-2f85-46d3-87d7-e2eb5a0cbff7" start_index="1" end="673df8a4-7bb5-44eb-97bc-c45228156c9c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c8112c41-2f85-46d3-87d7-e2eb5a0cbff7" start_index="2" end="197c0d5d-eef0-480d-bd05-0d0da1ebfa65" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c8112c41-2f85-46d3-87d7-e2eb5a0cbff7" start_index="3" end="48675836-b5ef-45cb-9520-90fe5143296b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="c8112c41-2f85-46d3-87d7-e2eb5a0cbff7" start_index="4" end="269b6534-6b66-4256-b434-5a384e4b38ff" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="bd75fddd-ed75-40b9-8f7e-9ebdaca75629" start_index="0" end="c2cf8935-a6a7-4df5-b0be-651307e6c724" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="65.3233968324508" eyeY="63.6285737370113" eyeZ="-55.4333882973261" lookX="-16.6101143036885" lookY="-62.5071441593696" lookZ="60.7606435703573" upX="-0.141294353019351" upY="0.844327925502013" upZ="0.516861935164803" />
+  </Cameras>
+</Workspace>

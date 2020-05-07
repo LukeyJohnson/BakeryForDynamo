@@ -1,0 +1,52 @@
+<Workspace Version="0.9.0.2912" X="260.1474875" Y="177.823675" zoom="1.33823125" Name="Filled Region Area" Description="This node will query an area from the filled region" ID="33f04975-78e7-4bc6-afeb-cb5b86406d81" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="0dfa8d43-b9a2-4626-ac23-45e9335720db" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+from System.Collections.Generic import *
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+filledRegions = UnwrapElement(IN[0])
+
+paramIndex = Autodesk.Revit.DB.BuiltInParameter.HOST_AREA_COMPUTED
+
+#Assign your output to the OUT variable
+OUT = [i.get_Parameter(paramIndex).AsDouble() for i in filledRegions]</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="3e6b7e49-c492-4935-bfd6-b878c5913728" type="Dynamo.Nodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Filled Region" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="6ee54048-da62-4377-9d89-7caaa2287dc2" type="Dynamo.Nodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Area" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="0dfa8d43-b9a2-4626-ac23-45e9335720db" start_index="0" end="6ee54048-da62-4377-9d89-7caaa2287dc2" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="3e6b7e49-c492-4935-bfd6-b878c5913728" start_index="0" end="0dfa8d43-b9a2-4626-ac23-45e9335720db" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

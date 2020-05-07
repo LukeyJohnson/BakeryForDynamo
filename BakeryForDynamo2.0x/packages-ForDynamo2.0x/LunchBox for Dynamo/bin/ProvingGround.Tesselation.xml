@@ -1,0 +1,359 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ProvingGround.Tesselation</name>
+    </assembly>
+    <members>
+        <member name="T:ProvingGround.Tesselation.CLASSES.clsHexagon">
+            <summary>
+            Hexagon class
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.CLASSES.clsHexagon.#ctor(ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint)">
+            <summary>
+            Create new Quad
+            </summary>
+            <param name="a">Corner A</param>
+            <param name="b">Corner B</param>
+            <param name="c">Corner C</param>
+            <param name="d">Corner D</param>
+            <param name="e">Corner E</param>
+            <param name="f">Corner F</param>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsHexagon.A">
+            <summary>
+            Corner point A
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsHexagon.B">
+            <summary>
+            Corner point B
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsHexagon.C">
+            <summary>
+            Corner point C
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsHexagon.D">
+            <summary>
+            Corner point D
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsHexagon.E">
+            <summary>
+            Corner point E
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsHexagon.F">
+            <summary>
+            Corner point F
+            </summary>
+        </member>
+        <member name="T:ProvingGround.Tesselation.CLASSES.clsLine">
+            <summary>
+            Line class
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.CLASSES.clsLine.#ctor(ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint)">
+            <summary>
+            Create new Quad
+            </summary>
+            <param name="a">Corner A</param>
+            <param name="b">Corner B</param>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsLine.A">
+            <summary>
+            Corner point A
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsLine.B">
+            <summary>
+            Corner point B
+            </summary>
+        </member>
+        <member name="T:ProvingGround.Tesselation.CLASSES.clsPanelCollection">
+            <summary>
+            A collection of panels (triangles, quads, pentagons, hexagons)
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.CLASSES.clsPanelCollection.#ctor(System.Collections.Generic.List{ProvingGround.Tesselation.CLASSES.clsTriangle},System.Collections.Generic.List{ProvingGround.Tesselation.CLASSES.clsQuad},System.Collections.Generic.List{ProvingGround.Tesselation.CLASSES.clsPentagon},System.Collections.Generic.List{ProvingGround.Tesselation.CLASSES.clsHexagon})">
+            <summary>
+            Panel collection
+            </summary>
+            <param name="tris">List of Triangles</param>
+            <param name="quads">List of Quads</param>
+            <param name="hexs">List of Hexagons</param>
+            <param name="pents">List of Pentagons</param>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPanelCollection.Triangles">
+            <summary>
+            List of Triangles
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPanelCollection.Quads">
+            <summary>
+            List of Quads
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPanelCollection.Pentagons">
+            <summary>
+            List of Pentagons
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPanelCollection.Hexagons">
+            <summary>
+            List of Hexagons 
+            </summary>
+        </member>
+        <member name="T:ProvingGround.Tesselation.CLASSES.clsPentagon">
+            <summary>
+            Pentagon class
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.CLASSES.clsPentagon.#ctor(ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint)">
+            <summary>
+            Create new Quad
+            </summary>
+            <param name="a">Corner A</param>
+            <param name="b">Corner B</param>
+            <param name="c">Corner C</param>
+            <param name="d">Corner D</param>
+            <param name="e">Corner E</param>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPentagon.A">
+            <summary>
+            Corner point A
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPentagon.B">
+            <summary>
+            Corner point B
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPentagon.C">
+            <summary>
+            Corner point C
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPentagon.D">
+            <summary>
+            Corner point D
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPentagon.E">
+            <summary>
+            Corner point E
+            </summary>
+        </member>
+        <member name="T:ProvingGround.Tesselation.CLASSES.clsPoint">
+            <summary>
+            Point class
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.CLASSES.clsPoint.#ctor(System.Double,System.Double,System.Double)">
+            <summary>
+            Create point based on XYZ
+            </summary>
+            <param name="x">X coordinate</param>
+            <param name="y">Y coordinate</param>
+            <param name="z">Z coordinate</param>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPoint.X">
+            <summary>
+            X coordinate
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPoint.Y">
+            <summary>
+            Y coordinate
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsPoint.Z">
+            <summary>
+            Z coordinate
+            </summary>
+        </member>
+        <member name="T:ProvingGround.Tesselation.CLASSES.clsQuad">
+            <summary>
+            Quad class
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.CLASSES.clsQuad.#ctor(ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint)">
+            <summary>
+            Create new Quad
+            </summary>
+            <param name="a">Corner A</param>
+            <param name="b">Corner B</param>
+            <param name="c">Corner C</param>
+            <param name="d">Corner D</param>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsQuad.A">
+            <summary>
+            Corner point A
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsQuad.B">
+            <summary>
+            Corner point B
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsQuad.C">
+            <summary>
+            Corner point C
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsQuad.D">
+            <summary>
+            Corner point D
+            </summary>
+        </member>
+        <member name="T:ProvingGround.Tesselation.CLASSES.clsTriangle">
+            <summary>
+            Triangle class
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.CLASSES.clsTriangle.#ctor(ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint,ProvingGround.Tesselation.CLASSES.clsPoint)">
+            <summary>
+            Create new Quad
+            </summary>
+            <param name="a">Corner A</param>
+            <param name="b">Corner B</param>
+            <param name="c">Corner C</param>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsTriangle.A">
+            <summary>
+            Corner point A
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsTriangle.B">
+            <summary>
+            Corner point B
+            </summary>
+        </member>
+        <member name="P:ProvingGround.Tesselation.CLASSES.clsTriangle.C">
+            <summary>
+            Corner point C
+            </summary>
+        </member>
+        <member name="T:ProvingGround.Tesselation.TesselationUtils">
+            <summary>
+            Tesselation Utilities
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.#ctor">
+            <summary>
+            New Tessleation Utils
+            </summary>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.PanelQuad(System.Int32,System.Int32)">
+            <summary>
+            Even Quad Grid Division
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Quads</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.PanelQuadStaggered(System.Int32,System.Int32)">
+            <summary>
+            Even Staggerd Quad Grid Division
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Quads</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.PanelQuadScewed(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Even Staggerd Quad Grid Division
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <param name="t">Scew parameter (0-1)</param>
+            <returns>List of Quads</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.PanelDiamond(System.Int32,System.Int32)">
+            <summary>
+            Even Diamond Grid Division
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Diamonds</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.PanelHexagonal(System.Int32,System.Int32,System.Double)">
+            <summary>
+            Even Hexagonal Division
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <param name="t">Hex parameter (0-1)</param>
+            <returns>List of Hexagons</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.PanelTriangleA(System.Int32,System.Int32)">
+            <summary>
+            Even Triangle Grid Division (Method A)
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Triangles</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.PanelTriangleB(System.Int32,System.Int32)">
+            <summary>
+            Even Triangle Grid Division (Method B)
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Triangles</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.PanelTriangleC(System.Int32,System.Int32)">
+            <summary>
+            Even Triangle Grid Division (Method C)
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Triangles</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.WireGrid(System.Int32,System.Int32)">
+            <summary>
+            Even Basic Grid Wireframe
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Wires</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.WireBraced1DGrid(System.Int32,System.Int32)">
+            <summary>
+            Even 1D Braced Grid Wireframe
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Wires</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.WireBraced2DGrid(System.Int32,System.Int32)">
+            <summary>
+            Even 2D Braced Grid Wireframe
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <returns>List of Wires</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.WireDiagrid(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Even Diagrid Wireframe
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <param name="t">Boolean toggle to change diagrid division</param>
+            <returns>List of Wires</returns>
+        </member>
+        <member name="M:ProvingGround.Tesselation.TesselationUtils.WireHexagon(System.Int32,System.Int32,System.Double,System.Boolean)">
+            <summary>
+            Even Hexagon Wireframe
+            </summary>
+            <param name="u">Number of divisions in the U direction</param>
+            <param name="v">Number of divisions in the V direction</param>
+            <param name="a">Hexagon shape adjust</param>
+            <param name="t">Boolean toggle to change diagrid division</param>
+            <returns>List of Wires</returns>
+        </member>
+    </members>
+</doc>

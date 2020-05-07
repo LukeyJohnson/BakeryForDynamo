@@ -1,0 +1,51 @@
+<Workspace Version="1.3.0.875" X="0" Y="0" zoom="1" ScaleFactor="1" Name="All Constraints in Current Document" Description="" ID="434b697b-5354-48cc-b07d-211b1db86224" Category="Bakery.Revit.Elements.Dimension">
+  <NamespaceResolutionMap />
+  <Elements>
+    <CoreNodeModels.Input.StringInput guid="a3c46ce2-b8ea-4efd-b6f4-7fdb5d48a6f9" type="CoreNodeModels.Input.StringInput" nickname="String" x="250" y="19.9795484273383" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <System.String>Constraints</System.String>
+      <System.String value="Constraints" />
+    </CoreNodeModels.Input.StringInput>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="b70c2b9f-e8db-46da-8354-3f663e3d0399" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="BuiltInCategory.ByName" x="506.637753396979" y="5.06011647344235" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="True" />
+      <ID value="0755c987-62c0-4139-b9d4-1dbc7247ad5c" />
+      <Name value="BuiltInCategory.ByName" />
+      <Description value="Looks up all the built-in categories based on a given name (or part of a name) of the category. Search is case-insensitive." />
+      <Inputs>
+        <Input value="searchFor" />
+        <Input value="ignoreCase" />
+      </Inputs>
+      <Outputs>
+        <Output value="BuiltInCategories" />
+        <Output value="ElementIDs" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="661a0f31-d951-496d-a669-57268ef85315" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Select Elements Using BuiltIn Category Names" x="869.704518417397" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true">
+      <PortInfo index="0" default="False" />
+      <ID value="07462ff0-79d0-4192-88ee-7188f61c313e" />
+      <Name value="Select Elements Using BuiltIn Category Names" />
+      <Description value="works on a list of BuiltIn Names" />
+      <Inputs>
+        <Input value="builtIns" />
+      </Inputs>
+      <Outputs>
+        <Output value="elements" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="7b555971-186e-401b-b059-748a84c70bf9" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1243.7045184174" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="elements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="a3c46ce2-b8ea-4efd-b6f4-7fdb5d48a6f9" start_index="0" end="b70c2b9f-e8db-46da-8354-3f663e3d0399" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b70c2b9f-e8db-46da-8354-3f663e3d0399" start_index="0" end="661a0f31-d951-496d-a669-57268ef85315" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="661a0f31-d951-496d-a669-57268ef85315" start_index="0" end="7b555971-186e-401b-b059-748a84c70bf9" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,69 @@
+<Workspace Version="1.2.0.2690" X="142.085552632289" Y="167.538726808855" zoom="1.33823125" Name="Get All Elements From Linked Model" Description="This node is based on code posted by Julien Benoit. Big thanks to Julien for sharing his work. This node will retrieve all elements of a given category from a given linked model. " ID="ce86e653-fcd4-4809-b0c0-584a1d34e006" Category="Archi-lab_Grimshaw.Selection.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="068e72cc-a7fe-4c72-a603-4f42159c7fb1" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# This node is based on Julien Benoit's Element.GetElementFromLinkedFile 
+# node. Some slight improvements were made removing unnecessary imports/references.
+# Big thank you to Julien for sharing his work. 
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import System
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+_linkDoc = IN[0]
+_category = IN[1]
+
+try:
+	errorReport = None
+	filter = ElementCategoryFilter(System.Enum.ToObject(BuiltInCategory, _category.Id))
+	result = FilteredElementCollector(_linkDoc).WherePasses(filter).WhereElementIsNotElementType().ToElements()
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = result
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b0a69fa2-2716-472a-9346-7d1b5ba7412e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="LinkDoc" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="653e1b1a-833b-424b-9fd5-fec9ea21ac05" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Category" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="03b4546e-1ce8-4706-9c4e-ab7d1f93a4c8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="449" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Elements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="068e72cc-a7fe-4c72-a603-4f42159c7fb1" start_index="0" end="03b4546e-1ce8-4706-9c4e-ab7d1f93a4c8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b0a69fa2-2716-472a-9346-7d1b5ba7412e" start_index="0" end="068e72cc-a7fe-4c72-a603-4f42159c7fb1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="653e1b1a-833b-424b-9fd5-fec9ea21ac05" start_index="0" end="068e72cc-a7fe-4c72-a603-4f42159c7fb1" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

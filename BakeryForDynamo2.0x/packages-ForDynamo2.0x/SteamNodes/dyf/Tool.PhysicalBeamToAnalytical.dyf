@@ -1,0 +1,164 @@
+<Workspace Version="1.0.0.1180" X="-503" Y="272" zoom="1" Name="Tool.PhysicalBeamToAnalytical" Description="**MANUAL MODE ONLY**&#xD;&#xA;Move Physical Beam to his Analytical model location" ID="f8450e62-13e4-479d-896a-fe36b8561b5e" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="2a3f11d1-67cd-4a0b-b9cf-b8d2315713e8" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1495" y="32.740903516922" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+# Default imports
+import clr
+clr.AddReference('RevitAPI')
+clr.AddReference('RevitAPIUI')
+from Autodesk.Revit.DB import *
+import Autodesk
+import sys
+import clr
+path = r'C:\Autodesk\Dynamo\Core'
+exec_path = r'C:\Autodesk\Dynamo\Core\dll'
+sys.path.append(path)
+sys.path.append(exec_path)
+clr.AddReference('LibGNet')
+from Autodesk.LibG import *
+
+#The input to this node will be stored in the IN[0] variable.
+elt=[]
+for i in IN[0]:
+	elt.append(UnwrapElement(i))
+for item in elt:
+	if item.IsManuallyAdjusted() == True:
+		a=item.ResetManualAdjustment()
+#Assign your output to the OUT variable
+OUT = elt</Script>
+    </PythonNodeModels.PythonNode>
+    <PythonNodeModels.PythonNode guid="675e9a33-b094-4273-9a91-9b18f79211ef" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1495" y="116.740903516922" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+lines = IN[1]
+elt = []
+
+for i in IN[0]:
+	elt.append(UnwrapElement(i))
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for e,l in zip(elt,lines):
+	a=e.Location
+	a.Curve=l
+
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT=elt
+
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="066631b7-d75b-4540-8408-d8a432d5bace" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1291" y="83.1675701835887" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="a[0];&#xA;a[1];" ShouldFocus="false" />
+    <PythonNodeModels.PythonNode guid="4d8d6b1d-08f5-4d92-95f6-ac01aacaa772" type="PythonNodeModels.PythonNode" nickname="Python Script" x="1069" y="78.9542368502553" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+
+AM = []
+elt = []
+curves=[]
+for i in IN[0]:
+	elt.append(UnwrapElement(i).Id.IntegerValue)
+
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for e in elt:
+	id=ElementId(e+1)
+	AM.append(doc.GetElement(id))
+	curves.append(doc.GetElement(id).GetCurve())
+	#AM.append(i.GetAnalyticalModel())
+		
+
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT=AM,curves
+
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="8b17a0a1-3397-473f-9dc8-6f297cf31343" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="762" y="102.060903516922" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ace160dc-7e8a-4021-a59b-ed8649953b69" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="485" y="97.8475701835887" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="StructuralFraming" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b970944e-34e0-47cf-8310-bc7151a2f975" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1717" y="32.740903516922" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="Analytical " />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c51223b7-61d9-4ffc-9cef-4f9620c9f3e0" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1717" y="116.740903516922" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="Physical" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="2a3f11d1-67cd-4a0b-b9cf-b8d2315713e8" start_index="0" end="b970944e-34e0-47cf-8310-bc7151a2f975" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="675e9a33-b094-4273-9a91-9b18f79211ef" start_index="0" end="c51223b7-61d9-4ffc-9cef-4f9620c9f3e0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="066631b7-d75b-4540-8408-d8a432d5bace" start_index="0" end="2a3f11d1-67cd-4a0b-b9cf-b8d2315713e8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="066631b7-d75b-4540-8408-d8a432d5bace" start_index="1" end="675e9a33-b094-4273-9a91-9b18f79211ef" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4d8d6b1d-08f5-4d92-95f6-ac01aacaa772" start_index="0" end="066631b7-d75b-4540-8408-d8a432d5bace" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8b17a0a1-3397-473f-9dc8-6f297cf31343" start_index="0" end="4d8d6b1d-08f5-4d92-95f6-ac01aacaa772" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8b17a0a1-3397-473f-9dc8-6f297cf31343" start_index="0" end="675e9a33-b094-4273-9a91-9b18f79211ef" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="ace160dc-7e8a-4021-a59b-ed8649953b69" start_index="0" end="8b17a0a1-3397-473f-9dc8-6f297cf31343" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

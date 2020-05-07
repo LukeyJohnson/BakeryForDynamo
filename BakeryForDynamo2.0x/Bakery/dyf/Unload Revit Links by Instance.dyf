@@ -1,0 +1,75 @@
+<Workspace Version="1.2.1.3083" X="94.4149835583154" Y="180.913511393089" zoom="1.33823125" Name="Unload Revit Links by Instance" Description="" ID="e2166208-a612-419f-9f7f-8fc1deb386ed" Category="Bakery.Revit.Document.Links">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="33afefbc-0179-4b25-bb28-979c4bacf541" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="TurnIntoList" x="250" y="1.64090606262494" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="cd09ad33-8c34-4850-ac26-24448d92c38f" />
+      <Name value="TurnIntoList" />
+      <Description value="Turns an element (or a nested list) into a flat list" />
+      <Inputs>
+        <Input value="unknownItem" />
+      </Inputs>
+      <Outputs>
+        <Output value="seq" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <PythonNodeModels.PythonNode guid="1fcac805-d37e-4552-b0a9-9c8b8014ef9a" type="PythonNodeModels.PythonNode" nickname="Python Script" x="493.401065956029" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.Attributes import*
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+
+linkcollector = UnwrapElement(IN[0])
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+revitlinktypes=list()
+#linkcollector=FilteredElementCollector(doc).OfClass(RevitLinkInstance)
+revitlinktypes=[]
+successlist = []
+TransactionManager.Instance.ForceCloseTransaction()
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for rli in linkcollector:
+	rlt=doc.GetElement(rli.GetTypeId())
+	try:
+		revitlinktypes.append(rlt)
+		rlt.Unload(None)
+		successlist.append(True)
+	except:
+		successlist.append(False)
+TransactionManager.Instance.TransactionTaskDone()
+OUT= successlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a397a765-7085-4b0a-a2bd-f882ce18adb2" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="link instances" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="a5fc9946-77f7-49da-bc09-881e86418c31" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="690.401065956029" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="OUT" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="33afefbc-0179-4b25-bb28-979c4bacf541" start_index="0" end="1fcac805-d37e-4552-b0a9-9c8b8014ef9a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1fcac805-d37e-4552-b0a9-9c8b8014ef9a" start_index="0" end="a5fc9946-77f7-49da-bc09-881e86418c31" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a397a765-7085-4b0a-a2bd-f882ce18adb2" start_index="0" end="33afefbc-0179-4b25-bb28-979c4bacf541" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

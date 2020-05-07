@@ -1,0 +1,86 @@
+<Workspace Version="0.9.0.2912" X="-512.473982998359" Y="-286.256460055537" zoom="1.78359936238281" Name="FamilyInstance.FamilyType" Description="This node will return a  Family Type of a given Family Instance. If no Family Type can be assigned to a Family then it will return Null. " ID="21d38796-5455-492f-bfe7-8c787fac472e" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="e8b05b63-f746-4997-ab99-0029221937b2" type="PythonNodeModels.PythonNode" nickname="Python Script" x="654.69826511111" y="317.79353305593" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2016, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def GetFamilyType(famInst):
+	try:
+		id = famInst.GetTypeId()
+		if id == ElementId.InvalidElementId:
+			return None
+		else:
+			return doc.GetElement(id)
+	except:
+		return None
+		pass
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+try:
+	errorReport = None
+	output = ProcessList(GetFamilyType, elements)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="28131dcb-90be-4edf-8ff0-da49aa325d02" type="Dynamo.Nodes.Symbol" nickname="Input" x="461.692238944419" y="312.433650632767" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="FamilyInstance" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="ae67713e-994f-47ee-b93e-4beb47093d5b" type="Dynamo.Nodes.Output" nickname="Output" x="812.107255445113" y="312.433650632767" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="FamilyType" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="e8b05b63-f746-4997-ab99-0029221937b2" start_index="0" end="ae67713e-994f-47ee-b93e-4beb47093d5b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="28131dcb-90be-4edf-8ff0-da49aa325d02" start_index="0" end="e8b05b63-f746-4997-ab99-0029221937b2" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

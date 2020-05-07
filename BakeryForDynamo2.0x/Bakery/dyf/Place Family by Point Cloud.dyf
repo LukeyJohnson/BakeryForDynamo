@@ -1,0 +1,80 @@
+<Workspace Version="1.3.0.875" X="-922.545441415534" Y="121.425503246556" zoom="0.910533933245277" ScaleFactor="1" Name="Place Family by Point Cloud" Description="allows dropitems from 0 to 4 (discards half of the points at each drop level). Needs XYZ space or comma delimited text file. The Topography creation option does not seem to work well with huge numbers of points...&#xD;&#xA;Refer to What Revit Wants post for more details." ID="a42caf9a-b3ff-498c-be0a-769aeaed043d" Category="Bakery.Construction.PointCloud">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="88a66e80-36d1-4d05-8bc4-4a9c455298b1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-272.694668731651" y="-41.9310596472215" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="File Path to Text File" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="fe6b76ee-1dfa-4748-b994-76b9ca7a69c4" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="3877.63456826071" y="-70.058489572172" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="FamilyInstances" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6499349d-d20d-40e4-9142-61a63097bb44" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-121.786303101597" y="577.071313291592" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="takeEveryNthItem" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="18224702-47ff-499d-a61e-63e57d4464d9" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-112.242605628189" y="752.74051039972" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Xindex" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0423dffc-25f3-40a6-94b0-3069a9e06652" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-81.0978823945527" y="858.102446445423" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Yindex" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="85f97864-2572-4b7f-addd-25563cb5b1b1" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-75.796652907977" y="992.621144667295" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Zindex" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="3d7f50ca-f704-4645-ac15-e6872b450946" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Make Points From Point Cloud File" x="1607.99369622528" y="248.945469393027" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+      <PortInfo index="4" default="False" />
+      <PortInfo index="5" default="False" />
+      <ID value="d831452b-15ba-4761-8bb3-4d05338d0301" />
+      <Name value="Make Points From Point Cloud File" />
+      <Description value="" />
+      <Inputs>
+        <Input value="Delimiter" />
+        <Input value="path" />
+        <Input value="takeEveryNthItem" />
+        <Input value="Yindex" />
+        <Input value="Zindex" />
+        <Input value="Xindex" />
+      </Inputs>
+      <Outputs>
+        <Output value="Points" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="99388dce-88f5-4c40-97c7-c0b9f2aa9088" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-157.345175338634" y="262.459006712951" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Delimiter" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="991d45fe-d591-45be-aa7c-d53808853444" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Family Instance By Point in Transaction" x="2253.36962549416" y="534.456387223427" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="6bad299e-eaa5-4d0c-9041-7df07d67c210" />
+      <Name value="Family Instance By Point in Transaction" />
+      <Description value="this is to skip binding problems with the core node, it was based on a clockwork node&#xD;&#xA;" />
+      <Inputs>
+        <Input value="points" />
+        <Input value="familyType" />
+      </Inputs>
+      <Outputs>
+        <Output value="familyInstance" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="9a3ec6a9-f21e-47c4-bb69-699cdc8352ed" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="1690.29234439172" y="910.11548792095" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="familyType" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="88a66e80-36d1-4d05-8bc4-4a9c455298b1" start_index="0" end="3d7f50ca-f704-4645-ac15-e6872b450946" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6499349d-d20d-40e4-9142-61a63097bb44" start_index="0" end="3d7f50ca-f704-4645-ac15-e6872b450946" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="18224702-47ff-499d-a61e-63e57d4464d9" start_index="0" end="3d7f50ca-f704-4645-ac15-e6872b450946" end_index="5" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0423dffc-25f3-40a6-94b0-3069a9e06652" start_index="0" end="3d7f50ca-f704-4645-ac15-e6872b450946" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="85f97864-2572-4b7f-addd-25563cb5b1b1" start_index="0" end="3d7f50ca-f704-4645-ac15-e6872b450946" end_index="4" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3d7f50ca-f704-4645-ac15-e6872b450946" start_index="0" end="991d45fe-d591-45be-aa7c-d53808853444" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="99388dce-88f5-4c40-97c7-c0b9f2aa9088" start_index="0" end="3d7f50ca-f704-4645-ac15-e6872b450946" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="991d45fe-d591-45be-aa7c-d53808853444" start_index="0" end="fe6b76ee-1dfa-4748-b994-76b9ca7a69c4" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9a3ec6a9-f21e-47c4-bb69-699cdc8352ed" start_index="0" end="991d45fe-d591-45be-aa7c-d53808853444" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

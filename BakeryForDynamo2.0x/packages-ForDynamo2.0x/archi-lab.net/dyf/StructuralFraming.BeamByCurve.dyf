@@ -1,0 +1,171 @@
+<Workspace Version="0.8.2.2392" X="60.7084465298003" Y="-204.014091226724" zoom="1.47618023926361" Name="StructuralFraming.BeamByCurve" Description="This node will take an input of curves and attempt to make a structural framing member by type and level. " ID="7454e641-5bf5-45cb-99de-fd25980f8d58" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <DSIronPythonNode.PythonNode guid="344643b4-7de6-41be-84d3-f2b88886f9e9" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="481.3066176962" y="304.545437420279" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+from Autodesk.Revit.DB.Structure import *
+
+import System
+from System import Array
+from System.Collections.Generic import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+dsObjects = IN[0]
+_symbol = UnwrapElement(IN[1])
+_level = UnwrapElement(IN[2])
+
+def toRvtPoint(point):
+	unitsFactor = 3.28084 #Revit works in Feet while Dynamo in Meters
+	x = point.X * unitsFactor
+	y = point.Y * unitsFactor
+	z = point.Z * unitsFactor
+	return XYZ(x,y,z)
+
+def toRvtType(dsObject):
+	if type(dsObject) == NurbsCurve:
+		points = dsObject.ControlPoints()
+		rvtPoints = List[XYZ]()
+		for i in points:
+			rvtPoints.Add(toRvtPoint(i))
+		weights = dsObject.Weights()
+		rvtWeights = List[float](weights)
+		knots = dsObject.Knots()
+		rvtKnots = List[float](knots)
+		degree = int(dsObject.Degree)
+		cClosed = dsObject.IsClosed
+		rational = dsObject.IsRational
+		return Autodesk.Revit.DB.NurbSpline.Create(rvtPoints, rvtWeights, rvtKnots, degree, cClosed, rational)
+	elif type(dsObject) == Arc:
+		#convert DS Arc to Revit Arc
+		startPt = toRvtPoint(dsObject.StartPoint)
+		endPt = toRvtPoint(dsObject.EndPoint)
+		midPt = toRvtPoint(dsObject.PointAtParameter(0.5))
+		return Autodesk.Revit.DB.Arc.Create(startPt, endPt, midPt)
+	elif type(dsObject) == Line:
+		#convert DS Line to Revit Line
+		startPt = toRvtPoint(dsObject.StartPoint)
+		endPt = toRvtPoint(dsObject.EndPoint)
+		return Autodesk.Revit.DB.Line.CreateBound(startPt, endPt)
+	elif type(dsObject) == Circle:
+		#convert DS Circle to Revit Arc (for arcs with 2pi range will be automatically converted to circle)
+		center = toRvtPoint(dsObject.CenterPoint)
+		radius = dsObject.Radius * 3.28084 #converted to FT from M
+		startAngle = 0
+		endAngle = 2 * math.pi
+		xAxis = XYZ(1,0,0) #has to be normalized
+		yAxis = XYZ(0,1,0) #has to be normalized
+		return Autodesk.Revit.DB.Arc.Create(center, radius, startAngle, endAngle, xAxis, yAxis)
+	elif type(dsObject) == NurbsCurve and dsObject.Degree &lt; 3:
+		points = []
+		subCurves = dsObject.DivideEqually(26)
+		for i in subCurves:
+			points.append(i.StartPoint)
+		points.insert(len(points), subCurves[(len(subCurves)-1)].EndPoint)
+		controlPoints = List[XYZ]()
+		for i in points:
+			controlPoints.Add(toRvtPoint(i))
+		tangents = Autodesk.Revit.DB.HermiteSplineTangents()
+		endTangent = toRvtPoint(dsObject.TangentAtParameter(1))
+		startTangent = toRvtPoint(dsObject.TangentAtParameter(0))
+		tangents.EndTangent = endTangent.Normalize()
+		tangents.StartTangent = startTangent.Normalize()
+		return Autodesk.Revit.DB.HermiteSpline.Create(controlPoints, False, tangents)
+	elif type(dsObject) == PolyCurve:
+		subCurves = dsObject.Curves()
+		points = []
+		for i in subCurves:
+			points.append(i.PointAtParameter(0))
+			points.append(i.PointAtParameter(1))
+		points = Autodesk.DesignScript.Geometry.Point.PruneDuplicates(points,0.01)
+		points = process_list(toRvtPoint, points)
+		rvtPoints = List[XYZ](points)
+		return Autodesk.Revit.DB.PolyLine.Create(rvtPoints)	
+	else:
+		return dsObject.ToRevitType()
+
+def process_list(_func, _list):
+	return map( lambda x: process_list(_func, x) if type(x)==list else _func(x), _list )
+
+try:
+	errorReport = None
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	
+	rvtLines = process_list(toRvtType, dsObjects)
+	
+	elementsOut = []
+	for i in rvtLines:
+		try:
+			instance = doc.Create.NewFamilyInstance(i, _symbol, _level, StructuralType.Beam)
+			if instance != None:
+				elementsOut.append(instance)
+		except:
+			pass
+	TransactionManager.Instance.TransactionTaskDone()
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = elementsOut
+else:
+	OUT = errorReport</Script>
+    </DSIronPythonNode.PythonNode>
+    <Dynamo.Nodes.Symbol guid="5e606bc4-ed7d-44a6-b945-f95cdff72f33" type="Dynamo.Nodes.Symbol" nickname="Input" x="210.811211952575" y="253.988426030602" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Curve" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="9940ffd9-022e-4c0e-802f-91ffca7a62e0" type="Dynamo.Nodes.Symbol" nickname="Input" x="79.1104323983999" y="310.941180024568" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="StructuralFramingType" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="1109dab1-9362-4e72-a62a-e6482f614dc7" type="Dynamo.Nodes.Symbol" nickname="Input" x="77.9273621107523" y="370.04944520076" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Level" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="1b8cbaa8-c132-413c-8314-b900c90a9526" type="Dynamo.Nodes.Output" nickname="Output" x="680.500164033771" y="304.069132101372" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Beam" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="344643b4-7de6-41be-84d3-f2b88886f9e9" start_index="0" end="1b8cbaa8-c132-413c-8314-b900c90a9526" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="5e606bc4-ed7d-44a6-b945-f95cdff72f33" start_index="0" end="344643b4-7de6-41be-84d3-f2b88886f9e9" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="9940ffd9-022e-4c0e-802f-91ffca7a62e0" start_index="0" end="344643b4-7de6-41be-84d3-f2b88886f9e9" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="1109dab1-9362-4e72-a62a-e6482f614dc7" start_index="0" end="344643b4-7de6-41be-84d3-f2b88886f9e9" end_index="2" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,33 @@
+<Workspace Version="1.3.4.6666" X="232.128265901449" Y="179.651828031603" zoom="0.931811528498331" ScaleFactor="1" Name="Centroid of First Solid of Element" Description="" ID="bcb827d9-d29d-428b-8ebb-921bce0e9f8b" Category="Bakery.Revit.Elements">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="fde3bdd3-75a1-40c0-b9e3-0fd7230bb9e4" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="LinkElement.Solids" x="250" y="12.3701876939178" isVisible="false" isUpstreamVisible="false" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="..\..\bimorphNodes\bin\BimorphNodes.dll" function="Revit.LinkElement.Solids">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="8da26f1b-f548-40db-ad98-9bf775a7f3df" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FirstItem" x="569.606785277662" y="0" isVisible="false" isUpstreamVisible="false" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="2c0231c1-f7c3-45be-90d7-5c7cf90dba6b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Solid.Centroid" x="794.378757817147" y="3.31292414895458" isVisible="false" isUpstreamVisible="false" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="true" assembly="ProtoGeometry.dll" function="Autodesk.DesignScript.Geometry.Solid.Centroid">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="d2b0d640-0a7a-4e8c-a15b-c33aaf970547" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-100.878769069842" y="18.2440327041205" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="linkElementz" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="3f48160d-3a2e-4283-a276-8dded5da074c" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1049.37875781715" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="pt" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="fde3bdd3-75a1-40c0-b9e3-0fd7230bb9e4" start_index="0" end="8da26f1b-f548-40db-ad98-9bf775a7f3df" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8da26f1b-f548-40db-ad98-9bf775a7f3df" start_index="0" end="2c0231c1-f7c3-45be-90d7-5c7cf90dba6b" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="2c0231c1-f7c3-45be-90d7-5c7cf90dba6b" start_index="0" end="3f48160d-3a2e-4283-a276-8dded5da074c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d2b0d640-0a7a-4e8c-a15b-c33aaf970547" start_index="0" end="fde3bdd3-75a1-40c0-b9e3-0fd7230bb9e4" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="161389.734375" eyeY="39567.30078125" eyeZ="-167623.140625" lookX="-76807.3125" lookY="-32967.30078125" lookZ="122018.15625" upX="-0.0046488125808537" upY="0.999961912631989" upZ="0.00738519104197621" />
+  </Cameras>
+</Workspace>

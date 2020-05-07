@@ -1,0 +1,101 @@
+<Workspace Version="1.1.0.2094" X="-120.100865645111" Y="208.840555279289" zoom="1.34613730474457" Name="Change Family Type" Description="Changes family type of a family by passing in an Element and type id of the type we want to change it to. " ID="b8e5eb10-a727-47ac-94d0-821e679eaa79" Category="Archi-lab_Grimshaw.Modify">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ffeeb0ee-172c-45e6-80bd-2238cbfff59d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="501.550250577064" y="48.093859644376" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="757f9ee9-23df-4bce-80c2-de949f4dad69" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="505.844345188169" y="151.717637844442" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="typeId" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="9cffe59a-81ed-4dab-b1dd-a7e593593473" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="893.673543452684" y="69.8294294858999" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="08e2f842-7a09-47ee-b0fa-2bc51b1235b9" type="PythonNodeModels.PythonNode" nickname="Python Script" x="677.239119393719" y="72.9651034968777" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script># Copyright(c) 2016, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import ToDSType(bool) extension method
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def ProcessParallelLists(_func, *lists):
+	return map( lambda *xs: ProcessParallelLists(_func, *xs) if all(type(x) is list for x in xs) else _func(*xs), *lists )
+
+def ProcessListArg(_func, _list, _arg):
+    return map( lambda x: ProcessListArg(_func, x, _arg) if type(x)==list else _func(x, _arg), _list )
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+def ChangeType(element, typeId):
+	element.ChangeTypeId(ElementId(typeId))
+	return element
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+typeIds = IN[1]
+
+try:
+	errorReport = None
+	TransactionManager.Instance.EnsureInTransaction(doc)
+	if isinstance(typeIds, list):
+		output = ProcessParallelLists(ChangeType, elements, typeIds)
+	else:
+		output = ProcessListArg(ChangeType, elements, typeIds)
+	TransactionManager.Instance.TransactionTaskDone()
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport
+</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ffeeb0ee-172c-45e6-80bd-2238cbfff59d" start_index="0" end="08e2f842-7a09-47ee-b0fa-2bc51b1235b9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="757f9ee9-23df-4bce-80c2-de949f4dad69" start_index="0" end="08e2f842-7a09-47ee-b0fa-2bc51b1235b9" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="08e2f842-7a09-47ee-b0fa-2bc51b1235b9" start_index="0" end="9cffe59a-81ed-4dab-b1dd-a7e593593473" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

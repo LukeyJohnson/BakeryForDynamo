@@ -1,0 +1,69 @@
+﻿<Workspace Version="1.3.3.4651" X="305.64990205549" Y="148.745125385662" zoom="0.857942222587846" ScaleFactor="1" Name="Collector of ViewSheetSets" Description="Retrieve all available View Sets in the active or given document.&#xD;&#xA;Use with ViewSheetSet.Views from Clockwork package.&#xD;&#xA;Inspired by archilab." ID="14fe0957-4fc8-48be-9adf-0c553de76cce" Category="GeniusLoci.View">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="33f3962a-a548-4698-844e-eec08dfd7a40" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="257.22638151343" y="202.231012691116" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Vs[0];&#xA;Vs[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="7b28fd68-a165-47c7-b25a-ffd6a2d24190" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="565.722527738481" y="200.066464666528" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="ViewSheetSet's names" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="605a13d1-7abc-41c0-8706-04ec8d9cb805" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="563.219165014781" y="291.764771441172" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="ViewSheetSets" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="90360d1d-9c27-4f08-9290-e02ca3918fd0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-468.110593863238" y="154.525262870617" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="// Use only if you want to query a linked model&#xD;&#xA;docOrRevitLinkInstance : var = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="9ec07171-c23a-4428-beb9-a9f2e77022c7" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-132.420815028887" y="275.891054736315" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="RunIt" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <PythonNodeModels.PythonNode guid="d3a2c8b6-82d1-43b1-831c-f4c47ce67fbe" type="PythonNodeModels.PythonNode" nickname="Python Script" x="62.6346679943556" y="195.206179569085" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <Script>#Copyright(c) 2015, Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+#Part of script from Clockwork
+inputdoc = UnwrapElement(IN[0])
+if inputdoc == None:
+	doc = DocumentManager.Instance.CurrentDBDocument
+elif inputdoc.GetType().ToString() == "Autodesk.Revit.DB.RevitLinkInstance":
+	doc = inputdoc.GetLinkDocument()
+elif inputdoc.GetType().ToString() == "Autodesk.Revit.DB.Document":
+	doc = inputdoc
+else: doc = None
+
+vs = FilteredElementCollector(doc).OfClass(ViewSheetSet)
+
+OUT = [i.Name for i in vs],[i for i in vs]</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="33f3962a-a548-4698-844e-eec08dfd7a40" start_index="0" end="7b28fd68-a165-47c7-b25a-ffd6a2d24190" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="33f3962a-a548-4698-844e-eec08dfd7a40" start_index="1" end="605a13d1-7abc-41c0-8706-04ec8d9cb805" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="90360d1d-9c27-4f08-9290-e02ca3918fd0" start_index="0" end="d3a2c8b6-82d1-43b1-831c-f4c47ce67fbe" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="9ec07171-c23a-4428-beb9-a9f2e77022c7" start_index="0" end="d3a2c8b6-82d1-43b1-831c-f4c47ce67fbe" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d3a2c8b6-82d1-43b1-831c-f4c47ce67fbe" start_index="0" end="33f3962a-a548-4698-844e-eec08dfd7a40" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Aperçu en arrière-plan" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

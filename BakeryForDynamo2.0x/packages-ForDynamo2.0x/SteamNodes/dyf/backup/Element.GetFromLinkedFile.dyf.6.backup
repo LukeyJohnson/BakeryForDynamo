@@ -1,0 +1,79 @@
+<Workspace Version="1.0.0.1180" X="53" Y="211.779946164199" zoom="0.820995962314939" Name="Element.GetFromLinkedFile" Description="Get elements from link document instance based on category" ID="8eccfa8a-771e-4be5-a92b-4fef36310e6b" Category="SteamNodes.Element">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="7ecd0526-f571-459d-b5a6-14eec7247340" type="PythonNodeModels.PythonNode" nickname="Python Script" x="420" y="58" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import System
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+LinkDoc=IN[0]
+cat = IN[1]
+LinkInst = IN[2]
+
+BuiltIn = System.Enum.ToObject(BuiltInCategory, cat.Id)
+
+elementlist = []
+typelist=[]
+T = []
+
+
+collector = FilteredElementCollector(LinkDoc)
+filter = ElementCategoryFilter(BuiltIn)
+list=collector.WherePasses(filter).WhereElementIsNotElementType().ToElements()
+
+
+OUT = list</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="6b41fb7d-9f53-486d-a388-b7bacdcb1ac2" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FirstItem" x="225" y="58" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FirstItem@var[]..[]" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="e1bf42ea-5d4a-44ee-a3c7-572a5687d97d" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="168" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Link Instance" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="3cab8bfc-8136-4dcf-af69-9df1e42cfaf5" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Link Document" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="6de5db89-0f61-4aef-ba8a-21b10c1bff48" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="644" y="58" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="Element(s)" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="83840c3c-2a6c-463e-b026-e18d0ddfab1a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="84" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Category" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="7ecd0526-f571-459d-b5a6-14eec7247340" start_index="0" end="6de5db89-0f61-4aef-ba8a-21b10c1bff48" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6b41fb7d-9f53-486d-a388-b7bacdcb1ac2" start_index="0" end="7ecd0526-f571-459d-b5a6-14eec7247340" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e1bf42ea-5d4a-44ee-a3c7-572a5687d97d" start_index="0" end="7ecd0526-f571-459d-b5a6-14eec7247340" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="3cab8bfc-8136-4dcf-af69-9df1e42cfaf5" start_index="0" end="6b41fb7d-9f53-486d-a388-b7bacdcb1ac2" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="83840c3c-2a6c-463e-b026-e18d0ddfab1a" start_index="0" end="7ecd0526-f571-459d-b5a6-14eec7247340" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

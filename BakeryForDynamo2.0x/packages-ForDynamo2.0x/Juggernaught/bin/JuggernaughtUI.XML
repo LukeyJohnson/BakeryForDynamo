@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>JuggernaughtUI</name>
+    </assembly>
+    <members>
+        <member name="T:List.CustomNodeModelNodeViewCustomization">
+            <summary>
+                View customizer for CustomNodeModel Node Model.
+            </summary>
+        </member>
+        <member name="M:List.CustomNodeModelNodeViewCustomization.CustomizeView(List.CheckBoxNode,Dynamo.Controls.NodeView)">
+            <summary>
+            At run-time, this method is called during the node 
+            creation. Here you can create custom UI elements and
+            add them to the node view, but we recommend designing
+            your UI declaratively using xaml, and binding it to
+            properties on this node as the DataContext.
+            </summary>
+            <param name="model">The NodeModel representing the node's core logic.</param>
+            <param name="nodeView">The NodeView representing the node in the graph.</param>
+        </member>
+    </members>
+</doc>

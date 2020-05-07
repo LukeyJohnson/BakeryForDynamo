@@ -1,0 +1,61 @@
+<Workspace Version="1.0.0.1180" X="2.54904414245175" Y="52.0360961027718" zoom="1.11798788304238" Name="Tool.GetFillPatternTarget" Description="Returns the target (drafting-model-none) from a FillPatternElement" ID="2dceac43-5861-4cc4-a244-3b471e6f447c" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="ab76e8a5-1f66-4672-8d70-80056e9403c6" type="PythonNodeModels.PythonNode" nickname="Python Script" x="453.976217922016" y="117.126535960317" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+
+#credits to:
+# Konrad Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+#Les entrées effectuées dans ce noeud sont stockées sous forme de liste dans les variables IN.
+FillPatt = []
+for i in IN[0]:
+	FillPatt.append(UnwrapElement(i))
+targets=[]
+try:
+	errorReport = None
+	for f in FillPatt:
+		b=f.GetFillPattern()
+		targets.append(b.Target)
+		
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = targets
+else:
+	OUT = errorReport
+</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="8a89c038-5caa-4e63-946c-7f6d145bf800" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-110.023782077984" y="117.126535960317" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="FillPatternElements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="04e71c64-e3c5-450a-98f9-a9451fb0d81a" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="677.976217922016" y="117.126535960317" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="Targets" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="f04def7b-8109-4c69-bbc5-82cfa072aed5" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="183.976217922016" y="121.339869293651" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({a});" ShouldFocus="false" />
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="ab76e8a5-1f66-4672-8d70-80056e9403c6" start_index="0" end="04e71c64-e3c5-450a-98f9-a9451fb0d81a" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8a89c038-5caa-4e63-946c-7f6d145bf800" start_index="0" end="f04def7b-8109-4c69-bbc5-82cfa072aed5" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="f04def7b-8109-4c69-bbc5-82cfa072aed5" start_index="0" end="ab76e8a5-1f66-4672-8d70-80056e9403c6" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

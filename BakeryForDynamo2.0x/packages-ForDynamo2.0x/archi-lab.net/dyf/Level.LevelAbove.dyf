@@ -1,0 +1,84 @@
+<Workspace Version="0.9.0.2912" X="-513.766488671434" Y="-370.037010190472" zoom="2.37004060791358" Name="Level.LevelAbove" Description="This node takes an input of level and returns level above it. " ID="8dd21e87-e410-4572-a88f-a63efab2624a" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="42d0ee79-3f50-4137-9f66-c92ccd4de5c5" type="PythonNodeModels.PythonNode" nickname="Python Script" x="465" y="236" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2016, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+# Import Element wrapper extension methods
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+if isinstance(IN[0], list):
+	levels = IN[0]
+else:
+	levels = [IN[0]]
+
+def ProcessList(_func, _list):
+    return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def GetLevelAbove(e):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	allLevels = FilteredElementCollector(doc) \
+				.OfCategory(BuiltInCategory.OST_Levels) \
+				.WhereElementIsNotElementType() \
+				.ToElements()
+
+	elevations = [i.Elevation for i in allLevels]
+	sortedLevels = [x for (y,x) in sorted(zip(elevations,allLevels))]
+	sortedLevelNames = [i.Name for i in sortedLevels]
+	index = sortedLevelNames.index(e.Name)
+	if index + 1 &gt;= len(sortedLevels):
+		return None
+	else:
+		return sortedLevels[index+1]
+
+try:
+	errorReport = None
+	output = ProcessList(GetLevelAbove, levels)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="f3ed6182-48ab-432d-ae86-3ddf9084a111" type="Dynamo.Nodes.Symbol" nickname="Input" x="332.38522835477" y="251.910034029358" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Level" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="136a6b82-0c26-4a6f-b852-ebb883056bf5" type="Dynamo.Nodes.Output" nickname="Output" x="625.207215321039" y="211.826332643486" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="Level" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="42d0ee79-3f50-4137-9f66-c92ccd4de5c5" start_index="0" end="136a6b82-0c26-4a6f-b852-ebb883056bf5" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f3ed6182-48ab-432d-ae86-3ddf9084a111" start_index="0" end="42d0ee79-3f50-4137-9f66-c92ccd4de5c5" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

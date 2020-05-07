@@ -1,0 +1,80 @@
+<Workspace Version="1.2.1.3083" X="128.853721749525" Y="61.2523456746894" zoom="1.27771698410772" Name="Element.Document Central Filename" Description="" ID="a731cae4-8d95-4e91-85ec-c110bf5610ee" Category="Bakery.Revit.Document">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="e365b3fe-97f8-4ca8-a47d-ea58c1c0d89b" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+from System.Collections.Generic import *
+
+clr.AddReference('RevitNodes')
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+from System import Guid
+import System
+from System.IO import Directory, Path
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+import os
+import datetime
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+
+if isinstance(IN[0],list):
+	toggle = 0
+	element = UnwrapElement(IN[0])
+else:
+	toggle = 1
+	element = [UnwrapElement(IN[0])]
+
+listout = []	
+for x in element:
+	try:
+		edocuments = Path.GetFileName(ModelPathUtils.ConvertModelPathToUserVisiblePath(doc.GetWorksharingCentralModelPath()))
+		listout.append(edocuments)
+	except:
+		listout.append(None)
+#Assign your output to the OUT variable.
+if toggle:
+	OUT = edocuments
+else:
+	OUT = listout</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="91f05bdc-5ce5-4fca-b7de-e0bd20f2c016" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-7.04381338899162" y="-0.782645932110199" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2dc8def2-837a-438b-a16a-6eed899d4186" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="447" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="centralFileName" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="e365b3fe-97f8-4ca8-a47d-ea58c1c0d89b" start_index="0" end="2dc8def2-837a-438b-a16a-6eed899d4186" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="91f05bdc-5ce5-4fca-b7de-e0bd20f2c016" start_index="0" end="e365b3fe-97f8-4ca8-a47d-ea58c1c0d89b" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,69 @@
+<Workspace Version="0.9.0.2912" X="281.964853636774" Y="263.105462411083" zoom="1.0669527078898" Name="Slice String" Description="Slices X number of leading or trailing characters from string (boolean true will slice from left while boolean set to false from right)" ID="6536686e-3537-4f3d-bd5c-15e90dfb6101" Category="Archi-lab_Grimshaw.Strings">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Nodes.DSFunction guid="ac25700b-8039-415e-a6b8-2d798f73874d" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="283.1110248585" y="-108.679824464814" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />
+    <Dynamo.Nodes.DSFunction guid="7dfffce0-b05a-4356-9bdb-646e408f7b73" type="Dynamo.Nodes.DSFunction" nickname="List.Empty" x="17.4478304626555" y="-109.307974164127" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="DSCoreNodes.dll" function="DSCore.List.Empty" />
+    <Dynamo.Nodes.Output guid="add62e33-2621-4f34-9a29-4d6213149b77" type="Dynamo.Nodes.Output" nickname="Output" x="595.577464461113" y="-41.4802344018396" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="String(s)" />
+    </Dynamo.Nodes.Output>
+    <Dynamo.Nodes.Symbol guid="245b90d8-14c7-4bf4-ae6d-623fe83fc4f2" type="Dynamo.Nodes.Symbol" nickname="Input" x="-81.1544480959686" y="-83.2762432605907" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="String(s)" />
+    </Dynamo.Nodes.Symbol>
+    <DSCoreNodesUI.CreateList guid="6034893d-b478-42c4-b0a1-e8344114501c" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="143.21401484303" y="-108.720290280637" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2" />
+    <Dynamo.Nodes.DSFunction guid="2145c701-29d1-406e-b0de-8770107e08b0" type="Dynamo.Nodes.DSFunction" nickname="Flatten" x="280.159120440163" y="-13.1970207473721" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" assembly="BuiltIn" function="Flatten@var[]..[]" />
+    <DSCoreNodesUI.CreateList guid="2270490d-a3b6-4ce3-b84b-118e7e8fa68b" type="DSCoreNodesUI.CreateList" nickname="List.Create" x="140.262110424692" y="-13.2374865631942" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2" />
+    <Dynamo.Nodes.Symbol guid="41054b9a-ffee-4718-9298-cc666a44e67d" type="Dynamo.Nodes.Symbol" nickname="Input" x="-126.369232848256" y="12.9892063889617" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="# of Characters" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="f067906f-a116-477d-974f-7f1191bd55cc" type="Dynamo.Nodes.Symbol" nickname="Input" x="-98.1923506690969" y="95.6377018845074" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Left/Right" />
+    </Dynamo.Nodes.Symbol>
+    <PythonNodeModels.PythonNode guid="b0e3a917-594a-4938-b371-e842679e5f47" type="PythonNodeModels.PythonNode" nickname="Python Script" x="451.866398056688" y="-41.4811755253968" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="3">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+strings = IN[0]
+numbers = IN[1]
+result = []
+if len(numbers) != 1:
+	for i, j in zip(strings, numbers):
+		x = int(j)
+		if IN[2] == 1:
+			result.append(i[x:])
+		else:
+			y = int(len(i) - x)
+			result.append(i[:y])
+else:
+	for i in strings:
+		if isinstance(numbers, basestring):
+			x = int(numbers[0])
+		else:
+			x = numbers[0]
+		if IN[2] == 1:
+			result.append(i[x:])
+		else:
+			y = int(len(i)-x)
+			result.append(i[:y])
+#Assign your output to the OUT variable
+OUT = result</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="ac25700b-8039-415e-a6b8-2d798f73874d" start_index="0" end="b0e3a917-594a-4938-b371-e842679e5f47" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7dfffce0-b05a-4356-9bdb-646e408f7b73" start_index="0" end="6034893d-b478-42c4-b0a1-e8344114501c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="7dfffce0-b05a-4356-9bdb-646e408f7b73" start_index="0" end="2270490d-a3b6-4ce3-b84b-118e7e8fa68b" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="245b90d8-14c7-4bf4-ae6d-623fe83fc4f2" start_index="0" end="6034893d-b478-42c4-b0a1-e8344114501c" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="6034893d-b478-42c4-b0a1-e8344114501c" start_index="0" end="ac25700b-8039-415e-a6b8-2d798f73874d" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2145c701-29d1-406e-b0de-8770107e08b0" start_index="0" end="b0e3a917-594a-4938-b371-e842679e5f47" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="2270490d-a3b6-4ce3-b84b-118e7e8fa68b" start_index="0" end="2145c701-29d1-406e-b0de-8770107e08b0" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="41054b9a-ffee-4718-9298-cc666a44e67d" start_index="0" end="2270490d-a3b6-4ce3-b84b-118e7e8fa68b" end_index="1" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f067906f-a116-477d-974f-7f1191bd55cc" start_index="0" end="b0e3a917-594a-4938-b371-e842679e5f47" end_index="2" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b0e3a917-594a-4938-b371-e842679e5f47" start_index="0" end="add62e33-2621-4f34-9a29-4d6213149b77" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

@@ -1,0 +1,57 @@
+<Workspace Version="0.9.0.2912" X="-464.830073119353" Y="-317.841871834739" zoom="1.96524455617686" Name="String.Contains" Description="This node takes a list of strings and checks if any string contains a matching string from filter input. " ID="07ab3a10-1b85-4dd7-b3c6-15461b90604b" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="3fbe19f8-1882-4c71-8f80-f7da1d6b0e0c" type="PythonNodeModels.PythonNode" nickname="Python Script" x="569" y="284" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="2">
+      <Script>import clr
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+def ListContains(item, filter):
+	bool = False
+	for i in filter:
+		if i in item:
+			return True
+			bool = True
+	if not bool:
+		return False 
+
+def ProcessListArg(_func, _list, _arg):
+	return map( lambda x: processListArg(_func, x, _arg) if type(x)==list else _func(x, _arg), _list )
+
+try:
+	errorReport = None
+	output = ProcessListArg(ListContains, IN[0], IN[1])
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="41f70dcc-b223-414c-bc55-2cf4c4078074" type="Dynamo.Nodes.Symbol" nickname="Input" x="304.451749924443" y="264.125983771538" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="StringList:var[]..[]" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Symbol guid="b60cbac3-cb80-4ab8-ac5a-5cc2d608928d" type="Dynamo.Nodes.Symbol" nickname="Input" x="302.829977252628" y="324.716209467443" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="FilterList:var[]..[]" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="a044d5d9-c298-4ea4-872b-768302c9b6e2" type="Dynamo.Nodes.Output" nickname="Output" x="741.805933789422" y="284.871351036251" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="mask" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="3fbe19f8-1882-4c71-8f80-f7da1d6b0e0c" start_index="0" end="a044d5d9-c298-4ea4-872b-768302c9b6e2" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="41f70dcc-b223-414c-bc55-2cf4c4078074" start_index="0" end="3fbe19f8-1882-4c71-8f80-f7da1d6b0e0c" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="b60cbac3-cb80-4ab8-ac5a-5cc2d608928d" start_index="0" end="3fbe19f8-1882-4c71-8f80-f7da1d6b0e0c" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

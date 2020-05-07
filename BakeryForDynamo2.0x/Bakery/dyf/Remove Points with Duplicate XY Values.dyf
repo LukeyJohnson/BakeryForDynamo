@@ -1,0 +1,67 @@
+<Workspace Version="1.2.1.3083" X="104.666666666667" Y="190.666666666667" zoom="1" Name="Remove Points with Duplicate XY Values" Description="cleanup tool for points into Revit topography" ID="6b70cf9c-d262-4723-b8eb-0fd09ef88213" Category="Bakery.Geometry">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="05b9c030-1798-4a15-a802-4992474d8224" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Replace Point Z Value" x="326.61050075904" y="51.1269614800435" isVisible="false" isUpstreamVisible="false" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <ID value="87913a96-2979-47ba-9eec-6de8b90f9a81" />
+      <Name value="Replace Point Z Value" />
+      <Description value="" />
+      <Inputs>
+        <Input value="points" />
+        <Input value="desired Z value" />
+      </Inputs>
+      <Outputs>
+        <Output value="Point" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="8bed8725-c885-4dee-875e-1c8e3ba62a00" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="154.507217736965" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="0;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="71b2ad68-e5f2-429e-8117-608b0a41764c" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Duplicate Item Indices" x="600.504937259275" y="0" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="9e393356-42e3-401a-bc46-0814846801b3" />
+      <Name value="Duplicate Item Indices" />
+      <Description value="Searches an input list for duplicate entries and lists their index numbers. Couple with Get From List to delete duplicates from a list." />
+      <Inputs>
+        <Input value="List" />
+      </Inputs>
+      <Outputs>
+        <Output value="Unique Indices" />
+        <Output value="Duplicate Indices" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <CoreNodeModels.Watch guid="b9763bb2-4419-428c-9076-1dc7bd3a34db" type="CoreNodeModels.Watch" nickname="Watch" x="904.948113652867" y="14.6077032800123" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+    </CoreNodeModels.Watch>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="aa1aca9c-be60-44f7-a126-4e76dfd804d6" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.RemoveItemAtIndex" x="937.942883027563" y="273.894436500234" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.RemoveItemAtIndex@var[]..[],int[]">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="a4283fcf-1dd7-4a72-8c5a-faa580547a7a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="points : var[]..[]" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4d3d7a81-1fa4-4801-8f6e-fa1663cf8a38" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1187.60954969423" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="pointsCleaned" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="d47764bd-0ece-4394-b986-9963fc36c88d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1476" y="375.333333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="duplicateXYindices" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="05b9c030-1798-4a15-a802-4992474d8224" start_index="0" end="71b2ad68-e5f2-429e-8117-608b0a41764c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="8bed8725-c885-4dee-875e-1c8e3ba62a00" start_index="0" end="05b9c030-1798-4a15-a802-4992474d8224" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="71b2ad68-e5f2-429e-8117-608b0a41764c" start_index="1" end="b9763bb2-4419-428c-9076-1dc7bd3a34db" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b9763bb2-4419-428c-9076-1dc7bd3a34db" start_index="0" end="aa1aca9c-be60-44f7-a126-4e76dfd804d6" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="b9763bb2-4419-428c-9076-1dc7bd3a34db" start_index="0" end="d47764bd-0ece-4394-b986-9963fc36c88d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="aa1aca9c-be60-44f7-a126-4e76dfd804d6" start_index="0" end="4d3d7a81-1fa4-4801-8f6e-fa1663cf8a38" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a4283fcf-1dd7-4a72-8c5a-faa580547a7a" start_index="0" end="05b9c030-1798-4a15-a802-4992474d8224" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a4283fcf-1dd7-4a72-8c5a-faa580547a7a" start_index="0" end="aa1aca9c-be60-44f7-a126-4e76dfd804d6" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="23.0919036865234" eyeY="12.2534189224243" eyeZ="-26.1171703338623" lookX="-32.8016319274902" lookY="-13.1470985412598" lookZ="17.9166965484619" upX="-0.106954418122768" upY="0.992546141147614" upZ="0.0584199503064156" />
+  </Cameras>
+</Workspace>

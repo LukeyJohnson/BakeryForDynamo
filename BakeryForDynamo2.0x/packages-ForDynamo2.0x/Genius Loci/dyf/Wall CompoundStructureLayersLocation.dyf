@@ -1,0 +1,143 @@
+<Workspace Version="1.3.4.6666" X="142.490477957942" Y="-88.2449343771253" zoom="0.739994852046114" ScaleFactor="1" Name="Wall CompoundStructureLayersLocation" Description="Get the wall layers location lines." ID="0d05d015-ae98-4f30-b3cf-7565b1db3a38" Category="GeniusLoci.CompoundStructure">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="Autodesk.DesignScript.Geometry.Vector" resolvedName="Autodesk.DesignScript.Geometry.Vector" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="DSCore.List" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Math" resolvedName="DSCore.Math" assemblyName="DSCoreNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="c6036b9e-6bc4-4c25-bae1-3c047f2c0093" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.ElementType" x="361.697076412303" y="615.641714673948" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.ElementType">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <PythonNodeModels.PythonNode guid="1a8d2f10-83a5-4da2-9b9c-492cc5d85351" type="PythonNodeModels.PythonNode" nickname="Sum previous" x="1013.57851757639" y="575.74218406372" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#By salvatoredragotta
+datas=IN[0]
+Incrementals=[]
+for data in datas :
+	Incremental=[]
+	Incremental.append(data[0])
+	i=0
+	while i &lt;len(data)-1:
+		result=(Incremental[i]+data[i+1])
+		Incremental.append(result)
+		i +=1
+	Incrementals.append(Incremental)
+OUT=Incrementals</Script>
+    </PythonNodeModels.PythonNode>
+    <PythonNodeModels.PythonNode guid="41af9edc-b02d-4f8f-b0cb-ba8f4b194953" type="PythonNodeModels.PythonNode" nickname="Wall.Orientation" x="433.58481232579" y="531.681947016077" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+
+def WallOrientation(wall):
+	loc = wall.Location
+	flipped = False
+	if hasattr(loc, "Curve"):
+		lcurve = loc.Curve
+		if hasattr(wall, "Flipped"): flipped = wall.Flipped
+		if str(type(lcurve)) == "Autodesk.Revit.DB.Line":
+			if flipped: return wall.Orientation.ToVector().Reverse()
+			else: return wall.Orientation.ToVector()
+		else:
+			direction = (lcurve.GetEndPoint(1) - lcurve.GetEndPoint(0)).Normalize()
+			if flipped: return XYZ.BasisZ.CrossProduct(direction).ToVector().Reverse()
+			else: return XYZ.BasisZ.CrossProduct(direction).ToVector()
+	else: return None
+
+walls = UnwrapElement(IN[0])
+
+if isinstance(IN[0], list): OUT = [WallOrientation(x) for x in walls]
+else: OUT = WallOrientation(walls)</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6f70caac-7615-4c53-a207-eaa362063726" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="131.342162004645" y="525.681543673554" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Wall" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8f2c46fc-66fe-46b8-9106-30a235cc483b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1976.97427982952" y="448.662175492682" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Curves" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="964c716c-6ee4-4082-aebe-5b8f6ac82a0c" type="PythonNodeModels.PythonNode" nickname="StructureLayersWidths" x="668.347328444071" y="538.682206077343" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import DocumentManager and TransactionManager
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+UIunit = Document.GetUnits(doc).GetFormatOptions(UnitType.UT_Length).DisplayUnits
+
+items = UnwrapElement(IN[0])
+
+if not hasattr(items, '__iter__'):
+	items = [items]
+
+elemwidth,elemfunc = [],[]
+
+for item in items:
+	try:
+		counter = 0
+		layerwidth,layerfunc = [],[]
+		compstruc = item.GetCompoundStructure()
+		num = compstruc.LayerCount
+		while counter &lt; num:
+			layerwidth.append(UnitUtils.ConvertFromInternalUnits((compstruc.GetLayerWidth(counter)),UIunit))
+			layerfunc.append(compstruc.GetLayerFunction(counter))
+			counter += 1
+	except:
+		pass
+	elemwidth.append(layerwidth)
+	elemfunc.append(layerfunc)
+OUT = elemwidth,elemfunc</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="1ce8b59e-9e97-4bbc-b9e2-8d8c43a3aae1" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="851.305559609099" y="600.666931610146" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e2990a9c-f3a2-4b20-9127-bdcf2a985d02" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1994.0766383647" y="605.794206560666" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Functions" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="84a034fa-631f-43c2-a4b0-b1f65e2c2242" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Element.GetLocation" x="395.22388796515" y="391.890474333917" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.Element.GetLocation">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="d37eafbc-e5eb-4c29-b8d0-48a1497d42d8" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1206.58025699539" y="450.017030198471" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="wallcurves.Translate(direction,(Math.Sum(width)/2-(addition-(width/2))));" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <PortInfo index="3" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="c6036b9e-6bc4-4c25-bae1-3c047f2c0093" start_index="0" end="964c716c-6ee4-4082-aebe-5b8f6ac82a0c" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1a8d2f10-83a5-4da2-9b9c-492cc5d85351" start_index="0" end="d37eafbc-e5eb-4c29-b8d0-48a1497d42d8" end_index="3" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="41af9edc-b02d-4f8f-b0cb-ba8f4b194953" start_index="0" end="d37eafbc-e5eb-4c29-b8d0-48a1497d42d8" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6f70caac-7615-4c53-a207-eaa362063726" start_index="0" end="41af9edc-b02d-4f8f-b0cb-ba8f4b194953" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6f70caac-7615-4c53-a207-eaa362063726" start_index="0" end="c6036b9e-6bc4-4c25-bae1-3c047f2c0093" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6f70caac-7615-4c53-a207-eaa362063726" start_index="0" end="84a034fa-631f-43c2-a4b0-b1f65e2c2242" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="964c716c-6ee4-4082-aebe-5b8f6ac82a0c" start_index="0" end="1ce8b59e-9e97-4bbc-b9e2-8d8c43a3aae1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1ce8b59e-9e97-4bbc-b9e2-8d8c43a3aae1" start_index="0" end="1a8d2f10-83a5-4da2-9b9c-492cc5d85351" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1ce8b59e-9e97-4bbc-b9e2-8d8c43a3aae1" start_index="0" end="d37eafbc-e5eb-4c29-b8d0-48a1497d42d8" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1ce8b59e-9e97-4bbc-b9e2-8d8c43a3aae1" start_index="1" end="e2990a9c-f3a2-4b20-9127-bdcf2a985d02" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="84a034fa-631f-43c2-a4b0-b1f65e2c2242" start_index="0" end="d37eafbc-e5eb-4c29-b8d0-48a1497d42d8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d37eafbc-e5eb-4c29-b8d0-48a1497d42d8" start_index="0" end="8f2c46fc-66fe-46b8-9106-30a235cc483b" end_index="0" portType="0" />
+  </Connectors>
+  <Notes>
+    <Dynamo.Graph.Notes.NoteModel guid="d2a15f3b-2822-4032-90e2-bb7261f207cf" text="Clockwork" x="461.939504451366" y="485.338242611726" />
+    <Dynamo.Graph.Notes.NoteModel guid="fd9f2664-9bee-4711-96a5-68ba0cfd7efa" text="Clockwork" x="717.444540169544" y="502.947281094343" />
+  </Notes>
+  <Annotations />
+  <Presets />
+</Workspace>

@@ -1,0 +1,77 @@
+<Workspace Version="1.2.1.3083" X="-101.948487751084" Y="211.976142009122" zoom="0.874020307404772" Name="Wall.GetTotalWidth" Description="Get Wall's  Total Width parameter" ID="69ba16ec-3589-4067-8527-fc60100ace78" Category="SteamNodes.Wall">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="c8e22a10-f890-4105-ac4f-5c4d62ea8b75" type="PythonNodeModels.PythonNode" nickname="Python Script" x="605" y="0.00250000000000128" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+elt = []
+for i in IN[0]:
+	elt.append(UnwrapElement(i))
+list=[]
+metersToFeet = 0.3048
+feetToMeters = 1 / metersToFeet 
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for i in elt:
+	try:
+		a=i.Width*metersToFeet
+		list.append(a)
+	except:
+		list.append(0)
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+
+OUT=list</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="a388d2d4-b826-4c71-82ac-98ffb672b749" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="298" y="4.21583333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="Flatten({item});" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="235bd6fe-4a52-454e-8d69-a749cf3e8342" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="120" y="0.00250000000000128" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Walls" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="47dea727-187b-4fe4-ad25-7ff1df53a2d8" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="827" y="0.00250000000000128" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Width" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="c8e22a10-f890-4105-ac4f-5c4d62ea8b75" start_index="0" end="47dea727-187b-4fe4-ad25-7ff1df53a2d8" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="a388d2d4-b826-4c71-82ac-98ffb672b749" start_index="0" end="c8e22a10-f890-4105-ac4f-5c4d62ea8b75" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="235bd6fe-4a52-454e-8d69-a749cf3e8342" start_index="0" end="a388d2d4-b826-4c71-82ac-98ffb672b749" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

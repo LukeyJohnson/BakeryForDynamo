@@ -1,0 +1,83 @@
+<Workspace Version="1.0.0.1180" X="589.671302716957" Y="244.815017979103" zoom="1.17676952172398" Name="Tool.RemoveVoidCut" Description="Add void cut for a Set of elements. In combination with Get surrounding elements node." ID="f07f8cca-68b1-4c72-a6ba-3ac150246972" Category="SteamNodes.Tool">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="58fc84ce-0891-4534-a6f8-3e56c719d149" type="PythonNodeModels.PythonNode" nickname="Python Script" x="517" y="42" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script>#python nodes in dynamo 1.0
+#proposed by Julien Benoit @jbenoit44 
+#http://aecuandme.wordpress.com/
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+# Import ToDSType(bool) extension method
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+# Import geometry conversion extension methods
+clr.ImportExtensions(Revit.GeometryConversion)
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+from System.Collections.Generic import *
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+doc = DocumentManager.Instance.CurrentDBDocument
+uiapp = DocumentManager.Instance.CurrentUIApplication
+app = uiapp.Application
+uidoc=DocumentManager.Instance.CurrentUIApplication.ActiveUIDocument
+
+host = []
+for i in IN[0]:
+	host.append(UnwrapElement(i))
+
+cutins=[]
+
+cutfam = UnwrapElement(IN[1])
+
+# Start Transaction
+TransactionManager.Instance.EnsureInTransaction(doc)
+
+for h in host:
+	for list in cutfam:
+		for c in list:
+			try:
+				InstanceVoidCutUtils.RemoveInstanceVoidCut(doc,h,c)	
+				cutted.append(h.Id)
+			except:
+				0	
+# End Transaction
+TransactionManager.Instance.TransactionTaskDone()
+doc.Regenerate()
+#Assign your output to the OUT variable
+OUT = 0</Script>
+    </PythonNodeModels.PythonNode>
+    <CoreNodeModels.HigherOrder.Map guid="15788c33-36ee-4a58-b746-84984ef75cf1" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="283" y="110" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <CoreNodeModels.HigherOrder.Map guid="6dcdda3d-4f5e-4ec0-b914-cd399fe95208" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="283" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" />
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="36fdc0ab-97b4-4dfe-ad0d-96c779fb883b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.Deconstruct" x="0" y="104" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.Deconstruct@var[]..[]" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="fc1fee56-4d0d-4417-9029-59ca822345f5" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-210.746450704024" y="-22.639419695553" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="ListOfList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2a461ef8-8bfa-40f3-a2bf-3a7d986a80ee" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="741" y="42" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="58fc84ce-0891-4534-a6f8-3e56c719d149" start_index="0" end="2a461ef8-8bfa-40f3-a2bf-3a7d986a80ee" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="15788c33-36ee-4a58-b746-84984ef75cf1" start_index="0" end="58fc84ce-0891-4534-a6f8-3e56c719d149" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="6dcdda3d-4f5e-4ec0-b914-cd399fe95208" start_index="0" end="58fc84ce-0891-4534-a6f8-3e56c719d149" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="36fdc0ab-97b4-4dfe-ad0d-96c779fb883b" start_index="0" end="6dcdda3d-4f5e-4ec0-b914-cd399fe95208" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="36fdc0ab-97b4-4dfe-ad0d-96c779fb883b" start_index="1" end="15788c33-36ee-4a58-b746-84984ef75cf1" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fc1fee56-4d0d-4417-9029-59ca822345f5" start_index="0" end="15788c33-36ee-4a58-b746-84984ef75cf1" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="fc1fee56-4d0d-4417-9029-59ca822345f5" start_index="0" end="6dcdda3d-4f5e-4ec0-b914-cd399fe95208" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

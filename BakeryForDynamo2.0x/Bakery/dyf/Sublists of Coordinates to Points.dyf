@@ -1,0 +1,39 @@
+<Workspace Version="1.3.0.875" X="-903.417070940514" Y="999.807913766514" zoom="1.40210270027359" ScaleFactor="1" Name="Sublists of Coordinates to Points" Description="" ID="3b11b086-bc95-4aaf-9dbe-174c7100545d" Category="Bakery.Geometry">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="336b5346-e1e4-454e-87a1-443d7a6b89a6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-202.876271454717" y="-234.209588098808" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="big list" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="abdd9626-4653-44fe-b4d3-74e0a1d48439" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Subnode to create point from one XYZ sublist" x="602.306730494611" y="26.5702032373567" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <ID value="a4199d6d-da12-4c80-bc9c-9f6af4544412" />
+      <Name value="Subnode to create point from one XYZ sublist" />
+      <Description value="" />
+      <Inputs>
+        <Input value="list" />
+      </Inputs>
+      <Outputs>
+        <Output value="Point" />
+      </Outputs>
+    </Dynamo.Graph.Nodes.CustomNodes.Function>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="7181409a-7d16-4edc-b572-ef232404326b" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1090.81043737724" y="-371.089209628758" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="PointList" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <CoreNodeModels.HigherOrder.Map guid="4aaa16f6-f9e6-47c9-a52e-e73b813c47dc" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="371.046595436987" y="-319.456902751562" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+    </CoreNodeModels.HigherOrder.Map>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="336b5346-e1e4-454e-87a1-443d7a6b89a6" start_index="0" end="4aaa16f6-f9e6-47c9-a52e-e73b813c47dc" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="abdd9626-4653-44fe-b4d3-74e0a1d48439" start_index="0" end="4aaa16f6-f9e6-47c9-a52e-e73b813c47dc" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="4aaa16f6-f9e6-47c9-a52e-e73b813c47dc" start_index="0" end="7181409a-7d16-4edc-b572-ef232404326b" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="33.4558219909668" eyeY="135.294586181641" eyeZ="-44.684383392334" lookX="-33.4558219909668" lookY="-135.294586181641" lookZ="44.684383392334" upX="-0.492148339748383" upY="0.570713579654694" upZ="0.657324969768524" />
+  </Cameras>
+</Workspace>

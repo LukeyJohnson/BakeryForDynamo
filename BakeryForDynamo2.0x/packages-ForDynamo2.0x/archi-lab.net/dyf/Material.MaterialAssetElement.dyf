@@ -1,0 +1,80 @@
+<Workspace Version="0.9.0.2912" X="-340.11308016537" Y="-205.559545579652" zoom="1.47618023926361" Name="Material.MaterialAssetElement" Description="This node retrieves a Material Asset Element from Material. If such is not defined it will return an Invalid Element Id (-1)" ID="9ff6d455-1fc0-4d6d-95d8-15b373035e78" Category="Archi-lab_Grimshaw.Element Properties.Query">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="935d429c-c206-44ab-9ae4-7ab703809f72" type="PythonNodeModels.PythonNode" nickname="Python Script" x="561.193926905144" y="349.916824348512" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+# Import Element wrapper extension methods
+import clr
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variables.
+dataEnteringNode = IN
+
+def ProcessList(_func, _list):
+	return map(lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list)
+
+def TryGetAssetId(mat):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	appearanceId = mat.AppearanceAssetId
+	if appearanceId != ElementId.InvalidElementId:
+		appearanceElemn = doc.GetElement(appearanceId)
+		return appearanceElemn
+	else:
+		return ElementId.InvalidElementId
+
+def Unwrap(item):
+	return UnwrapElement(item)
+
+if isinstance(IN[0], list):
+	elements = ProcessList(Unwrap, IN[0])
+else:
+	elements = [Unwrap(IN[0])]
+
+try:
+	errorReport = None
+	output = ProcessList(TryGetAssetId, elements)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = output
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Nodes.Symbol guid="f5556e22-0078-46ac-b6cb-18f65341300d" type="Dynamo.Nodes.Symbol" nickname="Input" x="428.244347067839" y="347.983789398225" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
+      <Symbol value="Material" />
+    </Dynamo.Nodes.Symbol>
+    <Dynamo.Nodes.Output guid="355ce6b2-fb97-41af-8ed5-b64f50f578b0" type="Dynamo.Nodes.Output" nickname="Output" x="725.811260808721" y="349.928671187381" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
+      <Symbol value="MaterialAssetElement" />
+    </Dynamo.Nodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Models.ConnectorModel start="935d429c-c206-44ab-9ae4-7ab703809f72" start_index="0" end="355ce6b2-fb97-41af-8ed5-b64f50f578b0" end_index="0" portType="0" />
+    <Dynamo.Models.ConnectorModel start="f5556e22-0078-46ac-b6cb-18f65341300d" start_index="0" end="935d429c-c206-44ab-9ae4-7ab703809f72" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

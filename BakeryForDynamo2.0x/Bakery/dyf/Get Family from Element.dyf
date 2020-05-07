@@ -1,0 +1,26 @@
+<Workspace Version="1.2.1.3083" X="348.333333333333" Y="311" zoom="1" Name="Get Family from Element" Description="working now" ID="bda813d2-105e-4407-b0f1-334b017c3686" Category="Bakery.Revit.Elements.Family">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="946ffebd-01be-4a21-a36f-e26f6eab4156" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-128.333333333333" y="-17.6666666666666" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="oneElement" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="fdcb4ef7-3c60-439c-9a92-12c9e1f6ed26" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="470.659296555306" y="10.932295358382" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="FamilyObject" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="d7aecd6e-afab-44aa-822d-0835386e7508" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="FamilyInstance.Type" x="-73.1666666666666" y="164.5" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.FamilyInstance.Type">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="024fd67f-0798-4569-b6e8-1fb500495ed9" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="FamilyType.Family" x="227.5" y="255.5" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="RevitNodes.dll" function="Revit.Elements.FamilyType.Family">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="946ffebd-01be-4a21-a36f-e26f6eab4156" start_index="0" end="d7aecd6e-afab-44aa-822d-0835386e7508" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="d7aecd6e-afab-44aa-822d-0835386e7508" start_index="0" end="024fd67f-0798-4569-b6e8-1fb500495ed9" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="024fd67f-0798-4569-b6e8-1fb500495ed9" start_index="0" end="fdcb4ef7-3c60-439c-9a92-12c9e1f6ed26" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+</Workspace>

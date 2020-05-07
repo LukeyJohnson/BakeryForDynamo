@@ -1,0 +1,115 @@
+<Workspace Version="1.1.0.2094" X="-220.797366632109" Y="-179.325818279102" zoom="1.78359936238281" Name="Get Type Parameter" Description="This node will retrieve a type parameter by its name." ID="6a4c1bc3-3614-46a7-bf3f-63849453cbb6" Category="Archi-lab_Grimshaw.Element Properties">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="59b52c4d-a3e1-4b45-936f-6658c4b00306" type="PythonNodeModels.PythonNode" nickname="Python Script" x="462" y="235" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
+      <Script># Copyright(c) 2015, Konrad K Sobon
+# @arch_laboratory, http://archi-lab.net
+
+import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+
+# Import DocumentManager and TransactionManager
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+doc = DocumentManager.Instance.CurrentDBDocument
+
+# Import RevitAPI
+clr.AddReference("RevitAPI")
+import Autodesk
+from Autodesk.Revit.DB import *
+
+import sys
+pyt_path = r'C:\Program Files (x86)\IronPython 2.7\Lib'
+sys.path.append(pyt_path)
+
+#The inputs to this node will be stored as a list in the IN variable.
+dataEnteringNode = IN
+
+paramNames = IN[1]
+
+if isinstance(IN[0], list):
+	elements = []
+	for i in IN[0]:
+		elements.append(UnwrapElement(i))
+else:
+	elements = UnwrapElement(IN[0])
+
+def ProcessList(_func, _list):
+	return map( lambda x: ProcessList(_func, x) if type(x)==list else _func(x), _list )
+
+def ProcessListArg(_func, _list, _arg):
+    return map( lambda x: ProcessListArg(_func, x, _arg) if type(x)==list else _func(x, _arg), _list )
+
+def GetElemType(e):
+	doc = DocumentManager.Instance.CurrentDBDocument
+	try:
+		elemType = doc.GetElement(e.GetTypeId())
+		return elemType
+	except:
+		pass
+		return None
+
+def GetParamValue(eType, pName):
+	paramValue = None
+	for i in eType.Parameters:
+		if i.Definition.Name == pName:
+			paramValue = i.AsString()
+			break
+		else:
+			continue
+	return paramValue
+
+try:
+	errorReport = None
+	paramValues = []
+	if isinstance(elements, list):
+		elemTypes = ProcessList(GetElemType, elements)
+		if isinstance(paramNames, list):
+			for i in paramNames:
+				paramValues.append(ProcessListArg(GetParamValue, elemTypes, i))
+			paramValues = map(list, zip(*paramValues))
+		else:
+			paramValues = ProcessListArg(GetParamValue, elemTypes, paramNames)
+	else:
+		elemTypes = [GetElemType(elements)]
+		if isinstance(paramNames, list):
+			for i in paramNames:
+				paramValues.append(ProcessListArg(GetParamValue, elemTypes, i))
+			paramValues = map(list, zip(*paramValues))
+		else:
+			paramValues = ProcessListArg(GetParamValue, elemTypes, paramNames)
+except:
+	# if error accurs anywhere in the process catch it
+	import traceback
+	errorReport = traceback.format_exc()	
+
+#Assign your output to the OUT variable
+if errorReport == None:
+	OUT = paramValues
+else:
+	OUT = errorReport</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1dd8361b-a273-4aba-b13b-80d2ecd7426e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="332.360158415933" y="228.933597359889" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="element" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="5ac78294-b8b7-4ace-b4f0-e644b87275d6" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="291.808443564614" y="287.058751155164" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="parameterName" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2f1a8c6c-6264-48f1-8478-5caa75c46c93" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="631.194084487725" y="234.5402376239" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <Symbol value="value" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="59b52c4d-a3e1-4b45-936f-6658c4b00306" start_index="0" end="2f1a8c6c-6264-48f1-8478-5caa75c46c93" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="1dd8361b-a273-4aba-b13b-80d2ecd7426e" start_index="0" end="59b52c4d-a3e1-4b45-936f-6658c4b00306" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="5ac78294-b8b7-4ace-b4f0-e644b87275d6" start_index="0" end="59b52c4d-a3e1-4b45-936f-6658c4b00306" end_index="1" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

@@ -1,0 +1,29 @@
+<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="Python Version" Description="" ID="df04aaa0-3b67-4373-89f0-2c013e185bc5" Category="Bakery.Dynamo.Python">
+  <NamespaceResolutionMap />
+  <Elements>
+    <PythonNodeModels.PythonNode guid="51ddb93a-ce99-42a4-ab26-d6b7d984132b" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false" inputcount="0">
+      <Script>import clr
+clr.AddReference('ProtoGeometry')
+from Autodesk.DesignScript.Geometry import *
+import sys
+#The inputs to this node will be stored as a list in the IN variables.
+dataEnteringNode = IN
+
+#Assign your output to the OUT variable.
+OUT = sys.version</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="8f5e24d6-5f8e-493c-84c1-1a8954058ce3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="414.333333333333" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="version" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="51ddb93a-ce99-42a4-ab26-d6b7d984132b" start_index="0" end="8f5e24d6-5f8e-493c-84c1-1a8954058ce3" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>

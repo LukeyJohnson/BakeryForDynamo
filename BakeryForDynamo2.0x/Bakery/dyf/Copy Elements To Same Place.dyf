@@ -1,0 +1,64 @@
+<Workspace Version="1.2.0.2831" X="0" Y="0" zoom="1" Name="Copy Elements To Same Place" Description="" ID="081c391b-4f0f-4907-9365-05acc8d766a2" Category="Bakery.Revit.Elements">
+  <NamespaceResolutionMap>
+    <ClassMap partialName="List.GetItemAtIndex[x]" resolvedName="DSCore.List" assemblyName="DSCoreNodes.dll" />
+    <ClassMap partialName="Point" resolvedName="Autodesk.DesignScript.Geometry.Point" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Curve" resolvedName="Autodesk.DesignScript.Geometry.Curve" assemblyName="ProtoGeometry.dll" />
+    <ClassMap partialName="Level" resolvedName="Revit.Elements.Level" assemblyName="RevitNodes.dll" />
+    <ClassMap partialName="FloorType" resolvedName="Revit.Elements.FloorType" assemblyName="RevitNodes.dll" />
+  </NamespaceResolutionMap>
+  <Elements>
+    <PythonNodeModels.PythonNode guid="d68717f8-86df-4a90-ab45-092df01a7ea0" type="PythonNodeModels.PythonNode" nickname="Python Script" x="250" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="true" inputcount="1">
+      <PortInfo index="0" default="False" />
+      <Script>import clr
+from System.Collections.Generic import *
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+import Autodesk
+
+clr.AddReference("RevitNodes")
+import Revit
+clr.ImportExtensions(Revit.Elements)
+
+clr.AddReference("RevitServices")
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+doc = DocumentManager.Instance.CurrentDBDocument
+items = UnwrapElement(IN[0])
+#revitvector = UnwrapElement((IN[1].ToXYZ()))
+
+ids = list()
+for item in items:
+	ids.append(item.Id)	
+itemlist = List[ElementId](ids)
+
+TransactionManager.Instance.EnsureInTransaction(doc)
+newitems = ElementTransformUtils.CopyElements(doc,itemlist,XYZ())
+TransactionManager.Instance.TransactionTaskDone()
+
+elementlist = list()
+for item in newitems:
+	elementlist.append(doc.GetElement(item).ToDSType(False))
+
+OUT = elementlist</Script>
+    </PythonNodeModels.PythonNode>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="83638e31-e0f2-415b-853b-501e7f0e7a68" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="elements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="b22f741f-f0c9-45f5-85fb-ff12307dbc5d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="446.333333333333" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="newelements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="d68717f8-86df-4a90-ab45-092df01a7ea0" start_index="0" end="b22f741f-f0c9-45f5-85fb-ff12307dbc5d" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="83638e31-e0f2-415b-853b-501e7f0e7a68" start_index="0" end="d68717f8-86df-4a90-ab45-092df01a7ea0" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Background Preview" eyeX="69990560" eyeY="36503.4296875" eyeZ="-150594656" lookX="9480.333984375" lookY="-26277.060546875" lookZ="-40559.5546875" upX="0.0773471742868423" upY="0.940486013889313" upZ="-0.330913156270981" />
+  </Cameras>
+</Workspace>

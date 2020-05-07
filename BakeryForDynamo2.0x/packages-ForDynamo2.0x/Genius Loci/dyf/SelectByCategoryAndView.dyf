@@ -1,0 +1,92 @@
+<Workspace Version="1.3.3.4651" X="114.139935" Y="53.68545" zoom="0.70823125" ScaleFactor="1" Name="SelectByCategoryAndView" Description="Collects elements by Category and View in the given document.&#xD;&#xA;The transform CS is returned only with a LinkInstance input." ID="64218d82-6e92-4d4d-90cb-05646d085ab4" Category="GeniusLoci.Select">
+  <NamespaceResolutionMap />
+  <Elements>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="09c3e538-f09f-4e4f-af10-2560be6cea9e" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="253.331086531149" y="235.560308856954" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="//View of given document&#xD;&#xA;view" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="0d79d403-885a-4662-a491-d3e277e7a04b" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="303.879350122315" y="334.782583797508" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="Category" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="73089958-c919-4ba5-8150-c765dc19be64" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-25.5999999999999" y="438.4" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="// Use only if you want to query a linked model&#xD;&#xA;docOrRevitLinkInstance : var[] = null" />
+    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="e92f984c-01da-40f6-bf8f-beed6f2bc395" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="786.566494268124" y="293.097854581013" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="x[0];&#xA;x[1];" ShouldFocus="false">
+      <PortInfo index="0" default="False" />
+    </Dynamo.Graph.Nodes.CodeBlockNodeModel>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="f60757a2-9a63-4ecc-874e-987a0f7c6a26" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="956.743058375998" y="279.024149987253" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Elements" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="c0c381b4-891b-4448-ada1-5f847bac6ea0" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="960.925125448509" y="350.138802107629" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
+      <Symbol value="Transform" />
+    </Dynamo.Graph.Nodes.CustomNodes.Output>
+    <PythonNodeModels.PythonNode guid="e78b5845-516a-4259-b257-8a6861924251" type="PythonNodeModels.PythonNode" nickname="SelectByCategoryAndView" x="545.951714217637" y="285.661710069981" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
+      <Script>#Alban de Chasteigner 2018
+#twitter : @geniusloci_bim
+#geniusloci.bim@gmail.com
+
+import clr
+clr.AddReference('RevitAPI')
+from Autodesk.Revit.DB import *
+clr.AddReference('System')
+from System.Collections.Generic import List
+clr.AddReference('RevitNodes')
+import Revit
+clr.ImportExtensions(Revit.Elements)
+clr.ImportExtensions(Revit.GeometryConversion)
+clr.AddReference('RevitServices')
+import RevitServices
+from RevitServices.Persistence import DocumentManager
+from RevitServices.Transactions import TransactionManager
+
+def tolist(x):
+    if hasattr(x,'__iter__'): return x
+    else : return [x]
+
+views = tolist(UnwrapElement(IN[0]))
+cats = tolist(UnwrapElement(IN[1]))
+inputdocs = tolist(UnwrapElement(IN[2]))
+transforms = []
+
+for inputdoc in inputdocs :
+	if inputdoc == None:
+		doc = DocumentManager.Instance.CurrentDBDocument
+	elif inputdoc.GetType().ToString() == "Autodesk.Revit.DB.Document":
+		doc = inputdoc
+	elif inputdoc.GetType().ToString() == "Autodesk.Revit.DB.RevitLinkInstance":
+		doc = inputdoc.GetLinkDocument()
+		transforms.append(inputdoc.GetTotalTransform().ToCoordinateSystem(1))
+	else: 
+		transforms.append(None)
+
+linkedEl = []
+elements = []
+
+for view in views:
+	for cat in cats:
+		collector = FilteredElementCollector(doc,view.Id).OfCategoryId(cat.Id).ToElements()
+		linkedEl.append(collector)
+	elements.append(linkedEl)
+
+OUT = elements[0],transforms</Script>
+    </PythonNodeModels.PythonNode>
+  </Elements>
+  <Connectors>
+    <Dynamo.Graph.Connectors.ConnectorModel start="09c3e538-f09f-4e4f-af10-2560be6cea9e" start_index="0" end="e78b5845-516a-4259-b257-8a6861924251" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="0d79d403-885a-4662-a491-d3e277e7a04b" start_index="0" end="e78b5845-516a-4259-b257-8a6861924251" end_index="1" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="73089958-c919-4ba5-8150-c765dc19be64" start_index="0" end="e78b5845-516a-4259-b257-8a6861924251" end_index="2" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e92f984c-01da-40f6-bf8f-beed6f2bc395" start_index="0" end="f60757a2-9a63-4ecc-874e-987a0f7c6a26" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e92f984c-01da-40f6-bf8f-beed6f2bc395" start_index="1" end="c0c381b4-891b-4448-ada1-5f847bac6ea0" end_index="0" portType="0" />
+    <Dynamo.Graph.Connectors.ConnectorModel start="e78b5845-516a-4259-b257-8a6861924251" start_index="0" end="e92f984c-01da-40f6-bf8f-beed6f2bc395" end_index="0" portType="0" />
+  </Connectors>
+  <Notes />
+  <Annotations />
+  <Presets />
+  <Cameras>
+    <Camera Name="Aperçu en arrière-plan" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+  </Cameras>
+</Workspace>
