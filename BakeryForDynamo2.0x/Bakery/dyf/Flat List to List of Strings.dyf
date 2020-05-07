@@ -1,40 +1,165 @@
-<Workspace Version="1.3.4.6666" X="0" Y="0" zoom="1" ScaleFactor="1" Name="Flat List to List of Strings" Description="using python methods" ID="82b8a446-c4a1-4d64-8736-01c0b01ae798" Category="Bakery.Core.List">
-  <NamespaceResolutionMap />
-  <Elements>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="ac91d8c7-c565-48ff-9a5c-c7307d07c25f" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="562" y="427.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <Symbol value="Original List" />
-    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="e1b164ff-d2f3-4075-88ef-34f40795eca6" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1011" y="394.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <Symbol value="List of Strings" />
-    </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <PythonNodeModels.PythonNode guid="597954f1-62f9-48cf-b313-ccdfeca220a4" type="PythonNodeModels.PythonNode" nickname="Python Script" x="766" y="349.5" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="1">
-      <PortInfo index="0" default="False" />
-      <Script>import clr
-clr.AddReference('ProtoGeometry')
-from Autodesk.DesignScript.Geometry import *
-#The inputs to this node will be stored as a list in the IN variable.
-dataEnteringNode = IN
-
-stringList = []
-for x in dataEnteringNode[0]:
-	try:
-		tempString = str(x)
-	except:
-		tempString = "stringConversionFailed"
-	stringList.append(tempString)
-#Assign your output to the OUT variable
-OUT = stringList</Script>
-    </PythonNodeModels.PythonNode>
-  </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="ac91d8c7-c565-48ff-9a5c-c7307d07c25f" start_index="0" end="597954f1-62f9-48cf-b313-ccdfeca220a4" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="597954f1-62f9-48cf-b313-ccdfeca220a4" start_index="0" end="e1b164ff-d2f3-4075-88ef-34f40795eca6" end_index="0" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-  <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
-</Workspace>
+{
+  "Uuid": "82b8a446-c4a1-4d64-8736-01c0b01ae798",
+  "IsCustomNode": true,
+  "Category": "Bakery.Core.List",
+  "Description": "using python methods",
+  "Name": "Flat List to List of Strings",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "OriginalList",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "ac91d8c7c56548ff9a5cc7307d07c25f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0af0de28b3eb4808a03b980a443a32fd",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "List of Strings",
+      "Id": "e1b164ffd2f3407588ef34f40795eca6",
+      "Inputs": [
+        {
+          "Id": "44eead12365d4112b2cb6c0f6fd4e727",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\r\nclr.AddReference('ProtoGeometry')\r\nfrom Autodesk.DesignScript.Geometry import *\r\n#The inputs to this node will be stored as a list in the IN variable.\r\ndataEnteringNode = IN\r\n\r\nstringList = []\r\nfor x in dataEnteringNode[0]:\r\n\ttry:\r\n\t\ttempString = str(x)\r\n\texcept:\r\n\t\ttempString = \"stringConversionFailed\"\r\n\tstringList.append(tempString)\r\n#Assign your output to the OUT variable\r\nOUT = stringList",
+      "VariableInputPorts": true,
+      "Id": "597954f162f948cfb313ccdfeca220a4",
+      "Inputs": [
+        {
+          "Id": "6f5cba93a1d940d4bc998954a425e5f3",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6e25bdce32444ba6a370592b196b3087",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "0af0de28b3eb4808a03b980a443a32fd",
+      "End": "6f5cba93a1d940d4bc998954a425e5f3",
+      "Id": "f68d20ce43b543498a830eec457d9fad"
+    },
+    {
+      "Start": "6e25bdce32444ba6a370592b196b3087",
+      "End": "44eead12365d4112b2cb6c0f6fd4e727",
+      "Id": "a6562ccad839415996e66ef550ba0233"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": 32788.235506437144,
+      "EyeY": 107195.88059099173,
+      "EyeZ": 84210.7313338872,
+      "LookX": -32828.572874448619,
+      "LookY": -107194.05072601294,
+      "LookZ": -84154.795539056882,
+      "UpX": -0.22123857013182938,
+      "UpY": 0.79335334029123528,
+      "UpZ": -0.56713664361841676
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "ac91d8c7c56548ff9a5cc7307d07c25f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 562.0,
+        "Y": 427.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "e1b164ffd2f3407588ef34f40795eca6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1011.0,
+        "Y": 394.5
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "597954f162f948cfb313ccdfeca220a4",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 766.0,
+        "Y": 349.5
+      }
+    ],
+    "Annotations": [],
+    "X": 0.0,
+    "Y": 0.0,
+    "Zoom": 1.0
+  }
+}
