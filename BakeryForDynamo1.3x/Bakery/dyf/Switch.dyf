@@ -1,7 +1,10 @@
-<Workspace Version="0.9.2.4472" X="0" Y="0" zoom="1" Name="Switch" Description="" ID="d7a35180-4030-4710-8c04-549d34963856" Category="Bakery.Core.Logic">
+<Workspace Version="1.3.4.6666" X="231.08085" Y="80.23640625" zoom="0.70823125" ScaleFactor="1" Name="Switch" Description="" ID="d7a35180-4030-4710-8c04-549d34963856" Category="Bakery.Core.Logic">
   <NamespaceResolutionMap />
   <Elements>
-    <PythonNodeModels.PythonNode guid="846dbee8-c2d9-4889-97dd-a1ba3c3209fb" type="PythonNodeModels.PythonNode" nickname="Python Script" x="348.414243323442" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" inputcount="3">
+    <PythonNodeModels.PythonNode guid="846dbee8-c2d9-4889-97dd-a1ba3c3209fb" type="PythonNodeModels.PythonNode" nickname="Python Script" x="348.414243323442" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="3">
+      <PortInfo index="0" default="False" />
+      <PortInfo index="1" default="False" />
+      <PortInfo index="2" default="False" />
       <Script>import clr
 clr.AddReference('ProtoGeometry')
 from Autodesk.DesignScript.Geometry import *
@@ -17,7 +20,8 @@ else:
 #Assign your output to the OUT variable.
 OUT = temp</Script>
     </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="1af302b6-42c9-439b-a422-2a2fdb678d61" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="bv Remove Nulls" x="526.93056379822" y="57.9228486646886" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Function guid="1af302b6-42c9-439b-a422-2a2fdb678d61" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="bv Remove Nulls" x="526.93056379822" y="57.9228486646886" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <ID value="a8b0f382-e8bc-4198-93af-a93c1afcf265" />
       <Name value="bv Remove Nulls" />
       <Description value="forked from Lunchbox" />
@@ -28,14 +32,15 @@ OUT = temp</Script>
         <Output value="Cleaned" />
       </Outputs>
     </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="300a637f-6695-4596-97ae-d74bb217d882" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="123.788724035608" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" CodeText="null;" ShouldFocus="false" />
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c47a816c-2e09-4c6c-97e0-117b6cbff811" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
-      <Symbol value="boolean switch" />
+    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="300a637f-6695-4596-97ae-d74bb217d882" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="250" y="123.788724035608" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="null;" ShouldFocus="false" />
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="c47a816c-2e09-4c6c-97e0-117b6cbff811" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
+      <Symbol value="booleanSwitch" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1490782e-176b-43e0-ae8d-d527e344f3bd" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="1490782e-176b-43e0-ae8d-d527e344f3bd" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="0" y="150" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
       <Symbol value="data" />
     </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4f755a5e-1848-4b5e-816e-c34349cea95d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="736.33056379822" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false">
+    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4f755a5e-1848-4b5e-816e-c34349cea95d" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="736.33056379822" y="0" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
+      <PortInfo index="0" default="False" />
       <Symbol value="result" />
     </Dynamo.Graph.Nodes.CustomNodes.Output>
   </Elements>
@@ -50,6 +55,6 @@ OUT = temp</Script>
   <Annotations />
   <Presets />
   <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
+    <Camera Name="Background Preview" eyeX="-155345.734375" eyeY="119915.015625" eyeZ="140575.296875" lookX="175332.703125" lookY="-112388.8046875" lookZ="-143562.484375" upX="0.187180444598198" upY="0.97029572725296" upZ="-0.153263434767723" />
   </Cameras>
 </Workspace>
