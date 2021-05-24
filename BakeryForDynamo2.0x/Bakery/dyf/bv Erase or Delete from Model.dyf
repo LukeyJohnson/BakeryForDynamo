@@ -1,72 +1,215 @@
-<Workspace Version="0.8.2.2392" X="0" Y="0" zoom="1" Name="bv Erase or Delete from Model" Description="forked from SteamNodes" ID="fe919115-3690-4f54-beed-e3ad71e1e198" Category="Bakery.Dynamo.ForkedNodes">
-  <NamespaceResolutionMap />
-  <Elements>
-    <DSIronPythonNode.PythonNode guid="d049028a-05be-4442-9cdf-518ed6cb4161" type="DSIronPythonNode.PythonNode" nickname="Python Script" x="517" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" inputcount="1">
-      <Script>#python nodes in dynamo 0.7
-#proposed by Julien Benoit @jbenoit44 
-#http://aecuandme.wordpress.com/
-import clr
-clr.AddReference('ProtoGeometry')
-from Autodesk.DesignScript.Geometry import *
-# Import ToDSType(bool) extension method
-clr.AddReference("RevitNodes")
-import Revit
-clr.ImportExtensions(Revit.Elements)
-# Import geometry conversion extension methods
-clr.ImportExtensions(Revit.GeometryConversion)
-# Import DocumentManager and TransactionManager
-clr.AddReference("RevitServices")
-import RevitServices
-from RevitServices.Persistence import DocumentManager
-from RevitServices.Transactions import TransactionManager
-from System.Collections.Generic import *
-# Import RevitAPI
-clr.AddReference("RevitAPI")
-import Autodesk
-from Autodesk.Revit.DB import *
-
-doc = DocumentManager.Instance.CurrentDBDocument
-uiapp = DocumentManager.Instance.CurrentUIApplication
-app = uiapp.Application
-
-elt = []
-for i in IN[0]:
-	elt.append(UnwrapElement(i).Id)
-
-# Start Transaction
-TransactionManager.Instance.EnsureInTransaction(doc)
-
-
-cantdelete=[]
-for item in elt:
-	try:
-		doc.Delete(item)
-	except:
-		cantdelete.append(item)
-		
-
-# End Transaction
-TransactionManager.Instance.TransactionTaskDone()
-doc.Regenerate()
-OUT=cantdelete</Script>
-    </DSIronPythonNode.PythonNode>
-    <Dynamo.Nodes.Symbol guid="6906c2cf-b9e8-4136-9a3a-7a6b62567f82" type="Dynamo.Nodes.Symbol" nickname="Input" x="10" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True">
-      <Symbol value="Element(s)" />
-    </Dynamo.Nodes.Symbol>
-    <Dynamo.Nodes.Output guid="631504d6-8dd5-4c89-b781-8dea288e35f9" type="Dynamo.Nodes.Output" nickname="Output" x="741" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False">
-      <Symbol value="Can't delete (Ids)" />
-    </Dynamo.Nodes.Output>
-    <Dynamo.Nodes.CodeBlockNodeModel guid="d6d8a9fd-b24c-47b6-8234-29de473bef25" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="209" y="14.2183333333333" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" CodeText="Flatten({item});" ShouldFocus="false" />
-  </Elements>
-  <Connectors>
-    <Dynamo.Models.ConnectorModel start="d049028a-05be-4442-9cdf-518ed6cb4161" start_index="0" end="631504d6-8dd5-4c89-b781-8dea288e35f9" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="6906c2cf-b9e8-4136-9a3a-7a6b62567f82" start_index="0" end="d6d8a9fd-b24c-47b6-8234-29de473bef25" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="d6d8a9fd-b24c-47b6-8234-29de473bef25" start_index="0" end="d049028a-05be-4442-9cdf-518ed6cb4161" end_index="0" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-  <Presets />
-  <Cameras>
-    <Camera Name="background_preview" eyeX="10" eyeY="15" eyeZ="10" lookX="-10" lookY="-10" lookZ="-10" />
-  </Cameras>
-</Workspace>
+{
+  "Uuid": "fe919115-3690-4f54-beed-e3ad71e1e198",
+  "IsCustomNode": true,
+  "Category": "Bakery.Dynamo.ForkedNodes",
+  "Description": "forked from SteamNodes",
+  "Name": "bv Erase or Delete from Model",
+  "ElementResolver": {
+    "ResolutionMap": {
+      "DSCore.List": {
+        "Key": "DSCore.List",
+        "Value": "DSCoreNodes.dll"
+      }
+    }
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "#python nodes in dynamo 0.7\n#proposed by Julien Benoit @jbenoit44 \n#http://aecuandme.wordpress.com/\nimport clr\nclr.AddReference('ProtoGeometry')\nfrom Autodesk.DesignScript.Geometry import *\n# Import ToDSType(bool) extension method\nclr.AddReference(\"RevitNodes\")\nimport Revit\nclr.ImportExtensions(Revit.Elements)\n# Import geometry conversion extension methods\nclr.ImportExtensions(Revit.GeometryConversion)\n# Import DocumentManager and TransactionManager\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\nfrom System.Collections.Generic import *\n# Import RevitAPI\nclr.AddReference(\"RevitAPI\")\nimport Autodesk\nfrom Autodesk.Revit.DB import *\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nuiapp = DocumentManager.Instance.CurrentUIApplication\napp = uiapp.Application\n\nelt = []\nfor i in IN[0]:\n\telt.append(UnwrapElement(i).Id)\n\n# Start Transaction\nTransactionManager.Instance.EnsureInTransaction(doc)\n\n\ncantdelete=[]\nfor item in elt:\n\ttry:\n\t\tdoc.Delete(item)\n\texcept:\n\t\tcantdelete.append(item)\n\t\t\n\n# End Transaction\nTransactionManager.Instance.TransactionTaskDone()\ndoc.Regenerate()\nOUT=cantdelete",
+      "VariableInputPorts": true,
+      "Id": "d049028a05be44429cdf518ed6cb4161",
+      "Inputs": [
+        {
+          "Id": "dfa63c2a4a2a4e36903c1932feadebd4",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "18d2f6484db04392aebc41ff8edc1148",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "Elementz",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "6906c2cfb9e841369a3a7a6b62567f82",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f5c5599644854c7ca48b412167be408c",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "failures",
+      "Id": "631504d68dd54c89b7818dea288e35f9",
+      "Inputs": [
+        {
+          "Id": "e067c8f8710a4e17aa68de7b05d45e36",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "DSCore.List.Flatten([item]);",
+      "Id": "d6d8a9fdb24c47b6823429de473bef25",
+      "Inputs": [
+        {
+          "Id": "f467d08b55d64398be0d003bc190d766",
+          "Name": "item",
+          "Description": "item",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "525e68b584754485a81d6ae687795c72",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "18d2f6484db04392aebc41ff8edc1148",
+      "End": "e067c8f8710a4e17aa68de7b05d45e36",
+      "Id": "3928ae19937248c3ad5dc28246a9931d"
+    },
+    {
+      "Start": "f5c5599644854c7ca48b412167be408c",
+      "End": "f467d08b55d64398be0d003bc190d766",
+      "Id": "272c00943eb048ed90e9f08200610f91"
+    },
+    {
+      "Start": "525e68b584754485a81d6ae687795c72",
+      "End": "dfa63c2a4a2a4e36903c1932feadebd4",
+      "Id": "ef4de292d1684dd5af03ff738f35ae99"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "d049028a05be44429cdf518ed6cb4161",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 517.0,
+        "Y": 10.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "6906c2cfb9e841369a3a7a6b62567f82",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 10.0,
+        "Y": 10.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "631504d68dd54c89b7818dea288e35f9",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 741.0,
+        "Y": 10.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "d6d8a9fdb24c47b6823429de473bef25",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 209.0,
+        "Y": 14.2183333333333
+      }
+    ],
+    "Annotations": [],
+    "X": 17.304730473047307,
+    "Y": 368.98462229556293,
+    "Zoom": 1.2695269526952695
+  }
+}

@@ -1,56 +1,401 @@
-<Workspace Version="1.2.1.3083" X="-351.103083447662" Y="68.8331431835626" zoom="1.05429821501133" Name="All Directory Contents of Specific Filetype" Description="from clockwork" ID="90217de8-7cff-426b-a80a-cd2b58999b27" Category="Bakery.Dynamo.ForkedNodes">
-  <NamespaceResolutionMap />
-  <Elements>
-    <CoreNodeModels.Watch guid="410f9d88-1e71-4f7a-b932-b0270daa9db6" type="CoreNodeModels.Watch" nickname="Watch" x="954.280197497236" y="425.84408135003" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="909023ba-0a90-486b-be64-b69fbfb4a6f3" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="String.EndsWith" x="812.925532755437" y="723.979931066701" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.String.EndsWith@string,string,bool">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-      <PortInfo index="2" default="True" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="e21d61d1-82c0-4c7d-95e1-98dd94323e6b" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="List.FilterByBoolMask" x="1441.67242316769" y="673.11556995603" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.List.FilterByBoolMask@var[]..[],var[]..[]">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b327d133-9c71-4b88-ac7d-c8baa81fd10a" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="311.333333333333" y="320.666666666667" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <Symbol value="dir string" />
-    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="b6413fab-c945-485c-9230-cf78085e4caf" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="325.482080912865" y="544.947591459206" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <Symbol value="file extension string like .txt" />
-    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="fbb52403-f00f-4d11-8f7b-af4c0515aaed" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1661.67242316769" y="394.947591459206" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <Symbol value="files found" />
-    </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="53029e9d-5a71-45fc-a3e5-ccad1aade9fb" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Directory.ContentsAll" x="587.466939672721" y="354.753235535508" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="True" />
-      <ID value="2276a44a-c7cc-4438-ac43-2ae6b821d4c9" />
-      <Name value="Directory.ContentsAll" />
-      <Description value="Unlike the built-in node Directory.Contents, this node browses a directory recursively and returns all relevant files contained in subfolders as well." />
-      <Inputs>
-        <Input value="dir" />
-        <Input value="searchString" />
-      </Inputs>
-      <Outputs>
-        <Output value="files" />
-      </Outputs>
-    </Dynamo.Graph.Nodes.CustomNodes.Function>
-  </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="410f9d88-1e71-4f7a-b932-b0270daa9db6" start_index="0" end="e21d61d1-82c0-4c7d-95e1-98dd94323e6b" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="410f9d88-1e71-4f7a-b932-b0270daa9db6" start_index="0" end="909023ba-0a90-486b-be64-b69fbfb4a6f3" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="909023ba-0a90-486b-be64-b69fbfb4a6f3" start_index="0" end="e21d61d1-82c0-4c7d-95e1-98dd94323e6b" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="e21d61d1-82c0-4c7d-95e1-98dd94323e6b" start_index="0" end="fbb52403-f00f-4d11-8f7b-af4c0515aaed" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="b327d133-9c71-4b88-ac7d-c8baa81fd10a" start_index="0" end="53029e9d-5a71-45fc-a3e5-ccad1aade9fb" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="b6413fab-c945-485c-9230-cf78085e4caf" start_index="0" end="909023ba-0a90-486b-be64-b69fbfb4a6f3" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="53029e9d-5a71-45fc-a3e5-ccad1aade9fb" start_index="0" end="410f9d88-1e71-4f7a-b932-b0270daa9db6" end_index="0" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-  <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
-</Workspace>
+{
+  "Uuid": "90217de8-7cff-426b-a80a-cd2b58999b27",
+  "IsCustomNode": true,
+  "Category": "Bakery.Dynamo.ForkedNodes",
+  "Description": "from clockwork",
+  "Name": "All Directory Contents of Specific Filetype",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "410f9d881e714f7ab932b0270daa9db6",
+      "Inputs": [
+        {
+          "Id": "2d612b5395c14ff5a1c92e51f674e6ed",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "b3696c92e4c543cb8037004bc7452919",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.String.EndsWith@string,string,bool",
+      "Id": "909023ba0a90486bbe64b69fbfb4a6f3",
+      "Inputs": [
+        {
+          "Id": "9a27bb077dff4b70a5c70d9106be3061",
+          "Name": "str",
+          "Description": "String to search the end of.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d9f4c293628a46548cd01aa7652285c8",
+          "Name": "searchFor",
+          "Description": "Substring to search the end for.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d48bc8b6c8b140749acefa765f9ca30b",
+          "Name": "ignoreCase",
+          "Description": "Whether or not comparison takes case into account.\n\nbool\nDefault value : false",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a2f31d7eb7b14cbc82b94bc98d6bf144",
+          "Name": "bool",
+          "Description": "Whether the string ends with the substring.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Determines if the given string ends with the given substring.\n\nString.EndsWith (str: string, searchFor: string, ignoreCase: bool = false): bool"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.FilterByBoolMask@var[]..[],var[]..[]",
+      "Id": "e21d61d182c04c7d95e198dd94323e6b",
+      "Inputs": [
+        {
+          "Id": "3bf8143cc2f84aa0970ebbf3f9bfadd1",
+          "Name": "list",
+          "Description": "List to filter.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a57c88564bc348558e1a2335114bce39",
+          "Name": "mask",
+          "Description": "List of booleans representing a mask.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "db66cd6eab5d4daf91c17db5412dfea0",
+          "Name": "in",
+          "Description": "Items whose mask index is true.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c37d8db3022043e899ee78fdb248242c",
+          "Name": "out",
+          "Description": "Items whose mask index is false.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Filters a sequence by looking up corresponding indices in a separate list of booleans.\n\nList.FilterByBoolMask (list: var[]..[], mask: var[]..[]): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "dir",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "b327d1339c714b88ac7dc8baa81fd10a",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e251c71650364c85b1ffc455d111e3e0",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "fileExtension",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "b6413fabc945485c9230cf78085e4caf",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "6aad42dd391a434d95ca6e29cd163c82",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "files found",
+      "Id": "fbb52403f00f4d118f7baf4c0515aaed",
+      "Inputs": [
+        {
+          "Id": "e41d2626760d42d5a7a705448ba9e0f6",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "d4ffafa4-27e9-455a-a3ae-e3bd4b5caf34",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "53029e9d5a7145fca3e5ccad1aade9fb",
+      "Inputs": [
+        {
+          "Id": "9b4724c8e96c47f8a0c4d9cc56158e80",
+          "Name": "dir",
+          "Description": "string",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "512db979c4de44ca835335aa6726725f",
+          "Name": "searchString",
+          "Description": "string\nDefault value : \"*\"",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "a3916c6f5d724195827cfcc641ecfe73",
+          "Name": "files",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Unlike the built-in node Directory.Contents, this node browses a directory recursively and returns all relevant files contained in subfolders as well."
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "b3696c92e4c543cb8037004bc7452919",
+      "End": "3bf8143cc2f84aa0970ebbf3f9bfadd1",
+      "Id": "35903a34d4b74612bad4ed8a8b6a2b60"
+    },
+    {
+      "Start": "b3696c92e4c543cb8037004bc7452919",
+      "End": "9a27bb077dff4b70a5c70d9106be3061",
+      "Id": "c3d12414133c49e5af3a18dfa298167f"
+    },
+    {
+      "Start": "a2f31d7eb7b14cbc82b94bc98d6bf144",
+      "End": "a57c88564bc348558e1a2335114bce39",
+      "Id": "fa50a25bfbb646a4ae6afccf03315787"
+    },
+    {
+      "Start": "db66cd6eab5d4daf91c17db5412dfea0",
+      "End": "e41d2626760d42d5a7a705448ba9e0f6",
+      "Id": "6d65acffd2cd409e974b1096f8bb2694"
+    },
+    {
+      "Start": "e251c71650364c85b1ffc455d111e3e0",
+      "End": "9b4724c8e96c47f8a0c4d9cc56158e80",
+      "Id": "ce973e29f91e4abbb57f5c6a50c634e4"
+    },
+    {
+      "Start": "6aad42dd391a434d95ca6e29cd163c82",
+      "End": "d9f4c293628a46548cd01aa7652285c8",
+      "Id": "d9c6663c52944d96a7f8a9ecc40752c9"
+    },
+    {
+      "Start": "a3916c6f5d724195827cfcc641ecfe73",
+      "End": "2d612b5395c14ff5a1c92e51f674e6ed",
+      "Id": "82ae986c8b61463d92f9d37ec722a0d8"
+    }
+  ],
+  "Dependencies": [
+    "d4ffafa4-27e9-455a-a3ae-e3bd4b5caf34"
+  ],
+  "NodeLibraryDependencies": [
+    {
+      "Name": "Bakery",
+      "Version": "2020.1.14",
+      "ReferenceType": "Package",
+      "Nodes": [
+        "53029e9d5a7145fca3e5ccad1aade9fb"
+      ]
+    }
+  ],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "410f9d881e714f7ab932b0270daa9db6",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 954.280197497236,
+        "Y": 425.84408135003
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String.EndsWith",
+        "Id": "909023ba0a90486bbe64b69fbfb4a6f3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 812.925532755437,
+        "Y": 723.979931066701
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.FilterByBoolMask",
+        "Id": "e21d61d182c04c7d95e198dd94323e6b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1441.67242316769,
+        "Y": 673.11556995603
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "b327d1339c714b88ac7dc8baa81fd10a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 311.333333333333,
+        "Y": 320.666666666667
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "b6413fabc945485c9230cf78085e4caf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 325.482080912865,
+        "Y": 544.947591459206
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "fbb52403f00f4d118f7baf4c0515aaed",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1661.67242316769,
+        "Y": 394.947591459206
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Directory.ContentsAll",
+        "Id": "53029e9d5a7145fca3e5ccad1aade9fb",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 587.466939672721,
+        "Y": 354.753235535508
+      }
+    ],
+    "Annotations": [],
+    "X": -58.312666080248107,
+    "Y": 29.767118761278368,
+    "Zoom": 0.84761857199822976
+  }
+}
