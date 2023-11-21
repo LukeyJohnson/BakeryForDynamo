@@ -1,0 +1,235 @@
+{
+  "Uuid": "16113707-a440-40c3-a0dc-30112d1e243c",
+  "IsCustomNode": true,
+  "Category": "Bakery.Revit.Views",
+  "Description": "",
+  "Name": "Set Worksharing Display Mode for View",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "4337222c29cc4701a8d3fbe31dd84a8b",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "f54c793a3ad94de795e4128799175f59",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "import clr\nclr.AddReference('RevitAPI')\nfrom Autodesk.Revit.DB import *\n\nclr.AddReference(\"RevitServices\")\nimport RevitServices\nfrom RevitServices.Persistence import DocumentManager\nfrom RevitServices.Transactions import TransactionManager\n\ndoc = DocumentManager.Instance.CurrentDBDocument\nviewinsts = UnwrapElement(IN[0])\nwsmode = IN[1]\nsuccesslist = list()\n\nbooleans = list()\nTransactionManager.Instance.EnsureInTransaction(doc)\nfor item in viewinsts:\n\ttry:\n#\t\tp = item.get_Parameter(BuiltInParameter.VIEWER_OPTION_VISIBILITY)\n#\t\tp.Set(options[counter].Id)\n\t\titem.SetWorksharingDisplayMode(wsmode)\n\t\tbooleans.append(True)\n\texcept:\n\t\tbooleans.append(False)\nTransactionManager.Instance.TransactionTaskDone()\n\n#for item in viewinsts:\n#\ttry:\n#\t\titem.SetWorkSharingDisplayMode(wsmode)\n#\t\tsuccesslist.append(\"Success\")\n#\texcept:\n#\t\tsuccesslist.append(\"Failed\")\n\nOUT = booleans",
+      "VariableInputPorts": true,
+      "Id": "fc73433629484f0eb4a4c041dd2e0bd2",
+      "Inputs": [
+        {
+          "Id": "63edb048960249bdb00e4f89495bed5d",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "afb8f87675a44c08b5cb013bf5149b4b",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6f0ba98ddac44307900ef045048f2bdd",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded IronPython script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "out",
+      "Id": "fcbce1b20b554b70aa86665cde101113",
+      "Inputs": [
+        {
+          "Id": "6fbd45d6ad7541d2b44b1b852de7f7c4",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "WorksharingDisplayMode",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "31a628d664994a8fbc9314af772e7456",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "18f8ea48c69a413197b0dcf187b4f1c4",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "View: var[]..[];",
+      "Id": "9c9b5b435aea42bb9c9fd90fbd43e9af",
+      "Inputs": [],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "f54c793a3ad94de795e4128799175f59",
+      "End": "63edb048960249bdb00e4f89495bed5d",
+      "Id": "e008e04a4cae40c2a9a9e3d636aa781a"
+    },
+    {
+      "Start": "6f0ba98ddac44307900ef045048f2bdd",
+      "End": "6fbd45d6ad7541d2b44b1b852de7f7c4",
+      "Id": "267fe6c03305466bbd07a2c710b0b0bb"
+    },
+    {
+      "Start": "18f8ea48c69a413197b0dcf187b4f1c4",
+      "End": "afb8f87675a44c08b5cb013bf5149b4b",
+      "Id": "4268ae9915cc4aebbe799f1f2d3ca3ca"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.0.5885",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "4337222c29cc4701a8d3fbe31dd84a8b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 2.197080544101027,
+        "Y": -90.713111159089522
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "fc73433629484f0eb4a4c041dd2e0bd2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 369.8016387545,
+        "Y": 37.6024293961278
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "fcbce1b20b554b70aa86665cde101113",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 815.972027972028,
+        "Y": 10.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "31a628d664994a8fbc9314af772e7456",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 10.6544276457883,
+        "Y": 124.203023758099
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "9c9b5b435aea42bb9c9fd90fbd43e9af",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 290.0,
+        "Y": 312.0
+      }
+    ],
+    "Annotations": [],
+    "X": 366.88286862977122,
+    "Y": 269.12533109140242,
+    "Zoom": 1.3231529419852013
+  }
+}

@@ -1,30 +1,217 @@
-<Workspace Version="1.2.1.3083" X="0" Y="0" zoom="1" Name="bv Merge Sublists with a separator" Description="forked from Rhythm, has problems with string like }---{" ID="fe6d3641-95d2-4a4a-bbd1-b526ab64d474" Category="Bakery.ZZ">
-  <NamespaceResolutionMap />
-  <Elements>
-    <PythonNodeModels.PythonNode guid="ae29a289-1149-404e-a272-12fa26a9f98b" type="PythonNodeModels.PythonNode" nickname="Python Script" x="354.365010799136" y="80.6414686825054" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" inputcount="2">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-      <Script>initial = IN[0]
-result = map(IN[1].join, initial)
-OUT=result</Script>
-    </PythonNodeModels.PythonNode>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="4b32f2fc-a4f8-4308-9571-9ff3f22fcc94" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="553.365010799136" y="80.6414686825054" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <Symbol value="OUT" />
-    </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="6f244dcb-e6c6-4eec-b718-b95b4df5bb81" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="106.911447084233" y="10" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <Symbol value="List" />
-    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="81105beb-2201-4236-804b-857ed870db87" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="10" y="170.539956803456" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <Symbol value="Character" />
-    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-  </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="ae29a289-1149-404e-a272-12fa26a9f98b" start_index="0" end="4b32f2fc-a4f8-4308-9571-9ff3f22fcc94" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="6f244dcb-e6c6-4eec-b718-b95b4df5bb81" start_index="0" end="ae29a289-1149-404e-a272-12fa26a9f98b" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="81105beb-2201-4236-804b-857ed870db87" start_index="0" end="ae29a289-1149-404e-a272-12fa26a9f98b" end_index="1" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-  <Presets />
-</Workspace>
+{
+  "Uuid": "fe6d3641-95d2-4a4a-bbd1-b526ab64d474",
+  "IsCustomNode": true,
+  "Category": "Bakery.ZZ",
+  "Description": "forked from Rhythm, has problems with string like }---{",
+  "Name": "bv Merge Sublists with a separator",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "PythonNodeModels.PythonNode, PythonNodeModels",
+      "NodeType": "PythonScriptNode",
+      "Code": "initial = IN[0]\nresult = map(IN[1].join, initial)\nOUT=result",
+      "Engine": "IronPython2",
+      "VariableInputPorts": true,
+      "Id": "ae29a2891149404ea27212fa26a9f98b",
+      "Inputs": [
+        {
+          "Id": "b6ec6ba2bf2b495e97321e79f4ec0127",
+          "Name": "IN[0]",
+          "Description": "Input #0",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a12892d66dde405e8c338c6fc6d88fef",
+          "Name": "IN[1]",
+          "Description": "Input #1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "13afabaad8ce43c3acfb4fd984189406",
+          "Name": "OUT",
+          "Description": "Result of the python script",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Runs an embedded Python script."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "OUT",
+      "Id": "4b32f2fca4f8430895719ff3f22fcc94",
+      "Inputs": [
+        {
+          "Id": "a7fa2e7794614357b47dd48a5c425af7",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "listin",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "6f244dcbe6c64eecb718b95b4df5bb81",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "404cbc7c9bca45358e596b4e3e96c456",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "Character",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "81105beb22014236804b857ed870db87",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "74945deb62884cd586d77121ad8c7210",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "13afabaad8ce43c3acfb4fd984189406",
+      "End": "a7fa2e7794614357b47dd48a5c425af7",
+      "Id": "7c567c3ab6b840edad934505211825e5"
+    },
+    {
+      "Start": "404cbc7c9bca45358e596b4e3e96c456",
+      "End": "b6ec6ba2bf2b495e97321e79f4ec0127",
+      "Id": "d7667666e7a443d7b4eabde6fa338c25"
+    },
+    {
+      "Start": "74945deb62884cd586d77121ad8c7210",
+      "End": "a12892d66dde405e8c338c6fc6d88fef",
+      "Id": "27b38588713b47299827a867cebfa38e"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Author": "None provided",
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.12.1.8246",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Python Script",
+        "Id": "ae29a2891149404ea27212fa26a9f98b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 354.365010799136,
+        "Y": 80.6414686825054
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "4b32f2fca4f8430895719ff3f22fcc94",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 553.365010799136,
+        "Y": 80.6414686825054
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "6f244dcbe6c64eecb718b95b4df5bb81",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 106.911447084233,
+        "Y": 10.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "81105beb22014236804b857ed870db87",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 10.0,
+        "Y": 170.539956803456
+      }
+    ],
+    "Annotations": [],
+    "X": 60.560108000443464,
+    "Y": 105.03397599565152,
+    "Zoom": 0.95404292488281262
+  }
+}

@@ -1,0 +1,547 @@
+{
+  "Uuid": "c131e074-021c-42ba-bf12-046eafe4196c",
+  "IsCustomNode": true,
+  "Category": "Bakery.ZZ",
+  "Description": "",
+  "Name": "ExtendLineforSplitting",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "edcea41872934026bd45b9d7b99d1c97",
+      "Inputs": [
+        {
+          "Id": "c6005c9007a44920892e7ff6ccf57755",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "65b47294da204325afd3ee6e672a34a2",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.StartPoint",
+      "Id": "ddfae553e5dd4e028852bbcb04a41357",
+      "Inputs": [
+        {
+          "Id": "5d5c963075e34e6db8697b1fbfb89caf",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "6b42c72f9b964bd5bcc0f6df4747c897",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the start Point along the Curve\n\nCurve.StartPoint: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.EndPoint",
+      "Id": "80eb68883ebb471dbda91826d91f865a",
+      "Inputs": [
+        {
+          "Id": "ec9032b4ec2045fa92f81b4a758d5b2f",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "ee18101dc93e42e1a66cf5d82881b578",
+          "Name": "Point",
+          "Description": "Point",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Get the end Point along the Curve\n\nCurve.EndPoint: Point"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.Extend@double,Autodesk.DesignScript.Geometry.Point",
+      "Id": "83517574f361432cb8e0075a5eff0c99",
+      "Inputs": [
+        {
+          "Id": "0e7d58d4fc7e45c3878ff0e4d87c7aa7",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "551edf8d865146a39ab4951f12de629f",
+          "Name": "distance",
+          "Description": "Distance to extend\n\ndouble",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "11b7ca83e435444bbf983c0621299302",
+          "Name": "pickSide",
+          "Description": "A Point on the end to extend\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c42fae9aa4c840369678b6e09c9ec92b",
+          "Name": "Curve",
+          "Description": "The extended Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Extend a Curve by a given distance at a particular end determined by a pick Point. The picked side will be extended. Closed curves like Circles and Ellipses cannot be extended.\n\nCurve.Extend (distance: double, pickSide: Point): Curve"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "4d983757d5bf449386148ad6994e3033",
+      "Inputs": [
+        {
+          "Id": "d68b776785cc45a294a85f5963f32b1c",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "294f47f8c89141a79c2cf12670bb5ad5",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.Extend@double,Autodesk.DesignScript.Geometry.Point",
+      "Id": "285ef5c641124cf3b50c040cc8b4e7cc",
+      "Inputs": [
+        {
+          "Id": "afdc1ee2ccee47109c74507e918a7503",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "2073672e1b4b4c76b659fff4be95ac30",
+          "Name": "distance",
+          "Description": "Distance to extend\n\ndouble",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "7371279a63a4478f8f00eb20e2f99878",
+          "Name": "pickSide",
+          "Description": "A Point on the end to extend\n\nPoint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "26e243f1ba734575a89774a885012c26",
+          "Name": "Curve",
+          "Description": "The extended Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Extend a Curve by a given distance at a particular end determined by a pick Point. The picked side will be extended. Closed curves like Circles and Ellipses cannot be extended.\n\nCurve.Extend (distance: double, pickSide: Point): Curve"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "Autodesk.DesignScript.Geometry.Curve.Extrude@Autodesk.DesignScript.Geometry.Vector,double",
+      "Id": "52a016ec41814edc9f4d6947eb8e58af",
+      "Inputs": [
+        {
+          "Id": "675d3d72945d45879bce0b94de17aacb",
+          "Name": "curve",
+          "Description": "Autodesk.DesignScript.Geometry.Curve",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "984f47886cfc4250881774944691e57e",
+          "Name": "direction",
+          "Description": "Vector to extrude along\n\nVector\nDefault value : Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 0, 1)",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "66f0825a10c24e4c821893aebdb5120f",
+          "Name": "distance",
+          "Description": "Distance to extrude\n\ndouble\nDefault value : 1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "234595b5dba64e588a94ec6766709e1a",
+          "Name": "Surface",
+          "Description": "The extruded Surface",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Extrudes a Curve in the specified direction, by the specified distance\n\nCurve.Extrude (direction: Vector = Autodesk.DesignScript.Geometry.Vector.ByCoordinates(0, 0, 1), distance: double = 1): Surface"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "inputCurve",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "62a6f07f4787414ba32ee7d4dd53fa7f",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "e8aeef8f87f94f3a9533509e10954f42",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "distance",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "389b2975d8d64b17ab675d4e27e813bf",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "bc8aca97269149fabe08dcc209ec387a",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "Surface",
+      "Id": "468178389af549caa430f96f37d3122e",
+      "Inputs": [
+        {
+          "Id": "40cd764f363e4b2a820db0a6ff6a9497",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "65b47294da204325afd3ee6e672a34a2",
+      "End": "0e7d58d4fc7e45c3878ff0e4d87c7aa7",
+      "Id": "565b971914cd45b59332334e1c27eb3e"
+    },
+    {
+      "Start": "65b47294da204325afd3ee6e672a34a2",
+      "End": "5d5c963075e34e6db8697b1fbfb89caf",
+      "Id": "b3a7b33ddeae433895d229775d07c2b0"
+    },
+    {
+      "Start": "65b47294da204325afd3ee6e672a34a2",
+      "End": "ec9032b4ec2045fa92f81b4a758d5b2f",
+      "Id": "7b4177cab8b44ff9bf4c73a3bef25ed9"
+    },
+    {
+      "Start": "6b42c72f9b964bd5bcc0f6df4747c897",
+      "End": "11b7ca83e435444bbf983c0621299302",
+      "Id": "b647b6b81d864ef49d5e1ca5ae94d3ad"
+    },
+    {
+      "Start": "ee18101dc93e42e1a66cf5d82881b578",
+      "End": "7371279a63a4478f8f00eb20e2f99878",
+      "Id": "9311642a8a204d3e92658360e8f773e5"
+    },
+    {
+      "Start": "c42fae9aa4c840369678b6e09c9ec92b",
+      "End": "afdc1ee2ccee47109c74507e918a7503",
+      "Id": "fb388342c83b41459eb2780541e1f17e"
+    },
+    {
+      "Start": "294f47f8c89141a79c2cf12670bb5ad5",
+      "End": "551edf8d865146a39ab4951f12de629f",
+      "Id": "ae035b44e4b045acb1e5b2ef096dce70"
+    },
+    {
+      "Start": "294f47f8c89141a79c2cf12670bb5ad5",
+      "End": "2073672e1b4b4c76b659fff4be95ac30",
+      "Id": "83a9a53b967d40f582ed826bfad861ce"
+    },
+    {
+      "Start": "294f47f8c89141a79c2cf12670bb5ad5",
+      "End": "66f0825a10c24e4c821893aebdb5120f",
+      "Id": "ba9d81a98cbc410d80869fc7d82ba04e"
+    },
+    {
+      "Start": "26e243f1ba734575a89774a885012c26",
+      "End": "675d3d72945d45879bce0b94de17aacb",
+      "Id": "1a7a560c76e14c3894d3fdc693487ac6"
+    },
+    {
+      "Start": "234595b5dba64e588a94ec6766709e1a",
+      "End": "40cd764f363e4b2a820db0a6ff6a9497",
+      "Id": "749ef45aa00f413eaba557899972f088"
+    },
+    {
+      "Start": "e8aeef8f87f94f3a9533509e10954f42",
+      "End": "c6005c9007a44920892e7ff6ccf57755",
+      "Id": "13dcc3dd4c984b5489e51716445319d0"
+    },
+    {
+      "Start": "bc8aca97269149fabe08dcc209ec387a",
+      "End": "d68b776785cc45a294a85f5963f32b1c",
+      "Id": "eb4becb981c54d9392a3ed7f3565cd12"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -609298.45355244633,
+      "EyeY": 763227.97725918924,
+      "EyeZ": 1656973.3504232869,
+      "LookX": 609298.45355244633,
+      "LookY": -763227.97725918924,
+      "LookZ": -1656973.3504232869,
+      "UpX": 0.065852775616790454,
+      "UpY": 0.98162718344766819,
+      "UpZ": -0.17908513243753779
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "edcea41872934026bd45b9d7b99d1c97",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 224.582179588249,
+        "Y": 28.806589078839465
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Curve.StartPoint",
+        "Id": "ddfae553e5dd4e028852bbcb04a41357",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 501.1950305182811,
+        "Y": 0.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Curve.EndPoint",
+        "Id": "80eb68883ebb471dbda91826d91f865a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 499.01326986687218,
+        "Y": 101.93374534800523
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Curve.Extend",
+        "Id": "83517574f361432cb8e0075a5eff0c99",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 493.55445503122496,
+        "Y": 188.73895501728407
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "4d983757d5bf449386148ad6994e3033",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 250.0,
+        "Y": 242.53502318942265
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Curve.Extend",
+        "Id": "285ef5c641124cf3b50c040cc8b4e7cc",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 483.19822048854735,
+        "Y": 328.7335835782626
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Curve.Extrude",
+        "Id": "52a016ec41814edc9f4d6947eb8e58af",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 734.07883946306947,
+        "Y": 215.27227856313584
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "62a6f07f4787414ba32ee7d4dd53fa7f",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 0.0,
+        "Y": 0.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "389b2975d8d64b17ab675d4e27e813bf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -2.8239363908327277,
+        "Y": 151.41196819541642
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "468178389af549caa430f96f37d3122e",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1028.0788394630695,
+        "Y": 0.0
+      }
+    ],
+    "Annotations": [],
+    "X": 127.18240918853196,
+    "Y": 192.00169447440152,
+    "Zoom": 0.59376714062500013
+  }
+}

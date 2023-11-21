@@ -1,31 +1,445 @@
-<Workspace Version="0.8.1.1942" X="109" Y="171" zoom="1" Name="Remove First and Last Characters from String" ID="915497d3-5acd-45bd-ac78-41057fceab49" Description="" Category="Bakery.Core.String">
-  <NamespaceResolutionMap />
-  <Elements>
-    <Dynamo.Nodes.CodeBlockNodeModel guid="a729c79a-8e27-4143-90eb-f9a46f774388" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="42.30534254436" y="60.130131631211" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="0;" ShouldFocus="false" />
-    <Dynamo.Nodes.CodeBlockNodeModel guid="cbd8c97c-6ea0-4faa-9ed6-149aa65e0a85" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="41.2338586211301" y="162.252564796001" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="1;" ShouldFocus="false" />
-    <Dynamo.Nodes.DSFunction guid="443ebc4f-cc64-4c00-b013-e616f625747b" type="Dynamo.Nodes.DSFunction" nickname="String.Remove" x="150.36750037839" y="10" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Remove@string,int,int" />
-    <Dynamo.Nodes.DSFunction guid="08f36483-9875-4677-b851-31b96c7e1575" type="Dynamo.Nodes.DSFunction" nickname="String.Length" x="10" y="257.20914994151" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Length@string" />
-    <Dynamo.Nodes.CodeBlockNodeModel guid="ee72fab0-0a00-4a1e-97fa-ecbf850bb2ed" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="125.6011581155" y="256.861437327219" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="x-1;" ShouldFocus="false" />
-    <Dynamo.Nodes.CodeBlockNodeModel guid="2e0a233d-8840-4953-a69d-d06241a35857" type="Dynamo.Nodes.CodeBlockNodeModel" nickname="Code Block" x="163.11381247032" y="384.570974731374" isVisible="true" isUpstreamVisible="true" lacing="Disabled" CodeText="1;" ShouldFocus="false" />
-    <Dynamo.Nodes.DSFunction guid="f0e9d62e-03f7-4fd9-9a33-62a8d8bf6b7b" type="Dynamo.Nodes.DSFunction" nickname="String.Remove" x="366.63782754266" y="214.068425064905" isVisible="true" isUpstreamVisible="true" lacing="Shortest" assembly="DSCoreNodes.dll" function="DSCore.String.Remove@string,int,int" />
-    <Dynamo.Nodes.Symbol guid="78b7a151-097c-46c5-9114-8f7abe92e36c" type="Dynamo.Nodes.Symbol" nickname="Input" x="-15.5" y="-88" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
-      <Symbol value="stringIn" />
-    </Dynamo.Nodes.Symbol>
-    <Dynamo.Nodes.Output guid="58d58c8c-cd29-4bdb-92ee-cf003a6409fd" type="Dynamo.Nodes.Output" nickname="Output" x="531.5" y="402" isVisible="true" isUpstreamVisible="true" lacing="Disabled">
-      <Symbol value="stringOut" />
-    </Dynamo.Nodes.Output>
-  </Elements>
-  <Connectors>
-    <Dynamo.Models.ConnectorModel start="a729c79a-8e27-4143-90eb-f9a46f774388" start_index="0" end="443ebc4f-cc64-4c00-b013-e616f625747b" end_index="1" portType="0" />
-    <Dynamo.Models.ConnectorModel start="cbd8c97c-6ea0-4faa-9ed6-149aa65e0a85" start_index="0" end="443ebc4f-cc64-4c00-b013-e616f625747b" end_index="2" portType="0" />
-    <Dynamo.Models.ConnectorModel start="443ebc4f-cc64-4c00-b013-e616f625747b" start_index="0" end="f0e9d62e-03f7-4fd9-9a33-62a8d8bf6b7b" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="443ebc4f-cc64-4c00-b013-e616f625747b" start_index="0" end="08f36483-9875-4677-b851-31b96c7e1575" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="08f36483-9875-4677-b851-31b96c7e1575" start_index="0" end="ee72fab0-0a00-4a1e-97fa-ecbf850bb2ed" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="ee72fab0-0a00-4a1e-97fa-ecbf850bb2ed" start_index="0" end="f0e9d62e-03f7-4fd9-9a33-62a8d8bf6b7b" end_index="1" portType="0" />
-    <Dynamo.Models.ConnectorModel start="2e0a233d-8840-4953-a69d-d06241a35857" start_index="0" end="f0e9d62e-03f7-4fd9-9a33-62a8d8bf6b7b" end_index="2" portType="0" />
-    <Dynamo.Models.ConnectorModel start="f0e9d62e-03f7-4fd9-9a33-62a8d8bf6b7b" start_index="0" end="58d58c8c-cd29-4bdb-92ee-cf003a6409fd" end_index="0" portType="0" />
-    <Dynamo.Models.ConnectorModel start="78b7a151-097c-46c5-9114-8f7abe92e36c" start_index="0" end="443ebc4f-cc64-4c00-b013-e616f625747b" end_index="0" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-</Workspace>
+{
+  "Uuid": "915497d3-5acd-45bd-ac78-41057fceab49",
+  "IsCustomNode": true,
+  "Category": "Bakery.Core.String",
+  "Description": "",
+  "Name": "Remove First and Last Characters from String",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "0;",
+      "Id": "a729c79a8e27414390ebf9a46f774388",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "64652d92fb674706ac0f6cd37966c811",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "1;",
+      "Id": "cbd8c97c6ea04faa9ed6149aa65e0a85",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "0f2cc41439fd47c4a51596d94c62d3bd",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.String.Remove@string,int,int",
+      "Id": "443ebc4fcc644c00b013e616f625747b",
+      "Inputs": [
+        {
+          "Id": "34fbca82d210437d9e82ed71615eb1c2",
+          "Name": "str",
+          "Description": "String to remove characters from.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "a77ebea3fe13478bb3b457cd2c9d6482",
+          "Name": "startIndex",
+          "Description": "Index at which to start removal.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "d35d9c49410640aa9328b63ba9043d78",
+          "Name": "count",
+          "Description": "Amount of characters to remove, by default will remove all characters from the given startIndex to the end of the string. Note: if the Count is negative, the removal process goes from right to left.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "60400fe1f88f4925a5ed970a2639762b",
+          "Name": "str",
+          "Description": "String with characters removed.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Removes characters from a string.\n\nString.Remove (str: string, startIndex: int, count: int): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.String.Length@string",
+      "Id": "08f3648398754677b85131b96c7e1575",
+      "Inputs": [
+        {
+          "Id": "fe90e1b069c54766a9bd9a43d151c02b",
+          "Name": "str",
+          "Description": "String to find the length of.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "52b207c1f5034abab7d9b016fd9a7232",
+          "Name": "length",
+          "Description": "Number of characters in the string.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Returns the number of characters contained in the given string.\n\nString.Length (str: string): int"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "x-1;",
+      "Id": "ee72fab00a004a1e97faecbf850bb2ed",
+      "Inputs": [
+        {
+          "Id": "e5464ac19a6649e9ad5ec51c1fe16c90",
+          "Name": "x",
+          "Description": "x",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "fb5dda27dc6549f08b4085ed00115205",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "1;",
+      "Id": "2e0a233d88404953a69dd06241a35857",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "2b989cb4fad246dc8ce543cb858b398f",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.String.Remove@string,int,int",
+      "Id": "f0e9d62e03f74fd99a3362a8d8bf6b7b",
+      "Inputs": [
+        {
+          "Id": "92f6fc71f2fc43db9b5e553d687fd6f9",
+          "Name": "str",
+          "Description": "String to remove characters from.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "e4b7dc13016e44d1805d8ffb415ab660",
+          "Name": "startIndex",
+          "Description": "Index at which to start removal.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "48606e5cea1b464e8b462ab66cb2956e",
+          "Name": "count",
+          "Description": "Amount of characters to remove, by default will remove all characters from the given startIndex to the end of the string. Note: if the Count is negative, the removal process goes from right to left.\n\nint",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "5f19a380c78e4e09ba24e5a870f59131",
+          "Name": "str",
+          "Description": "String with characters removed.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Removes characters from a string.\n\nString.Remove (str: string, startIndex: int, count: int): string"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "stringIn",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "78b7a151097c46c591148f7abe92e36c",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "404a709b5d4e4a47a79586278a46562f",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "stringOut",
+      "Id": "58d58c8ccd294bdb92eecf003a6409fd",
+      "Inputs": [
+        {
+          "Id": "6898c4011c9e4780ab305033bb24239a",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "64652d92fb674706ac0f6cd37966c811",
+      "End": "a77ebea3fe13478bb3b457cd2c9d6482",
+      "Id": "b675e6d9597f418d9c939f414f7ed637"
+    },
+    {
+      "Start": "0f2cc41439fd47c4a51596d94c62d3bd",
+      "End": "d35d9c49410640aa9328b63ba9043d78",
+      "Id": "36e378e2c7684e23b5b83f1f45630b87"
+    },
+    {
+      "Start": "60400fe1f88f4925a5ed970a2639762b",
+      "End": "92f6fc71f2fc43db9b5e553d687fd6f9",
+      "Id": "d3160d4859094e1bae6b0703f1281c84"
+    },
+    {
+      "Start": "60400fe1f88f4925a5ed970a2639762b",
+      "End": "fe90e1b069c54766a9bd9a43d151c02b",
+      "Id": "a00b142cd3314b0db7563ed713442d39"
+    },
+    {
+      "Start": "52b207c1f5034abab7d9b016fd9a7232",
+      "End": "e5464ac19a6649e9ad5ec51c1fe16c90",
+      "Id": "b3d9f9b26cd2407da6c5e5e67e89169a"
+    },
+    {
+      "Start": "fb5dda27dc6549f08b4085ed00115205",
+      "End": "e4b7dc13016e44d1805d8ffb415ab660",
+      "Id": "5dcf2d18bd6842989a8bc0f87162152c"
+    },
+    {
+      "Start": "2b989cb4fad246dc8ce543cb858b398f",
+      "End": "48606e5cea1b464e8b462ab66cb2956e",
+      "Id": "5db54d9f8e6d4cf09a36ee6e5c49c02b"
+    },
+    {
+      "Start": "5f19a380c78e4e09ba24e5a870f59131",
+      "End": "6898c4011c9e4780ab305033bb24239a",
+      "Id": "9113b71454b445d3914dc95a415f9dc1"
+    },
+    {
+      "Start": "404a709b5d4e4a47a79586278a46562f",
+      "End": "34fbca82d210437d9e82ed71615eb1c2",
+      "Id": "4893bd8174b04d3ca844159310e21ee9"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "a729c79a8e27414390ebf9a46f774388",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 42.30534254436,
+        "Y": 60.130131631211
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "cbd8c97c6ea04faa9ed6149aa65e0a85",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 41.2338586211301,
+        "Y": 162.252564796001
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String.Remove",
+        "Id": "443ebc4fcc644c00b013e616f625747b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 150.36750037839,
+        "Y": 10.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String.Length",
+        "Id": "08f3648398754677b85131b96c7e1575",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 10.0,
+        "Y": 257.20914994151
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "ee72fab00a004a1e97faecbf850bb2ed",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 125.6011581155,
+        "Y": 256.861437327219
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "2e0a233d88404953a69dd06241a35857",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 163.11381247032,
+        "Y": 384.570974731374
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String.Remove",
+        "Id": "f0e9d62e03f74fd99a3362a8d8bf6b7b",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 366.63782754266,
+        "Y": 214.068425064905
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "78b7a151097c46c591148f7abe92e36c",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": -15.5,
+        "Y": -88.0
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "58d58c8ccd294bdb92eecf003a6409fd",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 531.5,
+        "Y": 402.0
+      }
+    ],
+    "Annotations": [],
+    "X": 109.0,
+    "Y": 171.0,
+    "Zoom": 1.0
+  }
+}

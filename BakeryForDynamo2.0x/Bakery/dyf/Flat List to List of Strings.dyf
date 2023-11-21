@@ -40,7 +40,7 @@
       "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
       "NodeType": "OutputNode",
       "ElementResolver": null,
-      "Symbol": "List of Strings",
+      "Symbol": "ListOfStrings",
       "Id": "e1b164ffd2f3407588ef34f40795eca6",
       "Inputs": [
         {
@@ -109,7 +109,7 @@
       "ScaleFactor": 1.0,
       "HasRunWithoutCrash": false,
       "IsVisibleInDynamoLibrary": true,
-      "Version": "2.3.0.5885",
+      "Version": "2.3.1.11775",
       "RunType": "Manual",
       "RunPeriod": "1000"
     },
@@ -133,8 +133,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 562.0,
-        "Y": 427.5
+        "X": 410.0,
+        "Y": 371.5
       },
       {
         "ShowGeometry": true,
@@ -143,8 +143,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 1011.0,
-        "Y": 394.5
+        "X": 845.0,
+        "Y": 430.5
       },
       {
         "ShowGeometry": true,
@@ -153,8 +153,8 @@
         "IsSetAsInput": false,
         "IsSetAsOutput": false,
         "Excluded": false,
-        "X": 766.0,
-        "Y": 349.5
+        "X": 677.0,
+        "Y": 333.5
       }
     ],
     "Annotations": [],

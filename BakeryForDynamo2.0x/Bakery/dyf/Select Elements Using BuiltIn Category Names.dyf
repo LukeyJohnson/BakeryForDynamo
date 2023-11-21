@@ -1,56 +1,321 @@
-<Workspace Version="1.2.0.2690" X="556.443525940147" Y="530.604488664531" zoom="1.19518456340778" Name="Select Elements Using BuiltIn Category Names" Description="works on a list of BuiltIn Names" ID="07462ff0-79d0-4192-88ee-7188f61c313e" Category="Bakery.Revit.Selection">
-  <NamespaceResolutionMap />
-  <Elements>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="dd48529a-67e1-45f3-9391-ed9dd2d9dee5" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="-380.361996947235" y="4.47138604716883" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <Symbol value="builtIns" />
-    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="2ee0b535-dd1f-4f7e-9f3a-2b816b623bc1" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="697.558309714635" y="110.427931920217" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <Symbol value="elements" />
-    </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="971f8d7c-ec1e-4ada-99e5-3c2454332ad1" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="Select based on a single builtin name" x="-245.481178888148" y="-160.133938750242" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <ID value="fcc55045-acf7-4e9f-8222-c02f16b19e58" />
-      <Name value="Select based on a single builtin name" />
-      <Description value="asdf" />
-      <Inputs>
-        <Input value="builtinName" />
-      </Inputs>
-      <Outputs>
-        <Output value="elements" />
-      </Outputs>
-    </Dynamo.Graph.Nodes.CustomNodes.Function>
-    <CoreNodeModels.HigherOrder.Map guid="0cbae0e3-8ccf-42e7-a031-1e684723ecdf" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="101.745527936719" y="31.7471651015719" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-    </CoreNodeModels.HigherOrder.Map>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSFunction guid="3f037e1a-491d-4b02-ad98-07d882c70b5a" type="Dynamo.Graph.Nodes.ZeroTouch.DSFunction" nickname="Flatten" x="242.309592386304" y="-130.849758656579" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="BuiltIn" function="Flatten@var[]..[]">
-      <PortInfo index="0" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSFunction>
-    <Dynamo.Graph.Nodes.CustomNodes.Function guid="b08ba44e-614a-4059-962a-8f39b6e12a80" type="Dynamo.Graph.Nodes.CustomNodes.Function" nickname="bv Remove Nulls" x="300.837615434611" y="60.8515595795795" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <ID value="a8b0f382-e8bc-4198-93af-a93c1afcf265" />
-      <Name value="bv Remove Nulls" />
-      <Description value="forked from Lunchbox" />
-      <Inputs>
-        <Input value="List" />
-      </Inputs>
-      <Outputs>
-        <Output value="Cleaned" />
-      </Outputs>
-    </Dynamo.Graph.Nodes.CustomNodes.Function>
-  </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="dd48529a-67e1-45f3-9391-ed9dd2d9dee5" start_index="0" end="0cbae0e3-8ccf-42e7-a031-1e684723ecdf" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="971f8d7c-ec1e-4ada-99e5-3c2454332ad1" start_index="0" end="0cbae0e3-8ccf-42e7-a031-1e684723ecdf" end_index="1" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="0cbae0e3-8ccf-42e7-a031-1e684723ecdf" start_index="0" end="3f037e1a-491d-4b02-ad98-07d882c70b5a" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="3f037e1a-491d-4b02-ad98-07d882c70b5a" start_index="0" end="b08ba44e-614a-4059-962a-8f39b6e12a80" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="b08ba44e-614a-4059-962a-8f39b6e12a80" start_index="0" end="2ee0b535-dd1f-4f7e-9f3a-2b816b623bc1" end_index="0" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-  <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
-</Workspace>
+{
+  "Uuid": "07462ff0-79d0-4192-88ee-7188f61c313e",
+  "IsCustomNode": true,
+  "Category": "Bakery.Revit.Selection",
+  "Description": "works on a list of BuiltIn Names",
+  "Name": "Select Elements Using BuiltIn Category Names",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "builtIns",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "dd48529a67e145f39391ed9dd2d9dee5",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "13fdff41ac3c421ab1c094b9a9154a65",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "elements",
+      "Id": "2ee0b535dd1f4f7e9f3a2b816b623bc1",
+      "Inputs": [
+        {
+          "Id": "b3e698027f564c15857b11be5833318f",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "fcc55045-acf7-4e9f-8222-c02f16b19e58",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "971f8d7cec1e4ada99e53c2454332ad1",
+      "Inputs": [
+        {
+          "Id": "a8e8353449c54605a5f9821d5f09c672",
+          "Name": "builtinName",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "c7211ecd2e4847969666ebcb4d11024a",
+          "Name": "elements",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "asdf"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.HigherOrder.Map, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "0cbae0e38ccf42e7a0311e684723ecdf",
+      "Inputs": [
+        {
+          "Id": "74b43e697ff249fba155528b57c6be39",
+          "Name": "list",
+          "Description": "The list to map over.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "71681fe3ae1240be8e6de336b411c3f8",
+          "Name": "f(x)",
+          "Description": "The procedure used to map element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "7024a3b21ea3444fbcf50036677a8c4a",
+          "Name": "mapped",
+          "Description": "Mapped list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Applies a function over all elements of a list, generating a new list from the results."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSFunction, DynamoCore",
+      "NodeType": "FunctionNode",
+      "FunctionSignature": "DSCore.List.Flatten@var[]..[],int",
+      "Id": "3f037e1a491d4b02ad9807d882c70b5a",
+      "Inputs": [
+        {
+          "Id": "3f57bfb916994ad9b13058cc6773d1a4",
+          "Name": "list",
+          "Description": "List to flatten.\n\nvar[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "27cdc98e6de94431b2638dde74d0648b",
+          "Name": "amt",
+          "Description": "Layers of nesting to remove.\n\nint\nDefault value : -1",
+          "UsingDefaultValue": true,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "dfe79a1aaa6546dc8ac76e5c629c0eec",
+          "Name": "var[]..[]",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Flattens a nested list of lists by a certain amount.\n\nList.Flatten (list: var[]..[], amt: int = -1): var[]..[]"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Function, DynamoCore",
+      "FunctionSignature": "a8b0f382-e8bc-4198-93af-a93c1afcf265",
+      "FunctionType": "Graph",
+      "NodeType": "FunctionNode",
+      "Id": "b08ba44e614a4059962a8f39b6e12a80",
+      "Inputs": [
+        {
+          "Id": "31e3bb18063e4026ace08178820948d8",
+          "Name": "data",
+          "Description": "var[]..[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "99014fa27851468aabf7712af43c1fe9",
+          "Name": "Cleaned",
+          "Description": "return value",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "forked from Lunchbox"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "13fdff41ac3c421ab1c094b9a9154a65",
+      "End": "74b43e697ff249fba155528b57c6be39",
+      "Id": "0e63bdabb9904083afb2718dd9e047b0"
+    },
+    {
+      "Start": "c7211ecd2e4847969666ebcb4d11024a",
+      "End": "71681fe3ae1240be8e6de336b411c3f8",
+      "Id": "e31732916d8a40ec80d680c224f70a3d"
+    },
+    {
+      "Start": "7024a3b21ea3444fbcf50036677a8c4a",
+      "End": "3f57bfb916994ad9b13058cc6773d1a4",
+      "Id": "9af37948fc3a4634bde780d8f9d9a510"
+    },
+    {
+      "Start": "dfe79a1aaa6546dc8ac76e5c629c0eec",
+      "End": "31e3bb18063e4026ace08178820948d8",
+      "Id": "7d70c297d0d34891ab98572a9ef51da6"
+    },
+    {
+      "Start": "99014fa27851468aabf7712af43c1fe9",
+      "End": "b3e698027f564c15857b11be5833318f",
+      "Id": "41bb46849e0e4aac85e818a7cb571711"
+    }
+  ],
+  "Dependencies": [
+    "fcc55045-acf7-4e9f-8222-c02f16b19e58",
+    "a8b0f382-e8bc-4198-93af-a93c1afcf265"
+  ],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.6.2.15705",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "Id": "dd48529a67e145f39391ed9dd2d9dee5",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Input",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -380.361996947235,
+        "Y": 4.47138604716883
+      },
+      {
+        "Id": "2ee0b535dd1f4f7e9f3a2b816b623bc1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Output",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 697.558309714635,
+        "Y": 110.427931920217
+      },
+      {
+        "Id": "971f8d7cec1e4ada99e53c2454332ad1",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "Select based on a single builtin name",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": -245.481178888148,
+        "Y": -160.133938750242
+      },
+      {
+        "Id": "0cbae0e38ccf42e7a0311e684723ecdf",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "List.Map",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 101.745527936719,
+        "Y": 31.7471651015719
+      },
+      {
+        "Id": "3f037e1a491d4b02ad9807d882c70b5a",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "List.Flatten",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 242.309592386304,
+        "Y": -130.849758656579
+      },
+      {
+        "Id": "b08ba44e614a4059962a8f39b6e12a80",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Name": "bv Remove Nulls",
+        "ShowGeometry": true,
+        "Excluded": false,
+        "X": 300.837615434611,
+        "Y": 60.8515595795795
+      }
+    ],
+    "Annotations": [],
+    "X": 382.24687576597995,
+    "Y": 429.02501363663714,
+    "Zoom": 0.81057808522742114
+  }
+}

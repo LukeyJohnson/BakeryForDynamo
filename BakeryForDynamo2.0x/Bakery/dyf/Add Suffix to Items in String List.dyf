@@ -1,42 +1,356 @@
-<Workspace Version="1.2.1.3083" X="-1082.30604342153" Y="-347.0461375" zoom="1.33823125" Name="Add Suffix to Items in String List" Description="" ID="94347f43-ba37-4ab0-86d6-9b093cae3abb" Category="Bakery.Core.String">
-  <NamespaceResolutionMap />
-  <Elements>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="56c1e998-2514-4595-a3dc-12ff6c2a0401" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="876.937683226084" y="344.534921778433" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <Symbol value="string list" />
-    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CustomNodes.Symbol guid="15815a44-8653-42dc-a454-801edfcf22d0" type="Dynamo.Graph.Nodes.CustomNodes.Symbol" nickname="Input" x="876.937683226084" y="494.534921778433" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="True" IsFrozen="false" isPinned="false">
-      <Symbol value="suffix" />
-    </Dynamo.Graph.Nodes.CustomNodes.Symbol>
-    <Dynamo.Graph.Nodes.CodeBlockNodeModel guid="d7ca5055-5a58-4f2a-afb7-800aea7595ba" type="Dynamo.Graph.Nodes.CodeBlockNodeModel" nickname="Code Block" x="1026.29270252239" y="910.64972245398" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false" CodeText="&quot;&quot;;" ShouldFocus="false" />
-    <CoreNodeModels.Watch guid="2b2522da-81fd-4110-b90f-ea2a9a7662f2" type="CoreNodeModels.Watch" nickname="Watch" x="1295.35006693615" y="344.534921778433" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-    </CoreNodeModels.Watch>
-    <CoreNodeModels.HigherOrder.Map guid="b75060ae-37c8-4421-bfe5-17c92dbdc274" type="CoreNodeModels.HigherOrder.Map" nickname="List.Map" x="1604.54203311884" y="669.069843556866" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-    </CoreNodeModels.HigherOrder.Map>
-    <Dynamo.Graph.Nodes.CustomNodes.Output guid="0d465d60-5b80-491b-9d2d-35b1415ce7f3" type="Dynamo.Graph.Nodes.CustomNodes.Output" nickname="Output" x="1731.0086997855" y="344.534921778433" isVisible="true" isUpstreamVisible="true" lacing="Disabled" isSelectedInput="False" IsFrozen="false" isPinned="false">
-      <PortInfo index="0" default="False" />
-      <Symbol value="new strings" />
-    </Dynamo.Graph.Nodes.CustomNodes.Output>
-    <Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction guid="5a1e0eb4-695d-447a-8af5-3d0f4d419a82" type="Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction" nickname="String.Join" x="1249.89635649785" y="796.025180946066" isVisible="true" isUpstreamVisible="true" lacing="Shortest" isSelectedInput="False" IsFrozen="false" isPinned="false" assembly="DSCoreNodes.dll" function="DSCore.String.Join@string,string[]" inputcount="3">
-      <PortInfo index="0" default="False" />
-      <PortInfo index="1" default="False" />
-      <PortInfo index="2" default="False" />
-    </Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction>
-  </Elements>
-  <Connectors>
-    <Dynamo.Graph.Connectors.ConnectorModel start="56c1e998-2514-4595-a3dc-12ff6c2a0401" start_index="0" end="2b2522da-81fd-4110-b90f-ea2a9a7662f2" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="15815a44-8653-42dc-a454-801edfcf22d0" start_index="0" end="5a1e0eb4-695d-447a-8af5-3d0f4d419a82" end_index="2" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="d7ca5055-5a58-4f2a-afb7-800aea7595ba" start_index="0" end="5a1e0eb4-695d-447a-8af5-3d0f4d419a82" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="2b2522da-81fd-4110-b90f-ea2a9a7662f2" start_index="0" end="b75060ae-37c8-4421-bfe5-17c92dbdc274" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="b75060ae-37c8-4421-bfe5-17c92dbdc274" start_index="0" end="0d465d60-5b80-491b-9d2d-35b1415ce7f3" end_index="0" portType="0" />
-    <Dynamo.Graph.Connectors.ConnectorModel start="5a1e0eb4-695d-447a-8af5-3d0f4d419a82" start_index="0" end="b75060ae-37c8-4421-bfe5-17c92dbdc274" end_index="1" portType="0" />
-  </Connectors>
-  <Notes />
-  <Annotations />
-  <Presets />
-  <Cameras>
-    <Camera Name="Background Preview" eyeX="-17" eyeY="24" eyeZ="50" lookX="12" lookY="-13" lookZ="-58" upX="0" upY="1" upZ="0" />
-  </Cameras>
-</Workspace>
+{
+  "Uuid": "94347f43-ba37-4ab0-86d6-9b093cae3abb",
+  "IsCustomNode": true,
+  "Category": "Bakery.Core.String",
+  "Description": "",
+  "Name": "Add Suffix to Items in String List",
+  "ElementResolver": {
+    "ResolutionMap": {}
+  },
+  "Inputs": [],
+  "Outputs": [],
+  "Nodes": [
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "stringList",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "56c1e99825144595a3dc12ff6c2a0401",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "db2d0a78e4af4dcf9f9966b0f3849e6a",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Symbol, DynamoCore",
+      "NodeType": "InputNode",
+      "Parameter": {
+        "Name": "suffix",
+        "TypeName": "var",
+        "TypeRank": -1,
+        "DefaultValue": null,
+        "Description": ""
+      },
+      "Id": "15815a44865342dca454801edfcf22d0",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "31a35524af084f8ab5c9614bfb18eda6",
+          "Name": "",
+          "Description": "Symbol",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "A function parameter, use with custom nodes.\r\n\r\nYou can specify the type and default value for parameter. E.g.,\r\n\r\ninput : var[]..[]\r\nvalue : bool = false"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CodeBlockNodeModel, DynamoCore",
+      "NodeType": "CodeBlockNode",
+      "Code": "\"\";",
+      "Id": "d7ca50555a584f2aafb7800aea7595ba",
+      "Inputs": [],
+      "Outputs": [
+        {
+          "Id": "00d0012069c340ce965eb68521d0a38b",
+          "Name": "",
+          "Description": "Value of expression at line 1",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Allows for DesignScript code to be authored directly"
+    },
+    {
+      "ConcreteType": "CoreNodeModels.Watch, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "2b2522da81fd4110b90fea2a9a7662f2",
+      "Inputs": [
+        {
+          "Id": "c111f1434c954b2290af4ee0054d1a98",
+          "Name": "",
+          "Description": "Node to evaluate.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "9fb7a58df85c42f483070738266020ba",
+          "Name": "",
+          "Description": "Watch contents.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Visualize the output of node."
+    },
+    {
+      "ConcreteType": "CoreNodeModels.HigherOrder.Map, CoreNodeModels",
+      "NodeType": "ExtensionNode",
+      "Id": "b75060ae37c84421bfe517c92dbdc274",
+      "Inputs": [
+        {
+          "Id": "bd02e95d228c429588884a8aa5e7b41c",
+          "Name": "list",
+          "Description": "The list to map over.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "c8c57d37d31041fe8caa385f3c89bcc0",
+          "Name": "f(x)",
+          "Description": "The procedure used to map element",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "1ba8c5598c644f71854476136d7ff4b0",
+          "Name": "mapped",
+          "Description": "Mapped list",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Disabled",
+      "Description": "Applies a function over all elements of a list, generating a new list from the results."
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.CustomNodes.Output, DynamoCore",
+      "NodeType": "OutputNode",
+      "ElementResolver": null,
+      "Symbol": "new strings",
+      "Id": "0d465d605b80491b9d2d35b1415ce7f3",
+      "Inputs": [
+        {
+          "Id": "8085ace8ec474c87bc66dcc397d12b21",
+          "Name": "",
+          "Description": "",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [],
+      "Replication": "Disabled",
+      "Description": "A function output, use with custom nodes"
+    },
+    {
+      "ConcreteType": "Dynamo.Graph.Nodes.ZeroTouch.DSVarArgFunction, DynamoCore",
+      "FunctionSignature": "DSCore.String.Join@string,string[]",
+      "FunctionType": "VariableArgument",
+      "NodeType": "FunctionNode",
+      "Id": "5a1e0eb4695d447a8af53d0f4d419a82",
+      "Inputs": [
+        {
+          "Id": "eb3a044f3c884a58bdb596b8fdbdf214",
+          "Name": "separator",
+          "Description": "String to be inserted between joined strings.\n\nstring",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "208ca82182b246259a6506c3c98963f9",
+          "Name": "string0",
+          "Description": "Strings to be joined into a single string.\n\nstring[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        },
+        {
+          "Id": "58d0100c647f4a98918ab0d764e6f833",
+          "Name": "string1",
+          "Description": "string[]",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Outputs": [
+        {
+          "Id": "510b8894e66e4534a238e2c5eb06ea25",
+          "Name": "str",
+          "Description": "A string made from the list of strings including the separator character.",
+          "UsingDefaultValue": false,
+          "Level": 2,
+          "UseLevels": false,
+          "KeepListStructure": false
+        }
+      ],
+      "Replication": "Auto",
+      "Description": "Concatenates multiple strings into a single string, inserting the given separator between each joined string.\n\nString.Join (separator: string, strings: string[]): string"
+    }
+  ],
+  "Connectors": [
+    {
+      "Start": "db2d0a78e4af4dcf9f9966b0f3849e6a",
+      "End": "c111f1434c954b2290af4ee0054d1a98",
+      "Id": "93684ac75d3e442f8734914eceb7cfb2"
+    },
+    {
+      "Start": "31a35524af084f8ab5c9614bfb18eda6",
+      "End": "58d0100c647f4a98918ab0d764e6f833",
+      "Id": "7816f45ca56146ddacd8b0a6d5d846bc"
+    },
+    {
+      "Start": "00d0012069c340ce965eb68521d0a38b",
+      "End": "eb3a044f3c884a58bdb596b8fdbdf214",
+      "Id": "0cdd1273f1c34cb5a4d7894f0b108962"
+    },
+    {
+      "Start": "9fb7a58df85c42f483070738266020ba",
+      "End": "bd02e95d228c429588884a8aa5e7b41c",
+      "Id": "98879e459bd7486d94e28401cf22f9b8"
+    },
+    {
+      "Start": "1ba8c5598c644f71854476136d7ff4b0",
+      "End": "8085ace8ec474c87bc66dcc397d12b21",
+      "Id": "0faf327f5d634f41a094ec084e0c63bd"
+    },
+    {
+      "Start": "510b8894e66e4534a238e2c5eb06ea25",
+      "End": "c8c57d37d31041fe8caa385f3c89bcc0",
+      "Id": "f5ab6775c8dc40ba84b33905ff61163a"
+    }
+  ],
+  "Dependencies": [],
+  "NodeLibraryDependencies": [],
+  "Bindings": [],
+  "View": {
+    "Dynamo": {
+      "ScaleFactor": 1.0,
+      "HasRunWithoutCrash": false,
+      "IsVisibleInDynamoLibrary": true,
+      "Version": "2.3.1.11775",
+      "RunType": "Manual",
+      "RunPeriod": "1000"
+    },
+    "Camera": {
+      "Name": "Background Preview",
+      "EyeX": -17.0,
+      "EyeY": 24.0,
+      "EyeZ": 50.0,
+      "LookX": 12.0,
+      "LookY": -13.0,
+      "LookZ": -58.0,
+      "UpX": 0.0,
+      "UpY": 1.0,
+      "UpZ": 0.0
+    },
+    "NodeViews": [
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "56c1e99825144595a3dc12ff6c2a0401",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 876.937683226084,
+        "Y": 344.534921778433
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Input",
+        "Id": "15815a44865342dca454801edfcf22d0",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 876.937683226084,
+        "Y": 494.534921778433
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Code Block",
+        "Id": "d7ca50555a584f2aafb7800aea7595ba",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1026.29270252239,
+        "Y": 910.64972245398
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Watch",
+        "Id": "2b2522da81fd4110b90fea2a9a7662f2",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1295.35006693615,
+        "Y": 344.534921778433
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "List.Map",
+        "Id": "b75060ae37c84421bfe517c92dbdc274",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1604.54203311884,
+        "Y": 669.069843556866
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "Output",
+        "Id": "0d465d605b80491b9d2d35b1415ce7f3",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1731.0086997855,
+        "Y": 344.534921778433
+      },
+      {
+        "ShowGeometry": true,
+        "Name": "String.Join",
+        "Id": "5a1e0eb4695d447a8af53d0f4d419a82",
+        "IsSetAsInput": false,
+        "IsSetAsOutput": false,
+        "Excluded": false,
+        "X": 1249.89635649785,
+        "Y": 796.025180946066
+      }
+    ],
+    "Annotations": [],
+    "X": -1297.1454261264032,
+    "Y": -442.51637837954434,
+    "Zoom": 1.545620359375
+  }
+}
